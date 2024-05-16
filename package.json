@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "dependencies": {
+    "my-nft-gen": "file:../my-nft-gen"
+  }
+}
