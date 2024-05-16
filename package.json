@@ -1,6 +1,9 @@
 {
   "type": "module",
+  "scripts": {
+    "red-eye": "node ./src/red-eye-goes-on.js"
+  },
   "dependencies": {
-    "my-nft-gen": "file:../my-nft-gen"
+    "my-nft-gen": "^1.5.1"
   }
 }
