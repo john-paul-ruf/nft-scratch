@@ -285,7 +285,7 @@ const createRedEye = async (colorSheme) => {
             effect: LensFlareEffect,
             percentChance: 100,
             currentEffectConfig: new LensFlareConfig({
-                layerOpacityRange: new DynamicRange(new Range(0.4, 0.4), new Range(0.5, 0.5)),
+                layerOpacityRange: new DynamicRange(new Range(0.6, 0.6), new Range(0.7, 0.7)),
                 layerOpacityTimes: new Range(3, 3),
 
                 elementOpacityRange: new DynamicRange(new Range(0.4, 0.5), new Range(0.6, 0.7)),
