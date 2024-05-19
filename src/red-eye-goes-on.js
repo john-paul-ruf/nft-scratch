@@ -282,10 +282,10 @@ const createRedEye = async (colorSheme) => {
                 elementGastonTimes: new Range(2, 6),
 
                 numberOfFlareHex: new Range(8, 8),
-                flareHexSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.05)),
-                flareHexOffsetRange: new PercentageRange(new PercentageShortestSide(0.0), new PercentageShortestSide(0.25)),
+                flareHexSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.02)),
+                flareHexOffsetRange: new PercentageRange(new PercentageShortestSide(0.0), new PercentageShortestSide(0.15)),
 
-                angleRangeFlareHex: new DynamicRange(new Range(0, 5), new Range(25, 30)),
+                angleRangeFlareHex: new DynamicRange(new Range(0, 15), new Range(15, 30)),
                 angleGastonTimes: new Range(3, 3),
 
                 numberOfFlareRings: new Range(100, 100),
