@@ -320,6 +320,6 @@ const createRedEye = async (colorSheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createRedEye(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.blueNeons));
+await createRedEye(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.clashNeons));
 
 await Promise.all(promiseArray);
