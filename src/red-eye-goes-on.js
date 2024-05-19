@@ -30,8 +30,8 @@ const createRedEye = async (colorSheme) => {
         artist: 'John Ruf',
         projectName: 'red-eye',
         projectDirectory: 'src/red-eye/',
-        neutrals: ['#FFFFFF'],
-        backgrounds: ['#2d2d2d'],
+        neutrals: ['#EEEEEE'],
+        backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorSheme,
     });
@@ -42,8 +42,8 @@ const createRedEye = async (colorSheme) => {
             percentChance: 100,
             currentEffectConfig: new AmpConfig({
                 invertLayers: false,
-                layerOpacity: 0.4,
-                underLayerOpacity: 0.25,
+                layerOpacity: .85,
+                underLayerOpacity: 0.5,
                 sparsityFactor: [3],
                 stroke: 1,
                 thickness: 1,
@@ -65,8 +65,8 @@ const createRedEye = async (colorSheme) => {
             percentChance: 100,
             currentEffectConfig: new AmpConfig({
                 invertLayers: false,
-                layerOpacity: 0.4,
-                underLayerOpacity: 0.25,
+                layerOpacity: .85,
+                underLayerOpacity: 0.5,
                 sparsityFactor: [3],
                 stroke: 1,
                 thickness: 1,
@@ -88,8 +88,8 @@ const createRedEye = async (colorSheme) => {
             percentChance: 100,
             currentEffectConfig: new AmpConfig({
                 invertLayers: false,
-                layerOpacity: 0.4,
-                underLayerOpacity: 0.25,
+                layerOpacity: .85,
+                underLayerOpacity: 0.5,
                 sparsityFactor: [1],
                 stroke: 1,
                 thickness: 1,
@@ -123,7 +123,7 @@ const createRedEye = async (colorSheme) => {
         }),
     });
 
-    let redEyeCount = getRandomFromArray([4]);
+    let redEyeCount = getRandomFromArray([3]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -132,7 +132,7 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 0.7,
+                    layerOpacity: .85,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -142,7 +142,7 @@ const createRedEye = async (colorSheme) => {
                     sparsityFactor: [9, 10, 12],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.1, myTestProject.shortestSideInPixels * 0.20),
                     outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.30, myTestProject.shortestSideInPixels * 0.40),
-                    possibleJumpRangeInPixels: {lower: 5, upper: 15},
+                    possibleJumpRangeInPixels: {lower: 30, upper: 40},
                     lineLength: {lower: 75, upper: 150},
                     numberOfLoops: {lower: 1, upper: 3},
                     accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
@@ -153,7 +153,7 @@ const createRedEye = async (colorSheme) => {
         });
     }
 
-    redEyeCount = getRandomFromArray([4]);
+    redEyeCount = getRandomFromArray([3]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -162,17 +162,17 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 0.7,
+                    layerOpacity: .85,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
                     thickness: 1,
-                    sparsityFactor: [9, 10, 12],
+                    sparsityFactor: [10, 12, 15],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.2, myTestProject.shortestSideInPixels * 0.30),
                     outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.40, myTestProject.shortestSideInPixels * 0.50),
-                    possibleJumpRangeInPixels: {lower: 5, upper: 15},
+                    possibleJumpRangeInPixels: {lower: 20, upper: 30},
                     lineLength: {lower: 75, upper: 150},
                     numberOfLoops: {lower: 1, upper: 3},
                     accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
@@ -183,7 +183,7 @@ const createRedEye = async (colorSheme) => {
         });
     }
 
-    redEyeCount = getRandomFromArray([4]);
+    redEyeCount = getRandomFromArray([3]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -192,17 +192,17 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 0.7,
+                    layerOpacity: .85,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
                     thickness: 1,
-                    sparsityFactor: [8, 9, 10],
+                    sparsityFactor: [6, 8, 9],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.30, myTestProject.shortestSideInPixels * 0.40),
                     outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.50, myTestProject.shortestSideInPixels * 0.60),
-                    possibleJumpRangeInPixels: {lower: 10, upper: 30},
+                    possibleJumpRangeInPixels: {lower: 10, upper: 20},
                     lineLength: {lower: 100, upper: 175},
                     numberOfLoops: {lower: 1, upper: 3},
                     accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
@@ -213,7 +213,7 @@ const createRedEye = async (colorSheme) => {
         });
     }
 
-    redEyeCount = getRandomFromArray([4]);
+    redEyeCount = getRandomFromArray([3]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -222,17 +222,17 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 0.7,
+                    layerOpacity: .85,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
                     thickness: 1,
-                    sparsityFactor: [6, 8, 9],
+                    sparsityFactor: [4, 5, 6],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.40, myTestProject.shortestSideInPixels * 0.50),
                     outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.60, myTestProject.shortestSideInPixels * 0.70),
-                    possibleJumpRangeInPixels: {lower: 10, upper: 30},
+                    possibleJumpRangeInPixels: {lower: 10, upper: 20},
                     lineLength: {lower: 125, upper: 175},
                     numberOfLoops: {lower: 1, upper: 3},
                     accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
@@ -249,7 +249,7 @@ const createRedEye = async (colorSheme) => {
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
                 invertLayers: false,
-                layerOpacity: 0.7,
+                layerOpacity: .85,
                 underLayerOpacity: 0.5,
                 color: new ColorPicker(ColorPicker.SelectionType.color, '#FF00FF'),
                 stroke: 4,
@@ -289,11 +289,11 @@ const createRedEye = async (colorSheme) => {
                 angleGastonTimes: new Range(3, 3),
 
                 numberOfFlareRings: new Range(100, 100),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.20), new PercentageLongestSide(0.80)),
+                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.20), new PercentageLongestSide(1.1)),
                 flareRingStroke: new Range(4, 4),
 
                 numberOfFlareRays: new Range(250, 250),
-                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(0.95)),
+                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(.855)),
                 flareRaysStroke: new Range(3, 3),
 
                 blurRange: new DynamicRange(new Range(0, 0), new Range(0, 0)),
@@ -310,7 +310,7 @@ const createRedEye = async (colorSheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: '/mappedFrames/',
-                layerOpacity: [0.9],
+                layerOpacity: [.85],
                 buffer: [555],
                 loopTimes: 30,
             }),
