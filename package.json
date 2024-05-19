@@ -8,5 +8,8 @@
   "description": "composition work for my-nft-gen",
   "main": "./src/red-eye-goes-on.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "my-nft-gen": "^1.5.1"
+  }
 }
