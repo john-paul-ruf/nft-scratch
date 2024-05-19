@@ -3,7 +3,10 @@
   "scripts": {
     "red-eye": "node ./src/red-eye-goes-on.js"
   },
-  "dependencies": {
-    "my-nft-gen": "file:../my-nft-gen"
-  }
+  "name": "nft-scratch",
+  "version": "1.0.0",
+  "description": "composition work for my-nft-gen",
+  "main": "./src/red-eye-goes-on.js",
+  "author": "",
+  "license": "ISC"
 }
