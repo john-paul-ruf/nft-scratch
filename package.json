@@ -4,6 +4,6 @@
     "red-eye": "node ./src/red-eye-goes-on.js"
   },
   "dependencies": {
-    "my-nft-gen": "^1.5.1"
+    "my-nft-gen": "file:../my-nft-gen"
   }
 }

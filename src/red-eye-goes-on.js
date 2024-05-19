@@ -31,7 +31,7 @@ const createRedEye = async (colorSheme) => {
         projectName: 'red-eye',
         projectDirectory: 'src/red-eye/',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#000000'],
+        backgrounds: ['#2d2d2d'],
         numberOfFrame: 1800,
         colorScheme: colorSheme,
     });
@@ -41,7 +41,7 @@ const createRedEye = async (colorSheme) => {
             effect: AmpEffect,
             percentChance: 100,
             currentEffectConfig: new AmpConfig({
-                invertLayers: true,
+                invertLayers: false,
                 layerOpacity: 0.4,
                 underLayerOpacity: 0.25,
                 sparsityFactor: [3],
@@ -64,7 +64,7 @@ const createRedEye = async (colorSheme) => {
             effect: AmpEffect,
             percentChance: 100,
             currentEffectConfig: new AmpConfig({
-                invertLayers: true,
+                invertLayers: false,
                 layerOpacity: 0.4,
                 underLayerOpacity: 0.25,
                 sparsityFactor: [3],
@@ -87,7 +87,7 @@ const createRedEye = async (colorSheme) => {
             effect: AmpEffect,
             percentChance: 100,
             currentEffectConfig: new AmpConfig({
-                invertLayers: true,
+                invertLayers: false,
                 layerOpacity: 0.4,
                 underLayerOpacity: 0.25,
                 sparsityFactor: [1],
@@ -131,7 +131,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: true,
+                    invertLayers: false,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -161,7 +161,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: true,
+                    invertLayers: false,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -191,7 +191,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: true,
+                    invertLayers: false,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -221,7 +221,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: true,
+                    invertLayers: false,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -248,7 +248,7 @@ const createRedEye = async (colorSheme) => {
             effect: ViewportEffect,
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
-                invertLayers: true,
+                invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
                 color: new ColorPicker(ColorPicker.SelectionType.color, '#FF00FF'),
@@ -283,10 +283,10 @@ const createRedEye = async (colorSheme) => {
 
                 numberOfFlareHex: new Range(8, 8),
                 flareHexSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.05)),
-                flareHexOffsetRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.25)),
+                flareHexOffsetRange: new PercentageRange(new PercentageShortestSide(0.0), new PercentageShortestSide(0.25)),
 
-                angleRangeFlareHex: new DynamicRange(new Range(1, 1), new Range(4, 4)),
-                angleGastonTimes: new Range(1, 6),
+                angleRangeFlareHex: new DynamicRange(new Range(0, 5), new Range(25, 30)),
+                angleGastonTimes: new Range(3, 3),
 
                 numberOfFlareRings: new Range(100, 100),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.20), new PercentageLongestSide(0.80)),
