@@ -7,8 +7,8 @@
   "version": "1.0.0",
   "description": "composition work for my-nft-gen",
   "main": "./src/red-eye-goes-on.js",
-  "author": "",
-  "license": "ISC",
+  "author": "john.paul.ruf",
+  "license": "MIT",
   "dependencies": {
     "my-nft-gen": "^1.5.1"
   }
