@@ -248,10 +248,11 @@ const createRedEye = async (colorSheme) => {
             effect: ViewportEffect,
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
+                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: false,
                 layerOpacity: 1,
                 underLayerOpacity: 0.6,
-                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 stroke: 4,
                 thickness: 10,
                 ampStroke: 0,
