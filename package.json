@@ -1,6 +1,7 @@
 {
   "type": "module",
   "scripts": {
+    "resume-folder": "node ./src/resume-folder.js",
     "red-eye": "node ./src/red-eye-goes-on.js"
   },
   "name": "nft-scratch",
@@ -10,6 +11,7 @@
   "author": "john.paul.ruf",
   "license": "MIT",
   "dependencies": {
+    "inquirer": "^9.2.22",
     "my-nft-gen": "^1.5.1"
   }
 }
