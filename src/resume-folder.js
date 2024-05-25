@@ -1,9 +1,10 @@
-import inquirer from 'inquirer';
-import fs from 'fs';
-import {Settings} from "my-nft-gen/src/core/Settings.js";
-import {LoopBuilder} from "my-nft-gen/src/core/animation/LoopBuilder.js";
 
-// src/red-eye/red-eye-jh7ilxm/red-eye-jh7ilxm-settings.json
+// src/red-eye/red-eye-ewvkdsd/red-eye-ewvkdsd-settings.json
+
+import inquirer from "inquirer";
+import {LoopBuilder} from "my-nft-gen/src/core/animation/LoopBuilder.js";
+import {Settings} from "my-nft-gen/src/core/Settings.js";
+import * as fs from "fs";
 
 const mainMenu = () => {
     const InitialActions = {

@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="red-eye" type="js.build_tools.npm" nameIsGenerated="true">
+  <configuration default="false" name="resume-folder" type="js.build_tools.npm" nameIsGenerated="true">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
-      <script value="red-eye" />
+      <script value="resume-folder" />
     </scripts>
     <node-interpreter value="$USER_HOME$/.nvm/versions/node/v22.2.0/bin/node" />
     <envs />
