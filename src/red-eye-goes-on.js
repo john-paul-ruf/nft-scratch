@@ -21,6 +21,7 @@ import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
 import {LensFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/lensFlare/LensFlareConfig.js";
+import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
 
 
 const promiseArray = [];
@@ -30,97 +31,10 @@ const createRedEye = async (colorSheme) => {
         artist: 'John Ruf',
         projectName: 'red-eye',
         projectDirectory: 'src/red-eye/',
-        neutrals: ['#EEEEEE'],
+        neutrals: ['#ffd439'],
         backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorSheme,
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: AmpEffect,
-            percentChance: 100,
-            currentEffectConfig: new AmpConfig({
-                invertLayers: false,
-                layerOpacity: 1,
-                underLayerOpacity: 0.6,
-                sparsityFactor: [3],
-                stroke: 1,
-                thickness: 1,
-                accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
-                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
-                featherTimes: {lower: 3, upper: 3},
-                speed: {lower: 24, upper: 24},
-                length: 100,
-                lineStart: 150,
-                center: {x: 1080 / 2, y: 1920 / 2},
-            }),
-            defaultEffectConfig: AmpConfig,
-        }),
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: AmpEffect,
-            percentChance: 100,
-            currentEffectConfig: new AmpConfig({
-                invertLayers: false,
-                layerOpacity: 1,
-                underLayerOpacity: 0.6,
-                sparsityFactor: [3],
-                stroke: 1,
-                thickness: 1,
-                accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
-                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
-                featherTimes: {lower: 3, upper: 3},
-                speed: {lower: 24, upper: 24},
-                length: 200,
-                lineStart: 300,
-                center: {x: 1080 / 2, y: 1920 / 2},
-            }),
-            defaultEffectConfig: AmpConfig,
-        }),
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: AmpEffect,
-            percentChance: 100,
-            currentEffectConfig: new AmpConfig({
-                invertLayers: false,
-                layerOpacity: 1,
-                underLayerOpacity: 0.6,
-                sparsityFactor: [1],
-                stroke: 1,
-                thickness: 1,
-                accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
-                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
-                featherTimes: {lower: 3, upper: 3},
-                speed: {lower: 48, upper: 48},
-                length: 333,
-                lineStart: 700,
-                center: {x: 1080 / 2, y: 1920 / 2},
-            }),
-            defaultEffectConfig: AmpConfig,
-        }),
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: ScopesEffect,
-            percentChance: 100,
-            currentEffectConfig: new ScopesConfig({
-                layerOpacity: 1,
-                sparsityFactor: [3],
-                gapFactor: {lower: 0.1, upper: 0.1},
-                radiusFactor: {lower: 0.1, upper: 0.1},
-                scaleFactor: 1.2,
-                alphaRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.6, upper: 0.6}},
-                alphaTimes: {lower: 3, upper: 3},
-                rotationTimes: {lower: 3, upper: 3},
-                numberOfScopesInALine: 60,
-            }),
-        }),
     });
 
     let redEyeCount = getRandomFromArray([3]);
@@ -132,8 +46,8 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 1,
-                    underLayerOpacity: 0.6,
+                    layerOpacity: 0.8,
+                    underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -142,11 +56,11 @@ const createRedEye = async (colorSheme) => {
                     sparsityFactor: [9, 10, 12],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.1, myTestProject.shortestSideInPixels * 0.20),
                     outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.30, myTestProject.shortestSideInPixels * 0.40),
-                    possibleJumpRangeInPixels: {lower: 30, upper: 40},
+                    possibleJumpRangeInPixels: {lower: 10, upper: 20},
                     lineLength: {lower: 75, upper: 150},
                     numberOfLoops: {lower: 1, upper: 3},
-                    accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
-                    blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
                 }),
             }),
@@ -162,8 +76,8 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 1,
-                    underLayerOpacity: 0.6,
+                    layerOpacity: 0.8,
+                    underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -171,12 +85,12 @@ const createRedEye = async (colorSheme) => {
                     thickness: 1,
                     sparsityFactor: [10, 12, 15],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.2, myTestProject.shortestSideInPixels * 0.30),
-                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.50, myTestProject.shortestSideInPixels * 0.60),
-                    possibleJumpRangeInPixels: {lower: 20, upper: 30},
+                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.50, myTestProject.shortestSideInPixels * 0.80),
+                    possibleJumpRangeInPixels: {lower: 10, upper: 20},
                     lineLength: {lower: 75, upper: 150},
                     numberOfLoops: {lower: 1, upper: 3},
-                    accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
-                    blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
                 }),
             }),
@@ -192,8 +106,8 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 1,
-                    underLayerOpacity: 0.6,
+                    layerOpacity: 0.8,
+                    underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -201,12 +115,12 @@ const createRedEye = async (colorSheme) => {
                     thickness: 1,
                     sparsityFactor: [6, 8, 9],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.30, myTestProject.shortestSideInPixels * 0.40),
-                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.60, myTestProject.shortestSideInPixels * 0.70),
+                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.80, myTestProject.shortestSideInPixels * 0.70),
                     possibleJumpRangeInPixels: {lower: 10, upper: 20},
                     lineLength: {lower: 100, upper: 175},
                     numberOfLoops: {lower: 1, upper: 3},
-                    accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
-                    blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
                 }),
             }),
@@ -222,8 +136,8 @@ const createRedEye = async (colorSheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: false,
-                    layerOpacity: 1,
-                    underLayerOpacity: 0.6,
+                    layerOpacity: 0.8,
+                    underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -231,12 +145,12 @@ const createRedEye = async (colorSheme) => {
                     thickness: 1,
                     sparsityFactor: [4, 5, 6],
                     innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.40, myTestProject.shortestSideInPixels * 0.40),
-                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.60, myTestProject.shortestSideInPixels * 0.70),
+                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.80, myTestProject.shortestSideInPixels * 0.70),
                     possibleJumpRangeInPixels: {lower: 10, upper: 20},
                     lineLength: {lower: 125, upper: 175},
                     numberOfLoops: {lower: 1, upper: 3},
-                    accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 8, upper: 8}},
-                    blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
                 }),
             }),
@@ -251,8 +165,8 @@ const createRedEye = async (colorSheme) => {
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: false,
-                layerOpacity: 1,
-                underLayerOpacity: 0.6,
+                layerOpacity: 0.8,
+                underLayerOpacity: 0.7,
                 stroke: 4,
                 thickness: 10,
                 ampStroke: 0,
@@ -286,10 +200,10 @@ const createRedEye = async (colorSheme) => {
             effect: LensFlareEffect,
             percentChance: 100,
             currentEffectConfig: new LensFlareConfig({
-                layerOpacityRange: new DynamicRange(new Range(0.6, 0.6), new Range(0.7, 0.7)),
+                layerOpacityRange: new DynamicRange(new Range(0.8, 0.8), new Range(0.7, 0.7)),
                 layerOpacityTimes: new Range(3, 3),
 
-                elementOpacityRange: new DynamicRange(new Range(0.4, 0.5), new Range(0.6, 0.7)),
+                elementOpacityRange: new DynamicRange(new Range(0.4, 0.5), new Range(0.8, 0.7)),
                 elementOpacityTimes: new Range(3, 3),
 
                 elementGastonRange: new DynamicRange(new Range(5, 10), new Range(15, 30)),
@@ -307,7 +221,7 @@ const createRedEye = async (colorSheme) => {
                 flareRingStroke: new Range(2, 2),
 
                 numberOfFlareRays: new Range(250, 250),
-                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.6), new PercentageLongestSide(15)),
+                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.8), new PercentageLongestSide(15)),
                 flareRaysStroke: new Range(2, 2),
 
                 blurRange: new DynamicRange(new Range(0, 0), new Range(0, 0)),
@@ -321,6 +235,18 @@ const createRedEye = async (colorSheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createRedEye(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.clashNeons));
+
+const colors = new ColorScheme({
+    colorBucket: [
+        '#fa448c',
+        '#faa405',
+        '#f72215',
+        '#a0c409',
+        '#1cb0d4'
+    ],
+    colorSchemeInfo: "**Color Strategy**: bright & feisty\n"
+});
+
+await createRedEye(colors);
 
 await Promise.all(promiseArray);
