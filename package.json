@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "resume-folder": "node ./src/resume-folder.js",
-    "red-eye": "node ./src/red-eye-goes-on.js"
+    "red-eye": "node ./src/red-eye-goes-on.js",
+    "fuzz-flare": "node ./src/fuzz-flare.js"
   },
   "name": "nft-scratch",
   "version": "1.0.0",
@@ -12,6 +13,6 @@
   "license": "MIT",
   "dependencies": {
     "inquirer": "^9.2.22",
-    "my-nft-gen": "^1.5.1"
+    "my-nft-gen": "^1.5.2"
   }
 }
