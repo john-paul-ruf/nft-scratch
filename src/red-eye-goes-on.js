@@ -182,7 +182,7 @@ const createRedEye = async (colorSheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: '/mappedFrames/',
+                folderName: '/og-eye-flux/',
                 layerOpacity: [1],
                 buffer: [555],
                 loopTimes: 30,
