@@ -168,7 +168,7 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\og-eye-flux\\',
+                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/flux-folder/',
                 layerOpacity: [1],
                 buffer: [555],
                 loopTimes: 30,
@@ -207,21 +207,21 @@ const createComposition = async (colorScheme) => {
                         percentage: 25,
                         min: new Range(5, 10),
                         max: new Range(15, 25),
-                        times: new Range(1, 2),
+                        times: new Range(4, 6),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
                         percentage: 50,
                         min: new Range(2, 4),
                         max: new Range(6, 8),
-                        times: new Range(1, 4),
+                        times: new Range(1, 1),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
                         percentage: 25,
-                        min: new Range(2, 10),
+                        min: new Range(5, 10),
                         max: new Range(15, 20),
-                        times: new Range(1, 3),
+                        times: new Range(4, 6),
                         invert: false
                     })
                 ],
