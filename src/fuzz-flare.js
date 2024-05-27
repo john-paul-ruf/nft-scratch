@@ -199,7 +199,7 @@ const createComposition = async (colorScheme) => {
 
                 layerOpacity: 0.7,
 
-                underLayerOpacityRange: {bottom: {lower: 0.35, upper: 0.4}, top: {lower: 0.5, upper: 0.55}},
+                underLayerOpacityRange: {bottom: {lower: 0.6, upper: 0.7}, top: {lower: 0.8, upper: 0.9}},
                 underLayerOpacityTimes: {lower: 2, upper: 8},
 
                 elementGastonMultiStep: [
