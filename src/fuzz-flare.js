@@ -205,21 +205,24 @@ const createComposition = async (colorScheme) => {
 
                 elementGastonMultiStep: [
                     new MultiStepDefinitionConfig({
-                        percentage: 25,
+                        minPercentage: 0,
+                        maxPercentage: 25,
                         min: new Range(5, 10),
                         max: new Range(15, 25),
                         times: new Range(8, 12),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
-                        percentage: 50,
-                        min: new Range(2, 4),
-                        max: new Range(6, 8),
+                        minPercentage: 25,
+                        maxPercentage: 75,
+                        min: new Range(5, 10),
+                        max: new Range(15, 25),
                         times: new Range(1, 2),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
-                        percentage: 25,
+                        minPercentage: 75,
+                        maxPercentage: 100,
                         min: new Range(5, 10),
                         max: new Range(15, 20),
                         times: new Range(8, 12),
