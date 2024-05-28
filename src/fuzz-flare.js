@@ -32,6 +32,7 @@ const createComposition = async (colorScheme) => {
         backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
+        isHorizontal: true
     });
 
     await myTestProject.addPrimaryEffect({
@@ -42,7 +43,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
-                center: new Point2D(1080 / 2, 1920 / 2),
+                center: new Point2D(1920 / 2, 1080 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 stroke: 1,
@@ -68,7 +69,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
-                center: new Point2D(1080 / 2, 1920 / 2),
+                center: new Point2D(1920 / 2, 1080 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 stroke: 1,
@@ -94,7 +95,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
-                center: new Point2D(1080 / 2, 1920 / 2),
+                center: new Point2D(1920 / 2, 1080 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 stroke: 1,
@@ -120,7 +121,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
-                center: new Point2D(1080 / 2, 1920 / 2),
+                center: new Point2D(1920 / 2, 1080 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 stroke: 1,
@@ -168,7 +169,7 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\flux-folder\\',
+                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\og-eye-flux\\',
                 layerOpacity: [1],
                 buffer: [555],
                 loopTimes: 30,
@@ -254,7 +255,8 @@ const colors = new ColorScheme({
         '#faa405',
         '#f72215',
         '#a0c409',
-        '#1cb0d4'
+        '#1cb0d4',
+        '#000014'
     ],
     colorSchemeInfo: "**Color Strategy**: bright & feisty\n"
 });
