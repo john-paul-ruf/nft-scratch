@@ -33,7 +33,6 @@ const createComposition = async (colorScheme) => {
         backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
-        isHorizontal: true
     });
 
     await myTestProject.addPrimaryEffect({
