@@ -19,6 +19,7 @@ import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRa
 import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
+import {brightAndFeisty} from "./assets/color-scheme-store.js";
 
 
 const promiseArray = [];
@@ -248,19 +249,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-const colors = new ColorScheme({
-    colorBucket: [
-        '#ffd439',
-        '#fa448c',
-        '#faa405',
-        '#f72215',
-        '#a0c409',
-        '#1cb0d4',
-        '#000014'
-    ],
-    colorSchemeInfo: "**Color Strategy**: bright & feisty\n"
-});
-
-await createComposition(colors);
+await createComposition(brightAndFeisty);
 
 await Promise.all(promiseArray);
