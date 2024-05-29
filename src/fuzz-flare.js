@@ -169,7 +169,7 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\og-eye-flux\\',
+                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/flux-folder/',
                 layerOpacity: [1],
                 buffer: [555],
                 loopTimes: 30,
@@ -179,8 +179,8 @@ const createComposition = async (colorScheme) => {
                     effect: GlowEffect,
                     percentChance: 100,
                     currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: -220, upper: -220},
-                        upperRange: {lower: -240, upper: -240},
+                        lowerRange: {lower: -200, upper: -200},
+                        upperRange: {lower: -260, upper: -260},
                         times: {lower: 3, upper: 3}
                     }),
                 })
@@ -208,12 +208,12 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 0,
                         maxPercentage: 25,
                         min: new Range(5, 10),
-                        max: new Range(15, 25),
-                        times: new Range(8, 12),
+                        max: new Range(15, 20),
+                        times: new Range(2, 3),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 25,
+                        minPercentage: 26,
                         maxPercentage: 75,
                         min: new Range(5, 10),
                         max: new Range(15, 25),
@@ -221,11 +221,11 @@ const createComposition = async (colorScheme) => {
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 75,
+                        minPercentage: 76,
                         maxPercentage: 100,
                         min: new Range(5, 10),
                         max: new Range(15, 20),
-                        times: new Range(8, 12),
+                        times: new Range(2, 3),
                         invert: false
                     })
                 ],
