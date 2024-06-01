@@ -30,7 +30,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#000000'],
+        backgrounds: ['#000014'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -172,7 +172,43 @@ const createComposition = async (colorScheme) => {
                 folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/flux-folder/',
                 layerOpacity: [1],
                 buffer: [555],
-                loopTimes: 30,
+                loopTimesMultiStep: [
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 0,
+                        maxPercentage: 20,
+                        max: new Range(0, 0),
+                        times: new Range(5, 5),
+                        invert: false
+                    }),
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 20,
+                        maxPercentage: 40,
+                        max: new Range(0, 0),
+                        times: new Range(4, 4),
+                        invert: false
+                    }),
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 40,
+                        maxPercentage: 60,
+                        max: new Range(0, 0),
+                        times: new Range(2, 2),
+                        invert: false
+                    }),
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 60,
+                        maxPercentage: 80,
+                        max: new Range(0, 0),
+                        times: new Range(4, 4),
+                        invert: false
+                    }),
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 80,
+                        maxPercentage: 100,
+                        max: new Range(0, 0),
+                        times: new Range(5, 5),
+                        invert: false
+                    }),
+                ],
             }),
             possibleSecondaryEffects: [
                 new LayerConfig({
@@ -207,25 +243,22 @@ const createComposition = async (colorScheme) => {
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
                         maxPercentage: 25,
-                        min: new Range(5, 10),
-                        max: new Range(15, 20),
-                        times: new Range(2, 3),
+                        max: new Range(15, 30),
+                        times: new Range(1, 4),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 26,
+                        minPercentage: 25,
                         maxPercentage: 75,
-                        min: new Range(5, 10),
-                        max: new Range(15, 25),
-                        times: new Range(1, 2),
+                        max: new Range(5, 15),
+                        times: new Range(1, 4),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 76,
+                        minPercentage: 75,
                         maxPercentage: 100,
-                        min: new Range(5, 10),
-                        max: new Range(15, 20),
-                        times: new Range(2, 3),
+                        max: new Range(15, 30),
+                        times: new Range(1, 4),
                         invert: false
                     })
                 ],
@@ -241,8 +274,8 @@ const createComposition = async (colorScheme) => {
                 flareRayThickness: new Range(1, 3),
                 flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.06)),
 
-                accentRange: {bottom: {lower: 2, upper: 6}, top: {lower: 8, upper: 14}},
-                blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 12}},
+                accentRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 14}},
+                blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 10}},
                 featherTimes: {lower: 2, upper: 8},
             }),
         }),

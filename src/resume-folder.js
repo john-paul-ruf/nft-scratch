@@ -1,5 +1,5 @@
 
-// src/red-eye/red-eye-ewvkdsd/red-eye-ewvkdsd-settings.json
+// src/fuzz-flare/fuzz-flare-91fhyf7/fuzz-flare-91fhyf7-settings.json
 
 import inquirer from "inquirer";
 import {LoopBuilder} from "my-nft-gen/src/core/animation/LoopBuilder.js";
