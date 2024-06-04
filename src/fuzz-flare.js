@@ -59,7 +59,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
                 blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
                 featherTimes: {lower: 3, upper: 3},
-                center: new Point2D(1080/2, 900)
+                center: new Point2D(1080 / 2, 900)
             }),
         }),
     });
@@ -80,16 +80,16 @@ const createComposition = async (colorScheme) => {
                         times: new Range(6, 6),
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 20,
-                        maxPercentage: 40,
+                        minPercentage: 10,
+                        maxPercentage: 20,
                         max: new Range(0, 0),
                         times: new Range(3, 3),
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 40,
+                        minPercentage: 20,
                         maxPercentage: 80,
                         max: new Range(0, 0),
-                        times: new Range(1, 1),
+                        times: new Range(2, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 80,
@@ -119,6 +119,9 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
+    const min = 10;
+    const max = 20;
+
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: FuzzFlareEffect,
@@ -138,32 +141,32 @@ const createComposition = async (colorScheme) => {
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
                         maxPercentage: 10,
-                        max: new Range(2, 5),
-                        times: new Range(1, 2),
+                        max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
+                        times: new Range(2, 3),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 10,
                         maxPercentage: 25,
-                        max: new Range(1, 3),
+                        max: new Range(Math.ceil(min * 0.15), Math.ceil(max * 0.15)),
                         times: new Range(1, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 25,
                         maxPercentage: 75,
-                        max: new Range(8, 12),
+                        max: new Range(Math.ceil(min * 0.5), Math.ceil(max * 0.5)),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 75,
                         maxPercentage: 90,
-                        max: new Range(1, 3),
+                        max: new Range(Math.ceil(min * 0.15), Math.ceil(max * 0.15)),
                         times: new Range(1, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 90,
                         maxPercentage: 100,
-                        max: new Range(2, 5),
-                        times: new Range(1, 2),
+                        max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
+                        times: new Range(2, 3),
                     })
                 ],
 
@@ -195,28 +198,28 @@ const createComposition = async (colorScheme) => {
                 thickness: 0.25,
                 stroke: 0.25,
 
-                layerOpacityRange: { bottom: { lower: 0.6, upper: 0.6}, top: { lower: 0.7, upper: 0.7 } },
-                layerOpacityTimes: { lower: 2, upper: 4 },
+                layerOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.7, upper: 0.7}},
+                layerOpacityTimes: {lower: 2, upper: 4},
 
-                indexOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.6, upper: 0.7} },
-                indexOpacityTimes: { lower: 2, upper: 4 },
+                indexOpacityRange: {bottom: {lower: 0.4, upper: 0.5}, top: {lower: 0.6, upper: 0.7}},
+                indexOpacityTimes: {lower: 2, upper: 4},
 
-                radius: { lower: 10, upper: 20 },
-                offsetRadius: { lower: 23, upper: 23 },
+                radius: {lower: 10, upper: 20},
+                offsetRadius: {lower: 23, upper: 23},
 
-                numberOfIndex: { lower: 20, upper: 20 },
-                startIndex: { lower: 8, upper: 8 },
+                numberOfIndex: {lower: 20, upper: 20},
+                startIndex: {lower: 8, upper: 8},
 
                 startAngle: 15,
 
-                movementGaston: { lower: 1, upper: 8 },
+                movementGaston: {lower: 1, upper: 8},
 
                 initialNumberOfPoints: 8,
                 scaleByFactor: 1.1,
 
-                accentRange: { bottom: { lower: 1, upper: 1 }, top: { lower: 3, upper: 6 } },
-                blurRange: { bottom: { lower: 1, upper: 1 }, top: { lower: 1, upper: 1 } },
-                featherTimes: { lower: 2, upper: 4 },
+                accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
+                blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                featherTimes: {lower: 2, upper: 4},
             }),
         }),
     });
