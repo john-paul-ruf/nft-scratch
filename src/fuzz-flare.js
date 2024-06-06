@@ -23,6 +23,8 @@ import {brightAndFeisty} from "./assets/color-scheme-store.js";
 import {LayeredHexEffect} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexEffect.js";
 import {LayeredHexConfig} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
 import {NeonColorScheme, NeonColorSchemeFactory} from "../../my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
+import {FuzzyBandEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandEffect.js";
+import {FuzzyBandConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandConfig.js";
 
 
 const promiseArray = [];
@@ -32,36 +34,10 @@ const createComposition = async (colorScheme) => {
         artist: 'John Ruf',
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
-        neutrals: ['#FFFFFF'],
-        backgrounds: ['#000014'],
+        neutrals: ['#FFD4D4'],
+        backgrounds: ['#000045'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: ViewportEffect,
-            percentChance: 100,
-            currentEffectConfig: new ViewportConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                invertLayers: false,
-                layerOpacity: 0.7,
-                underLayerOpacity: 0.5,
-                stroke: 4,
-                thickness: 18,
-                ampStroke: 0,
-                ampThickness: 1,
-                radius: [450],
-                startAngle: [270],
-                amplitude: {lower: 100, upper: 100},
-                times: {lower: 6, upper: 6},
-                accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
-                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
-                featherTimes: {lower: 3, upper: 3},
-                center: new Point2D(1080 / 2, 900)
-            }),
-        }),
     });
 
     await myTestProject.addPrimaryEffect({
@@ -77,31 +53,31 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 0,
                         maxPercentage: 10,
                         max: new Range(0, 0),
-                        times: new Range(6, 6),
+                        times: new Range(5, 5),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 10,
                         maxPercentage: 20,
                         max: new Range(0, 0),
-                        times: new Range(3, 3),
+                        times: new Range(4, 4),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 20,
                         maxPercentage: 80,
                         max: new Range(0, 0),
-                        times: new Range(2, 2),
+                        times: new Range(4, 4),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 80,
                         maxPercentage: 90,
                         max: new Range(0, 0),
-                        times: new Range(3, 3),
+                        times: new Range(4, 4),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 90,
                         maxPercentage: 100,
                         max: new Range(0, 0),
-                        times: new Range(6, 6),
+                        times: new Range(5, 5),
                     }),
                 ],
             }),
@@ -119,9 +95,9 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-    const min = 10;
-    const max = 20;
+    const min = 15;
 
+    const max = 35;
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: FuzzFlareEffect,
@@ -130,7 +106,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: false,
 
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
                 layerOpacity: 0.7,
 
@@ -142,7 +118,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 0,
                         maxPercentage: 10,
                         max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(2, 3),
+                        times: new Range(3, 4),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 10,
@@ -166,7 +142,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 90,
                         maxPercentage: 100,
                         max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(2, 3),
+                        times: new Range(3, 4),
                     })
                 ],
 
@@ -178,12 +154,12 @@ const createComposition = async (colorScheme) => {
                 numberOfFlareRays: new Range(120, 120),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(1, 1),
-                flareRayThickness: new Range(1, 3),
+                flareRayThickness: new Range(1, 2),
                 flareOffset: new PercentageRange(new PercentageShortestSide(0.10), new PercentageShortestSide(0.20)),
 
-                accentRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 30}},
+                accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 10}},
-                featherTimes: {lower: 2, upper: 12},
+                featherTimes: {lower: 8, upper: 12},
             }),
         }),
     });
@@ -199,20 +175,20 @@ const createComposition = async (colorScheme) => {
                 stroke: 0.25,
 
                 layerOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.7, upper: 0.7}},
-                layerOpacityTimes: {lower: 2, upper: 4},
+                layerOpacityTimes: {lower: 8, upper: 12},
 
                 indexOpacityRange: {bottom: {lower: 0.4, upper: 0.5}, top: {lower: 0.6, upper: 0.7}},
-                indexOpacityTimes: {lower: 2, upper: 4},
+                indexOpacityTimes: {lower: 8, upper: 12},
 
-                radius: {lower: 10, upper: 20},
-                offsetRadius: {lower: 23, upper: 23},
+                radius: {lower: 20, upper: 40},
+                offsetRadius: {lower: 50, upper: 50},
 
-                numberOfIndex: {lower: 20, upper: 20},
-                startIndex: {lower: 8, upper: 8},
+                numberOfIndex: {lower: 10, upper: 10},
+                startIndex: {lower: 2, upper: 2},
 
                 startAngle: 15,
 
-                movementGaston: {lower: 1, upper: 8},
+                movementGaston: {lower: 8, upper: 12},
 
                 initialNumberOfPoints: 8,
                 scaleByFactor: 1.1,
@@ -220,6 +196,57 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
                 blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                 featherTimes: {lower: 2, upper: 4},
+            }),
+        }),
+    });
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: ViewportEffect,
+            percentChance: 100,
+            currentEffectConfig: new ViewportConfig({
+                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                invertLayers: true,
+                layerOpacity: 0.7,
+                underLayerOpacity: 0.5,
+                stroke: 4,
+                thickness: 18,
+                ampStroke: 0,
+                ampThickness: 1,
+                radius: [450],
+                startAngle: [270],
+                amplitude: {lower: 100, upper: 100},
+                times: {lower: 6, upper: 6},
+                accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
+                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
+                featherTimes: {lower: 12, upper: 12},
+                center: new Point2D(1080 / 2, 1920/2)
+            }),
+        }),
+    });
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: FuzzyBandEffect,
+            percentChance: 100,
+            currentEffectConfig: new FuzzyBandConfig({
+                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                invertLayers: true,
+                layerOpacity: 0.7,
+                underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
+                underLayerOpacityTimes: { lower: 8, upper: 12 },
+                circles: { lower: 1, upper: 1 },
+                stroke: 20,
+                thickness: 4,
+                radius: {
+                    lower: (finalSize)=> finalSize.shortestSide * 0.45,
+                    upper: (finalSize)=> finalSize.shortestSide * 0.45,
+                },
+                accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
+                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
+                featherTimes: {lower: 12, upper: 12},
             }),
         }),
     });
