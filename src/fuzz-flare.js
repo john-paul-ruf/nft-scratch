@@ -35,7 +35,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
         neutrals: ['#FFD4D4'],
-        backgrounds: ['#000045'],
+        backgrounds: ['#000008'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -169,10 +169,10 @@ const createComposition = async (colorScheme) => {
             effect: LayeredHexEffect,
             percentChance: 100,
             currentEffectConfig: new LayeredHexConfig({
-                invertLayers: true,
+                invertLayers: false,
 
-                thickness: 0.25,
-                stroke: 0.25,
+                thickness: 1,
+                stroke: 1,
 
                 layerOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.7, upper: 0.7}},
                 layerOpacityTimes: {lower: 8, upper: 12},
@@ -190,7 +190,7 @@ const createComposition = async (colorScheme) => {
 
                 movementGaston: {lower: 8, upper: 12},
 
-                initialNumberOfPoints: 8,
+                initialNumberOfPoints: 12,
                 scaleByFactor: 1.1,
 
                 accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
@@ -207,11 +207,11 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new ViewportConfig({
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                invertLayers: true,
+                invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
-                stroke: 4,
-                thickness: 18,
+                stroke: 8,
+                thickness: 24,
                 ampStroke: 0,
                 ampThickness: 1,
                 radius: [450],
@@ -221,7 +221,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
                 blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
                 featherTimes: {lower: 12, upper: 12},
-                center: new Point2D(1080 / 2, 1920/2)
+                center: new Point2D(1080 / 2, 850)
             }),
         }),
     });
@@ -233,13 +233,13 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new FuzzyBandConfig({
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                invertLayers: true,
+                invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
                 underLayerOpacityTimes: { lower: 8, upper: 12 },
                 circles: { lower: 1, upper: 1 },
-                stroke: 20,
-                thickness: 4,
+                stroke: 8,
+                thickness: 24,
                 radius: {
                     lower: (finalSize)=> finalSize.shortestSide * 0.45,
                     upper: (finalSize)=> finalSize.shortestSide * 0.45,
