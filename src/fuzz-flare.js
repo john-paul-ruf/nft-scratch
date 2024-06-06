@@ -202,12 +202,37 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
+            effect: FuzzyBandEffect,
+            percentChance: 100,
+            currentEffectConfig: new FuzzyBandConfig({
+                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                invertLayers: true,
+                layerOpacity: 0.7,
+                underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
+                underLayerOpacityTimes: { lower: 8, upper: 12 },
+                circles: { lower: 1, upper: 1 },
+                stroke: 4,
+                thickness: 12,
+                radius: {
+                    lower: (finalSize)=> finalSize.shortestSide * 0.30,
+                    upper: (finalSize)=> finalSize.shortestSide * 0.30,
+                },
+                accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
+                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
+                featherTimes: {lower: 12, upper: 12},
+            }),
+        }),
+    });
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
             effect: ViewportEffect,
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                invertLayers: false,
+                invertLayers: true,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
                 stroke: 8,
@@ -222,31 +247,6 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
                 featherTimes: {lower: 12, upper: 12},
                 center: new Point2D(1080 / 2, 850)
-            }),
-        }),
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: FuzzyBandEffect,
-            percentChance: 100,
-            currentEffectConfig: new FuzzyBandConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                invertLayers: false,
-                layerOpacity: 0.7,
-                underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
-                underLayerOpacityTimes: { lower: 8, upper: 12 },
-                circles: { lower: 1, upper: 1 },
-                stroke: 8,
-                thickness: 24,
-                radius: {
-                    lower: (finalSize)=> finalSize.shortestSide * 0.45,
-                    upper: (finalSize)=> finalSize.shortestSide * 0.45,
-                },
-                accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
-                blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
-                featherTimes: {lower: 12, upper: 12},
             }),
         }),
     });
