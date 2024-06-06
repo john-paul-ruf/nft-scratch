@@ -205,14 +205,14 @@ const createComposition = async (colorScheme) => {
             effect: FuzzyBandEffect,
             percentChance: 100,
             currentEffectConfig: new FuzzyBandConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#00000000'),
+                color: new ColorPicker(ColorPicker.SelectionType.color, '#00FF00'),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
                 invertLayers: false,
-                layerOpacity: 0.7,
+                layerOpacity: 1,
                 underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
                 underLayerOpacityTimes: { lower: 8, upper: 12 },
                 circles: { lower: 1, upper: 1 },
-                stroke: 22,
+                stroke: 22,  //which one is wrong?
                 thickness: 12,
                 radius: {
                     lower: (finalSize)=> finalSize.shortestSide * 0.30,
@@ -230,13 +230,13 @@ const createComposition = async (colorScheme) => {
             effect: ViewportEffect,
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#00000000'),
+                color: new ColorPicker(ColorPicker.SelectionType.color, '#00FF00'),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
                 invertLayers: false,
-                layerOpacity: 0.7,
+                layerOpacity: 1,
                 underLayerOpacity: 0.5,
                 stroke: 22,
-                thickness: 12,
+                thickness: 12, //inverted with fuzzy bands? need standard verbiage
                 ampStroke: 0,
                 ampThickness: 1,
                 radius: [450],
