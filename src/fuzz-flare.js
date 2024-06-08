@@ -45,9 +45,9 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/og-eye-flux/',
+                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/flux-folder/',
                 layerOpacity: [0.9],
-                buffer: [400],
+                buffer: [200],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
@@ -174,7 +174,7 @@ const createComposition = async (colorScheme) => {
                 thickness: 2,
                 stroke: 1,
 
-                layerOpacityRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper:1}},
+                layerOpacityRange: {bottom: {lower: 0.8, upper:0.8}, top: {lower: 0.9, upper:0.9}},
                 layerOpacityTimes: {lower: 8, upper: 12},
 
                 indexOpacityRange: {bottom: {lower: 0.6, upper: 0.7}, top: {lower: 0.7, upper: 0.9}},
