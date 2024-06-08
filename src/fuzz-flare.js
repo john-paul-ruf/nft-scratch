@@ -25,6 +25,8 @@ import {LayeredHexConfig} from "../../my-nft-gen/src/effects/primaryEffects/laye
 import {NeonColorScheme, NeonColorSchemeFactory} from "../../my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
 import {FuzzyBandEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandEffect.js";
 import {FuzzyBandConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandConfig.js";
+import {HexEffect} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexEffect.js";
+import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
 
 
 const promiseArray = [];
@@ -38,6 +40,29 @@ const createComposition = async (colorScheme) => {
         backgrounds: ['#000008'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
+    });
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: HexEffect,
+            percentChance: 100,
+            currentEffectConfig: new HexConfig({
+                layerOpacity: 0.8,
+                underLayerOpacity :0.6,
+                sparsityFactor :[24],
+                gapFactor :{ lower: 12, upper: 12 },
+                radiusFactor :{ lower: 8, upper: 8},
+                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                blurRange: {bottom: {lower: 0, upper:0}, top: {lower: 0, upper: 0}},
+                featherTimes: {lower: 0, upper: 0},
+                stroke :0.1,
+                thickness :0.05,
+                scaleFactor :0.5,
+                numberOfHex :12,
+                strategy :['static'],
+                overlayStrategy :['overlay'],
+            }),
+        }),
     });
 
     await myTestProject.addPrimaryEffect({
@@ -96,8 +121,8 @@ const createComposition = async (colorScheme) => {
     });
 
     const min = 25;
-
     const max = 45;
+
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: FuzzFlareEffect,
@@ -160,42 +185,6 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 25}},
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 10}},
                 featherTimes: {lower: 8, upper: 12},
-            }),
-        }),
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: LayeredHexEffect,
-            percentChance: 100,
-            currentEffectConfig: new LayeredHexConfig({
-                invertLayers: false,
-
-                thickness: 2,
-                stroke: 1,
-
-                layerOpacityRange: {bottom: {lower: 0.8, upper:0.8}, top: {lower: 0.9, upper:0.9}},
-                layerOpacityTimes: {lower: 8, upper: 12},
-
-                indexOpacityRange: {bottom: {lower: 0.6, upper: 0.7}, top: {lower: 0.7, upper: 0.9}},
-                indexOpacityTimes: {lower: 8, upper: 12},
-
-                radius: {lower: 15, upper: 30},
-                offsetRadius: {lower: 50, upper: 50},
-
-                numberOfIndex: {lower: 10, upper: 10},
-                startIndex: {lower: 2, upper: 2},
-
-                startAngle: 15,
-
-                movementGaston: {lower: 12, upper: 24},
-
-                initialNumberOfPoints: 8,
-                scaleByFactor: 1.1,
-
-                accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
-                blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                featherTimes: {lower: 2, upper: 4},
             }),
         }),
     });
