@@ -108,9 +108,9 @@ const createComposition = async (colorScheme) => {
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
-                layerOpacity: 1,
+                layerOpacity: 0.8,
 
-                underLayerOpacityRange: {bottom: {lower: 0.4, upper: 0.5}, top: {lower: 0.6, upper: 0.7}},
+                underLayerOpacityRange: {bottom: {lower: 0.6, upper: 0.7}, top: {lower: 0.8, upper: 0.9}},
                 underLayerOpacityTimes: {lower: 2, upper: 8},
 
                 elementGastonMultiStep: [
@@ -174,10 +174,10 @@ const createComposition = async (colorScheme) => {
                 thickness: 2,
                 stroke: 1,
 
-                layerOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.7, upper: 0.7}},
+                layerOpacityRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper:1}},
                 layerOpacityTimes: {lower: 8, upper: 12},
 
-                indexOpacityRange: {bottom: {lower: 0.4, upper: 0.5}, top: {lower: 0.6, upper: 0.7}},
+                indexOpacityRange: {bottom: {lower: 0.6, upper: 0.7}, top: {lower: 0.7, upper: 0.9}},
                 indexOpacityTimes: {lower: 8, upper: 12},
 
                 radius: {lower: 15, upper: 30},
@@ -208,7 +208,7 @@ const createComposition = async (colorScheme) => {
                 color: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: true,
-                layerOpacity: 1,
+                layerOpacity: 0.8,
                 underLayerOpacityRange: { bottom: { lower: 0.6, upper: 0.7 }, top: { lower: 0.8, upper: 0.9 } },
                 underLayerOpacityTimes: { lower: 8, upper: 12 },
                 circles: { lower: 1, upper: 1 },
@@ -233,7 +233,7 @@ const createComposition = async (colorScheme) => {
                 color: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: true,
-                layerOpacity: 1,
+                layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 stroke: 2,
                 thickness: 12,
