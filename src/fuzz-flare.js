@@ -174,12 +174,12 @@ const createComposition = async (colorScheme) => {
                 numberOfFlareRings: new Range(10, 10),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
                 flareRingStroke: new Range(1, 1),
-                flareRingThickness: new Range(1, 1),
+                flareRingThickness: new Range(2, 2),
 
                 numberOfFlareRays: new Range(100, 100),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(1, 1),
-                flareRayThickness: new Range(1, 1),
+                flareRayThickness: new Range(2, 2),
                 flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
 
                 accentRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 25}},
