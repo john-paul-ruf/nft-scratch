@@ -56,7 +56,7 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 10}},
                 featherTimes: {lower: 12, upper: 12},
                 stroke :1,
-                thickness : 4,
+                thickness : 2,
                 scaleFactor :0.5,
                 numberOfHex :8,
                 strategy :['static'],
