@@ -59,19 +59,19 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 10,
                         maxPercentage: 20,
                         max: new Range(0, 0),
-                        times: new Range(4, 4),
+                        times: new Range(5, 5),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 20,
                         maxPercentage: 80,
                         max: new Range(0, 0),
-                        times: new Range(4, 4),
+                        times: new Range(8, 8),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 80,
                         maxPercentage: 90,
                         max: new Range(0, 0),
-                        times: new Range(2, 2),
+                        times: new Range(3, 3),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 90,
@@ -95,18 +95,18 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-    const min = 15;
+    const min = 25;
 
-    const max = 35;
+    const max = 45;
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: FuzzFlareEffect,
             percentChance: 100,
             currentEffectConfig: new FuzzFlareConfig({
-                invertLayers: false,
+                invertLayers: true,
 
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
                 layerOpacity: 1,
 
@@ -148,16 +148,16 @@ const createComposition = async (colorScheme) => {
 
                 numberOfFlareRings: new Range(20, 20),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
-                flareRingStroke: new Range(5, 5),
-                flareRingThickness: new Range(10, 10),
+                flareRingStroke: new Range(1, 1),
+                flareRingThickness: new Range(1, 1),
 
                 numberOfFlareRays: new Range(75, 75),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
-                flareRaysStroke: new Range(2, 2),
-                flareRayThickness: new Range(4, 4),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.10), new PercentageShortestSide(0.20)),
+                flareRaysStroke: new Range(1, 1),
+                flareRayThickness: new Range(1, 1),
+                flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
 
-                accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
+                accentRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 25}},
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 10}},
                 featherTimes: {lower: 8, upper: 12},
             }),
@@ -171,7 +171,7 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new LayeredHexConfig({
                 invertLayers: false,
 
-                thickness: 1,
+                thickness: 2,
                 stroke: 1,
 
                 layerOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.7, upper: 0.7}},
@@ -180,7 +180,7 @@ const createComposition = async (colorScheme) => {
                 indexOpacityRange: {bottom: {lower: 0.4, upper: 0.5}, top: {lower: 0.6, upper: 0.7}},
                 indexOpacityTimes: {lower: 8, upper: 12},
 
-                radius: {lower: 20, upper: 40},
+                radius: {lower: 15, upper: 30},
                 offsetRadius: {lower: 50, upper: 50},
 
                 numberOfIndex: {lower: 10, upper: 10},
@@ -188,9 +188,9 @@ const createComposition = async (colorScheme) => {
 
                 startAngle: 15,
 
-                movementGaston: {lower: 8, upper: 12},
+                movementGaston: {lower: 12, upper: 24},
 
-                initialNumberOfPoints: 12,
+                initialNumberOfPoints: 8,
                 scaleByFactor: 1.1,
 
                 accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
@@ -205,14 +205,14 @@ const createComposition = async (colorScheme) => {
             effect: FuzzyBandEffect,
             percentChance: 100,
             currentEffectConfig: new FuzzyBandConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.color, '#FF8800'),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
-                invertLayers: false,
+                color: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                invertLayers: true,
                 layerOpacity: 1,
                 underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
                 underLayerOpacityTimes: { lower: 8, upper: 12 },
                 circles: { lower: 1, upper: 1 },
-                stroke: 12,  //which one is wrong?
+                stroke: 4,
                 thickness: 12,
                 radius: {
                     lower: (finalSize)=> finalSize.shortestSide * 0.30,
@@ -230,13 +230,13 @@ const createComposition = async (colorScheme) => {
             effect: ViewportEffect,
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.color, '#FF8800'),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
-                invertLayers: false,
+                color: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                invertLayers: true,
                 layerOpacity: 1,
                 underLayerOpacity: 0.6,
-                stroke: 12,
-                thickness: 12, //inverted with fuzzy bands? need standard verbiage
+                stroke: 4,
+                thickness: 12,
                 ampStroke: 0,
                 ampThickness: 1,
                 radius: [450],
