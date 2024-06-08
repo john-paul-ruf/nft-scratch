@@ -146,12 +146,12 @@ const createComposition = async (colorScheme) => {
                     })
                 ],
 
-                numberOfFlareRings: new Range(20, 20),
+                numberOfFlareRings: new Range(10, 10),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
                 flareRingStroke: new Range(1, 1),
                 flareRingThickness: new Range(1, 1),
 
-                numberOfFlareRays: new Range(75, 75),
+                numberOfFlareRays: new Range(100, 100),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(1, 1),
                 flareRayThickness: new Range(1, 1),
@@ -209,10 +209,10 @@ const createComposition = async (colorScheme) => {
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: true,
                 layerOpacity: 1,
-                underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
+                underLayerOpacityRange: { bottom: { lower: 0.6, upper: 0.7 }, top: { lower: 0.8, upper: 0.9 } },
                 underLayerOpacityTimes: { lower: 8, upper: 12 },
                 circles: { lower: 1, upper: 1 },
-                stroke: 4,
+                stroke: 2,
                 thickness: 12,
                 radius: {
                     lower: (finalSize)=> finalSize.shortestSide * 0.30,
@@ -234,8 +234,8 @@ const createComposition = async (colorScheme) => {
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: true,
                 layerOpacity: 1,
-                underLayerOpacity: 0.6,
-                stroke: 4,
+                underLayerOpacity: 0.7,
+                stroke: 2,
                 thickness: 12,
                 ampStroke: 0,
                 ampThickness: 1,
