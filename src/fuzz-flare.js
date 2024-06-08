@@ -49,18 +49,18 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new HexConfig({
                 layerOpacity: 0.8,
                 underLayerOpacity :0.6,
-                sparsityFactor :[24],
-                gapFactor :{ lower: 12, upper: 12 },
+                sparsityFactor :[18],
+                gapFactor :{ lower: 8, upper: 8 },
                 radiusFactor :{ lower: 8, upper: 8},
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper:0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
-                stroke :0.1,
-                thickness :0.05,
+                stroke :1.8,
+                thickness : 0.8,
                 scaleFactor :0.5,
                 numberOfHex :12,
                 strategy :['static'],
-                overlayStrategy :['overlay'],
+                overlayStrategy :['flat'],
             }),
         }),
     });
@@ -111,9 +111,9 @@ const createComposition = async (colorScheme) => {
                     effect: GlowEffect,
                     percentChance: 100,
                     currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: -120, upper: -120},
-                        upperRange: {lower: -90, upper: -90},
-                        times: {lower: 15, upper: 15}
+                        lowerRange: {lower: -80, upper: -80},
+                        upperRange: {lower: -0, upper: 0},
+                        times: {lower: 1, upper: 1}
                     }),
                 })
             ]
