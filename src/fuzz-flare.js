@@ -53,7 +53,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 0,
                         maxPercentage: 10,
                         max: new Range(0, 0),
-                        times: new Range(5, 5),
+                        times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 10,
@@ -71,13 +71,13 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 80,
                         maxPercentage: 90,
                         max: new Range(0, 0),
-                        times: new Range(4, 4),
+                        times: new Range(2, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 90,
                         maxPercentage: 100,
                         max: new Range(0, 0),
-                        times: new Range(5, 5),
+                        times: new Range(1, 1),
                     }),
                 ],
             }),
@@ -86,9 +86,9 @@ const createComposition = async (colorScheme) => {
                     effect: GlowEffect,
                     percentChance: 100,
                     currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: -200, upper: -200},
-                        upperRange: {lower: -260, upper: -260},
-                        times: {lower: 6, upper: 6}
+                        lowerRange: {lower: -120, upper: -120},
+                        upperRange: {lower: -90, upper: -90},
+                        times: {lower: 15, upper: 15}
                     }),
                 })
             ]
@@ -106,9 +106,9 @@ const createComposition = async (colorScheme) => {
                 invertLayers: false,
 
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
 
-                layerOpacity: 0.7,
+                layerOpacity: 1,
 
                 underLayerOpacityRange: {bottom: {lower: 0.4, upper: 0.5}, top: {lower: 0.6, upper: 0.7}},
                 underLayerOpacityTimes: {lower: 2, upper: 8},
@@ -118,43 +118,43 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 0,
                         maxPercentage: 10,
                         max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(3, 4),
+                        times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 10,
                         maxPercentage: 25,
                         max: new Range(Math.ceil(min * 0.15), Math.ceil(max * 0.15)),
-                        times: new Range(1, 2),
+                        times: new Range(2, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 25,
                         maxPercentage: 75,
                         max: new Range(Math.ceil(min * 0.5), Math.ceil(max * 0.5)),
-                        times: new Range(1, 1),
+                        times: new Range(4, 4),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 75,
                         maxPercentage: 90,
                         max: new Range(Math.ceil(min * 0.15), Math.ceil(max * 0.15)),
-                        times: new Range(1, 2),
+                        times: new Range(2, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 90,
                         maxPercentage: 100,
                         max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(3, 4),
+                        times: new Range(1, 1),
                     })
                 ],
 
                 numberOfFlareRings: new Range(20, 20),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(1)),
-                flareRingStroke: new Range(1, 1),
-                flareRingThickness: new Range(1, 3),
+                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
+                flareRingStroke: new Range(5, 5),
+                flareRingThickness: new Range(10, 10),
 
-                numberOfFlareRays: new Range(120, 120),
+                numberOfFlareRays: new Range(75, 75),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
-                flareRaysStroke: new Range(1, 1),
-                flareRayThickness: new Range(1, 2),
+                flareRaysStroke: new Range(2, 2),
+                flareRayThickness: new Range(4, 4),
                 flareOffset: new PercentageRange(new PercentageShortestSide(0.10), new PercentageShortestSide(0.20)),
 
                 accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
@@ -205,14 +205,14 @@ const createComposition = async (colorScheme) => {
             effect: FuzzyBandEffect,
             percentChance: 100,
             currentEffectConfig: new FuzzyBandConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.color, '#00FF00'),
+                color: new ColorPicker(ColorPicker.SelectionType.color, '#FF8800'),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
                 invertLayers: false,
                 layerOpacity: 1,
                 underLayerOpacityRange: { bottom: { lower: 0.4, upper: 0.5 }, top: { lower: 0.5, upper: 0.6 } },
                 underLayerOpacityTimes: { lower: 8, upper: 12 },
                 circles: { lower: 1, upper: 1 },
-                stroke: 22,  //which one is wrong?
+                stroke: 12,  //which one is wrong?
                 thickness: 12,
                 radius: {
                     lower: (finalSize)=> finalSize.shortestSide * 0.30,
@@ -230,12 +230,12 @@ const createComposition = async (colorScheme) => {
             effect: ViewportEffect,
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
-                color: new ColorPicker(ColorPicker.SelectionType.color, '#00FF00'),
+                color: new ColorPicker(ColorPicker.SelectionType.color, '#FF8800'),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
                 invertLayers: false,
                 layerOpacity: 1,
-                underLayerOpacity: 0.5,
-                stroke: 22,
+                underLayerOpacity: 0.6,
+                stroke: 12,
                 thickness: 12, //inverted with fuzzy bands? need standard verbiage
                 ampStroke: 0,
                 ampThickness: 1,
