@@ -43,7 +43,7 @@ const createComposition = async (colorScheme) => {
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
                 startAngle: {lower: 0, upper: 360}, //need to remove or make option to use
-                numberOfRings: {lower: 3, upper: 3},
+                numberOfRings: {lower: 10, upper: 10},
                 stroke: 0,
                 thickness: 1,
                 sparsityFactor: [45],
