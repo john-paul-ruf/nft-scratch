@@ -1,17 +1,7 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
-import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {RedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
-import {ViewportEffect} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {GlowEffect} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {GlowConfig} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
 import {FuzzFlareEffect} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
 import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
@@ -19,20 +9,13 @@ import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRa
 import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
-import {brightAndFeisty} from "./assets/color-scheme-store.js";
-import {LayeredHexEffect} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexEffect.js";
-import {LayeredHexConfig} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
-import {NeonColorScheme, NeonColorSchemeFactory} from "../../my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
-import {FuzzyBandEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandEffect.js";
-import {FuzzyBandConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandConfig.js";
-import {HexEffect} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexEffect.js";
-import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
+import {NeonColorScheme, NeonColorSchemeFactory} from "my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
 import {
     EncircledSpiralEffect
-} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
+} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
 import {
     EncircledSpiralConfig
-} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
 
 
 const promiseArray = [];
@@ -60,10 +43,10 @@ const createComposition = async (colorScheme) => {
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
                 startAngle: {lower: 0, upper: 360}, //need to remove or make option to use
-                numberOfRings: {lower: 8, upper: 8},
-                stroke: 1,
+                numberOfRings: {lower: 3, upper: 3},
+                stroke: 0,
                 thickness: 1,
-                sparsityFactor: [60],
+                sparsityFactor: [45],
                 sequencePixelConstant: {
                     lower: (finalSize) => finalSize.shortestSide * 0.001,
                     upper: (finalSize) => finalSize.shortestSide * 0.001,
@@ -76,7 +59,7 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 10}},
                 featherTimes: {lower: 8, upper: 12},
                 center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
             }),
         }),
@@ -90,7 +73,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: true,
 
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
 
                 layerOpacity: 0.6,
 
@@ -152,6 +135,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.clashNeons));
+await createComposition(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.neons));
 
 await Promise.all(promiseArray);
