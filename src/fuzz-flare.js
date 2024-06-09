@@ -60,7 +60,7 @@ const createComposition = async (colorScheme) => {
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
                 startAngle: {lower: 0, upper: 360}, //need to remove or make option to use
-                numberOfRings: {lower: 20, upper: 20},
+                numberOfRings: {lower: 8, upper: 8},
                 stroke: 1,
                 thickness: 1,
                 sparsityFactor: [60],
@@ -92,7 +92,7 @@ const createComposition = async (colorScheme) => {
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
-                layerOpacity: 0.7,
+                layerOpacity: 0.6,
 
                 underLayerOpacityRange: {bottom: {lower: 0.45, upper: 0.45}, top: {lower: 0.55, upper: 0.55}},
                 underLayerOpacityTimes: {lower: 2, upper: 8},
@@ -130,15 +130,15 @@ const createComposition = async (colorScheme) => {
                     })
                 ],
 
-                numberOfFlareRings: new Range(10, 10),
+                numberOfFlareRings: new Range(30, 30),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
-                flareRingStroke: new Range(1, 1),
-                flareRingThickness: new Range(2, 2),
+                flareRingStroke: new Range(0, 0),
+                flareRingThickness: new Range(1, 1),
 
-                numberOfFlareRays: new Range(100, 100),
+                numberOfFlareRays: new Range(150, 150),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
-                flareRaysStroke: new Range(1, 1),
-                flareRayThickness: new Range(2, 2),
+                flareRaysStroke: new Range(0, 0),
+                flareRayThickness: new Range(1, 1),
                 flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
 
                 accentRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 25}},
@@ -152,6 +152,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.neons));
+await createComposition(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.clashNeons));
 
 await Promise.all(promiseArray);
