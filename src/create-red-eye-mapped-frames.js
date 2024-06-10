@@ -29,14 +29,14 @@ const createComposition = async (colorScheme) => {
         projectDirectory: 'src/red-eye-mapped-frames/',
         neutrals: ['#FFFFFF'],
         backgrounds: ['#00000000'],
-        numberOfFrame: 400,
+        numberOfFrame: 100,
         colorScheme: colorScheme,
     });
 
     const min = 25;
     const max = 45;
 
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 8; i++) {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: RedEyeEffect,
@@ -51,8 +51,8 @@ const createComposition = async (colorScheme) => {
                     stroke: 0,
                     thickness: 1,
                     sparsityFactor: [12],
-                    innerRadius: 25,
-                    outerRadius: 525,
+                    innerRadius: 100,
+                    outerRadius: 600,
                     possibleJumpRangeInPixels: {lower: 25, upper: 75},
                     lineLength: {lower: 125, upper: 125},
                     numberOfLoops: {lower: 1, upper: 4},
