@@ -13,6 +13,9 @@ import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/ma
 import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
 import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
+import {ImageOverlayEffect} from "../../my-nft-gen/src/effects/primaryEffects/imageOverlay/ImageOverlayEffect.js";
+import {PorousEffect} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousEffect.js";
+import {PorousConfig} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousConfig.js";
 
 
 const promiseArray = [];
@@ -63,12 +66,12 @@ const createComposition = async (colorScheme) => {
 
                 numberOfFlareRings: new Range(15, 15),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
-                flareRingStroke: new Range(0, 0),
+                flareRingStroke: new Range(3, 3),
                 flareRingThickness: new Range(1, 1),
 
                 numberOfFlareRays: new Range(50, 50),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
-                flareRaysStroke: new Range(0, 0),
+                flareRaysStroke: new Range(3, 3),
                 flareRayThickness: new Range(1, 1),
                 flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
 
@@ -191,6 +194,27 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: PorousEffect,
+            percentChance: 100,
+            currentEffectConfig: new PorousConfig({
+                layerOpacity: 0.9,
+            }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: -240, upper: -240},
+                        upperRange: {lower: -160, upper: -160},
+                        times: {lower: 2, upper: 2}
+                    }),
+                })
+            ]
+        }),
+    });
 
     promiseArray.push(myTestProject.generateRandomLoop());
 };
