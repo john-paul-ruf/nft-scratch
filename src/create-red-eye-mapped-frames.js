@@ -36,7 +36,7 @@ const createComposition = async (colorScheme) => {
     const min = 25;
     const max = 45;
 
-    for(let i = 0; i < 8; i++) {
+    for (let i = 0; i < 8; i++) {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: RedEyeEffect,
@@ -50,21 +50,21 @@ const createComposition = async (colorScheme) => {
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 0,
                     thickness: 1,
-                    sparsityFactor: [12],
-                    innerRadius: 100,
-                    outerRadius: 600,
+                    sparsityFactor: [9, 10, 12],
+                    innerRadius: 250,
+                    outerRadius: 800,
                     possibleJumpRangeInPixels: {lower: 10, upper: 50},
                     lineLength: {lower: 125, upper: 125},
-                    numberOfLoops: {lower: 1, upper: 1},
+                    numberOfLoops: {lower: 1, upper: 2},
                     accentRange: {bottom: {lower: 2, upper: 3}, top: {lower: 6, upper: 10}},
                     blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 6, upper: 10}},
-                    featherTimes: {lower: 2, upper: 2},
+                    featherTimes: {lower: 1, upper: 3},
                 }),
             }),
         });
     }
 
-    promiseArray.push(myTestProject.generateRandomLoop());
+    promiseArray.push(myTestProject.generateRandomLoop(true));
 };
 
 await createComposition(NeonColorSchemeFactory.getColorScheme(NeonColorScheme.neons));
