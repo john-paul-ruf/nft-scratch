@@ -57,7 +57,7 @@ const createComposition = async (colorScheme) => {
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 20,
-                        maxPercentage: 80,
+                        maxPercentage: 100,
                         max: new Range(Math.ceil(min * 0.8), Math.ceil(max * 0.8)),
                         times: new Range(1, 4),
                     }),
