@@ -13,7 +13,6 @@ import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/ma
 import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
 import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {ImageOverlayEffect} from "../../my-nft-gen/src/effects/primaryEffects/imageOverlay/ImageOverlayEffect.js";
 import {PorousEffect} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousEffect.js";
 import {PorousConfig} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousConfig.js";
 
@@ -203,15 +202,7 @@ const createComposition = async (colorScheme) => {
                 layerOpacity: 0.9,
             }),
             possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: -240, upper: -240},
-                        upperRange: {lower: -160, upper: -160},
-                        times: {lower: 2, upper: 2}
-                    }),
-                })
+
             ]
         }),
     });
