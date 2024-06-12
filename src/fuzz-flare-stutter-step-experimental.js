@@ -15,6 +15,8 @@ import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/Glo
 import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
 import {PorousEffect} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousEffect.js";
 import {PorousConfig} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousConfig.js";
+import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
+import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
 
 
 const promiseArray = [];
@@ -24,8 +26,8 @@ const createComposition = async (colorScheme) => {
         artist: 'John Ruf',
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
-        neutrals: ['#FFD4D4'],
-        backgrounds: ['#000008'],
+        neutrals: ['#FFFFFF'],
+        backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -43,10 +45,10 @@ const createComposition = async (colorScheme) => {
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
 
-                layerOpacity: 0.6,
+                layerOpacity: 0.7,
 
-                underLayerOpacityRange: {bottom: {lower: 0.45, upper: 0.45}, top: {lower: 0.55, upper: 0.55}},
-                underLayerOpacityTimes: {lower: 2, upper: 8},
+                underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
+                underLayerOpacityTimes: {lower: 2, upper: 12},
 
                 elementGastonMultiStep: [
                     new MultiStepDefinitionConfig({
@@ -63,21 +65,41 @@ const createComposition = async (colorScheme) => {
                     }),
                 ],
 
-                numberOfFlareRings: new Range(15, 15),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
+                numberOfFlareRings: new Range(20, 20),
+                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageLongestSide(0.8)),
                 flareRingStroke: new Range(3, 3),
                 flareRingThickness: new Range(1, 1),
 
                 numberOfFlareRays: new Range(50, 50),
-                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
+                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(3, 3),
                 flareRayThickness: new Range(1, 1),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
+                flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.05)),
 
-                accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
-                blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 6, upper: 10}},
+                accentRange: {bottom: {lower: 20, upper: 25}, top: {lower: 30, upper: 35}},
+                blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
                 featherTimes: {lower: 7, upper: 7},
             }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: -16, upper: -8},
+                        upperRange: {lower: 8, upper: 16},
+                        times: {lower: 8, upper: 8}
+                    }),
+                }),
+                new LayerConfig({
+                    effect: FadeEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new FadeConfig({
+                        lowerRange: {lower: 0.7, upper: 0.8},
+                        upperRange: {lower: 0.9, upper: 1},
+                        times: {lower: 8, upper: 8},
+                    }),
+                }),
+            ]
         }),
     });
 
@@ -87,7 +109,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/red-eye-mapped-frames/',
-                layerOpacity: [0.8],
+                layerOpacity: [1],
                 buffer: [600],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
@@ -100,7 +122,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 20,
                         maxPercentage: 100,
                         max: new Range(0, 0),
-                        times: new Range(5, 5),
+                        times: new Range(2, 2),
                     }),
                 ],
             }),
@@ -124,7 +146,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/red-eye-mapped-frames/',
-                layerOpacity: [0.8],
+                layerOpacity: [1],
                 buffer: [300],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
@@ -137,7 +159,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 20,
                         maxPercentage: 100,
                         max: new Range(0, 0),
-                        times: new Range(5, 5),
+                        times: new Range(2, 2),
                     }),
                 ],
             }),
@@ -162,7 +184,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/red-eye-mapped-frames/',
-                layerOpacity: [0.8],
+                layerOpacity: [1],
                 buffer: [0],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
@@ -175,7 +197,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 20,
                         maxPercentage: 100,
                         max: new Range(0, 0),
-                        times: new Range(5, 5),
+                        times: new Range(2, 2),
                     }),
                 ],
             }),
@@ -201,9 +223,7 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new PorousConfig({
                 layerOpacity: 0.9,
             }),
-            possibleSecondaryEffects: [
-
-            ]
+            possibleSecondaryEffects: []
         }),
     });
 
