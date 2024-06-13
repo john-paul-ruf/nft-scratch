@@ -1,6 +1,5 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {FuzzFlareEffect} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
 import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
@@ -10,12 +9,17 @@ import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/Percen
 import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {NeonColorScheme, NeonColorSchemeFactory} from "my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
-import {
-    EncircledSpiralEffect
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
-import {
-    EncircledSpiralConfig
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
+import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
+import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
+import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
+import {PorousEffect} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousEffect.js";
+import {PorousConfig} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousConfig.js";
+import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
+import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
+import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
+import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 
 
 const promiseArray = [];
@@ -25,8 +29,8 @@ const createComposition = async (colorScheme) => {
         artist: 'John Ruf',
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
-        neutrals: ['#FFD4D4'],
-        backgrounds: ['#000008'],
+        neutrals: ['#FFFFFF'],
+        backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -36,101 +40,167 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
-            effect: EncircledSpiralEffect,
+            effect: FuzzFlareEffect,
             percentChance: 100,
-            currentEffectConfig: new EncircledSpiralConfig({
-                invertLayers: true,
-                layerOpacity: 0.7,
-                underLayerOpacity: 0.5,
-                startAngle: {lower: 0, upper: 360}, //need to remove or make option to use
-                numberOfRings: {lower: 10, upper: 10},
-                stroke: 0,
-                thickness: 1,
-                sparsityFactor: [45],
-                sequencePixelConstant: {
-                    lower: (finalSize) => finalSize.shortestSide * 0.001,
-                    upper: (finalSize) => finalSize.shortestSide * 0.001,
-                },
-                sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                minSequenceIndex: [8],
-                numberOfSequenceElements: [7],
-                speed: {lower: 4, upper: 4},
-                accentRange: {bottom: {lower: 2, upper: 3}, top: {lower: 6, upper: 10}},
-                blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 6, upper: 10}},
-                featherTimes: {lower: 15, upper: 15},
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+            currentEffectConfig: new FuzzFlareConfig({
+                invertLayers: false,
+
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+
+                layerOpacity: 0.7,
+
+                underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
+                underLayerOpacityTimes: {lower: 2, upper: 12},
+
+                elementGastonMultiStep: [
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 0,
+                        maxPercentage: 20,
+                        max: new Range(Math.ceil(min * 0.2), Math.ceil(max * 0.2)),
+                        times: new Range(1, 2),
+                    }),
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 20,
+                        maxPercentage: 100,
+                        max: new Range(Math.ceil(min * 0.8), Math.ceil(max * 0.8)),
+                        times: new Range(1, 4),
+                    }),
+                ],
+
+                numberOfFlareRings: new Range(20, 20),
+                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageLongestSide(0.8)),
+                flareRingStroke: new Range(1, 1),
+                flareRingThickness: new Range(3, 3),
+
+                numberOfFlareRays: new Range(50, 50),
+                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(1)),
+                flareRaysStroke: new Range(1, 1),
+                flareRayThickness: new Range(3, 3),
+                flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.05)),
+
+                accentRange: {bottom: {lower: 20, upper: 25}, top: {lower: 30, upper: 35}},
+                blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
+                featherTimes: {lower: 7, upper: 7},
             }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: -16, upper: -8},
+                        upperRange: {lower: 8, upper: 16},
+                        times: {lower: 8, upper: 8}
+                    }),
+                }),
+                new LayerConfig({
+                    effect: FadeEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new FadeConfig({
+                        lowerRange: {lower: 0.4, upper: 0.6},
+                        upperRange: {lower: 0.7, upper: 1},
+                        times: {lower: 8, upper: 8},
+                    }),
+                }),
+            ]
+        }),
+    });
+
+    for (let i = 0; i < 8; i++) {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: RedEyeEffect,
+                percentChance: 100,
+                currentEffectConfig: new RedEyeConfig({
+                    invertLayers: false,
+                    layerOpacity: 0.7,
+                    underLayerOpacity: 0.5,
+                    center: new Point2D(1080 / 2, 1920 / 2),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    stroke: 0,
+                    thickness: 1,
+                    sparsityFactor: [9, 10, 12],
+                    innerRadius: 400,
+                    outerRadius: 900,
+                    possibleJumpRangeInPixels: {lower: 5, upper: 20},
+                    lineLength: {lower: 80, upper: 100},
+                    numberOfLoops: {lower: 1, upper: 1},
+                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    featherTimes: {lower: 0, upper: 0},
+                }),
+                possibleSecondaryEffects: [
+                    new LayerConfig({
+                        effect: GlowEffect,
+                        percentChance: 100,
+                        currentEffectConfig: new GlowConfig({
+                            lowerRange: {lower: 0, upper: 0},
+                            upperRange: {lower: 360, upper: 360},
+                            times: {lower: 2, upper: 2}
+                        }),
+                    }),
+                ]
+            }),
+        });
+    }
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: MappedFramesEffect,
+            percentChance: 100,
+            currentEffectConfig: new MappedFramesConfig({
+                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/og-eye-flux/',
+                layerOpacity: [1],
+                buffer: [600],
+                loopTimesMultiStep: [
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 0,
+                        maxPercentage: 20,
+                        max: new Range(0, 0),
+                        times: new Range(10, 10),
+                    }),
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 20,
+                        maxPercentage: 100,
+                        max: new Range(0, 0),
+                        times: new Range(15, 15),
+                    }),
+                ],
+            }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: -80, upper: -80},
+                        upperRange: {lower: 0, upper: 0},
+                        times: {lower: 2, upper: 2}
+                    }),
+                }),
+                new LayerConfig({
+                    effect: FadeEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new FadeConfig({
+                        lowerRange: {lower: 0.4, upper: 0.6},
+                        upperRange: {lower: 0.7, upper: 1},
+                        times: {lower: 8, upper: 8},
+                    }),
+                }),
+            ]
         }),
     });
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
-            effect: FuzzFlareEffect,
+            effect: PorousEffect,
             percentChance: 100,
-            currentEffectConfig: new FuzzFlareConfig({
-                invertLayers: true,
-
-                outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-
-                layerOpacity: 0.6,
-
-                underLayerOpacityRange: {bottom: {lower: 0.45, upper: 0.45}, top: {lower: 0.55, upper: 0.55}},
-                underLayerOpacityTimes: {lower: 2, upper: 8},
-
-                elementGastonMultiStep: [
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 0,
-                        maxPercentage: 10,
-                        max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(1, 2),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 10,
-                        maxPercentage: 20,
-                        max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(1, 3),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 20,
-                        maxPercentage: 80,
-                        max: new Range(Math.ceil(min * 0.6), Math.ceil(max * 0.6)),
-                        times: new Range(1, 8),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 80,
-                        maxPercentage: 90,
-                        max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(1, 3),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 90,
-                        maxPercentage: 100,
-                        max: new Range(Math.ceil(min * 0.1), Math.ceil(max * 0.1)),
-                        times: new Range(1, 3),
-                    })
-                ],
-
-                numberOfFlareRings: new Range(30, 30),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(0.8)),
-                flareRingStroke: new Range(0, 0),
-                flareRingThickness: new Range(1, 1),
-
-                numberOfFlareRays: new Range(150, 150),
-                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
-                flareRaysStroke: new Range(0, 0),
-                flareRayThickness: new Range(1, 1),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
-
-                accentRange: {bottom: {lower: 2, upper: 3}, top: {lower: 6, upper: 10}},
-                blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 6, upper: 10}},
-                featherTimes: {lower: 15, upper: 15},
+            currentEffectConfig: new PorousConfig({
+                layerOpacity: 0.9,
             }),
+            possibleSecondaryEffects: []
         }),
     });
-
 
     promiseArray.push(myTestProject.generateRandomLoop());
 };
