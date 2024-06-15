@@ -17,9 +17,8 @@ import {PorousEffect} from "../../my-nft-gen/src/effects/primaryEffects/porous/P
 import {PorousConfig} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousConfig.js";
 import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
 import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
-import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
+import {BlinkOnEffect} from "../../my-nft-gen/src/effects/primaryEffects/blink-on-blink-on-blink-redux/BlinkEffect.js";
+import {BlinkOnConfig} from "../../my-nft-gen/src/effects/primaryEffects/blink-on-blink-on-blink-redux/BlinkConfig.js";
 
 
 const promiseArray = [];
@@ -106,44 +105,30 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-    for (let i = 0; i < 8; i++) {
-        await myTestProject.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: RedEyeEffect,
-                percentChance: 100,
-                currentEffectConfig: new RedEyeConfig({
-                    invertLayers: false,
-                    layerOpacity: 0.7,
-                    underLayerOpacity: 0.5,
-                    center: new Point2D(1080 / 2, 1920 / 2),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                    stroke: 0,
-                    thickness: 1,
-                    sparsityFactor: [9, 10, 12],
-                    innerRadius: 400,
-                    outerRadius: 900,
-                    possibleJumpRangeInPixels: {lower: 5, upper: 20},
-                    lineLength: {lower: 80, upper: 100},
-                    numberOfLoops: {lower: 1, upper: 1},
-                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                    featherTimes: {lower: 0, upper: 0},
-                }),
-                possibleSecondaryEffects: [
-                    new LayerConfig({
-                        effect: GlowEffect,
-                        percentChance: 100,
-                        currentEffectConfig: new GlowConfig({
-                            lowerRange: {lower: 0, upper: 0},
-                            upperRange: {lower: 360, upper: 360},
-                            times: {lower: 2, upper: 2}
-                        }),
-                    }),
-                ]
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: BlinkOnEffect,
+            percentChance: 100,
+            currentEffectConfig: new BlinkOnConfig({
+                layerOpacity: 0.65,
+                numberOfBlinks: {lower: 8, upper: 8},
+                initialRotation: {lower: 0, upper: 0},
+                rotationSpeedRange: {lower: 1, upper: 3},
+                diameterRange: {
+                    lower: (finalSize) => finalSize.longestSide * 0.55,
+                    upper: (finalSize) => finalSize.longestSide * 0.65,
+                },
+                glowLowerRange: {lower: -0, upper: -64},
+                glowUpperRange: {lower: 64, upper: 128},
+                glowTimes: {lower: 4, upper: 4},
+                randomizeSpin: {lower: -64, upper: 64},
+                randomizeRed: {lower: -64, upper: 64},
+                randomizeBlue: {lower: -64, upper: 64},
+                randomizeGreen: {lower: -64, upper: 64},
             }),
-        });
-    }
+            possibleSecondaryEffects: []
+        }),
+    });
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
