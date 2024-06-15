@@ -43,12 +43,12 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new BlinkOnConfig({
                 layerOpacity: 0.8,
-                numberOfBlinks: {lower: 4, upper: 4},
+                numberOfBlinks: {lower: 8, upper: 8},
                 initialRotation: {lower: 0, upper: 8},
                 rotationSpeedRange: {lower: 1, upper: 2},
                 diameterRange: {
-                    lower: (finalSize) => finalSize.longestSide * 1.25,
-                    upper: (finalSize) => finalSize.longestSide * 1.25,
+                    lower: (finalSize) => 1000,
+                    upper: (finalSize) => 2000,
                 },
                 glowLowerRange: {lower: -0, upper: -64},
                 glowUpperRange: {lower: 64, upper: 128},
