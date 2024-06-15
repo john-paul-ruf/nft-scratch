@@ -39,13 +39,38 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
+            effect: BlinkOnEffect,
+            percentChance: 100,
+            currentEffectConfig: new BlinkOnConfig({
+                layerOpacity: 0.8,
+                numberOfBlinks: {lower: 4, upper: 4},
+                initialRotation: {lower: 0, upper: 8},
+                rotationSpeedRange: {lower: 1, upper: 2},
+                diameterRange: {
+                    lower: (finalSize) => finalSize.longestSide * 1.25,
+                    upper: (finalSize) => finalSize.longestSide * 1.25,
+                },
+                glowLowerRange: {lower: -0, upper: -64},
+                glowUpperRange: {lower: 64, upper: 128},
+                glowTimes: {lower: 4, upper: 4},
+                randomizeSpin: {lower: -64, upper: 64},
+                randomizeRed: {lower: -64, upper: 64},
+                randomizeBlue: {lower: -64, upper: 64},
+                randomizeGreen: {lower: -64, upper: 64},
+            }),
+            possibleSecondaryEffects: []
+        }),
+    });
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
             effect: FuzzFlareEffect,
             percentChance: 100,
             currentEffectConfig: new FuzzFlareConfig({
                 invertLayers: false,
 
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
                 layerOpacity: 0.7,
 
@@ -102,31 +127,6 @@ const createComposition = async (colorScheme) => {
                     }),
                 }),
             ]
-        }),
-    });
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: BlinkOnEffect,
-            percentChance: 100,
-            currentEffectConfig: new BlinkOnConfig({
-                layerOpacity: 0.65,
-                numberOfBlinks: {lower: 8, upper: 8},
-                initialRotation: {lower: 0, upper: 0},
-                rotationSpeedRange: {lower: 1, upper: 3},
-                diameterRange: {
-                    lower: (finalSize) => finalSize.longestSide * 0.55,
-                    upper: (finalSize) => finalSize.longestSide * 0.65,
-                },
-                glowLowerRange: {lower: -0, upper: -64},
-                glowUpperRange: {lower: 64, upper: 128},
-                glowTimes: {lower: 4, upper: 4},
-                randomizeSpin: {lower: -64, upper: 64},
-                randomizeRed: {lower: -64, upper: 64},
-                randomizeBlue: {lower: -64, upper: 64},
-                randomizeGreen: {lower: -64, upper: 64},
-            }),
-            possibleSecondaryEffects: []
         }),
     });
 
