@@ -18,6 +18,7 @@ import {
 } from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
 import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
+import {BlurEffect} from "../../my-nft-gen/src/effects/finalImageEffects/blur/BlurEffect.js";
 
 
 const promiseArray = [];
