@@ -17,8 +17,12 @@ import {PorousEffect} from "../../my-nft-gen/src/effects/primaryEffects/porous/P
 import {PorousConfig} from "../../my-nft-gen/src/effects/primaryEffects/porous/PorousConfig.js";
 import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
 import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
-import {BlinkOnEffect} from "../../my-nft-gen/src/effects/primaryEffects/blink-on-blink-on-blink-redux/BlinkEffect.js";
-import {BlinkOnConfig} from "../../my-nft-gen/src/effects/primaryEffects/blink-on-blink-on-blink-redux/BlinkConfig.js";
+import {
+    BlinkOnEffect
+} from "../../my-nft-gen/src/effects/primaryEffects/blink-on-blink-on-blink-redux/BlinkOnEffect.js";
+import {
+    BlinkOnConfig
+} from "../../my-nft-gen/src/effects/primaryEffects/blink-on-blink-on-blink-redux/BlinkOnConfig.js";
 
 
 const promiseArray = [];
