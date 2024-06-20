@@ -1,24 +1,10 @@
-import {Project} from "my-nft-gen/src/app/Project.js";
-import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
-import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {FuzzFlareEffect} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
-import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
-import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";
-import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
-import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
-import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
-import {NeonColorScheme, NeonColorSchemeFactory} from "my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
-import {
-    EncircledSpiralEffect
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
-import {
-    EncircledSpiralConfig
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {BlurEffect} from "../../my-nft-gen/src/effects/finalImageEffects/blur/BlurEffect.js";
+import {Project} from "../../../my-nft-gen/src/app/Project.js";
+import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
+import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
+import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {NeonColorScheme, NeonColorSchemeFactory} from "../../../my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
+import {RedEyeEffect} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 
 
 const promiseArray = [];
