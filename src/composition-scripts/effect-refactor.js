@@ -11,6 +11,7 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
+
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 

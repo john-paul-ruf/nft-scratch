@@ -11,3 +11,15 @@ export const brightAndFeisty = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: bright & feisty\n"
 });
+
+export const neonSlice = new ColorScheme({
+    colorBucket: [
+        '#8800FF',
+        '#FF0088',
+        '#FF8800',
+        '#FF0000',
+        '#00FF00',
+        '#FFFF00',
+    ],
+    colorSchemeInfo: "**Color Strategy**: that neon slice\n"
+});
