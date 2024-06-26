@@ -10,8 +10,6 @@ import {PercentageShortestSide} from "../../../my-nft-gen/src/core/layer/configT
 import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
 import {GlowConfig} from "../../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
 import {GlowEffect} from "../../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {FadeEffect} from "../../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
-import {FadeConfig} from "../../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
 import {getRandomFromArray, getRandomIntInclusive} from "../../../my-nft-gen/src/core/math/random.js";
 import {RedEyeEffect} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
@@ -105,15 +103,6 @@ const createComposition = async (colorScheme) => {
                         lowerRange: {lower: -32, upper: -8},
                         upperRange: {lower: 8, upper: 32},
                         times: {lower: 8, upper: 8}
-                    }),
-                }),
-                new LayerConfig({
-                    effect: FadeEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new FadeConfig({
-                        lowerRange: {lower: 0.4, upper: 0.6},
-                        upperRange: {lower: 0.7, upper: 1},
-                        times: {lower: 8, upper: 8},
                     }),
                 }),
             ]
