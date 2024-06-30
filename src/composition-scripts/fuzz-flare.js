@@ -8,8 +8,6 @@ import {PercentageRange} from "../../../my-nft-gen/src/core/layer/configType/Per
 import {PercentageLongestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {PercentageShortestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
-import {GlowConfig} from "../../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
-import {GlowEffect} from "../../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
 import {getRandomFromArray, getRandomIntInclusive} from "../../../my-nft-gen/src/core/math/random.js";
 import {RedEyeEffect} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
@@ -42,7 +40,7 @@ const createComposition = async (colorScheme) => {
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
-                layerOpacity: 0.7,
+                layerOpacity: 1,
 
                 underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
                 underLayerOpacityTimes: {lower: 2, upper: 12},
@@ -51,20 +49,20 @@ const createComposition = async (colorScheme) => {
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
                         maxPercentage: 20,
-                        max: new Range(10, 20),
-                        times: new Range(1, 4),
+                        max: new Range(5, 10),
+                        times: new Range(1, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 20,
                         maxPercentage: 40,
-                        max: new Range(10, 20),
-                        times: new Range(1, 4),
+                        max: new Range(5, 10),
+                        times: new Range(1, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 40,
                         maxPercentage: 60,
-                        max: new Range(10, 20),
-                        times: new Range(1, 4),
+                        max: new Range(5, 10),
+                        times: new Range(1, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 60,
@@ -75,17 +73,17 @@ const createComposition = async (colorScheme) => {
                     new MultiStepDefinitionConfig({
                         minPercentage: 80,
                         maxPercentage: 100,
-                        max: new Range(10, 20),
-                        times: new Range(1, 4),
+                        max: new Range(5, 10),
+                        times: new Range(1, 2),
                     }),
                 ],
 
-                numberOfFlareRings: new Range(20, 20),
+                numberOfFlareRings: new Range(10, 10),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageLongestSide(0.8)),
                 flareRingStroke: new Range(1, 1),
                 flareRingThickness: new Range(3, 3),
 
-                numberOfFlareRays: new Range(50, 50),
+                numberOfFlareRays: new Range(25, 25),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(1, 1),
                 flareRayThickness: new Range(3, 3),
@@ -95,21 +93,11 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
                 featherTimes: {lower: 4, upper: 8},
             }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: -32, upper: -8},
-                        upperRange: {lower: 8, upper: 32},
-                        times: {lower: 8, upper: 8}
-                    }),
-                }),
-            ]
+            possibleSecondaryEffects: []
         }),
     });
 
-    let redEyeCount = getRandomFromArray([3]);
+    let redEyeCount = getRandomFromArray([2]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -118,7 +106,7 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: true,
-                    layerOpacity: 0.7,
+                    layerOpacity: 1,
                     underLayerOpacity: 0.6,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -139,7 +127,7 @@ const createComposition = async (colorScheme) => {
         });
     }
 
-    redEyeCount = getRandomFromArray([4]);
+    redEyeCount = getRandomFromArray([2]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -148,7 +136,7 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: true,
-                    layerOpacity: 0.7,
+                    layerOpacity: 1,
                     underLayerOpacity: 0.6,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -169,7 +157,7 @@ const createComposition = async (colorScheme) => {
         });
     }
 
-    redEyeCount = getRandomFromArray([4]);
+    redEyeCount = getRandomFromArray([2]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -178,7 +166,7 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: true,
-                    layerOpacity: 0.7,
+                    layerOpacity: 1,
                     underLayerOpacity: 0.6,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -199,7 +187,7 @@ const createComposition = async (colorScheme) => {
         });
     }
 
-    redEyeCount = getRandomFromArray([4]);
+    redEyeCount = getRandomFromArray([2]);
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -208,7 +196,7 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: true,
-                    layerOpacity: 0.7,
+                    layerOpacity: 1,
                     underLayerOpacity: 0.6,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
