@@ -12,3 +12,15 @@ export const brightAndFeisty = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: bright & feisty\n"
 });
+
+export const neonLights = new ColorScheme({
+    colorBucket: [
+        '#FF0000',
+        '#00FF00',
+        '#0000FF',
+        '#FFFF00',
+        '#00FFFF',
+        '#FF00FF',
+    ],
+    colorSchemeInfo: "**Color Strategy**: neon lights\n"
+});

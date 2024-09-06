@@ -40,7 +40,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: false,
+                   
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -70,7 +70,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: false,
+                   
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -100,7 +100,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: false,
+                   
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -130,7 +130,7 @@ const createRedEye = async (colorSheme) => {
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    invertLayers: false,
+                   
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
                     center: new Point2D(1080 / 2, 1920 / 2),
@@ -159,7 +159,7 @@ const createRedEye = async (colorSheme) => {
             currentEffectConfig: new ViewportConfig({
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                invertLayers: false,
+               
                 layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 stroke: 4,
