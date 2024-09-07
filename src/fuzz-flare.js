@@ -19,6 +19,10 @@ import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
 import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
 import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
+import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
+import {CRTScanLinesConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
+import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
 
 const promiseArray = [];
 
@@ -28,7 +32,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
         neutrals: ['#00FF00'],
-        backgrounds: ['#000000'],
+        backgrounds: ['#080808'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -39,7 +43,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-               layerOpacity: 0.8,
+                layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -76,7 +80,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-               layerOpacity: 0.8,
+                layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -113,7 +117,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-               layerOpacity: 0.8,
+                layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -150,7 +154,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-               layerOpacity: 0.8,
+                layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -189,7 +193,7 @@ const createComposition = async (colorScheme) => {
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: false,
-               layerOpacity: 0.8,
+                layerOpacity: 0.8,
                 underLayerOpacity: 0.6,
                 stroke: 4,
                 thickness: 18,
@@ -229,7 +233,7 @@ const createComposition = async (colorScheme) => {
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
-               layerOpacity: 0.8,
+                layerOpacity: 0.8,
 
                 underLayerOpacityRange: {bottom: {lower: 0.6, upper: 0.65}, top: {lower: 0.7, upper: 0.75}},
                 underLayerOpacityTimes: {lower: 2, upper: 8},
@@ -238,33 +242,33 @@ const createComposition = async (colorScheme) => {
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
                         maxPercentage: 25,
-                        min: new Range(5, 20),
-                        max: new Range(20, 60),
-                        times: new Range(1, 2),
+                        min: new Range(10, 30),
+                        max: new Range(30, 60),
+                        times: new Range(1, 1),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 25,
                         maxPercentage: 50,
-                        min: new Range(5, 20),
-                        max: new Range(20, 60),
-                        times: new Range(1, 2),
+                        min: new Range(10, 30),
+                        max: new Range(30, 60),
+                        times: new Range(1, 1),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 50,
                         maxPercentage: 75,
-                        min: new Range(5, 20),
-                        max: new Range(20, 60),
-                        times: new Range(1, 2),
+                        min: new Range(10, 30),
+                        max: new Range(30, 60),
+                        times: new Range(1, 1),
                         invert: false
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 75,
                         maxPercentage: 100,
-                        min: new Range(5, 20),
-                        max: new Range(20, 60),
-                        times: new Range(1, 2),
+                        min: new Range(10, 30),
+                        max: new Range(30, 60),
+                        times: new Range(1, 1),
                         invert: false
                     })
                 ],
@@ -297,6 +301,21 @@ const createComposition = async (colorScheme) => {
             ]
         }),
     });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTScanLinesEffect,
+            percentChance: 100,
+            currentEffectConfig: new CRTScanLinesConfig({
+                lines: {lower: 30, upper: 30},
+                loopTimes: {lower: 1, upper: 2},
+                brightness: {lower: 100, upper: 500},
+                thickness: {lower: 10, upper: 25},
+                lineBlur: {lower: 8, upper: 8},
+            }),
+        }),
+    });
+
 
     promiseArray.push(myTestProject.generateRandomLoop());
 };
