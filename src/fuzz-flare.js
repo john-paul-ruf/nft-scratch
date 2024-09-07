@@ -59,18 +59,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
-            }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: 0, upper: 0},
-                        upperRange: {lower: 360, upper: 360},
-                        times: {lower: 2, upper: 2}
-                    }),
-                })
-            ]
+            })
         }),
     });
 
@@ -96,18 +85,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
-            }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: 0, upper: 0},
-                        upperRange: {lower: 360, upper: 360},
-                        times: {lower: 2, upper: 2}
-                    }),
-                })
-            ]
+            })
         }),
     });
 
@@ -133,18 +111,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
-            }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: 0, upper: 0},
-                        upperRange: {lower: 360, upper: 360},
-                        times: {lower: 2, upper: 2}
-                    }),
-                })
-            ]
+            })
         }),
     });
 
@@ -170,18 +137,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
-            }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: 0, upper: 0},
-                        upperRange: {lower: 360, upper: 360},
-                        times: {lower: 2, upper: 2}
-                    }),
-                })
-            ]
+            })
         }),
     });
 
@@ -216,7 +172,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\skull-idea\\',
-                layerOpacity: [0.8],
+                layerOpacity: [0.7],
                 buffer: [200],
                 loopTimes: 250,
             }),
@@ -287,18 +243,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 2, upper: 6}, top: {lower: 8, upper: 14}},
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 12}},
                 featherTimes: {lower: 2, upper: 8},
-            }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: 0, upper: 0},
-                        upperRange: {lower: 360, upper: 360},
-                        times: {lower: 2, upper: 2}
-                    }),
-                })
-            ]
+            })
         }),
     });
 
@@ -307,11 +252,11 @@ const createComposition = async (colorScheme) => {
             effect: CRTScanLinesEffect,
             percentChance: 100,
             currentEffectConfig: new CRTScanLinesConfig({
-                lines: {lower: 30, upper: 30},
-                loopTimes: {lower: 1, upper: 2},
-                brightness: {lower: 100, upper: 500},
-                thickness: {lower: 10, upper: 25},
-                lineBlur: {lower: 8, upper: 8},
+                lines: {lower: 15, upper: 15},
+                loopTimes: {lower: 1, upper: 1},
+                brightness: {lower: 1500, upper: 2550},
+                thickness: {lower: 20, upper: 20},
+                lineBlur: {lower: 10, upper: 10},
             }),
         }),
     });
