@@ -27,7 +27,7 @@ const createComposition = async (colorScheme) => {
         artist: 'John Ruf',
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
-        neutrals: ['#FFFFFF'],
+        neutrals: ['#00FF00'],
         backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
@@ -39,7 +39,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-                layerOpacity: 1,
+               layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -56,6 +56,17 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
             }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: 0, upper: 0},
+                        upperRange: {lower: 360, upper: 360},
+                        times: {lower: 2, upper: 2}
+                    }),
+                })
+            ]
         }),
     });
 
@@ -65,7 +76,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-                layerOpacity: 1,
+               layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -82,6 +93,17 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
             }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: 0, upper: 0},
+                        upperRange: {lower: 360, upper: 360},
+                        times: {lower: 2, upper: 2}
+                    }),
+                })
+            ]
         }),
     });
 
@@ -91,7 +113,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-                layerOpacity: 1,
+               layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -108,6 +130,17 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
             }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: 0, upper: 0},
+                        upperRange: {lower: 360, upper: 360},
+                        times: {lower: 2, upper: 2}
+                    }),
+                })
+            ]
         }),
     });
 
@@ -117,7 +150,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
                 invertLayers: true,
-                layerOpacity: 1,
+               layerOpacity: 0.8,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -134,6 +167,17 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
                 featherTimes: {lower: 1, upper: 1},
             }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: 0, upper: 0},
+                        upperRange: {lower: 360, upper: 360},
+                        times: {lower: 2, upper: 2}
+                    }),
+                })
+            ]
         }),
     });
 
@@ -145,7 +189,7 @@ const createComposition = async (colorScheme) => {
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 invertLayers: false,
-                layerOpacity: 1,
+               layerOpacity: 0.8,
                 underLayerOpacity: 0.6,
                 stroke: 4,
                 thickness: 18,
@@ -158,7 +202,7 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
                 blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 8, upper: 8}},
                 featherTimes: {lower: 2, upper: 2},
-            }),
+            })
         }),
     });
 
@@ -168,7 +212,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\skull-idea\\',
-                layerOpacity: [0.9],
+                layerOpacity: [0.8],
                 buffer: [200],
                 loopTimes: 250,
             }),
@@ -185,7 +229,7 @@ const createComposition = async (colorScheme) => {
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
-                layerOpacity: 1,
+               layerOpacity: 0.8,
 
                 underLayerOpacityRange: {bottom: {lower: 0.6, upper: 0.65}, top: {lower: 0.7, upper: 0.75}},
                 underLayerOpacityTimes: {lower: 2, upper: 8},
@@ -227,12 +271,12 @@ const createComposition = async (colorScheme) => {
 
                 numberOfFlareRings: new Range(8, 8),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.15), new PercentageLongestSide(1)),
-                flareRingStroke: new Range(3, 3),
+                flareRingStroke: new Range(2, 2),
                 flareRingThickness: new Range(1, 1),
 
                 numberOfFlareRays: new Range(50, 50),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
-                flareRaysStroke: new Range(3, 3),
+                flareRaysStroke: new Range(2, 2),
                 flareRayThickness: new Range(1, 1),
                 flareOffset: new PercentageRange(new PercentageShortestSide(0.1), new PercentageShortestSide(0.15)),
 
