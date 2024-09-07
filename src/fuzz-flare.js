@@ -23,6 +23,8 @@ import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects
 import {CRTScanLinesConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
 import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
+import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/finalImageEffects/CRTDegaussEvent/CRTDegaussEffect.js";
+import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/finalImageEffects/CRTDegaussEvent/CRTDegaussConfig.js";
 
 const promiseArray = [];
 
@@ -174,7 +176,7 @@ const createComposition = async (colorScheme) => {
                 folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\skull-idea\\',
                 layerOpacity: [0.7],
                 buffer: [200],
-                loopTimes: 250,
+                loopTimes: 500,
             }),
         }),
     });
@@ -252,15 +254,26 @@ const createComposition = async (colorScheme) => {
             effect: CRTScanLinesEffect,
             percentChance: 100,
             currentEffectConfig: new CRTScanLinesConfig({
-                lines: {lower: 15, upper: 15},
+                lines: {lower: 20, upper: 20},
                 loopTimes: {lower: 1, upper: 1},
                 brightness: {lower: 1500, upper: 2550},
-                thickness: {lower: 20, upper: 20},
-                lineBlur: {lower: 10, upper: 10},
+                thickness: {lower: 5, upper: 5},
+                lineBlur: {lower: 3, upper: 2},
             }),
         }),
     });
 
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTDegaussEffect,
+            percentChance: 100,
+            currentEffectConfig: new CRTDegaussConfig({
+                numberOfFrames: { lower: 50, upper: 150 },
+                keyFrames: [0],
+                wobbleAmount: { lower: 5, upper: 15 },
+            }),
+        }),
+    });
 
     promiseArray.push(myTestProject.generateRandomLoop());
 };
