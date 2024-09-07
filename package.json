@@ -13,6 +13,6 @@
   "license": "MIT",
   "dependencies": {
     "inquirer": "^9.2.22",
-    "my-nft-gen": "^1.5.8"
+    "my-nft-gen": "file:../my-nft-gen"
   }
 }

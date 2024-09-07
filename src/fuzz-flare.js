@@ -27,7 +27,7 @@ const createComposition = async (colorScheme) => {
         artist: 'John Ruf',
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
-        neutrals: ['#000000'],
+        neutrals: ['#FFFFFF'],
         backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
@@ -38,13 +38,13 @@ const createComposition = async (colorScheme) => {
             effect: RedEyeEffect,
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
-                invertLayers: false,
+                invertLayers: true,
                 layerOpacity: 1,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 5,
+                stroke: 2,
                 thickness: 1,
                 sparsityFactor: [8],
                 innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.1, myTestProject.shortestSideInPixels * 0.15),
@@ -64,13 +64,13 @@ const createComposition = async (colorScheme) => {
             effect: RedEyeEffect,
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
-                invertLayers: false,
+                invertLayers: true,
                 layerOpacity: 1,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 5,
+                stroke: 2,
                 thickness: 1,
                 sparsityFactor: [8],
                 innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.1, myTestProject.shortestSideInPixels * 0.15),
@@ -90,13 +90,13 @@ const createComposition = async (colorScheme) => {
             effect: RedEyeEffect,
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
-                invertLayers: false,
+                invertLayers: true,
                 layerOpacity: 1,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 5,
+                stroke: 2,
                 thickness: 1,
                 sparsityFactor: [8],
                 innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.1, myTestProject.shortestSideInPixels * 0.15),
@@ -116,13 +116,13 @@ const createComposition = async (colorScheme) => {
             effect: RedEyeEffect,
             percentChance: 100,
             currentEffectConfig: new RedEyeConfig({
-                invertLayers: false,
+                invertLayers: true,
                 layerOpacity: 1,
                 underLayerOpacity: 0.7,
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 5,
+                stroke: 2,
                 thickness: 1,
                 sparsityFactor: [8],
                 innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.1, myTestProject.shortestSideInPixels * 0.15),
@@ -167,22 +167,11 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\og-eye-flux\\',
+                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\skull-idea\\',
                 layerOpacity: [0.9],
-                buffer: [500],
-                loopTimes: 200,
+                buffer: [200],
+                loopTimes: 250,
             }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: 0, upper: 0},
-                        upperRange: {lower: 360, upper: 360},
-                        times: {lower: 2, upper: 2}
-                    }),
-                })
-            ]
         }),
     });
 
@@ -191,14 +180,14 @@ const createComposition = async (colorScheme) => {
             effect: FuzzFlareEffect,
             percentChance: 100,
             currentEffectConfig: new FuzzFlareConfig({
-                invertLayers: false,
+                invertLayers: true,
 
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
 
                 layerOpacity: 1,
 
-                underLayerOpacityRange: {bottom: {lower: 0.35, upper: 0.4}, top: {lower: 0.45, upper: 0.5}},
+                underLayerOpacityRange: {bottom: {lower: 0.6, upper: 0.65}, top: {lower: 0.7, upper: 0.75}},
                 underLayerOpacityTimes: {lower: 2, upper: 8},
 
                 elementGastonMultiStep: [
@@ -236,16 +225,16 @@ const createComposition = async (colorScheme) => {
                     })
                 ],
 
-                numberOfFlareRings: new Range(15, 15),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(1)),
+                numberOfFlareRings: new Range(8, 8),
+                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.15), new PercentageLongestSide(1)),
                 flareRingStroke: new Range(3, 3),
-                flareRingThickness: new Range(5, 5),
+                flareRingThickness: new Range(1, 1),
 
-                numberOfFlareRays: new Range(30, 30),
+                numberOfFlareRays: new Range(50, 50),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(3, 3),
                 flareRayThickness: new Range(1, 1),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.06)),
+                flareOffset: new PercentageRange(new PercentageShortestSide(0.1), new PercentageShortestSide(0.15)),
 
                 accentRange: {bottom: {lower: 2, upper: 6}, top: {lower: 8, upper: 14}},
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 12}},
