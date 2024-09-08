@@ -25,6 +25,8 @@ import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/cr
 import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
 import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/finalImageEffects/CRTDegaussEvent/CRTDegaussEffect.js";
 import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/finalImageEffects/CRTDegaussEvent/CRTDegaussConfig.js";
+import {CRTShadowEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {CRTShadowConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 
 const promiseArray = [];
 
@@ -249,7 +251,7 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-    await myTestProject.addFinalEffect({
+     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
             percentChance: 100,
@@ -268,9 +270,23 @@ const createComposition = async (colorScheme) => {
             effect: CRTDegaussEffect,
             percentChance: 100,
             currentEffectConfig: new CRTDegaussConfig({
-                numberOfFrames: { lower: 50, upper: 150 },
-                keyFrames: [0],
-                wobbleAmount: { lower: 5, upper: 15 },
+                numberOfFrames: { lower: 20, upper: 40 },
+                keyFrames: [15, 120, 360, 900],
+                waveFrequency: { lower: 0, upper: 6 },
+                waveAmplitude: { lower: 20, upper: 60 },
+                amount: {lower: 0.7, upper: 1},
+                glitchSections: {lower: 8, upper: 12},
+                maxOffset: {lower: 40, upper: 60},
+            }),
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTShadowEffect,
+            percentChance: 100,
+            currentEffectConfig: new CRTShadowConfig({
+
             }),
         }),
     });
