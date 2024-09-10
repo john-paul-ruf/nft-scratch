@@ -10,8 +10,6 @@ import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewpo
 import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
 import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
 import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
 import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
 import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
 import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
@@ -21,10 +19,6 @@ import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType
 import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
 import {CRTScanLinesConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
-import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
-import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
-import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/finalImageEffects/CRTDegaussEvent/CRTDegaussEffect.js";
-import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/finalImageEffects/CRTDegaussEvent/CRTDegaussConfig.js";
 import {CRTShadowEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 
@@ -159,9 +153,9 @@ const createComposition = async (colorScheme) => {
                 thickness: 18,
                 ampStroke: 0,
                 ampThickness: 1,
-                radius: [350],
+                radius: [450],
                 startAngle: [270],
-                amplitude: {lower: 150, upper: 150},
+                amplitude: {lower: 100, upper: 100},
                 times: {lower: 4, upper: 4},
                 accentRange: {bottom: {lower: 10, upper: 10}, top: {lower: 40, upper: 40}},
                 blurRange: {bottom: {lower: 4, upper: 4}, top: {lower: 12, upper: 12}},
@@ -175,22 +169,30 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\skull-idea\\',
+                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\halloween\\',
                 layerOpacity: [0.7],
-                buffer: [200],
-                times: 80,
-            }),
-            possibleSecondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: -220, upper: -220},
-                        upperRange: {lower: -260, upper: -260},
-                        times: {lower: 4, upper: 4},
+                buffer: [400],
+                loopTimesMultiStep: [
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 0,
+                        maxPercentage: 100,
+                        max: new Range(0, 100),
+                        times: new Range(100, 100),
+                        invert: false
                     }),
-                })
-            ]
+                ]
+            }),
+            /* possibleSecondaryEffects: [
+                 new LayerConfig({
+                     effect: GlowEffect,
+                     percentChance: 100,
+                     currentEffectConfig: new GlowConfig({
+                         lowerRange: {lower: -220, upper: -220},
+                         upperRange: {lower: -260, upper: -260},
+                         times: {lower: 4, upper: 4},
+                     }),
+                 })
+             ]*/
         }),
     });
 
@@ -213,25 +215,25 @@ const createComposition = async (colorScheme) => {
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
                         maxPercentage: 25,
-                        max: new Range(5,15),
+                        max: new Range(3, 10),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 25,
                         maxPercentage: 50,
-                        max: new Range(5,15),
+                        max: new Range(3, 10),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 50,
                         maxPercentage: 75,
-                        max: new Range(5,15),
+                        max: new Range(3, 10),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 75,
                         maxPercentage: 100,
-                        max: new Range(5,15),
+                        max: new Range(3, 10),
                         times: new Range(1, 1),
                     })
                 ],
@@ -241,11 +243,11 @@ const createComposition = async (colorScheme) => {
                 flareRingStroke: new Range(2, 2),
                 flareRingThickness: new Range(1, 1),
 
-                numberOfFlareRays: new Range(25, 25),
+                numberOfFlareRays: new Range(75, 75),
                 flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.7), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(2, 2),
                 flareRayThickness: new Range(1, 1),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.1), new PercentageShortestSide(0.15)),
+                flareOffset: new PercentageRange(new PercentageShortestSide(0.125), new PercentageShortestSide(0.175)),
 
                 accentRange: {bottom: {lower: 2, upper: 6}, top: {lower: 8, upper: 14}},
                 blurRange: {bottom: {lower: 4, upper: 6}, top: {lower: 8, upper: 12}},
@@ -254,7 +256,7 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-     await myTestProject.addFinalEffect({
+    await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
             percentChance: 100,
@@ -288,9 +290,7 @@ const createComposition = async (colorScheme) => {
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect,
             percentChance: 100,
-            currentEffectConfig: new CRTShadowConfig({
-
-            }),
+            currentEffectConfig: new CRTShadowConfig({}),
         }),
     });
 
