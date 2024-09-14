@@ -274,8 +274,8 @@ const createComposition = async (colorScheme) => {
             effect: CRTDegaussEffect,
             percentChance: 100,
             currentEffectConfig: new CRTDegaussConfig({
-                keyFrames: [100, 800, 900, 100, 1700],
-                glitchFrameCount: [5, 10, 15],
+                keyFrames: [100, 800, 900, 1000, 1700],
+                glitchFrameCount: [15,25,40],
                 sectionHeight: [5, 10, 15],
                 offset: {lower: 2, upper: 8},
                 direction: [-1, 1],
@@ -313,7 +313,10 @@ const createComposition = async (colorScheme) => {
                 lineRed: {lower: 20, upper: 20},
                 lineGreen: {lower: 20, upper: 20},
                 lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 1, upper: 1}
+                lineHeight: {lower: 1, upper: 1},
+                edgePercentage: {lower: 0.10, upper: 0.10},
+                maxLineHeight: {lower: 3, upper: 3},
+                numberOfEdgeSections: {lower: 8, upper: 8},
             }),
             possibleSecondaryEffects: [
                 new LayerConfig({
