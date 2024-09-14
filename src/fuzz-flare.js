@@ -294,8 +294,8 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new CRTScanLinesConfig({
                 lines: {lower: 40, upper: 40},
-                loopTimes: {lower: 1, upper: 1},
-                brightness: {lower: 2000, upper: 2000},
+                loopTimes: {lower: 1, upper: 2},
+                brightness: {lower: 1500, upper: 2500},
                 thickness: {lower: 4, upper: 4},
                 lineBlur: {lower: 6, upper: 6},
             }),
@@ -316,7 +316,7 @@ const createComposition = async (colorScheme) => {
                 lineHeight: {lower: 1, upper: 1},
                 edgePercentage: {lower: 0.10, upper: 0.10},
                 maxLineHeight: {lower: 3, upper: 3},
-                numberOfEdgeSections: {lower: 8, upper: 8},
+                numberOfEdgeSections: {lower: 16, upper: 16},
             }),
             possibleSecondaryEffects: [
                 new LayerConfig({
