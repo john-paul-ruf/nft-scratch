@@ -1,5 +1,5 @@
 
-// src/fuzz-flare/fuzz-flare-rvoj27q/fuzz-flare-rvoj27q-settings.json
+// src/fuzz-flare/fuzz-flare-qme0wcz/fuzz-flare-qme0wcz-settings.json
 import inquirer from "inquirer";
 import {LoopBuilder} from "my-nft-gen/src/core/animation/LoopBuilder.js";
 import {Settings} from "my-nft-gen/src/core/Settings.js";

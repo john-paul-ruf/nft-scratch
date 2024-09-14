@@ -6,8 +6,6 @@ import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
-import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
 import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
 import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
@@ -21,6 +19,10 @@ import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects
 import {CRTScanLinesConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {CRTShadowEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
+import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
+import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtDegaussEvent/CRTDegaussConfig.js";
 
 const promiseArray = [];
 
@@ -30,7 +32,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'fuzz-flare',
         projectDirectory: 'src/fuzz-flare/',
         neutrals: ['#FF0000'],
-        backgrounds: ['#080808'],
+        backgrounds: ['#0F0000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -139,7 +141,7 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-    await myTestProject.addPrimaryEffect({
+    /*await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: ViewportEffect,
             percentChance: 100,
@@ -162,25 +164,36 @@ const createComposition = async (colorScheme) => {
                 featherTimes: {lower: 4, upper: 4},
             })
         }),
-    });
+    });*/
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\halloween\\',
+                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\seer\\',
                 layerOpacity: [0.7],
                 buffer: [400],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
-                        maxPercentage: 100,
-                        max: new Range(0, 100),
-                        times: new Range(100, 100),
-                        invert: false
+                        maxPercentage: 45,
+                        max: new Range(1, 1),
+                        times: new Range(12, 12),
                     }),
-                ]
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 45,
+                        maxPercentage: 55,
+                        max: new Range(1, 1),
+                        times: new Range(1, 1),
+                    }),
+                    new MultiStepDefinitionConfig({
+                        minPercentage: 55,
+                        maxPercentage: 100,
+                        max: new Range(1, 1),
+                        times: new Range(12, 12),
+                    })
+                ],
             }),
             /* possibleSecondaryEffects: [
                  new LayerConfig({
@@ -215,25 +228,25 @@ const createComposition = async (colorScheme) => {
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
                         maxPercentage: 25,
-                        max: new Range(3, 10),
+                        max: new Range(3, 20),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 25,
                         maxPercentage: 50,
-                        max: new Range(3, 10),
+                        max: new Range(3, 20),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 50,
                         maxPercentage: 75,
-                        max: new Range(3, 10),
+                        max: new Range(3, 20),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 75,
                         maxPercentage: 100,
-                        max: new Range(3, 10),
+                        max: new Range(3, 20),
                         times: new Range(1, 1),
                     })
                 ],
@@ -258,39 +271,61 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
+            effect: CRTDegaussEffect,
+            percentChance: 100,
+            currentEffectConfig: new CRTDegaussConfig({
+                keyFrames: [100, 800, 900, 100, 7800],
+                glitchFrameCount: [15, 30],
+                sectionHeight: [5, 10, 15],
+                offset: {lower: 3, upper: 10},
+                direction: [-1, 1],
+                glitchTimes: {lower: 1, upper: 1},
+                backgroundRed: {lower: 0, upper: 0},
+                backgroundGreen: {lower: 0, upper: 0},
+                backgroundBlue: {lower: 0, upper: 0},
+                backgroundAlpha: {lower: 1, upper: 1},
+            }),
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
             percentChance: 100,
             currentEffectConfig: new CRTScanLinesConfig({
                 lines: {lower: 40, upper: 40},
                 loopTimes: {lower: 1, upper: 1},
-                brightness: {lower: 1000, upper: 1000},
+                brightness: {lower: 2000, upper: 2000},
                 thickness: {lower: 4, upper: 4},
                 lineBlur: {lower: 6, upper: 6},
             }),
         }),
     });
 
-    /*await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: CRTDegaussEffect,
-            percentChance: 100,
-            currentEffectConfig: new CRTDegaussConfig({
-                numberOfFrames: { lower: 20, upper: 40 },
-                keyFrames: [15, 120, 360, 900],
-                waveFrequency: { lower: 0, upper: 6 },
-                waveAmplitude: { lower: 20, upper: 60 },
-                amount: {lower: 0.7, upper: 1},
-                glitchSections: {lower: 8, upper: 12},
-                maxOffset: {lower: 40, upper: 60},
-            }),
-        }),
-    });*/
-
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect,
             percentChance: 100,
-            currentEffectConfig: new CRTShadowConfig({}),
+            currentEffectConfig: new CRTShadowConfig({
+                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
+                linesOpacityRange: {bottom: {lower: 0.2, upper: 0.2}, top: {lower: 0.4, upper: 0.4}},
+                opacityTimes: {lower: 4, upper: 4},
+                lineRed: {lower: 40, upper: 40},
+                lineGreen: {lower: 40, upper: 40},
+                lineBlue: {lower: 0, upper: 0},
+                lineHeight: {lower: 1, upper: 1}
+            }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: 0, upper: 0},
+                        upperRange: {lower: 180, upper: 180},
+                        times: {lower: 1, upper: 1},
+                    }),
+                })
+            ]
         }),
     });
 
