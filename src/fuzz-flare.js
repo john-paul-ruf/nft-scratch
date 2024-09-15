@@ -20,6 +20,8 @@ import {FuzzyBandEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzzy
 import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
+import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
+import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
 
 const promiseArray = [];
 
@@ -50,8 +52,8 @@ const createComposition = async (colorScheme) => {
                 stroke: 0,
                 thickness: 8,
                 radius: {
-                    lower: (finalSize) => finalSize.shortestSide * 0.10,
-                    upper: (finalSize) => finalSize.longestSide * 0.5,
+                    lower: (finalSize) => finalSize.shortestSide * 0.25,
+                    upper: (finalSize) => finalSize.longestSide * 0.55,
                 },
                 accentRange: {bottom: {lower: 12, upper: 16}, top: {lower: 24, upper: 36}},
                 blurRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 25}},
@@ -201,13 +203,13 @@ const createComposition = async (colorScheme) => {
                         keyFrames: [800, 900, 1000],
                         glitchFrameCount: [15, 25, 40],
                         sectionHeight: [5, 10, 15],
-                        offset: {lower: 2, upper: 8},
+                        offset: {lower: 10, upper: 25},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 2},
                         backgroundRed: {lower: 0, upper: 0},
                         backgroundGreen: {lower: 0, upper: 0},
                         backgroundBlue: {lower: 0, upper: 0},
-                        backgroundAlpha: {lower: 1, upper:1},
+                        backgroundAlpha: {lower: 0, upper:0},
                     }),
                 }),
              ]
@@ -237,10 +239,12 @@ const createComposition = async (colorScheme) => {
                 backgroundRed: {lower: 0, upper: 0},
                 backgroundGreen: {lower: 0, upper: 0},
                 backgroundBlue: {lower: 0, upper: 0},
-                backgroundAlpha: {lower: 0, upper: 0},
+                backgroundAlpha: {lower: 1, upper: 1},
             }),
         }),
     });
+
+
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
@@ -256,6 +260,8 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
+
+
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect,
@@ -268,9 +274,9 @@ const createComposition = async (colorScheme) => {
                 lineGreen: {lower: 20, upper: 20},
                 lineBlue: {lower: 0, upper: 0},
                 lineHeight: {lower: 1, upper: 1},
-                edgePercentage: {lower: 0.10, upper: 0.10},
-                maxLineHeight: {lower: 3, upper: 3},
-                numberOfEdgeSections: {lower: 16, upper: 16},
+                edgePercentage: {lower: 0.20, upper: 0.20},
+                maxLineHeight: {lower: 3.5, upper: 3.5},
+                numberOfEdgeSections: {lower: 20, upper: 20},
             }),
             possibleSecondaryEffects: [
                 new LayerConfig({
@@ -283,6 +289,18 @@ const createComposition = async (colorScheme) => {
                     }),
                 })
             ]
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTBarrelEffect,
+            percentChance: 100,
+            currentEffectConfig: new CRTBarrelConfig({
+                strength: {lower: 0.4, upper: 0.4},
+                edgeThreshold: {lower: 0.04, upper: 0.04},
+                corner: {lower: 0.2, upper: 0.2},
+            }),
         }),
     });
 
