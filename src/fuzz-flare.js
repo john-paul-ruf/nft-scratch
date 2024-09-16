@@ -171,27 +171,27 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\seer\\',
+                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\all-seeing\\',
                 layerOpacity: [0.7],
                 buffer: [200],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
-                        maxPercentage: 45,
+                        maxPercentage: 40,
                         max: new Range(1, 1),
-                        times: new Range(12, 12),
+                        times: new Range(3, 3),
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 45,
-                        maxPercentage: 55,
+                        minPercentage: 40,
+                        maxPercentage: 60,
                         max: new Range(1, 1),
                         times: new Range(1, 1),
                     }),
                     new MultiStepDefinitionConfig({
-                        minPercentage: 55,
+                        minPercentage: 60,
                         maxPercentage: 100,
                         max: new Range(1, 1),
-                        times: new Range(12, 12),
+                        times: new Range(3, 3),
                     })
                 ],
             }),
@@ -200,19 +200,19 @@ const createComposition = async (colorScheme) => {
                     effect: CRTDegaussEffect,
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [800, 900, 1000],
-                        glitchFrameCount: [15, 25, 40],
-                        sectionHeight: [5, 10, 15],
-                        offset: {lower: 10, upper: 25},
+                        keyFrames: [100, 700, 900, 1100, 1700],
+                        glitchFrameCount: [100, 120, 140],
+                        sectionHeight: [10, 15, 20, 60],
+                        offset: {lower: 5, upper: 30},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 2},
                         backgroundRed: {lower: 0, upper: 0},
                         backgroundGreen: {lower: 0, upper: 0},
                         backgroundBlue: {lower: 0, upper: 0},
-                        backgroundAlpha: {lower: 0, upper:0},
+                        backgroundAlpha: {lower: 0, upper: 0},
                     }),
                 }),
-             ]
+            ]
         }),
     });
 
@@ -225,15 +225,15 @@ const createComposition = async (colorScheme) => {
     ///
     /////////////////////////////////////
 
-    await myTestProject.addFinalEffect({
+/*    await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTDegaussEffect,
             percentChance: 100,
             currentEffectConfig: new CRTDegaussConfig({
                 keyFrames: [100, 1700],
-                glitchFrameCount: [15, 25, 40],
-                sectionHeight: [5, 10, 15],
-                offset: {lower: 2, upper: 8},
+                glitchFrameCount: [40, 60, 80],
+                sectionHeight: [10, 15, 20, 60],
+                offset: {lower: 5, upper: 10},
                 direction: [-1, 1],
                 glitchTimes: {lower: 1, upper: 1},
                 backgroundRed: {lower: 0, upper: 0},
@@ -242,8 +242,7 @@ const createComposition = async (colorScheme) => {
                 backgroundAlpha: {lower: 1, upper: 1},
             }),
         }),
-    });
-
+    });*/
 
 
     await myTestProject.addFinalEffect({
@@ -259,7 +258,6 @@ const createComposition = async (colorScheme) => {
             }),
         }),
     });
-
 
 
     await myTestProject.addFinalEffect({
@@ -297,9 +295,9 @@ const createComposition = async (colorScheme) => {
             effect: CRTBarrelEffect,
             percentChance: 100,
             currentEffectConfig: new CRTBarrelConfig({
-                strength: {lower: 0.4, upper: 0.4},
-                edgeThreshold: {lower: 0.04, upper: 0.04},
-                corner: {lower: 0.2, upper: 0.2},
+                strength: {lower: 0.25, upper: 0.25},
+                edgeThreshold: {lower: 0.025, upper: 0.025},
+                corner: {lower: 0.12, upper: 0.12},
             }),
         }),
     });

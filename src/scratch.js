@@ -1,69 +1,50 @@
 import sharp from 'sharp';
 
-const fileIn = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\test.png';
-const fileOut = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\wrap-cylindrical-rounded.png';
+const fileIn = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\img.png';
+const fileOut = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\mask.png';
 
-// Function to apply a pronounced cylindrical warp with rounded edges and softened transitions
-function applyPronouncedCylindricalWarp(inputPath, outputPath, strength = 0.5, edgeThreshold = 0.1) {
-    sharp(inputPath)
-        .raw()
-        .ensureAlpha()
-        .toBuffer({ resolveWithObject: true })
-        .then(({ data, info }) => {
-            const { width, height, channels } = info;
-            const warpedBuffer = Buffer.alloc(data.length);
-            const centerX = width / 2;
-            const centerY = height / 2;
+// Function to create a path around the object, grow it, and fill the object with a solid color
+async function fillObject(inputPath, outputPath, growBy, fillColor) {
+    const baseImage = sharp(inputPath);
 
-            // Calculate the pixel threshold for edge effects
-            const pixelThreshold = Math.min(width, height) * edgeThreshold;
+    // Step 1: Extract the alpha channel to create a mask of the object
+    const { width, height } = await baseImage.metadata();
 
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
-                    const distX = Math.min(x, width - x - 1);
-                    const distY = Math.min(y, height - y - 1);
-                    const distToCenterX = x - centerX;
-                    const distToCenterY = y - centerY;
-                    const distToEdge = Math.min(distX, distY);
-                    const distanceFromCorner = Math.sqrt(distToCenterX**2 + distToCenterY**2);
+    const alphaChannel = await baseImage
+        .extractChannel('alpha')  // Extract alpha channel to detect the object
+        .toColourspace('b-w')     // Convert to a grayscale mask
+        .threshold(128)           // Binary mask: object is white, background is black
+        .toBuffer();
 
-                    let warpFactor = 1;
-                    if (distToEdge < pixelThreshold) {
-                        // Modify the warp factor with a smoothing function
-                        warpFactor = 1 + strength * (1 - Math.sin((Math.PI / 2) * (distToEdge / pixelThreshold)));
-                    }
+    // Step 2: Grow the object mask using blur to simulate dilation
+    const grownMask = await sharp(alphaChannel)
+        .resize(width, height)    // Ensure the mask matches the image size
+        .blur(growBy)             // Blur the mask to expand it (simulate dilation)
+        .threshold(128)           // Re-threshold to make the grown mask binary again
+        .toBuffer();
 
-                    // Further refine the warp factor near the corners
-                    if (distanceFromCorner > Math.max(width, height) * 0.85) {
-                        warpFactor *= 1 - 0.5 * (1 - Math.cos((Math.PI / 2) * ((distanceFromCorner / Math.max(width, height) - 0.85) / 0.15)));
-                    }
+    // Step 3: Create a solid color image of the same size as the original image
+    const solidColorImage = await sharp({
+        create: {
+            width: width,
+            height: height,
+            channels: 4,
+            background: fillColor, // Example: { r: 255, g: 0, b: 0, alpha: 1 } for solid red
+        },
+    }).toBuffer();
 
-                    const newX = Math.round(centerX + distToCenterX * warpFactor);
-                    const newY = Math.round(centerY + distToCenterY * warpFactor);
-                    const srcX = Math.min(Math.max(newX, 0), width - 1);
-                    const srcY = Math.min(Math.max(newY, 0), height - 1);
-
-                    const srcIdx = (srcY * width + srcX) * channels;
-                    const destIdx = (y * width + x) * channels;
-                    for (let c = 0; c < channels; c++) {
-                        warpedBuffer[destIdx + c] = data[srcIdx + c];
-                    }
-                }
-            }
-
-            sharp(warpedBuffer, { raw: { width, height, channels } })
-                .toFile(outputPath)
-                .then(() => {
-                    console.log(`Warped image with rounded edges and softened transitions saved to ${outputPath}`);
-                })
-                .catch(err => {
-                    console.error('Error writing warped image:', err);
-                });
-        })
-        .catch(err => {
-            console.error('Error processing image:', err);
-        });
+    // Step 4: Composite the solid color onto the original image where the object mask is
+    await sharp(solidColorImage)
+        .composite([
+            { input: grownMask, blend: 'dest-in' }, // Apply the mask to constrain color fill to the object
+            { input: inputPath, blend: 'atop' },    // Overlay the original image on top of the filled object
+        ])
+        .toFile(outputPath); // Save the output image
 }
 
-// Apply the effect
-applyPronouncedCylindricalWarp(fileIn, fileOut, 0.04, 0.05);
+// Example usage:
+fillObject(fileIn, fileOut, 10, { r: 255, g: 0, b: 0, alpha: 1 }) // Fill object with red color
+    .then(() => console.log('Image processing completed'))
+    .catch((err) => console.error('Error:', err));
+
+
