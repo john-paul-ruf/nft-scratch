@@ -56,7 +56,7 @@ const createComposition = async (colorScheme) => {
                 stroke: 0,
                 thickness: 12,
                 radius: {
-                    lower: (finalSize) => finalSize.shortestSide * 0.4,
+                    lower: (finalSize) => finalSize.shortestSide * 0.5,
                     upper: (finalSize) => finalSize.longestSide * 0.55,
                 },
                 accentRange: {bottom: {lower: 12, upper: 16}, top: {lower: 24, upper: 36}},
