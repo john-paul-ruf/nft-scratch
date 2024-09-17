@@ -3,7 +3,8 @@
   "scripts": {
     "resume-folder": "node ./src/resume-folder.js",
     "red-eye": "node ./src/red-eye-goes-on.js",
-    "fuzz-flare": "node ./src/fuzz-flare.js"
+    "fuzz-flare": "node ./src/fuzz-flare.js",
+    "key-frame": "node ./src/fuzz-flare.js"
   },
   "name": "nft-scratch",
   "version": "1.0.0",

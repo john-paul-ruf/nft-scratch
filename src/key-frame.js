@@ -2,7 +2,6 @@ import {neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
 import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
 import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
@@ -17,19 +16,24 @@ import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/finalImageEffects/c
 import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtDegaussEvent/CRTDegaussConfig.js";
 import {FuzzyBandConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandConfig.js";
 import {FuzzyBandEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzzyBands/FuzzyBandEffect.js";
-import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
 import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
+import {
+    EncircledSpiralEffect
+} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
+import {
+    EncircledSpiralConfig
+} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+import {findPointByAngleAndCircle} from "../../my-nft-gen/src/core/math/drawingMath.js";
 
 const promiseArray = [];
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
         artist: 'John Ruf',
-        projectName: 'fuzz-flare',
-        projectDirectory: 'src/fuzz-flare/',
+        projectName: 'key-frame',
+        projectDirectory: 'src/key-frame',
         neutrals: ['#000000'],
         backgrounds: ['#000000'],
         numberOfFrame: 1800,
@@ -58,113 +62,106 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 12, upper: 16}, top: {lower: 24, upper: 36}},
                 blurRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 25}},
                 featherTimes: {lower: 4, upper: 4},
-            })
+            }),
+            possibleSecondaryEffects: [
+                new LayerConfig({
+                    effect: CRTDegaussEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new CRTDegaussConfig({
+                        keyFrames: [1700],
+                        glitchFrameCount: [100, 120, 140],
+                        sectionHeight: [10, 15, 20, 60],
+                        offset: {lower: 5, upper: 30},
+                        direction: [-1, 1],
+                        glitchTimes: {lower: 1, upper: 2},
+                        backgroundRed: {lower: 0, upper: 0},
+                        backgroundGreen: {lower: 0, upper: 0},
+                        backgroundBlue: {lower: 0, upper: 0},
+                        backgroundAlpha: {lower: 0, upper: 0},
+                    }),
+                }),
+            ]
         }),
     });
 
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: RedEyeEffect,
-            percentChance: 100,
-            currentEffectConfig: new RedEyeConfig({
-                invertLayers: true,
-                layerOpacity: 0.8,
-                underLayerOpacity: 0.6,
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 3,
-                thickness: 0,
-                sparsityFactor: [8],
-                innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.2, myTestProject.shortestSideInPixels * 0.2),
-                outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.70, myTestProject.shortestSideInPixels * 0.8),
-                possibleJumpRangeInPixels: {lower: 10, upper: 30},
-                lineLength: {lower: 200, upper: 300},
-                numberOfLoops: {lower: 1, upper: 1},
-                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                featherTimes: {lower: 1, upper: 1},
-            })
-        }),
-    });
+    const createRings = async () => {
 
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: RedEyeEffect,
-            percentChance: 100,
-            currentEffectConfig: new RedEyeConfig({
-                invertLayers: true,
-                layerOpacity: 0.8,
-                underLayerOpacity: 0.6,
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 3,
-                thickness: 0,
-                sparsityFactor: [8],
-                innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.2, myTestProject.shortestSideInPixels * 0.2),
-                outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.70, myTestProject.shortestSideInPixels * 0.8),
-                possibleJumpRangeInPixels: {lower: 10, upper: 30},
-                lineLength: {lower: 200, upper: 300},
-                numberOfLoops: {lower: 2, upper: 2},
-                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                featherTimes: {lower: 1, upper: 1},
-            })
-        }),
-    });
+        const outerRadius = 400;
+        const secondRadiusReduction = 0.25;
+        const secondRadius = outerRadius * secondRadiusReduction;
+        const ringSpoke = 36;
 
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: RedEyeEffect,
-            percentChance: 100,
-            currentEffectConfig: new RedEyeConfig({
-                invertLayers: true,
-                layerOpacity: 0.8,
-                underLayerOpacity: 0.6,
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 3,
-                thickness: 0,
-                sparsityFactor: [8],
-                innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.2, myTestProject.shortestSideInPixels * 0.2),
-                outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.70, myTestProject.shortestSideInPixels * 0.8),
-                possibleJumpRangeInPixels: {lower: 10, upper: 30},
-                lineLength: {lower: 200, upper: 300},
-                numberOfLoops: {lower: 3, upper: 3},
-                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                featherTimes: {lower: 1, upper: 1},
-            })
-        }),
-    });
+        const outerRingColor = '#00FF00';
+        const innerRingColor = '#FF0000';
 
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: RedEyeEffect,
-            percentChance: 100,
-            currentEffectConfig: new RedEyeConfig({
-                invertLayers: true,
-                layerOpacity: 0.8,
-                underLayerOpacity: 0.6,
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                stroke: 3,
-                thickness: 0,
-                sparsityFactor: [8],
-                innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.2, myTestProject.shortestSideInPixels * 0.2),
-                outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.70, myTestProject.shortestSideInPixels * 0.8),
-                possibleJumpRangeInPixels: {lower: 10, upper: 30},
-                lineLength: {lower: 200, upper: 300},
-                numberOfLoops: {lower: 4, upper: 4},
-                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                featherTimes: {lower: 1, upper: 1},
-            })
-        }),
-    });
+        for (let i = 0; i < 360; i = i + ringSpoke) {
+            await myTestProject.addPrimaryEffect({
+                layerConfig: new LayerConfig({
+                    effect: EncircledSpiralEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new EncircledSpiralConfig({
+                        invertLayers: true,
+                        layerOpacity: 0.55,
+                        underLayerOpacity: 0.5,
+                        startAngle: {lower: 0, upper: 360},
+                        numberOfRings: {lower: 20, upper: 20},
+                        stroke: 2,
+                        thickness: 0,
+                        sparsityFactor: [60],
+                        sequencePixelConstant: {
+                            lower: (finalSize) => finalSize.shortestSide * 0.001,
+                            upper: (finalSize) => finalSize.shortestSide * 0.001,
+                        },
+                        sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
+                        minSequenceIndex: [12],
+                        numberOfSequenceElements: [3],
+                        speed: {lower: 2, upper: 2},
+                        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
+                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                        featherTimes: {lower: 2, upper: 4},
+                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, outerRadius),
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
+                    }),
+                }),
+            });
+        }
+
+        for (let i = 0; i < 360; i = i + ringSpoke) {
+            await myTestProject.addPrimaryEffect({
+                layerConfig: new LayerConfig({
+                    effect: EncircledSpiralEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new EncircledSpiralConfig({
+                        invertLayers: true,
+                        layerOpacity: 0.55,
+                        underLayerOpacity: 0.5,
+                        startAngle: {lower: 0, upper: 360},
+                        numberOfRings: {lower: 20, upper: 20},
+                        stroke: 2,
+                        thickness: 0,
+                        sparsityFactor: [60],
+                        sequencePixelConstant: {
+                            lower: (finalSize) => finalSize.shortestSide * 0.001,
+                            upper: (finalSize) => finalSize.shortestSide * 0.001,
+                        },
+                        sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
+                        minSequenceIndex: [12],
+                        numberOfSequenceElements: [3],
+                        speed: {lower: 2, upper: 2},
+                        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
+                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                        featherTimes: {lower: 2, upper: 4},
+                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, secondRadius),
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
+                    }),
+                }),
+            });
+        }
+    };
+
+    await createRings();
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
@@ -225,26 +222,6 @@ const createComposition = async (colorScheme) => {
     ///
     /////////////////////////////////////
 
-/*    await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: CRTDegaussEffect,
-            percentChance: 100,
-            currentEffectConfig: new CRTDegaussConfig({
-                keyFrames: [100, 1700],
-                glitchFrameCount: [40, 60, 80],
-                sectionHeight: [10, 15, 20, 60],
-                offset: {lower: 5, upper: 10},
-                direction: [-1, 1],
-                glitchTimes: {lower: 1, upper: 1},
-                backgroundRed: {lower: 0, upper: 0},
-                backgroundGreen: {lower: 0, upper: 0},
-                backgroundBlue: {lower: 0, upper: 0},
-                backgroundAlpha: {lower: 1, upper: 1},
-            }),
-        }),
-    });*/
-
-
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
@@ -295,7 +272,7 @@ const createComposition = async (colorScheme) => {
             effect: CRTBarrelEffect,
             percentChance: 100,
             currentEffectConfig: new CRTBarrelConfig({
-                strength: {lower: 0.25, upper: 0.25},
+                strength: {lower: 0.3, upper: 0.3},
                 edgeThreshold: {lower: 0.025, upper: 0.025},
                 corner: {lower: 0.12, upper: 0.12},
             }),
