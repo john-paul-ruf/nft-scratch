@@ -52,11 +52,11 @@ const createComposition = async (colorScheme) => {
                 layerOpacity: 1,
                 underLayerOpacityRange: {bottom: {lower: 0.5, upper: 0.6}, top: {lower: 0.7, upper: 0.8}},
                 underLayerOpacityTimes: {lower: 4, upper: 4},
-                circles: {lower: 12, upper: 12},
+                circles: {lower: 8, upper: 8},
                 stroke: 0,
-                thickness: 8,
+                thickness: 12,
                 radius: {
-                    lower: (finalSize) => finalSize.shortestSide * 0.25,
+                    lower: (finalSize) => finalSize.shortestSide * 0.4,
                     upper: (finalSize) => finalSize.longestSide * 0.55,
                 },
                 accentRange: {bottom: {lower: 12, upper: 16}, top: {lower: 24, upper: 36}},
@@ -68,7 +68,7 @@ const createComposition = async (colorScheme) => {
                     effect: CRTDegaussEffect,
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [1700],
+                        keyFrames: [1550],
                         glitchFrameCount: [100, 120, 140],
                         sectionHeight: [10, 15, 20, 60],
                         offset: {lower: 5, upper: 30},
@@ -87,7 +87,7 @@ const createComposition = async (colorScheme) => {
     const createRings = async () => {
 
         const outerRadius = 400;
-        const secondRadiusReduction = 0.25;
+        const secondRadiusReduction = 0.75;
         const secondRadius = outerRadius * secondRadiusReduction;
         const ringSpoke = 36;
 
@@ -104,7 +104,7 @@ const createComposition = async (colorScheme) => {
                         layerOpacity: 0.55,
                         underLayerOpacity: 0.5,
                         startAngle: {lower: 0, upper: 360},
-                        numberOfRings: {lower: 20, upper: 20},
+                        numberOfRings: {lower: 8, upper: 8},
                         stroke: 2,
                         thickness: 0,
                         sparsityFactor: [60],
@@ -113,15 +113,15 @@ const createComposition = async (colorScheme) => {
                             upper: (finalSize) => finalSize.shortestSide * 0.001,
                         },
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                        minSequenceIndex: [12],
+                        minSequenceIndex: [10],
                         numberOfSequenceElements: [3],
                         speed: {lower: 2, upper: 2},
                         accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
                         blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                         featherTimes: {lower: 2, upper: 4},
-                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, outerRadius),
+                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, secondRadius),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
                     }),
                 }),
             });
@@ -137,7 +137,7 @@ const createComposition = async (colorScheme) => {
                         layerOpacity: 0.55,
                         underLayerOpacity: 0.5,
                         startAngle: {lower: 0, upper: 360},
-                        numberOfRings: {lower: 20, upper: 20},
+                        numberOfRings: {lower: 8, upper: 8},
                         stroke: 2,
                         thickness: 0,
                         sparsityFactor: [60],
@@ -146,15 +146,15 @@ const createComposition = async (colorScheme) => {
                             upper: (finalSize) => finalSize.shortestSide * 0.001,
                         },
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                        minSequenceIndex: [12],
+                        minSequenceIndex: [10],
                         numberOfSequenceElements: [3],
                         speed: {lower: 2, upper: 2},
                         accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
                         blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                         featherTimes: {lower: 2, upper: 4},
-                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, secondRadius),
+                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, outerRadius),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                     }),
                 }),
             });
@@ -197,7 +197,7 @@ const createComposition = async (colorScheme) => {
                     effect: CRTDegaussEffect,
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [100, 700, 900, 1100, 1600],
+                        keyFrames: [100, 700, 1000, 1600],
                         glitchFrameCount: [100, 120, 140],
                         sectionHeight: [10, 15, 20, 60],
                         offset: {lower: 5, upper: 30},

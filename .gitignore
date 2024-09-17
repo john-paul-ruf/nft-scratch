@@ -2,5 +2,6 @@
 /node_modules/
 /.idea/
 /src/fuzz-flare/
+/src/key-frame/
 /src/red-eye-mapped-frames/
 /ouptut/
