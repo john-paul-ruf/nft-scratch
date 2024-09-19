@@ -411,11 +411,11 @@ const createComposition = async (colorScheme) => {
             effect: CRTScanLinesEffect,
             percentChance: 100,
             currentEffectConfig: new CRTScanLinesConfig({
-                lines: {lower: 40, upper: 40},
-                loopTimes: {lower: 1, upper: 2},
-                brightness: {lower: 1500, upper: 2500},
-                thickness: {lower: 4, upper: 4},
-                lineBlur: {lower: 6, upper: 6},
+                lines: {lower: 60, upper: 60},
+                loopTimes: {lower: 1, upper: 3},
+                brightness: {lower: 4000, upper: 5000},
+                thickness: {lower:60, upper: 120},
+                lineBlur: {lower: 4, upper: 4},
             }),
         }),
     });
@@ -427,7 +427,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.8, upper: 0.8}},
-                linesOpacityRange: {bottom: {lower: 0.15, upper: 0.15}, top: {lower: 0.2, upper: 0.2}},
+                linesOpacityRange: {bottom: {lower: 0.10, upper: 0.10}, top: {lower: 0.2, upper: 0.2}},
                 opacityTimes: {lower: 4, upper: 4},
                 lineRed: {lower: 0, upper: 0},
                 lineGreen: {lower: 0, upper: 0},
