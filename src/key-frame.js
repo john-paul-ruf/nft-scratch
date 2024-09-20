@@ -415,8 +415,8 @@ const createComposition = async (colorScheme) => {
                 lines: {lower: 50, upper: 50},
                 loopTimes: {lower: 1, upper: 3},
                 brightness: {lower: 4000, upper: 5000},
-                thickness: {lower:120, upper: 240},
-                lineBlur: {lower: 12, upper: 12},
+                thickness: {lower:80, upper: 120},
+                lineBlur: {lower: 5, upper: 5},
             }),
         }),
     });
