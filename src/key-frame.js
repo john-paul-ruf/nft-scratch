@@ -154,7 +154,7 @@ const createComposition = async (colorScheme) => {
 
         const ringSpoke = 36;
 
-        const outerRadius = 375;
+        const outerRadius = 400;
         const secondRadiusReduction = 0.75;
         const secondRadius = outerRadius * secondRadiusReduction;
 
@@ -174,14 +174,14 @@ const createComposition = async (colorScheme) => {
         const fourthRingSpeed = 4;
         const fifthRingSpeed = 2;
 
-        const numberOfRings = 4;
+        const numberOfRings = 6;
 
         const stroke = 0;
         const thickness = 1;
 
         const opacity = 0.3;
         const fourthRingOpacity = 0.4;
-        const fifthRingOpacity = 0.6;
+        const fifthRingOpacity = 0.5;
 
 
         for (let i = 0; i < 360; i = i + ringSpoke) {
