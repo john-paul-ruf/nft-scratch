@@ -94,10 +94,10 @@ const createComposition = async (colorScheme) => {
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
 
-                layerOpacity: 0.4,
+                layerOpacity: 0.65,
 
-                underLayerOpacityRange: {bottom: {lower: 0.6, upper: 0.65}, top: {lower: 0.7, upper: 0.75}},
-                underLayerOpacityTimes: {lower: 2, upper: 8},
+                underLayerOpacityRange: {bottom: {lower: 0.0, upper: 0.0}, top: {lower: 0.0, upper: 0.0}},
+                underLayerOpacityTimes: {lower: 0, upper: 0},
 
                 elementGastonMultiStep: [
                     new MultiStepDefinitionConfig({
@@ -115,15 +115,15 @@ const createComposition = async (colorScheme) => {
                 ],
 
                 numberOfFlareRings: new Range(20, 20),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.3), new PercentageLongestSide(0.95)),
+                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.35), new PercentageLongestSide(0.95)),
                 flareRingStroke: new Range(0, 0),
-                flareRingThickness: new Range(2, 2),
+                flareRingThickness: new Range(1, 1),
 
-                numberOfFlareRays: new Range(60, 60),
+                numberOfFlareRays: new Range(200, 200),
                 flareRaysSizeRange: new PercentageRange(new PercentageShortestSide(0.75), new PercentageLongestSide(1)),
                 flareRaysStroke: new Range(0, 0),
-                flareRayThickness: new Range(2, 2),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.3), new PercentageShortestSide(0.35)),
+                flareRayThickness: new Range(1, 1),
+                flareOffset: new PercentageRange(new PercentageShortestSide(0.35), new PercentageShortestSide(0.45)),
 
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
@@ -174,12 +174,14 @@ const createComposition = async (colorScheme) => {
         const fourthRingSpeed = 4;
         const fifthRingSpeed = 2;
 
-        const numberOfRings = 2;
+        const numberOfRings = 4;
 
         const stroke = 0;
         const thickness = 1;
 
-        const opacity = 0.4;
+        const opacity = 0.3;
+        const fourthRingOpacity = 0.4;
+        const fifthRingOpacity = 0.6;
 
 
         for (let i = 0; i < 360; i = i + ringSpoke) {
@@ -190,7 +192,7 @@ const createComposition = async (colorScheme) => {
                     currentEffectConfig: new EncircledSpiralConfig({
                         invertLayers: true,
                         layerOpacity: opacity,
-                        underLayerOpacity: opacity,
+                        underLayerOpacity: 0,
                         startAngle: {lower: 0, upper: 360},
                         numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                         stroke: stroke,
@@ -208,8 +210,8 @@ const createComposition = async (colorScheme) => {
                         blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         featherTimes: {lower: 0, upper: 0},
                         center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, outerRadius),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                     }),
                 }),
             });
@@ -223,7 +225,7 @@ const createComposition = async (colorScheme) => {
                     currentEffectConfig: new EncircledSpiralConfig({
                         invertLayers: true,
                         layerOpacity: opacity,
-                        underLayerOpacity: opacity,
+                        underLayerOpacity: 0,
                         startAngle: {lower: 0, upper: 360},
                         numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                         stroke: stroke,
@@ -241,8 +243,8 @@ const createComposition = async (colorScheme) => {
                         blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         featherTimes: {lower: 0, upper: 0},
                         center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, secondRadius),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                     }),
                 }),
             });
@@ -256,7 +258,7 @@ const createComposition = async (colorScheme) => {
                     currentEffectConfig: new EncircledSpiralConfig({
                         invertLayers: true,
                         layerOpacity: opacity,
-                        underLayerOpacity: opacity,
+                        underLayerOpacity: 0,
                         startAngle: {lower: 0, upper: 360},
                         numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                         stroke: stroke,
@@ -274,8 +276,8 @@ const createComposition = async (colorScheme) => {
                         blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         featherTimes: {lower: 0, upper: 0},
                         center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, thirdRadius),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                     }),
                 }),
             });
@@ -287,8 +289,8 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new EncircledSpiralConfig({
                     invertLayers: true,
-                    layerOpacity: opacity,
-                    underLayerOpacity: opacity,
+                    layerOpacity: fourthRingOpacity,
+                    underLayerOpacity: 0,
                     startAngle: {lower: 0, upper: 360},
                     numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                     stroke: stroke,
@@ -306,8 +308,8 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
                     center: new Point2D(1080 / 2, 1920 / 2),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, fourthRingColor),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, fourthRingColor),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                 }),
             }),
         });
@@ -318,8 +320,8 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new EncircledSpiralConfig({
                     invertLayers: true,
-                    layerOpacity: opacity,
-                    underLayerOpacity: opacity,
+                    layerOpacity: fifthRingOpacity,
+                    underLayerOpacity: 0,
                     startAngle: {lower: 0, upper: 360},
                     numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                     stroke: stroke,
@@ -330,15 +332,14 @@ const createComposition = async (colorScheme) => {
                         upper: (finalSize) => finalSize.shortestSide * 0.001,
                     },
                     sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                    minSequenceIndex: [6],
+                    minSequenceIndex: [5],
                     numberOfSequenceElements: [6],
                     speed: {lower: fifthRingSpeed, upper: fifthRingSpeed},
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
                     center: new Point2D(1080 / 2, 1920 / 2),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
                 }),
             }),
         });
