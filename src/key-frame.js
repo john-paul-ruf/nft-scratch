@@ -137,7 +137,7 @@ const createComposition = async (colorScheme) => {
                         keyFrames: [450],
                         glitchFrameCount: [900],
                         sectionHeight: [5, 10, 15],
-                        offset: {lower: 2, upper: 10},
+                        offset: {lower: 2, upper: 20},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 6},
                         backgroundRed: {lower: 0, upper: 0},
@@ -152,9 +152,9 @@ const createComposition = async (colorScheme) => {
 
     const createRings = async () => {
 
-        const ringSpoke = 36;
+        const ringSpoke = 30;
 
-        const outerRadius = 400;
+        const outerRadius = 375;
         const secondRadiusReduction = 0.75;
         const secondRadius = outerRadius * secondRadiusReduction;
 
@@ -163,24 +163,24 @@ const createComposition = async (colorScheme) => {
 
 
         const outerRingColor = '#00FF00';
-        const innerRingColor = '#FF0000';
+        const innerRingColor = '#0000FF';
         const thirdRingColor = '#FFFF00';
         const fourthRingColor = '#FF00FF';
-        const fifthRingColor = '#0000FF';
+        const fifthRingColor = '#FF0000';
 
         const firstRingSpeed = 2;
-        const secondRingSpeed = 4
-        const thirdRingSPeed = 6;
-        const fourthRingSpeed = 4;
-        const fifthRingSpeed = 2;
+        const secondRingSpeed = 6
+        const thirdRingSPeed = 8;
+        const fourthRingSpeed = 6;
+        const fifthRingSpeed = 1;
 
-        const numberOfRings = 6;
+        const numberOfRings = 4;
 
         const stroke = 0;
         const thickness = 1;
 
-        const opacity = 0.3;
-        const fourthRingOpacity = 0.4;
+        const opacity = 0.4;
+        const fourthRingOpacity = 0.45;
         const fifthRingOpacity = 0.5;
 
 
@@ -301,8 +301,8 @@ const createComposition = async (colorScheme) => {
                         upper: (finalSize) => finalSize.shortestSide * 0.001,
                     },
                     sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                    minSequenceIndex: [7],
-                    numberOfSequenceElements: [7],
+                    minSequenceIndex: [10],
+                    numberOfSequenceElements: [4],
                     speed: {lower: fourthRingSpeed, upper: fourthRingSpeed},
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
@@ -332,8 +332,8 @@ const createComposition = async (colorScheme) => {
                         upper: (finalSize) => finalSize.shortestSide * 0.001,
                     },
                     sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                    minSequenceIndex: [5],
-                    numberOfSequenceElements: [7],
+                    minSequenceIndex: [11],
+                    numberOfSequenceElements: [3],
                     speed: {lower: fifthRingSpeed, upper: fifthRingSpeed},
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
@@ -407,7 +407,7 @@ const createComposition = async (colorScheme) => {
     ///
     /////////////////////////////////////
 
-    await myTestProject.addFinalEffect({
+   /* await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
             percentChance: 100,
@@ -451,7 +451,7 @@ const createComposition = async (colorScheme) => {
                 corner: {lower: 0.10, upper: 0.10},
             }),
         }),
-    });
+    });*/
 
     promiseArray.push(myTestProject.generateRandomLoop());
 };
