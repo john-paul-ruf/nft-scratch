@@ -163,10 +163,10 @@ const createComposition = async (colorScheme) => {
 
 
         const outerRingColor = '#00FF00';
-        const innerRingColor = '#0000FF';
+        const innerRingColor = '#FF0000';
         const thirdRingColor = '#FFFF00';
         const fourthRingColor = '#FF00FF';
-        const fifthRingColor = '#FF0000';
+        const fifthRingColor = '#0000FF';
 
         const firstRingSpeed = 2;
         const secondRingSpeed = 6
