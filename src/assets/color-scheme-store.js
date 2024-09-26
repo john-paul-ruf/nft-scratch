@@ -24,3 +24,15 @@ export const neonLights = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: neon lights\n"
 });
+
+export const activatingVishuddha = new ColorScheme({
+    colorBucket: [
+        '#5DADE2',
+        '#85C1E9',
+        '#283747',
+        '#BDC3C7',
+        '#FDFEFE',
+        '#6C3483',
+    ],
+    colorSchemeInfo: "**Color Strategy**: activating vishuddha\n"
+});

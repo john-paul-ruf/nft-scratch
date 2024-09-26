@@ -1,4 +1,4 @@
-import {neonLights} from "./assets/color-scheme-store.js";
+import {activatingVishuddha, neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
@@ -34,7 +34,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'key-frame',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#000000'],
+        backgrounds: ['#D6EAF8'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -162,11 +162,11 @@ const createComposition = async (colorScheme) => {
         const thirdRadius = outerRadius * thirdRadiusReduction;
 
 
-        const outerRingColor = '#00FF00';
-        const innerRingColor = '#FF0000';
-        const thirdRingColor = '#FFFF00';
-        const fourthRingColor = '#FF00FF';
-        const fifthRingColor = '#0000FF';
+        const outerRingColor = '#5DADE2';
+        const innerRingColor = '#85C1E9';
+        const thirdRingColor = '#283747';
+        const fourthRingColor = '#BDC3C7';
+        const fifthRingColor = '#FDFEFE';
 
         const firstRingSpeed = 2;
         const secondRingSpeed = 6
@@ -177,7 +177,7 @@ const createComposition = async (colorScheme) => {
         const numberOfRings = 4;
 
         const stroke = 0;
-        const thickness = 1;
+        const thickness = 3;
 
         const opacity = 0.4;
         const fourthRingOpacity = 0.45;
@@ -456,6 +456,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(neonLights);
+await createComposition(activatingVishuddha);
 
 await Promise.all(promiseArray);
