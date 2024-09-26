@@ -34,7 +34,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'key-frame',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#000033'],
+        backgrounds: ['#000011'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -340,6 +340,7 @@ const createComposition = async (colorScheme) => {
                     featherTimes: {lower: 0, upper: 0},
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                 }),
             }),
         });
@@ -364,13 +365,14 @@ const createComposition = async (colorScheme) => {
                     },
                     sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                     minSequenceIndex: [2],
-                    numberOfSequenceElements: [10],
-                    speed: {lower: fifthRingSpeed, upper: fifthRingSpeed},
+                    numberOfSequenceElements: [9],
+                    speed: {lower: thirdRingSPeed, upper: thirdRingSPeed},
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#6C3483'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                 }),
             }),
         });
