@@ -177,7 +177,7 @@ const createComposition = async (colorScheme) => {
         const numberOfRings = 4;
 
         const stroke = 0;
-        const thickness = 3;
+        const thickness = 1;
 
         const opacity = 0.6;
         const fourthRingOpacity = 0.65;
