@@ -34,7 +34,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'key-frame',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#D6EAF8'],
+        backgrounds: ['#000033'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -130,7 +130,7 @@ const createComposition = async (colorScheme) => {
                 featherTimes: {lower: 0, upper: 0},
             }),
             possibleSecondaryEffects: [
-                new LayerConfig({
+                /*new LayerConfig({
                     effect: CRTDegaussEffect,
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
@@ -145,14 +145,14 @@ const createComposition = async (colorScheme) => {
                         backgroundBlue: {lower: 0, upper: 0},
                         backgroundAlpha: {lower: 0, upper: 0},
                     }),
-                }),
+                }),*/
             ]
         }),
     });
 
     const createRings = async () => {
 
-        const ringSpoke = 30;
+        const ringSpoke = 24;
 
         const outerRadius = 375;
         const secondRadiusReduction = 0.75;
@@ -165,8 +165,8 @@ const createComposition = async (colorScheme) => {
         const outerRingColor = '#5DADE2';
         const innerRingColor = '#85C1E9';
         const thirdRingColor = '#283747';
-        const fourthRingColor = '#BDC3C7';
-        const fifthRingColor = '#FDFEFE';
+        const fourthRingColor = '#FDFEFE';
+        const fifthRingColor = '#BDC3C7';
 
         const firstRingSpeed = 2;
         const secondRingSpeed = 6
@@ -179,9 +179,9 @@ const createComposition = async (colorScheme) => {
         const stroke = 0;
         const thickness = 3;
 
-        const opacity = 0.4;
-        const fourthRingOpacity = 0.45;
-        const fifthRingOpacity = 0.5;
+        const opacity = 0.6;
+        const fourthRingOpacity = 0.65;
+        const fifthRingOpacity = 0.7;
 
 
         for (let i = 0; i < 360; i = i + ringSpoke) {
@@ -340,6 +340,37 @@ const createComposition = async (colorScheme) => {
                     featherTimes: {lower: 0, upper: 0},
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
+                }),
+            }),
+        });
+
+
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: EncircledSpiralEffect,
+                percentChance: 100,
+                currentEffectConfig: new EncircledSpiralConfig({
+                    invertLayers: true,
+                    layerOpacity: 0.75,
+                    underLayerOpacity: 0,
+                    startAngle: {lower: 0, upper: 360},
+                    numberOfRings: {lower: numberOfRings, upper: numberOfRings},
+                    stroke: stroke,
+                    thickness: thickness,
+                    sparsityFactor: [ringSpoke],
+                    sequencePixelConstant: {
+                        lower: (finalSize) => finalSize.shortestSide * 0.001,
+                        upper: (finalSize) => finalSize.shortestSide * 0.001,
+                    },
+                    sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
+                    minSequenceIndex: [2],
+                    numberOfSequenceElements: [10],
+                    speed: {lower: fifthRingSpeed, upper: fifthRingSpeed},
+                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    featherTimes: {lower: 0, upper: 0},
+                    center: new Point2D(1080 / 2, 1920 / 2),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#6C3483'),
                 }),
             }),
         });
