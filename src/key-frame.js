@@ -1,4 +1,4 @@
-import {activatingVishuddha, neonLights} from "./assets/color-scheme-store.js";
+import {activatingSahasrara, activatingVishuddha, neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
@@ -152,7 +152,7 @@ const createComposition = async (colorScheme) => {
 
     const createRings = async () => {
 
-        const ringSpoke = 24;
+        const ringSpoke = 45;
 
         const outerRadius = 375;
         const secondRadiusReduction = 0.75;
@@ -162,11 +162,11 @@ const createComposition = async (colorScheme) => {
         const thirdRadius = outerRadius * thirdRadiusReduction;
 
 
-        const outerRingColor = '#5DADE2';
-        const innerRingColor = '#85C1E9';
-        const thirdRingColor = '#283747';
-        const fourthRingColor = '#FDFEFE';
-        const fifthRingColor = '#BDC3C7';
+        const outerRingColor = '#7D3C98';
+        const innerRingColor = '#C0C0C0';
+        const thirdRingColor = '#4B0082';
+        const fourthRingColor = '#D2B4DE';
+        const fifthRingColor = '#FFF5E1';
 
         const firstRingSpeed = 2;
         const secondRingSpeed = 6
@@ -371,7 +371,7 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
                     center: new Point2D(1080 / 2, 1920 / 2),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#6C3483'),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFF5E1'),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                 }),
             }),
@@ -489,6 +489,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(activatingVishuddha);
+await createComposition(activatingSahasrara);
 
 await Promise.all(promiseArray);

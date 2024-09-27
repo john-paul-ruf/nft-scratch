@@ -36,3 +36,16 @@ export const activatingVishuddha = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: activating vishuddha\n"
 });
+
+export const activatingSahasrara = new ColorScheme({
+    colorBucket: [
+        '#7D3C98',
+        '#D2B4DE',
+        '#FDFEFE',
+        '#C0C0C0',
+        '#FFF5E1',
+        '#4B0082',
+        '#E6E6FA',
+    ],
+    colorSchemeInfo: "**Color Strategy**: activating Sshasrara\n"
+});
