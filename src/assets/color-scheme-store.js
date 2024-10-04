@@ -47,5 +47,16 @@ export const activatingSahasrara = new ColorScheme({
         '#4B0082',
         '#E6E6FA',
     ],
-    colorSchemeInfo: "**Color Strategy**: activating Sshasrara\n"
+    colorSchemeInfo: "**Color Strategy**: activating shasrara\n"
+});
+
+export const vibrantHalloween = new ColorScheme({
+    colorBucket: [
+        '#FF6F00',
+        '#39FF14',
+        '#9D00FF',
+        '#FF0000',
+        '#005CFF',
+    ],
+    colorSchemeInfo: "**Color Strategy**: vibrant halloween\n"
 });

@@ -10,40 +10,37 @@ import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js"
 import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
 const createRings = async ({
-                                ringSpoke = 30,
+                               ringSpoke = 30,
 
-                                outerRadius = 375,
-                                secondRadiusReduction = 0.75,
-                                secondRadius = outerRadius * secondRadiusReduction,
+                               outerRadius = 375,
+                               secondRadiusReduction = 0.75,
+                               secondRadius = outerRadius * secondRadiusReduction,
 
-                                thirdRadiusReduction = 0.5,
-                                thirdRadius = outerRadius * thirdRadiusReduction,
+                               thirdRadiusReduction = 0.5,
+                               thirdRadius = outerRadius * thirdRadiusReduction,
 
 
-                                outerRingColor = '#5DADE2',
-                                innerRingColor = '#85C1E9',
-                                thirdRingColor = '#283747',
-                                fourthRingColor = '#BDC3C7',
-                                fifthRingColor = '#FDFEFE',
+                               outerRingColor = '#5DADE2',
+                               innerRingColor = '#85C1E9',
+                               thirdRingColor = '#283747',
+                               fourthRingColor = '#BDC3C7',
+                               fifthRingColor = '#FDFEFE',
 
-                                firstRingSpeed = 2,
-                                secondRingSpeed = 6,
-                                thirdRingSPeed = 8,
-                                fourthRingSpeed = 6,
-                                fifthRingSpeed = 1,
+                               firstRingSpeed = 2,
+                               secondRingSpeed = 6,
+                               thirdRingSPeed = 8,
+                               fourthRingSpeed = 6,
+                               fifthRingSpeed = 1,
 
-                                numberOfRings = 4,
+                               numberOfRings = 4,
 
-                                stroke = 0,
-                                thickness = 3,
+                               stroke = 0,
+                               thickness = 3,
 
-                                opacity = 0.4,
-                                fourthRingOpacity = 0.45,
-                                fifthRingOpacity = 0.5,
+                               opacity = 0.4,
+                               fourthRingOpacity = 0.45,
+                               fifthRingOpacity = 0.5,
                            }) => {
-
-    
-
 
     for (let i = 0; i < 360; i = i + ringSpoke) {
         await myTestProject.addPrimaryEffect({
@@ -201,6 +198,39 @@ const createRings = async ({
                 featherTimes: {lower: 0, upper: 0},
                 center: new Point2D(1080 / 2, 1920 / 2),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
+                outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+            }),
+        }),
+    });
+
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: EncircledSpiralEffect,
+            percentChance: 100,
+            currentEffectConfig: new EncircledSpiralConfig({
+                invertLayers: true,
+                layerOpacity: 0.75,
+                underLayerOpacity: 0,
+                startAngle: {lower: 0, upper: 360},
+                numberOfRings: {lower: numberOfRings, upper: numberOfRings},
+                stroke: stroke,
+                thickness: thickness,
+                sparsityFactor: [ringSpoke],
+                sequencePixelConstant: {
+                    lower: (finalSize) => finalSize.shortestSide * 0.001,
+                    upper: (finalSize) => finalSize.shortestSide * 0.001,
+                },
+                sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
+                minSequenceIndex: [2],
+                numberOfSequenceElements: [9],
+                speed: {lower: thirdRingSPeed, upper: thirdRingSPeed},
+                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                featherTimes: {lower: 0, upper: 0},
+                center: new Point2D(1080 / 2, 1920 / 2),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFF5E1'),
+                outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
             }),
         }),
     });

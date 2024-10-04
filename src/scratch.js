@@ -1,50 +1,97 @@
 import sharp from 'sharp';
 
-const fileIn = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\img.png';
-const fileOut = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\mask.png';
+const fileIn = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\test.png';
+const fileOut = 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\scratch\\';
 
-// Function to create a path around the object, grow it, and fill the object with a solid color
-async function fillObject(inputPath, outputPath, growBy, fillColor) {
-    const baseImage = sharp(inputPath);
 
-    // Step 1: Extract the alpha channel to create a mask of the object
-    const { width, height } = await baseImage.metadata();
+// Function to create fade-out and fade-in transparency gradients
+function createRadialTransparencyGradient(imageBuffer, width, height, innerRadius, outerRadius, fadeIn, frameNumber, maxInnerRadius, maxOuterRadius ) {
+    const centerX = width / 2;
+    const centerY = height / 2;
 
-    const alphaChannel = await baseImage
-        .extractChannel('alpha')  // Extract alpha channel to detect the object
-        .toColourspace('b-w')     // Convert to a grayscale mask
-        .threshold(128)           // Binary mask: object is white, background is black
-        .toBuffer();
+    return sharp(imageBuffer)
+        .raw()
+        .ensureAlpha() // Ensure the image has an alpha channel
+        .toBuffer({ resolveWithObject: true })
+        .then(({ data, info }) => {
+            const { width, height, channels } = info;
 
-    // Step 2: Grow the object mask using blur to simulate dilation
-    const grownMask = await sharp(alphaChannel)
-        .resize(width, height)    // Ensure the mask matches the image size
-        .blur(growBy)             // Blur the mask to expand it (simulate dilation)
-        .threshold(128)           // Re-threshold to make the grown mask binary again
-        .toBuffer();
+            // Loop through each pixel to adjust alpha based on distance from center
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    const offset = (y * width + x) * channels;
+                    const distanceFromCenter = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
 
-    // Step 3: Create a solid color image of the same size as the original image
-    const solidColorImage = await sharp({
-        create: {
-            width: width,
-            height: height,
-            channels: 4,
-            background: fillColor, // Example: { r: 255, g: 0, b: 0, alpha: 1 } for solid red
-        },
-    }).toBuffer();
+                    if (fadeIn) {
+                        // Fade in: fully opaque at inner radius, fully transparent at outer radius
+                        if (distanceFromCenter <= innerRadius) {
+                            data[offset + 3] = 255; // Fully opaque inside the inner radius
+                        } else if (distanceFromCenter >= outerRadius) {
+                            data[offset + 3] =0; // Fully transparent outside the outer radius
+                        } else {
+                            const t = (distanceFromCenter - innerRadius) / (outerRadius - innerRadius);
+                            data[offset + 3] = Math.round(255 * t); // Interpolated alpha (increasing)
+                        }
+                    } else {
+                        // Fade out: fully transparent at inner radius, fully opaque at outer radius
+                        if (distanceFromCenter <= innerRadius) {
+                            data[offset + 3] = 0; // Fully transparent inside the inner radius
+                        } else if (distanceFromCenter >= outerRadius) {
+                            data[offset + 3] = 255; // Fully opaque outside the outer radius
+                        } else {
+                            const t = (distanceFromCenter - innerRadius) / (outerRadius - innerRadius);
+                            data[offset + 3] = Math.round(255 * t); // Interpolated alpha (increasing)
+                        }
+                    }
+                }
+            }
 
-    // Step 4: Composite the solid color onto the original image where the object mask is
-    await sharp(solidColorImage)
-        .composite([
-            { input: grownMask, blend: 'dest-in' }, // Apply the mask to constrain color fill to the object
-            { input: inputPath, blend: 'atop' },    // Overlay the original image on top of the filled object
-        ])
-        .toFile(outputPath); // Save the output image
+            return sharp(Buffer.from(data), { raw: { width, height, channels } })
+                .toFile(fileOut+`frame-${frameNumber}.png`); // Save the frame
+        });
 }
 
-// Example usage:
-fillObject(fileIn, fileOut, 10, { r: 255, g: 0, b: 0, alpha: 1 }) // Fill object with red color
-    .then(() => console.log('Image processing completed'))
-    .catch((err) => console.error('Error:', err));
+// Generate 60 frames: 30 for fade-out and 30 for fade-in
+function generateFadeOutInFrames(imagePath, totalFrames = 50) {
+    const fadeOutFrames = totalFrames / 2;
+    const fadeInFrames = totalFrames / 2;
 
+    sharp(imagePath)
+        .metadata()
+        .then(({ width, height }) => {
+            const startInnerRadius = 10;  // Starting inner radius
+            const startOuterRadius = 50;  // Starting outer radius
+            const endOuterRadius = Math.min(width, height) / 2; // Final outer radius
+            const endInnerRadius = endOuterRadius - 100; // Final inner radius (100px difference)
 
+            sharp(imagePath)
+                .toBuffer()
+                .then(buffer => {
+                    // Fade-out phase (first 30 frames)
+                    for (let i = 0; i < fadeOutFrames; i++) {
+                        const t = i / fadeOutFrames;
+
+                        // Interpolating inner and outer radii for each frame
+                        const currentInnerRadius = startInnerRadius + t * (endInnerRadius - startInnerRadius);
+                        const currentOuterRadius = startOuterRadius + t * (endOuterRadius - startOuterRadius);
+
+                        createRadialTransparencyGradient(buffer, width, height, currentInnerRadius, currentOuterRadius, false, i);
+                    }
+
+                    // Fade-in phase (next 30 frames)
+                    for (let i = 0; i < fadeInFrames; i++) {
+                        const t = i / fadeInFrames;
+
+                        // Interpolating inner and outer radii for each frame (reverse direction)
+                        const currentInnerRadius = startInnerRadius + t * (endInnerRadius - startInnerRadius);
+                        const currentOuterRadius = startOuterRadius + t * (endOuterRadius - startOuterRadius);
+
+                        createRadialTransparencyGradient(buffer, width, height, currentInnerRadius, currentOuterRadius, true, i + fadeOutFrames);
+                    }
+                });
+        });
+}
+
+// Example usage
+const imagePath = fileIn;
+generateFadeOutInFrames(imagePath);
