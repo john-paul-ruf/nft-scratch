@@ -17,6 +17,7 @@ import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/
 import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
 
 const promiseArray = [];
 
@@ -25,21 +26,21 @@ const createComposition = async (colorScheme) => {
         artist: 'John Ruf',
         projectName: 'key-frame',
         projectDirectory: 'src/key-frame',
-        neutrals: ['#FFFFFF'],
-        backgrounds: ['#000011'],
+        neutrals: ['#FF6F00'],
+        backgrounds: ['#000000'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
 
     const loopCount = 40;
-    const innerRadius = 250;
+    const innerRadiusRange = new Range(100,200);
     const outerRadius = 1200;
     const loopRange = new Range(1, 5);
     const stroke = 2;
     const thickness = 1;
     const sparsityFactor = [12, 15, 18];
     const possibleJumpRangeInPixels = { lower: 10, upper: 30 };
-    const lineLength = { lower: 50, upper: 150 };
+    const lineLength = { lower: 150, upper: 550 };
 
 
     for(let i = 0; i < loopCount; i++){
@@ -50,21 +51,21 @@ const createComposition = async (colorScheme) => {
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: true,
                     layerOpacity: 0.7,
-                    underLayerOpacity: 0.6,
+                    underLayerOpacity: 0.75,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: stroke,
                     thickness: thickness,
                     sparsityFactor: sparsityFactor,
-                    innerRadius: innerRadius,
+                    innerRadius: getRandomIntInclusive(innerRadiusRange.lower, innerRadiusRange.upper),
                     outerRadius: outerRadius,
                     possibleJumpRangeInPixels: possibleJumpRangeInPixels,
                     lineLength:lineLength,
                     numberOfLoops: loopRange,
                     accentRange: { bottom: { lower: 1, upper: 1 }, top: { lower: 3, upper: 6 } },
                     blurRange: { bottom: { lower: 1, upper: 1 }, top: { lower: 1, upper: 1 } },
-                    featherTimes: { lower: 2, upper: 4 },
+                    featherTimes: { lower: 2, upper: 6 },
                 }),
                 possibleSecondaryEffects: [
                     
@@ -80,8 +81,8 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\pumpkin\\',
-                layerOpacity: [0.95],
-                buffer: [150],
+                layerOpacity: [0.85],
+                buffer: [0],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
@@ -141,8 +142,8 @@ const createComposition = async (colorScheme) => {
                 lines: {lower: 75, upper: 75},
                 loopTimes: {lower: 1, upper: 3},
                 brightness: {lower: 1500, upper: 2500},
-                thickness: {lower: 40, upper: 80},
-                lineBlur: {lower: 20, upper: 20},
+                thickness: {lower: 4, upper: 4},
+                lineBlur: {lower: 1, upper: 1},
             }),
         }),
     });
