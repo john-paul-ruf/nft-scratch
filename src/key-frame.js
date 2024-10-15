@@ -32,14 +32,14 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    const loopCount = 40;
-    const innerRadiusRange = new Range(100,200);
+    const loopCount = 20;
+    const innerRadiusRange = new Range(250,350);
     const outerRadius = 1200;
-    const loopRange = new Range(1, 5);
+    const loopRange = new Range(1, 3);
     const stroke = 2;
-    const thickness = 1;
+    const thickness = 0;
     const sparsityFactor = [12, 15, 18];
-    const possibleJumpRangeInPixels = { lower: 10, upper: 30 };
+    const possibleJumpRangeInPixels = { lower: 10, upper: 75 };
     const lineLength = { lower: 150, upper: 550 };
 
 
@@ -50,8 +50,8 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: true,
-                    layerOpacity: 0.7,
-                    underLayerOpacity: 0.75,
+                    layerOpacity: 0.6,
+                    underLayerOpacity: 0.6,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -63,9 +63,9 @@ const createComposition = async (colorScheme) => {
                     possibleJumpRangeInPixels: possibleJumpRangeInPixels,
                     lineLength:lineLength,
                     numberOfLoops: loopRange,
-                    accentRange: { bottom: { lower: 1, upper: 1 }, top: { lower: 3, upper: 6 } },
-                    blurRange: { bottom: { lower: 1, upper: 1 }, top: { lower: 1, upper: 1 } },
-                    featherTimes: { lower: 2, upper: 6 },
+                    accentRange: { bottom: { lower: 0, upper: 0 }, top: { lower: 0, upper:0 } },
+                    blurRange: { bottom: { lower: 0, upper: 0 }, top: { lower: 0, upper: 0 } },
+                    featherTimes: { lower: 0, upper: 0 },
                 }),
                 possibleSecondaryEffects: [
                     
@@ -88,7 +88,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 0,
                         maxPercentage: 33,
                         max: new Range(1, 1),
-                        times: new Range(20, 20),
+                        times: new Range(3, 3),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 33,
@@ -100,7 +100,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 66,
                         maxPercentage: 100,
                         max: new Range(1, 1),
-                        times: new Range(20, 20),
+                        times: new Range(3, 3),
                     })
                 ],
             }),
@@ -112,7 +112,7 @@ const createComposition = async (colorScheme) => {
                         keyFrames: [600],
                         glitchFrameCount: [600],
                         sectionHeight: [5, 10, 15],
-                        offset: {lower: 5, upper: 40},
+                        offset: {lower: 5, upper: 30},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 2},
                         backgroundRed: {lower: 0, upper: 0},
