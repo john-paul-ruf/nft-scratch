@@ -60,3 +60,12 @@ export const vibrantHalloween = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: vibrant halloween\n"
 });
+
+export const eyeBurn = new ColorScheme({
+    colorBucket: [
+        '#FF0000',
+        '#00FF00',
+        '#FFFF00',
+    ],
+    colorSchemeInfo: "**Color Strategy**: eye-burn\n"
+});

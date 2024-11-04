@@ -1,4 +1,4 @@
-import {activatingSahasrara, vibrantHalloween} from "./assets/color-scheme-store.js";
+import {eyeBurn} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
@@ -32,18 +32,18 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    const loopCount = 20;
-    const innerRadiusRange = new Range(250,350);
+    const loopCount = 40;
+    const innerRadiusRange = new Range(250, 350);
     const outerRadius = 1200;
-    const loopRange = new Range(1, 3);
-    const stroke = 2;
+    const loopRange = new Range(1, 2);
+    const stroke = 1;
     const thickness = 0;
-    const sparsityFactor = [12, 15, 18];
-    const possibleJumpRangeInPixels = { lower: 10, upper: 75 };
-    const lineLength = { lower: 150, upper: 550 };
+    const sparsityFactor = [36, 40, 45];
+    const possibleJumpRangeInPixels = {lower: 5, upper: 30};
+    const lineLength = {lower: 150, upper: 550};
 
 
-    for(let i = 0; i < loopCount; i++){
+    for (let i = 0; i < loopCount; i++) {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: RedEyeEffect,
@@ -61,15 +61,13 @@ const createComposition = async (colorScheme) => {
                     innerRadius: getRandomIntInclusive(innerRadiusRange.lower, innerRadiusRange.upper),
                     outerRadius: outerRadius,
                     possibleJumpRangeInPixels: possibleJumpRangeInPixels,
-                    lineLength:lineLength,
+                    lineLength: lineLength,
                     numberOfLoops: loopRange,
-                    accentRange: { bottom: { lower: 0, upper: 0 }, top: { lower: 0, upper:0 } },
-                    blurRange: { bottom: { lower: 0, upper: 0 }, top: { lower: 0, upper: 0 } },
-                    featherTimes: { lower: 0, upper: 0 },
+                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    featherTimes: {lower: 0, upper: 0},
                 }),
-                possibleSecondaryEffects: [
-                    
-                ]
+                possibleSecondaryEffects: []
             }),
         });
     }
@@ -80,27 +78,27 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\pumpkin\\',
+                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\all-seeing\\',
                 layerOpacity: [0.85],
-                buffer: [0],
+                buffer: [500],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
                         maxPercentage: 33,
                         max: new Range(1, 1),
-                        times: new Range(3, 3),
+                        times: new Range(2, 2),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 33,
                         maxPercentage: 66,
                         max: new Range(1, 1),
-                        times: new Range(1, 1),
+                        times: new Range(0, 0),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 66,
                         maxPercentage: 100,
                         max: new Range(1, 1),
-                        times: new Range(3, 3),
+                        times: new Range(2, 2),
                     })
                 ],
             }),
@@ -183,6 +181,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(vibrantHalloween);
+await createComposition(eyeBurn);
 
 await Promise.all(promiseArray);
