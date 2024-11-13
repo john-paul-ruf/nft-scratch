@@ -50,11 +50,13 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    const ringSpoke = 36;
+    const ringSpoke = 45;
 
-    const baseRadius = 300;
-    const burstMax = 6;
-    const percentageIncrease = 1.25;
+    const baseRadius = 125;
+    const burstMax = 10;
+    const burstGrowth = 0.0005;
+
+    const percentageIncrease = 1.15;
 
     const numberOfRings = 4;
 
@@ -82,12 +84,12 @@ const createComposition = async (colorScheme) => {
                         thickness: thickness,
                         sparsityFactor: [ringSpoke],
                         sequencePixelConstant: {
-                            lower: (finalSize) => finalSize.shortestSide * 0.001,
-                            upper: (finalSize) => finalSize.shortestSide * 0.001,
+                            lower: (finalSize) => finalSize.shortestSide * 0.001 + (burstGrowth * burst),
+                            upper: (finalSize) => finalSize.shortestSide * 0.001 + (burstGrowth * burst),
                         },
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
-                        numberOfSequenceElements: [2 + burst],
+                        numberOfSequenceElements: [2],
                         speed: {lower: burst, upper: burst},
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
