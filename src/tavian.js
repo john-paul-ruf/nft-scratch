@@ -1,6 +1,5 @@
 import {eyeBurn, neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
-import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -13,28 +12,7 @@ import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/cr
 import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
 import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
-import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
-import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
-import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
-import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
-import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
-import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
-import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
-import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
-import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
 import {getRandomFromArray} from "../../my-nft-gen/src/core/math/random.js";
-import {
-    EncircledSpiralEffect
-} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
-import {
-    EncircledSpiralConfig
-} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-import {findPointByAngleAndCircle} from "../../my-nft-gen/src/core/math/drawingMath.js";
 
 
 const promiseArray = [];
@@ -50,7 +28,19 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    const ringSpoke = 36;
+    import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
+    import {
+        EncircledSpiralEffect
+    } from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
+    import {
+        EncircledSpiralConfig
+    } from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+    import {findPointByAngleAndCircle} from "../../../my-nft-gen/src/core/math/drawingMath.js";
+    import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
+    import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+
+
+    const ringSpoke = 18;
 
     const baseRadius = 300;
     const burstMax = 6;
@@ -87,7 +77,7 @@ const createComposition = async (colorScheme) => {
                         },
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
-                        numberOfSequenceElements: [2 + burst],
+                        numberOfSequenceElements: [2],
                         speed: {lower: burst, upper: burst},
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
@@ -136,7 +126,7 @@ const createComposition = async (colorScheme) => {
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
                         keyFrames: [600],
-                        glitchFrameCount: [60],
+                        glitchFrameCount: [600],
                         sectionHeight: [5, 10, 15],
                         offset: {lower: 5, upper: 30},
                         direction: [-1, 1],
