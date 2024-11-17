@@ -13,20 +13,8 @@ import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/cr
 import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
 import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
-import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
-import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
-import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
-import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
-import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
-import {GlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {GlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
-import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
-import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
 import {getRandomFromArray} from "../../my-nft-gen/src/core/math/random.js";
 import {
     EncircledSpiralEffect
@@ -35,6 +23,11 @@ import {
     EncircledSpiralConfig
 } from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
 import {findPointByAngleAndCircle} from "../../my-nft-gen/src/core/math/drawingMath.js";
+import {PixelateKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameEffect.js";
+import {PixelateKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameConfig.js";
+import {findValue} from "../../my-nft-gen/src/core/math/findValue.js";
+import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
+import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
 
 
 const promiseArray = [];
@@ -52,20 +45,21 @@ const createComposition = async (colorScheme) => {
 
     const ringSpoke = 45;
 
-    const baseRadius = 125;
-    const burstMax = 10;
-    const burstGrowth = 0.0005;
+    const baseRadius = 100;
+    const burstMax = 5;
+    const burstGrowth = 0.0002;
 
-    const percentageIncrease = 1.15;
+    const percentageIncrease = 1.5;
 
     const numberOfRings = 4;
 
-    const stroke = 1;
-    const thickness = 2;
+    const stroke = 2;
+    const thickness =1;
 
-    const opacity = 0.4;
+    const layerOpacity = 0.6;
+    const underLayerOpacity = 0.6;
 
-    for(let burst = 1; burst <= burstMax; burst++) {
+    for (let burst = 1; burst <= burstMax; burst++) {
 
         const color = getRandomFromArray(neonLights.colorBucket);
 
@@ -76,27 +70,27 @@ const createComposition = async (colorScheme) => {
                     percentChance: 100,
                     currentEffectConfig: new EncircledSpiralConfig({
                         invertLayers: true,
-                        layerOpacity: opacity,
-                        underLayerOpacity: 0,
+                        layerOpacity: layerOpacity,
+                        underLayerOpacity: underLayerOpacity,
                         startAngle: {lower: 0, upper: 360},
                         numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                         stroke: stroke,
                         thickness: thickness,
                         sparsityFactor: [ringSpoke],
                         sequencePixelConstant: {
-                            lower: (finalSize) => finalSize.shortestSide * 0.001 + (burstGrowth * burst),
-                            upper: (finalSize) => finalSize.shortestSide * 0.001 + (burstGrowth * burst),
+                            lower: (finalSize) => finalSize.shortestSide * (0.001 + (burstGrowth * burst)),
+                            upper: (finalSize) => finalSize.shortestSide * (0.001 + (burstGrowth * burst)),
                         },
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
                         numberOfSequenceElements: [2],
-                        speed: {lower: burst, upper: burst},
+                        speed: {lower: 1, upper: 1},
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        featherTimes: {lower: 0, upper: 0},
+                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                        featherTimes: {lower:1, upper: 1},
                         center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, baseRadius * (burst * percentageIncrease)),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                     }),
                 }),
             });
@@ -109,7 +103,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
                 folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\all-seeing\\',
-                layerOpacity: [0.85],
+                layerOpacity: [0.7],
                 buffer: [500],
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
@@ -122,7 +116,7 @@ const createComposition = async (colorScheme) => {
                         minPercentage: 33,
                         maxPercentage: 66,
                         max: new Range(1, 1),
-                        times: new Range(0, 0),
+                        times: new Range(5, 5),
                     }),
                     new MultiStepDefinitionConfig({
                         minPercentage: 66,
@@ -133,14 +127,15 @@ const createComposition = async (colorScheme) => {
                 ],
             }),
             possibleSecondaryEffects: [
+
                 new LayerConfig({
                     effect: CRTDegaussEffect,
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
                         keyFrames: [600],
-                        glitchFrameCount: [60],
+                        glitchFrameCount: [80],
                         sectionHeight: [5, 10, 15],
-                        offset: {lower: 5, upper: 30},
+                        offset: {lower: 200, upper: 300},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 2},
                         backgroundRed: {lower: 0, upper: 0},
@@ -154,9 +149,9 @@ const createComposition = async (colorScheme) => {
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
                         keyFrames: [300],
-                        glitchFrameCount: [60],
+                        glitchFrameCount: [45],
                         sectionHeight: [5, 10, 15],
-                        offset: {lower: 5, upper: 30},
+                        offset: {lower: 250, upper: 350},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 1},
                         backgroundRed: {lower: 0, upper: 0},
@@ -170,9 +165,9 @@ const createComposition = async (colorScheme) => {
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
                         keyFrames: [800],
-                        glitchFrameCount: [60],
+                        glitchFrameCount: [15],
                         sectionHeight: [5, 10, 15],
-                        offset: {lower: 5, upper: 30},
+                        offset: {lower: 200, upper: 400},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 2},
                         backgroundRed: {lower: 0, upper: 0},
@@ -186,9 +181,9 @@ const createComposition = async (colorScheme) => {
                     percentChance: 100,
                     currentEffectConfig: new CRTDegaussConfig({
                         keyFrames: [1000],
-                        glitchFrameCount: [60],
+                        glitchFrameCount: [50],
                         sectionHeight: [5, 10, 15],
-                        offset: {lower: 5, upper: 30},
+                        offset: {lower: 200, upper: 500},
                         direction: [-1, 1],
                         glitchTimes: {lower: 1, upper: 1},
                         backgroundRed: {lower: 0, upper: 0},
@@ -197,6 +192,85 @@ const createComposition = async (colorScheme) => {
                         backgroundAlpha: {lower: 0, upper: 0},
                     }),
                 }),
+
+                new LayerConfig({
+                    effect: PixelateKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new PixelateKeyFrameConfig({
+                        keyFrames: [0],
+                        glitchFrameCount: [60],
+                        lowerRange: { lower: 0, upper: 0 },
+                        upperRange: { lower: 3, upper: 6 },
+                        times: { lower: 1, upper: 3 },
+                    }),
+                }),
+                new LayerConfig({
+                    effect: PixelateKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new PixelateKeyFrameConfig({
+                        keyFrames: [1250],
+                        glitchFrameCount: [30],
+                        lowerRange: { lower: 0, upper: 0 },
+                        upperRange: { lower: 3, upper: 6 },
+                        times: { lower: 1, upper: 3 },
+                    }),
+                }),
+                new LayerConfig({
+                    effect: PixelateKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new PixelateKeyFrameConfig({
+                        keyFrames: [600],
+                        glitchFrameCount: [20],
+                        lowerRange: { lower: 0, upper: 0 },
+                        upperRange: { lower: 3, upper: 6 },
+                        times: { lower: 1, upper: 3 },
+                    }),
+                }),
+                new LayerConfig({
+                    effect: PixelateKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new PixelateKeyFrameConfig({
+                        keyFrames: [630],
+                        glitchFrameCount: [60],
+                        lowerRange: { lower: 0, upper: 0 },
+                        upperRange: { lower: 3, upper: 6 },
+                        times: { lower: 1, upper: 3 },
+                    }),
+                }),
+                new LayerConfig({
+                    effect: PixelateKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new PixelateKeyFrameConfig({
+                        keyFrames: [650],
+                        glitchFrameCount: [40],
+                        lowerRange: { lower: 0, upper: 0 },
+                        upperRange: { lower: 3, upper: 6 },
+                        times: { lower: 1, upper: 3 },
+                    }),
+                }),
+                new LayerConfig({
+                    effect: PixelateKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new PixelateKeyFrameConfig({
+                        keyFrames: [250],
+                        glitchFrameCount: [80],
+                        lowerRange: { lower: 0, upper: 0 },
+                        upperRange: { lower: 3, upper: 6 },
+                        times: { lower: 1, upper: 3 },
+                    }),
+                }),
+                new LayerConfig({
+                    effect: PixelateKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new PixelateKeyFrameConfig({
+                        keyFrames: [750],
+                        glitchFrameCount: [15],
+                        lowerRange: { lower: 0, upper: 0 },
+                        upperRange: { lower: 3, upper: 6 },
+                        times: { lower: 1, upper: 3 },
+                    }),
+                }),
+
             ]
         }),
     });
@@ -213,13 +287,13 @@ const createComposition = async (colorScheme) => {
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
-            percentChance: 100,
+            percentChance: 25,
             currentEffectConfig: new CRTScanLinesConfig({
-                lines: {lower: 75, upper: 75},
+                lines: {lower: 100, upper: 100},
                 loopTimes: {lower: 1, upper: 2},
-                brightness: {lower: 2000, upper: 2500},
-                thickness: {lower: 8, upper: 8},
-                lineBlur: {lower: 2, upper: 2},
+                brightness: {lower: 4000, upper: 5000},
+                thickness: {lower: 12, upper: 12},
+                lineBlur: {lower: 3, upper: 3},
             }),
         }),
     });
