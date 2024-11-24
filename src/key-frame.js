@@ -15,7 +15,7 @@ import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/ma
 import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {getRandomFromArray} from "../../my-nft-gen/src/core/math/random.js";
+import {getRandomFromArray, getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
 import {
     EncircledSpiralEffect
 } from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
@@ -46,18 +46,53 @@ const createComposition = async (colorScheme) => {
     const ringSpoke = 45;
 
     const baseRadius = 100;
-    const burstMax = 5;
-    const burstGrowth = 0.0002;
+    const burstMax = 4;
 
-    const percentageIncrease = 1.5;
+    const percentageIncrease = 2;
+    const growthConstant = 0.0001;
+    const burstGrowth = growthConstant * percentageIncrease;
 
     const numberOfRings = 4;
 
-    const stroke = 2;
+    const stroke = 1;
     const thickness =1;
 
-    const layerOpacity = 0.6;
+    const layerOpacity = 0.7;
     const underLayerOpacity = 0.6;
+
+    const secondaryEffects = [];
+
+    for (let i = 0; i < 10; i++) {
+        secondaryEffects.push(new LayerConfig({
+            effect: CRTDegaussEffect,
+            percentChance: getRandomIntInclusive(20,70),
+            currentEffectConfig: new CRTDegaussConfig({
+                keyFrames: [getRandomIntInclusive(0,1800)],
+                glitchFrameCount: [getRandomIntInclusive(15,75)],
+                sectionHeight: [1, 5, 10, 15],
+                offset: {lower: 5, upper: 15},
+                direction: [-1, 1],
+                glitchTimes: {lower: 1, upper: 5},
+                backgroundRed: {lower: 0, upper: 0},
+                backgroundGreen: {lower: 0, upper: 0},
+                backgroundBlue: {lower: 0, upper: 0},
+                backgroundAlpha: {lower: 0, upper: 0},
+            }),
+        }));
+    }
+    for (let i = 0; i < 10; i++) {
+        secondaryEffects.push(new LayerConfig({
+            effect: PixelateKeyFrameEffect,
+            percentChance: getRandomIntInclusive(20,70),
+            currentEffectConfig: new PixelateKeyFrameConfig({
+                keyFrames: [getRandomIntInclusive(0,1800)],
+                glitchFrameCount: [getRandomIntInclusive(15,75)],
+                lowerRange: { lower: 0, upper: 0 },
+                upperRange: { lower:5, upper: 15 },
+                times: { lower: 1, upper: 5 },
+            }),
+        }));
+    }
 
     for (let burst = 1; burst <= burstMax; burst++) {
 
@@ -78,12 +113,12 @@ const createComposition = async (colorScheme) => {
                         thickness: thickness,
                         sparsityFactor: [ringSpoke],
                         sequencePixelConstant: {
-                            lower: (finalSize) => finalSize.shortestSide * (0.001 + (burstGrowth * burst)),
-                            upper: (finalSize) => finalSize.shortestSide * (0.001 + (burstGrowth * burst)),
+                            lower: (finalSize) => finalSize.shortestSide * (growthConstant + (burstGrowth * burst)),
+                            upper: (finalSize) => finalSize.shortestSide * (growthConstant + (burstGrowth * burst)),
                         },
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
-                        numberOfSequenceElements: [2],
+                        numberOfSequenceElements: [4],
                         speed: {lower: 1, upper: 1},
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
@@ -92,189 +127,11 @@ const createComposition = async (colorScheme) => {
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                     }),
+                    possibleSecondaryEffects: secondaryEffects
                 }),
             });
         }
     }
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: MappedFramesEffect,
-            percentChance: 100,
-            currentEffectConfig: new MappedFramesConfig({
-                folderName: 'C:\\Users\\neomo\\WebstormProjects\\nft-scratch\\src\\assets\\mappedFrames\\all-seeing\\',
-                layerOpacity: [0.7],
-                buffer: [500],
-                loopTimesMultiStep: [
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 0,
-                        maxPercentage: 33,
-                        max: new Range(1, 1),
-                        times: new Range(2, 2),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 33,
-                        maxPercentage: 66,
-                        max: new Range(1, 1),
-                        times: new Range(5, 5),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 66,
-                        maxPercentage: 100,
-                        max: new Range(1, 1),
-                        times: new Range(3, 3),
-                    })
-                ],
-            }),
-            possibleSecondaryEffects: [
-
-                new LayerConfig({
-                    effect: CRTDegaussEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [600],
-                        glitchFrameCount: [80],
-                        sectionHeight: [5, 10, 15],
-                        offset: {lower: 200, upper: 300},
-                        direction: [-1, 1],
-                        glitchTimes: {lower: 1, upper: 2},
-                        backgroundRed: {lower: 0, upper: 0},
-                        backgroundGreen: {lower: 0, upper: 0},
-                        backgroundBlue: {lower: 0, upper: 0},
-                        backgroundAlpha: {lower: 0, upper: 0},
-                    }),
-                }),
-                new LayerConfig({
-                    effect: CRTDegaussEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [300],
-                        glitchFrameCount: [45],
-                        sectionHeight: [5, 10, 15],
-                        offset: {lower: 250, upper: 350},
-                        direction: [-1, 1],
-                        glitchTimes: {lower: 1, upper: 1},
-                        backgroundRed: {lower: 0, upper: 0},
-                        backgroundGreen: {lower: 0, upper: 0},
-                        backgroundBlue: {lower: 0, upper: 0},
-                        backgroundAlpha: {lower: 0, upper: 0},
-                    }),
-                }),
-                new LayerConfig({
-                    effect: CRTDegaussEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [800],
-                        glitchFrameCount: [15],
-                        sectionHeight: [5, 10, 15],
-                        offset: {lower: 200, upper: 400},
-                        direction: [-1, 1],
-                        glitchTimes: {lower: 1, upper: 2},
-                        backgroundRed: {lower: 0, upper: 0},
-                        backgroundGreen: {lower: 0, upper: 0},
-                        backgroundBlue: {lower: 0, upper: 0},
-                        backgroundAlpha: {lower: 0, upper: 0},
-                    }),
-                }),
-                new LayerConfig({
-                    effect: CRTDegaussEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [1000],
-                        glitchFrameCount: [50],
-                        sectionHeight: [5, 10, 15],
-                        offset: {lower: 200, upper: 500},
-                        direction: [-1, 1],
-                        glitchTimes: {lower: 1, upper: 1},
-                        backgroundRed: {lower: 0, upper: 0},
-                        backgroundGreen: {lower: 0, upper: 0},
-                        backgroundBlue: {lower: 0, upper: 0},
-                        backgroundAlpha: {lower: 0, upper: 0},
-                    }),
-                }),
-
-                new LayerConfig({
-                    effect: PixelateKeyFrameEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new PixelateKeyFrameConfig({
-                        keyFrames: [0],
-                        glitchFrameCount: [60],
-                        lowerRange: { lower: 0, upper: 0 },
-                        upperRange: { lower: 3, upper: 6 },
-                        times: { lower: 1, upper: 3 },
-                    }),
-                }),
-                new LayerConfig({
-                    effect: PixelateKeyFrameEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new PixelateKeyFrameConfig({
-                        keyFrames: [1250],
-                        glitchFrameCount: [30],
-                        lowerRange: { lower: 0, upper: 0 },
-                        upperRange: { lower: 3, upper: 6 },
-                        times: { lower: 1, upper: 3 },
-                    }),
-                }),
-                new LayerConfig({
-                    effect: PixelateKeyFrameEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new PixelateKeyFrameConfig({
-                        keyFrames: [600],
-                        glitchFrameCount: [20],
-                        lowerRange: { lower: 0, upper: 0 },
-                        upperRange: { lower: 3, upper: 6 },
-                        times: { lower: 1, upper: 3 },
-                    }),
-                }),
-                new LayerConfig({
-                    effect: PixelateKeyFrameEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new PixelateKeyFrameConfig({
-                        keyFrames: [630],
-                        glitchFrameCount: [60],
-                        lowerRange: { lower: 0, upper: 0 },
-                        upperRange: { lower: 3, upper: 6 },
-                        times: { lower: 1, upper: 3 },
-                    }),
-                }),
-                new LayerConfig({
-                    effect: PixelateKeyFrameEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new PixelateKeyFrameConfig({
-                        keyFrames: [650],
-                        glitchFrameCount: [40],
-                        lowerRange: { lower: 0, upper: 0 },
-                        upperRange: { lower: 3, upper: 6 },
-                        times: { lower: 1, upper: 3 },
-                    }),
-                }),
-                new LayerConfig({
-                    effect: PixelateKeyFrameEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new PixelateKeyFrameConfig({
-                        keyFrames: [250],
-                        glitchFrameCount: [80],
-                        lowerRange: { lower: 0, upper: 0 },
-                        upperRange: { lower: 3, upper: 6 },
-                        times: { lower: 1, upper: 3 },
-                    }),
-                }),
-                new LayerConfig({
-                    effect: PixelateKeyFrameEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new PixelateKeyFrameConfig({
-                        keyFrames: [750],
-                        glitchFrameCount: [15],
-                        lowerRange: { lower: 0, upper: 0 },
-                        upperRange: { lower: 3, upper: 6 },
-                        times: { lower: 1, upper: 3 },
-                    }),
-                }),
-
-            ]
-        }),
-    });
-
 
     /////////////////////////////////////
     ///
@@ -305,7 +162,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.8, upper: 0.8}},
-                linesOpacityRange: {bottom: {lower: 0.05, upper: 0.05}, top: {lower: 0.1, upper: 0.1}},
+                linesOpacityRange: {bottom: {lower: 0.2, upper: 0.2}, top: {lower: 0.3, upper: 0.3}},
                 opacityTimes: {lower: 2, upper: 2},
                 lineRed: {lower: 0, upper: 0},
                 lineGreen: {lower: 0, upper: 0},
@@ -325,7 +182,7 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new CRTBarrelConfig({
                 strength: {lower: 0.3, upper: 0.3},
                 edgeThreshold: {lower: 0.035, upper: 0.035},
-                corner: {lower: 0.10, upper: 0.10},
+                corner: {lower: 0.15, upper: 0.15},
             }),
         }),
     });
