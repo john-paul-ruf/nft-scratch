@@ -1,8 +1,6 @@
-import {eyeBurn, neonLights} from "./assets/color-scheme-store.js";
+import {neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
 import {CRTScanLinesConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
@@ -11,23 +9,13 @@ import {CRTShadowConfig} from "../../my-nft-gen/src/effects/finalImageEffects/cr
 import {CRTShadowEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
 import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
-import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {getRandomFromArray, getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
-import {
-    EncircledSpiralEffect
-} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
-import {
-    EncircledSpiralConfig
-} from "../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-import {findPointByAngleAndCircle} from "../../my-nft-gen/src/core/math/drawingMath.js";
-import {PixelateKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameEffect.js";
-import {PixelateKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameConfig.js";
-import {findValue} from "../../my-nft-gen/src/core/math/findValue.js";
-import {FadeEffect} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeEffect.js";
-import {FadeConfig} from "../../my-nft-gen/src/effects/secondaryEffects/fade/FadeConfig.js";
+import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
+import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
+import {ImageOverlayEffect} from "../../my-nft-gen/src/effects/primaryEffects/imageOverlay/ImageOverlayEffect.js";
+import {ImageOverlayConfig} from "../../my-nft-gen/src/effects/primaryEffects/imageOverlay/ImageOverlayConfig.js";
 
 
 const promiseArray = [];
@@ -43,34 +31,17 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    const ringSpoke = 45;
-
-    const baseRadius = 100;
-    const burstMax = 4;
-
-    const percentageIncrease = 2;
-    const growthConstant = 0.0001;
-    const burstGrowth = growthConstant * percentageIncrease;
-
-    const numberOfRings = 4;
-
-    const stroke = 1;
-    const thickness =1;
-
-    const layerOpacity = 0.7;
-    const underLayerOpacity = 0.6;
-
     const secondaryEffects = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
         secondaryEffects.push(new LayerConfig({
             effect: CRTDegaussEffect,
-            percentChance: getRandomIntInclusive(20,70),
+            percentChance: getRandomIntInclusive(25, 25),
             currentEffectConfig: new CRTDegaussConfig({
-                keyFrames: [getRandomIntInclusive(0,1800)],
-                glitchFrameCount: [getRandomIntInclusive(15,75)],
+                keyFrames: [getRandomIntInclusive(0, 1740)],
+                glitchFrameCount: [getRandomIntInclusive(30, 60)],
                 sectionHeight: [1, 5, 10, 15],
-                offset: {lower: 5, upper: 15},
+                offset: {lower: 5, upper: 30},
                 direction: [-1, 1],
                 glitchTimes: {lower: 1, upper: 5},
                 backgroundRed: {lower: 0, upper: 0},
@@ -80,58 +51,82 @@ const createComposition = async (colorScheme) => {
             }),
         }));
     }
-    for (let i = 0; i < 10; i++) {
-        secondaryEffects.push(new LayerConfig({
-            effect: PixelateKeyFrameEffect,
-            percentChance: getRandomIntInclusive(20,70),
-            currentEffectConfig: new PixelateKeyFrameConfig({
-                keyFrames: [getRandomIntInclusive(0,1800)],
-                glitchFrameCount: [getRandomIntInclusive(15,75)],
-                lowerRange: { lower: 0, upper: 0 },
-                upperRange: { lower:5, upper: 15 },
-                times: { lower: 1, upper: 5 },
-            }),
-        }));
-    }
 
-    for (let burst = 1; burst <= burstMax; burst++) {
 
-        const color = getRandomFromArray(neonLights.colorBucket);
+    let redEyeCount = 4;
 
-        for (let i = 0; i < 360; i = i + ringSpoke) {
-            await myTestProject.addPrimaryEffect({
-                layerConfig: new LayerConfig({
-                    effect: EncircledSpiralEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new EncircledSpiralConfig({
-                        invertLayers: true,
-                        layerOpacity: layerOpacity,
-                        underLayerOpacity: underLayerOpacity,
-                        startAngle: {lower: 0, upper: 360},
-                        numberOfRings: {lower: numberOfRings, upper: numberOfRings},
-                        stroke: stroke,
-                        thickness: thickness,
-                        sparsityFactor: [ringSpoke],
-                        sequencePixelConstant: {
-                            lower: (finalSize) => finalSize.shortestSide * (growthConstant + (burstGrowth * burst)),
-                            upper: (finalSize) => finalSize.shortestSide * (growthConstant + (burstGrowth * burst)),
-                        },
-                        sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                        minSequenceIndex: [10],
-                        numberOfSequenceElements: [4],
-                        speed: {lower: 1, upper: 1},
-                        accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                        featherTimes: {lower:1, upper: 1},
-                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, baseRadius * (burst * percentageIncrease)),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
-                    }),
-                    possibleSecondaryEffects: secondaryEffects
+    for (let i = 0; i < redEyeCount; i++) {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: RedEyeEffect,
+                percentChance: 100,
+                currentEffectConfig: new RedEyeConfig({
+                    invertLayers: true,
+                    layerOpacity: 0.8,
+                    underLayerOpacity: 0.7,
+                    center: new Point2D(1080 / 2, 1920 / 2),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    stroke: 1,
+                    thickness: 1,
+                    sparsityFactor: [9, 10, 12],
+                    innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.25, myTestProject.shortestSideInPixels * 0.25),
+                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.40, myTestProject.shortestSideInPixels * 0.40),
+                    possibleJumpRangeInPixels: {lower: 10, upper: 20},
+                    lineLength: {lower: 150, upper: 300},
+                    numberOfLoops: {lower: 1, upper: 2},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
+                    featherTimes: {lower: 3, upper: 3},
                 }),
-            });
-        }
+                possibleSecondaryEffects: []
+            }),
+        });
     }
+
+    redEyeCount = 6;
+
+    for (let i = 0; i < redEyeCount; i++) {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: RedEyeEffect,
+                percentChance: 100,
+                currentEffectConfig: new RedEyeConfig({
+                    invertLayers: true,
+                    layerOpacity: 0.8,
+                    underLayerOpacity: 0.7,
+                    center: new Point2D(1080 / 2, 1920 / 2),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    stroke: 1,
+                    thickness: 1,
+                    sparsityFactor: [9, 10, 12],
+                    innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.425, myTestProject.shortestSideInPixels * 0.425),
+                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.7, myTestProject.shortestSideInPixels * 0.7),
+                    possibleJumpRangeInPixels: {lower: 10, upper: 20},
+                    lineLength: {lower: 150, upper: 300},
+                    numberOfLoops: {lower: 1, upper: 2},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
+                    featherTimes: {lower: 3, upper: 3},
+                }),
+                possibleSecondaryEffects: secondaryEffects
+            }),
+        });
+    }
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: ImageOverlayEffect,
+            percentChance: 100,
+            currentEffectConfig: new ImageOverlayConfig({
+                folderName: './src/assets/imageOverlay/working/',
+                layerOpacity: [0.7],
+                buffer: [100],
+            }),
+            possibleSecondaryEffects: secondaryEffects
+        }),
+    });
 
     /////////////////////////////////////
     ///
@@ -144,7 +139,7 @@ const createComposition = async (colorScheme) => {
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
-            percentChance: 25,
+            percentChance: 100,
             currentEffectConfig: new CRTScanLinesConfig({
                 lines: {lower: 100, upper: 100},
                 loopTimes: {lower: 1, upper: 2},
