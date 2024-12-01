@@ -110,7 +110,7 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
                 }),
-                possibleSecondaryEffects: secondaryEffects
+                possibleSecondaryEffects: []
             }),
         });
     }
