@@ -35,7 +35,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'key-frame',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#000000'],
+        backgrounds: ['#001F14'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
