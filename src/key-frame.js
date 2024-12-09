@@ -18,6 +18,13 @@ import {ImageOverlayEffect} from "../../my-nft-gen/src/effects/primaryEffects/im
 import {ImageOverlayConfig} from "../../my-nft-gen/src/effects/primaryEffects/imageOverlay/ImageOverlayConfig.js";
 import {PixelateKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameEffect.js";
 import {PixelateKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameConfig.js";
+import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
+import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
+import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
+import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
+import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
+import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
+import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
 
 
 const promiseArray = [];
@@ -62,11 +69,80 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new PixelateKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
-                lowerRange: { lower: 0, upper: 0 },
-                upperRange: { lower: 3, upper: 6 },
-                times: { lower: 1, upper: 5 },
+                lowerRange: {lower: 0, upper: 0},
+                upperRange: {lower: 3, upper: 6},
+                times: {lower: 1, upper: 5},
             }),
         }));
+    }
+
+    for (let i = 0; i < 3; i++) {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: FuzzFlareEffect,
+                percentChance: 100,
+                currentEffectConfig: new FuzzFlareConfig({
+                    invertLayers: true,
+
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+
+                    layerOpacity: 0.7,
+
+                    underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
+                    underLayerOpacityTimes: {lower: 2, upper: 12},
+
+                    elementGastonMultiStep: [
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 0,
+                            maxPercentage: 20,
+                            max: new Range(4, 12),
+                            times: new Range(1, 2),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 20,
+                            maxPercentage: 40,
+                            max: new Range(4, 12),
+                            times: new Range(1, 2),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 40,
+                            maxPercentage: 60,
+                            max: new Range(4, 12),
+                            times: new Range(1, 2),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 60,
+                            maxPercentage: 80,
+                            max: new Range(4, 12),
+                            times: new Range(1, 2),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 80,
+                            maxPercentage: 100,
+                            max: new Range(4, 12),
+                            times: new Range(1, 2),
+                        }),
+                    ],
+
+                    numberOfFlareRings: new Range(5, 5),
+                    flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageLongestSide(0.8)),
+                    flareRingStroke: new Range(3, 3),
+                    flareRingThickness: new Range(1, 1),
+
+                    numberOfFlareRays: new Range(15, 15),
+                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(1)),
+                    flareRaysStroke: new Range(3, 3),
+                    flareRayThickness: new Range(1, 1),
+                    flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.05)),
+
+                    accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
+                    blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
+                    featherTimes: {lower: 5, upper: 5},
+                }),
+                possibleSecondaryEffects: []
+            }),
+        });
     }
 
 
@@ -138,7 +214,7 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new ImageOverlayConfig({
                 folderName: './src/assets/imageOverlay/working/',
-                layerOpacity: [0.7],
+                layerOpacity: [0.95],
                 buffer: [0],
             }),
             possibleSecondaryEffects: secondaryEffects
