@@ -62,7 +62,7 @@ const createComposition = async (colorScheme) => {
     }
 
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 75; i++) {
         secondaryEffects.push(new LayerConfig({
             effect: PixelateKeyFrameEffect,
             percentChance: getRandomIntInclusive(25, 25),
@@ -70,8 +70,8 @@ const createComposition = async (colorScheme) => {
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
                 lowerRange: {lower: 0, upper: 0},
-                upperRange: {lower: 3, upper: 6},
-                times: {lower: 1, upper: 5},
+                upperRange: {lower: 3, upper: 8},
+                times: {lower: 1, upper: 2},
             }),
         }));
     }
@@ -134,7 +134,7 @@ const createComposition = async (colorScheme) => {
                     flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(1)),
                     flareRaysStroke: new Range(3, 3),
                     flareRayThickness: new Range(1, 1),
-                    flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.05)),
+                    flareOffset: new PercentageRange(new PercentageShortestSide(0.1), new PercentageShortestSide(0.15)),
 
                     accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
                     blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
