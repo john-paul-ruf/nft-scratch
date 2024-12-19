@@ -1,4 +1,4 @@
-import {neonLights} from "./assets/color-scheme-store.js";
+import {eyeBurn, neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -14,8 +14,6 @@ import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicke
 import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
 import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {ImageOverlayEffect} from "../../my-nft-gen/src/effects/primaryEffects/imageOverlay/ImageOverlayEffect.js";
-import {ImageOverlayConfig} from "../../my-nft-gen/src/effects/primaryEffects/imageOverlay/ImageOverlayConfig.js";
 import {PixelateKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameEffect.js";
 import {PixelateKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameConfig.js";
 import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
@@ -25,6 +23,8 @@ import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/Percen
 import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
+import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
 
 
 const promiseArray = [];
@@ -49,8 +49,8 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new CRTDegaussConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
-                sectionHeight: [1, 5, 10, 15],
-                offset: {lower: 5, upper: 20},
+                sectionHeight: [1, 5, 10],
+                offset: {lower: 1, upper: 5},
                 direction: [-1, 1],
                 glitchTimes: {lower: 1, upper: 5},
                 backgroundRed: {lower: 0, upper: 0},
@@ -62,7 +62,7 @@ const createComposition = async (colorScheme) => {
     }
 
 
-    for (let i = 0; i < 75; i++) {
+    for (let i = 0; i < 25; i++) {
         secondaryEffects.push(new LayerConfig({
             effect: PixelateKeyFrameEffect,
             percentChance: getRandomIntInclusive(25, 25),
@@ -71,7 +71,7 @@ const createComposition = async (colorScheme) => {
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
                 lowerRange: {lower: 0, upper: 0},
                 upperRange: {lower: 3, upper: 8},
-                times: {lower: 1, upper: 2},
+                times: {lower: 1, upper: 1},
             }),
         }));
     }
@@ -210,12 +210,29 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
-            effect: ImageOverlayEffect,
+            effect: ViewportEffect,
             percentChance: 100,
-            currentEffectConfig: new ImageOverlayConfig({
-                folderName: './src/assets/imageOverlay/working/',
-                layerOpacity: [0.95],
-                buffer: [0],
+            currentEffectConfig: new ViewportConfig({
+                invertLayers: true,
+                layerOpacity: 0.7,
+                underLayerOpacity: 0.6,
+                center: new Point2D(1080 / 2, (1920-150) / 2),
+                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                stroke: 2,
+                thickness: 24,
+                ampStroke: 0,
+                ampThickness: 0,
+                radius: [300],
+                startAngle: [270],
+                ampLength: [100],
+                ampRadius: [100],
+                sparsityFactor: [3, 4, 5, 6],
+                amplitude: {lower: 150, upper: 150},
+                times: {lower: 3, upper: 3},
+                accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 30, upper: 30}},
+                blurRange: {bottom: {lower: 2, upper: 3}, top: {lower: 5, upper: 8}},
+                featherTimes: {lower: 6, upper: 6},
             }),
             possibleSecondaryEffects: secondaryEffects
         }),
@@ -249,15 +266,15 @@ const createComposition = async (colorScheme) => {
             effect: CRTShadowEffect,
             percentChance: 100,
             currentEffectConfig: new CRTShadowConfig({
-                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
-                linesOpacityRange: {bottom: {lower: 0.4, upper: 0.4}, top: {lower: 0.5, upper: 0.5}},
+                shadowOpacityRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 0.9, upper: 0.9}},
+                linesOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.7, upper: 0.7}},
                 opacityTimes: {lower: 2, upper: 2},
                 lineRed: {lower: 0, upper: 0},
-                lineGreen: {lower: 70, upper: 90},
+                lineGreen: {lower: 127, upper: 127},
                 lineBlue: {lower: 0, upper: 0},
                 lineHeight: {lower: 0.25, upper: 0.25},
                 edgePercentage: {lower: 0.40, upper: 0.40},
-                maxLineHeight: {lower: 4, upper: 4},
+                maxLineHeight: {lower: 2, upper: 2},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
@@ -268,9 +285,9 @@ const createComposition = async (colorScheme) => {
             effect: CRTBarrelEffect,
             percentChance: 100,
             currentEffectConfig: new CRTBarrelConfig({
-                strength: {lower: 0.3, upper: 0.3},
-                edgeThreshold: {lower: 0.05, upper: 0.05},
-                corner: {lower: 0.15, upper: 0.15},
+                strength: {lower: 0.15, upper: 0.15},
+                edgeThreshold: {lower: 0.1, upper: 0.1},
+                corner: {lower: 0.2, upper: 0.2},
             }),
         }),
     });
@@ -278,6 +295,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(neonLights);
+await createComposition(eyeBurn);
 
 await Promise.all(promiseArray);
