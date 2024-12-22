@@ -52,7 +52,7 @@ function createSecondaryEffects() {
     }
 
 
-    for (let i = 0; i < 25; i++) {
+ /*   for (let i = 0; i < 25; i++) {
         secondaryEffects.push(new LayerConfig({
             effect: PixelateKeyFrameEffect,
             percentChance: getRandomIntInclusive(25, 25),
@@ -64,7 +64,7 @@ function createSecondaryEffects() {
                 times: {lower: 1, upper: 1},
             }),
         }));
-    }
+    }*/
 
     return secondaryEffects;
 }
@@ -129,13 +129,13 @@ const createComposition = async (colorScheme) => {
                         }),
                     ],
 
-                    numberOfFlareRings: new Range(5, 5),
-                    flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageLongestSide(0.8)),
+                    numberOfFlareRings: new Range(10, 10),
+                    flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageLongestSide(0.7)),
                     flareRingStroke: new Range(3, 3),
                     flareRingThickness: new Range(1, 1),
 
                     numberOfFlareRays: new Range(15, 15),
-                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.5), new PercentageLongestSide(1)),
+                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.75), new PercentageLongestSide(1)),
                     flareRaysStroke: new Range(3, 3),
                     flareRayThickness: new Range(1, 1),
                     flareOffset: new PercentageRange(new PercentageShortestSide(0.1), new PercentageShortestSide(0.15)),
@@ -217,7 +217,7 @@ const createComposition = async (colorScheme) => {
             effect: ViewportEffect,
             percentChance: 100,
             currentEffectConfig: new ViewportConfig({
-                invertLayers: true,
+                invertLayers: false,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.6,
                 center: new Point2D(1080 / 2, (1920 - 150) / 2),
@@ -234,7 +234,7 @@ const createComposition = async (colorScheme) => {
                 sparsityFactor: [3, 4, 5, 6],
                 amplitude: {lower: 150, upper: 150},
                 times: {lower: 3, upper: 3},
-                accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 30, upper: 30}},
+                accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 45, upper: 45}},
                 blurRange: {bottom: {lower: 2, upper: 3}, top: {lower: 5, upper: 8}},
                 featherTimes: {lower: 6, upper: 6},
             }),
@@ -277,14 +277,14 @@ const createComposition = async (colorScheme) => {
                 lineGreen: {lower: 127, upper: 127},
                 lineBlue: {lower: 0, upper: 0},
                 lineHeight: {lower: 0.25, upper: 0.25},
-                edgePercentage: {lower: 0.40, upper: 0.40},
-                maxLineHeight: {lower: 2, upper: 2},
+                edgePercentage: {lower: 0.3, upper: 0.30},
+                maxLineHeight: {lower: 4, upper: 4},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
     });
 
-    await myTestProject.addFinalEffect({
+  /*  await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTBarrelEffect,
             percentChance: 100,
@@ -295,7 +295,7 @@ const createComposition = async (colorScheme) => {
             }),
         }),
     });
-
+*/
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
