@@ -1,4 +1,4 @@
-import {eyeBurn, neonLights} from "./assets/color-scheme-store.js";
+import {duskTillDawn} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -29,17 +29,7 @@ import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewpo
 
 const promiseArray = [];
 
-const createComposition = async (colorScheme) => {
-    const myTestProject = new Project({
-        artist: 'John Ruf',
-        projectName: 'key-frame',
-        projectDirectory: 'src/key-frame',
-        neutrals: ['#FFFFFF'],
-        backgrounds: ['#001F14'],
-        numberOfFrame: 1800,
-        colorScheme: colorScheme,
-    });
-
+function createSecondaryEffects() {
     const secondaryEffects = [];
 
     for (let i = 0; i < 100; i++) {
@@ -75,6 +65,20 @@ const createComposition = async (colorScheme) => {
             }),
         }));
     }
+
+    return secondaryEffects;
+}
+
+const createComposition = async (colorScheme) => {
+    const myTestProject = new Project({
+        artist: 'John Ruf',
+        projectName: 'key-frame',
+        projectDirectory: 'src/key-frame',
+        neutrals: ['#FFFFFF'],
+        backgrounds: ['#001F14'],
+        numberOfFrame: 1800,
+        colorScheme: colorScheme,
+    });
 
     for (let i = 0; i < 3; i++) {
         await myTestProject.addPrimaryEffect({
@@ -140,7 +144,7 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
                     featherTimes: {lower: 5, upper: 5},
                 }),
-                possibleSecondaryEffects: []
+                possibleSecondaryEffects: createSecondaryEffects(),
             }),
         });
     }
@@ -172,7 +176,7 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
                 }),
-                possibleSecondaryEffects: []
+                possibleSecondaryEffects: createSecondaryEffects(),
             }),
         });
     }
@@ -203,7 +207,7 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
                 }),
-                possibleSecondaryEffects: []
+                possibleSecondaryEffects: createSecondaryEffects(),
             }),
         });
     }
@@ -216,7 +220,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: true,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.6,
-                center: new Point2D(1080 / 2, (1920-150) / 2),
+                center: new Point2D(1080 / 2, (1920 - 150) / 2),
                 color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 stroke: 2,
@@ -234,7 +238,7 @@ const createComposition = async (colorScheme) => {
                 blurRange: {bottom: {lower: 2, upper: 3}, top: {lower: 5, upper: 8}},
                 featherTimes: {lower: 6, upper: 6},
             }),
-            possibleSecondaryEffects: secondaryEffects
+            possibleSecondaryEffects: createSecondaryEffects(),
         }),
     });
 
@@ -295,6 +299,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(eyeBurn);
+await createComposition(duskTillDawn);
 
 await Promise.all(promiseArray);

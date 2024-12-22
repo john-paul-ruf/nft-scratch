@@ -69,3 +69,12 @@ export const eyeBurn = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: eye-burn\n"
 });
+
+export const duskTillDawn = new ColorScheme({
+    colorBucket: [
+        '#9D00FF',
+        '#005CFF',
+        '#FFFF00',
+    ],
+    colorSchemeInfo: "**Color Strategy**: dusk till dawn\n"
+});
