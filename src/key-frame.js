@@ -221,7 +221,7 @@ const createComposition = async (colorScheme) => {
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.6,
                 center: new Point2D(1080 / 2, (1920 - 150) / 2),
-                color: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                color: new ColorPicker(ColorPicker.SelectionType.color,'#4B0082'),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 stroke: 2,
                 thickness: 24,
