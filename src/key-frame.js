@@ -28,7 +28,7 @@ const promiseArray = [];
 function createSecondaryEffects() {
     const secondaryEffects = [];
 
-    for (let i = 0; i < 150; i++) {
+    for (let i = 0; i < 100; i++) {
         secondaryEffects.push(new LayerConfig({
             effect: CRTDegaussEffect,
             percentChance: getRandomIntInclusive(20, 40),
@@ -36,7 +36,7 @@ function createSecondaryEffects() {
                 keyFrames: [getRandomIntInclusive(0, 1675)],
                 glitchFrameCount: [getRandomIntInclusive(15, 125)],
                 sectionHeight: [1, 5, 10],
-                offset: {lower: 1, upper: 10},
+                offset: {lower: 1, upper: 5},
                 direction: [-1, 1],
                 glitchTimes: {lower: 1, upper: 5},
                 backgroundRed: {lower: 0, upper: 0},
