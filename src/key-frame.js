@@ -1,4 +1,4 @@
-import {duskTillDawn, neonLights} from "./assets/color-scheme-store.js";
+import {neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -7,15 +7,11 @@ import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crt
 import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
 import {CRTShadowConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 import {CRTShadowEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
-import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
 import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
 import {RedEyeEffect} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {PixelateKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameEffect.js";
-import {PixelateKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/pixelate/PixelateKeyFrameConfig.js";
 import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
 import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
@@ -23,8 +19,6 @@ import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/Percen
 import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
-import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
 import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
 import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
 
@@ -54,19 +48,19 @@ function createSecondaryEffects() {
     }
 
 
- /*   for (let i = 0; i < 25; i++) {
-        secondaryEffects.push(new LayerConfig({
-            effect: PixelateKeyFrameEffect,
-            percentChance: getRandomIntInclusive(25, 25),
-            currentEffectConfig: new PixelateKeyFrameConfig({
-                keyFrames: [getRandomIntInclusive(0, 1725)],
-                glitchFrameCount: [getRandomIntInclusive(15, 75)],
-                lowerRange: {lower: 0, upper: 0},
-                upperRange: {lower: 3, upper: 8},
-                times: {lower: 1, upper: 1},
-            }),
-        }));
-    }*/
+    /*   for (let i = 0; i < 25; i++) {
+           secondaryEffects.push(new LayerConfig({
+               effect: PixelateKeyFrameEffect,
+               percentChance: getRandomIntInclusive(25, 25),
+               currentEffectConfig: new PixelateKeyFrameConfig({
+                   keyFrames: [getRandomIntInclusive(0, 1725)],
+                   glitchFrameCount: [getRandomIntInclusive(15, 75)],
+                   lowerRange: {lower: 0, upper: 0},
+                   upperRange: {lower: 3, upper: 8},
+                   times: {lower: 1, upper: 1},
+               }),
+           }));
+       }*/
 
     return secondaryEffects;
 }
@@ -81,6 +75,58 @@ const createComposition = async (colorScheme) => {
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
+
+    const ampCount = 6;
+    const lineStartInitial = 80;
+    const gap = 10;
+    const gapReduction = 1;
+    const lineLength = 100;
+    const lineReduction = 5;
+
+    function getLineLength(index) {
+        return lineLength - (lineReduction * index);
+    }
+
+    function getLineStart(index) {
+        let result = 0;
+
+        result += lineStartInitial;
+
+        for(let i = 0; i < index; i++) {
+            result += getLineLength(i);
+        }
+
+        result += ((gap * index) - (gapReduction * index))
+
+        return result;
+    }
+
+    for (let i = 0; i < ampCount; i++) {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: AmpEffect,
+                percentChance: 100,
+                currentEffectConfig: new AmpConfig({
+                    invertLayers: true,
+                    layerOpacity: 0.7,
+                    underLayerOpacity: 0.5,
+                    sparsityFactor: [ampCount - i],
+                    stroke: 1,
+                    thickness: 1,
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                    featherTimes: {lower: 2, upper: 4},
+                    speed: {lower: 72, upper: 72},
+                    length: getLineLength(i),
+                    lineStart: getLineStart(i),
+                    center: {x: 1080 / 2, y: 1920 / 2},
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                }),
+                possibleSecondaryEffects: createSecondaryEffects(),
+            }),
+        });
+    }
 
     for (let i = 0; i < 3; i++) {
         await myTestProject.addPrimaryEffect({
@@ -103,31 +149,31 @@ const createComposition = async (colorScheme) => {
                             minPercentage: 0,
                             maxPercentage: 20,
                             max: new Range(4, 12),
-                            times: new Range(1+i, 2+i),
+                            times: new Range(1 + i, 2 + i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 20,
                             maxPercentage: 40,
                             max: new Range(4, 12),
-                            times: new Range(1+i, 2+i),
+                            times: new Range(1 + i, 2 + i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 40,
                             maxPercentage: 60,
                             max: new Range(4, 12),
-                            times: new Range(1+i, 2+i),
+                            times: new Range(1 + i, 2 + i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 60,
                             maxPercentage: 80,
                             max: new Range(4, 12),
-                            times: new Range(1+i, 2+i),
+                            times: new Range(1 + i, 2 + i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 80,
                             maxPercentage: 100,
                             max: new Range(4, 12),
-                            times: new Range(1+i, 2+i),
+                            times: new Range(1 + i, 2 + i),
                         }),
                     ],
 
@@ -214,38 +260,7 @@ const createComposition = async (colorScheme) => {
         });
     }
 
-    const ampCount = 6;
-    const lineStartInitial = 40;
-    const LineStartGrowth = 10;
-    const lineLength= 120;
-    const LineReduction = 10;
 
-    for (let i = 0; i < ampCount; i++) {
-        await myTestProject.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: AmpEffect,
-                percentChance: 100,
-                currentEffectConfig: new AmpConfig({
-                    invertLayers: true,
-                    layerOpacity: 0.7,
-                    underLayerOpacity: 0.5,
-                    sparsityFactor: [ampCount-i],
-                    stroke: 1,
-                    thickness: 1,
-                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
-                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                    featherTimes: {lower: 2, upper: 4},
-                    speed: {lower: 72, upper: 72},
-                    length: lineLength - (LineReduction * (i)),
-                    lineStart: lineStartInitial + (lineLength * (i)) + (LineStartGrowth * (i+i)) - (LineReduction * (i)),
-                    center: {x: 1080 / 2, y: 1920 / 2},
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                }),
-                possibleSecondaryEffects: createSecondaryEffects(),
-            }),
-        });
-    }
 
     /////////////////////////////////////
     ///
@@ -289,18 +304,18 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-  /*  await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: CRTBarrelEffect,
-            percentChance: 100,
-            currentEffectConfig: new CRTBarrelConfig({
-                strength: {lower: 0.15, upper: 0.15},
-                edgeThreshold: {lower: 0.1, upper: 0.1},
-                corner: {lower: 0.2, upper: 0.2},
-            }),
-        }),
-    });
-*/
+    /*  await myTestProject.addFinalEffect({
+          layerConfig: new LayerConfig({
+              effect: CRTBarrelEffect,
+              percentChance: 100,
+              currentEffectConfig: new CRTBarrelConfig({
+                  strength: {lower: 0.15, upper: 0.15},
+                  edgeThreshold: {lower: 0.1, upper: 0.1},
+                  corner: {lower: 0.2, upper: 0.2},
+              }),
+          }),
+      });
+  */
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
