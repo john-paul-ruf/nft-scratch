@@ -21,6 +21,8 @@ import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/
 import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
 import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
 import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
+import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
+import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
 
 
 const promiseArray = [];
@@ -47,6 +49,20 @@ function createSecondaryEffects() {
         }));
     }
 
+
+    for (let i = 0; i < 50; i++) {
+        secondaryEffects.push(new LayerConfig({
+            effect: GlowKeyFrameEffect,
+            percentChance: getRandomIntInclusive(20, 40),
+            currentEffectConfig: new GlowKeyFrameConfig({
+                keyFrames: [getRandomIntInclusive(0, 1725)],
+                glitchFrameCount: [getRandomIntInclusive(15, 75)],
+                lowerRange: {lower: 0, upper: 45},
+                upperRange: {lower: 45, upper: 90},
+                times: {lower: 1, upper: 10},
+            }),
+        }));
+    }
 
     /*   for (let i = 0; i < 25; i++) {
            secondaryEffects.push(new LayerConfig({
@@ -76,58 +92,6 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    const ampCount = 6;
-    const lineStartInitial = 80;
-    const gap = 10;
-    const gapReduction = 1;
-    const lineLength = 100;
-    const lineReduction = 5;
-
-    function getLineLength(index) {
-        return lineLength - (lineReduction * index);
-    }
-
-    function getLineStart(index) {
-        let result = 0;
-
-        result += lineStartInitial;
-
-        for(let i = 0; i < index; i++) {
-            result += getLineLength(i);
-        }
-
-        result += ((gap * index) - (gapReduction * index))
-
-        return result;
-    }
-
-    for (let i = 0; i < ampCount; i++) {
-        await myTestProject.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: AmpEffect,
-                percentChance: 100,
-                currentEffectConfig: new AmpConfig({
-                    invertLayers: true,
-                    layerOpacity: 0.7,
-                    underLayerOpacity: 0.5,
-                    sparsityFactor: [ampCount - i],
-                    stroke: 1,
-                    thickness: 1,
-                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
-                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                    featherTimes: {lower: 2, upper: 4},
-                    speed: {lower: 72, upper: 72},
-                    length: getLineLength(i),
-                    lineStart: getLineStart(i),
-                    center: {x: 1080 / 2, y: 1920 / 2},
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                }),
-                possibleSecondaryEffects: createSecondaryEffects(),
-            }),
-        });
-    }
-
     for (let i = 0; i < 3; i++) {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
@@ -149,31 +113,31 @@ const createComposition = async (colorScheme) => {
                             minPercentage: 0,
                             maxPercentage: 20,
                             max: new Range(4, 12),
-                            times: new Range(1 + i, 2 + i),
+                            times: new Range(1, i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 20,
                             maxPercentage: 40,
                             max: new Range(4, 12),
-                            times: new Range(1 + i, 2 + i),
+                            times: new Range(1, i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 40,
                             maxPercentage: 60,
                             max: new Range(4, 12),
-                            times: new Range(1 + i, 2 + i),
+                            times: new Range(1, i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 60,
                             maxPercentage: 80,
                             max: new Range(4, 12),
-                            times: new Range(1 + i, 2 + i),
+                            times: new Range(1, i),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 80,
                             maxPercentage: 100,
                             max: new Range(4, 12),
-                            times: new Range(1 + i, 2 + i),
+                            times: new Range(1, i),
                         }),
                     ],
 
@@ -186,7 +150,7 @@ const createComposition = async (colorScheme) => {
                     flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.75), new PercentageLongestSide(1)),
                     flareRaysStroke: new Range(3, 3),
                     flareRayThickness: new Range(1, 1),
-                    flareOffset: new PercentageRange(new PercentageShortestSide(0.1), new PercentageShortestSide(0.15)),
+                    flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
 
                     accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
                     blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
@@ -197,39 +161,61 @@ const createComposition = async (colorScheme) => {
         });
     }
 
+    const ampCount = 6;
+    const lineStartInitial = 80;
+    const gap = 20;
+    const gapReduction = 2;
+    const lineLength = 80;
+    const lineReduction = 10;
 
-    let redEyeCount = 4;
+    function getLineLength(index) {
+        return lineLength - (lineReduction * index);
+    }
 
-    for (let i = 0; i < redEyeCount; i++) {
+    function getLineStart(index) {
+        let result = 0;
+
+        result += lineStartInitial;
+
+        for (let i = 0; i < index; i++) {
+            result += getLineLength(i);
+        }
+
+        result += ((gap * index) - (gapReduction * index))
+
+        return result;
+    }
+
+    for (let i = 0; i < ampCount; i++) {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
-                effect: RedEyeEffect,
+                effect: AmpEffect,
                 percentChance: 100,
-                currentEffectConfig: new RedEyeConfig({
+                currentEffectConfig: new AmpConfig({
                     invertLayers: true,
-                    layerOpacity: 0.8,
-                    underLayerOpacity: 0.7,
-                    center: new Point2D(1080 / 2, 1920 / 2),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    invertDirection: ampCount % i === 0,
+                    layerOpacity: 0.7,
+                    underLayerOpacity: 0.5,
+                    sparsityFactor: [ampCount - i],
                     stroke: 1,
                     thickness: 1,
-                    sparsityFactor: [9, 10, 12],
-                    innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.25, myTestProject.shortestSideInPixels * 0.25),
-                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.40, myTestProject.shortestSideInPixels * 0.40),
-                    possibleJumpRangeInPixels: {lower: 10, upper: 20},
-                    lineLength: {lower: 150, upper: 300},
-                    numberOfLoops: {lower: 1, upper: 2},
-                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
-                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
-                    featherTimes: {lower: 3, upper: 3},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                    featherTimes: {lower: 2, upper: 4},
+                    speed: {lower: 36, upper: 36},
+                    length: getLineLength(i),
+                    lineStart: getLineStart(i),
+                    center: {x: 1080 / 2, y: 1920 / 2},
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 }),
                 possibleSecondaryEffects: createSecondaryEffects(),
             }),
         });
     }
 
-    redEyeCount = 6;
+
+    const redEyeCount = 8;
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -259,7 +245,6 @@ const createComposition = async (colorScheme) => {
             }),
         });
     }
-
 
 
     /////////////////////////////////////
@@ -293,8 +278,8 @@ const createComposition = async (colorScheme) => {
                 shadowOpacityRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 0.9, upper: 0.9}},
                 linesOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.7, upper: 0.7}},
                 opacityTimes: {lower: 2, upper: 2},
-                lineRed: {lower: 0, upper: 0},
-                lineGreen: {lower: 127, upper: 127},
+                lineRed: {lower: 127, upper: 127},
+                lineGreen: {lower: 0, upper: 0},
                 lineBlue: {lower: 0, upper: 0},
                 lineHeight: {lower: 0.25, upper: 0.25},
                 edgePercentage: {lower: 0.3, upper: 0.30},

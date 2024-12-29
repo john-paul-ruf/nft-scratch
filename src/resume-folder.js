@@ -1,5 +1,5 @@
 
-// src/key-frame/key-frame-97nd2pe/key-frame-97nd2pe-settings.json
+// src/key-frame/key-frame-jjszula/key-frame-jjszula-settings.json
 
 
 import inquirer from "inquirer";
