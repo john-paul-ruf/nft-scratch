@@ -100,8 +100,8 @@ const createComposition = async (colorScheme) => {
         artist: 'John Ruf',
         projectName: 'key-frame',
         projectDirectory: 'src/key-frame',
-        neutrals: ['#FFFFFF'],
-        backgrounds: ['#001F14'],
+        neutrals: ['#D9D9D9'],
+        backgrounds: ['#3A003A'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
@@ -156,7 +156,7 @@ const createComposition = async (colorScheme) => {
                     ],
 
                     numberOfFlareRings: new Range(10, 10),
-                    flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageLongestSide(0.7)),
+                    flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.45)),
                     flareRingStroke: new Range(3, 3),
                     flareRingThickness: new Range(1, 1),
 
@@ -206,7 +206,7 @@ const createComposition = async (colorScheme) => {
                 effect: AmpEffect,
                 percentChance: 100,
                 currentEffectConfig: new AmpConfig({
-                    invertLayers: true,
+                    invertLayers: false,
                     invertDirection: ampCount % i === 0,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
@@ -229,7 +229,7 @@ const createComposition = async (colorScheme) => {
     }
 
 
-    const redEyeCount = 8;
+    const redEyeCount = 12;
 
     for (let i = 0; i < redEyeCount; i++) {
         await myTestProject.addPrimaryEffect({
@@ -238,19 +238,19 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
                     invertLayers: true,
-                    layerOpacity: 0.8,
-                    underLayerOpacity: 0.7,
+                    layerOpacity: 0.7,
+                    underLayerOpacity: 0.5,
                     center: new Point2D(1080 / 2, 1920 / 2),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
                     thickness: 1,
                     sparsityFactor: [9, 10, 12],
-                    innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.5, myTestProject.shortestSideInPixels * 0.5),
-                    outerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.8, myTestProject.shortestSideInPixels * 0.8),
+                    innerRadius: getRandomIntInclusive(myTestProject.shortestSideInPixels * 0.48, myTestProject.shortestSideInPixels * 0.58),
+                    outerRadius: getRandomIntInclusive(myTestProject.longestSideInPixels * 0.45, myTestProject.longestSideInPixels * 0.45),
                     possibleJumpRangeInPixels: {lower: 10, upper: 20},
-                    lineLength: {lower: 150, upper: 300},
-                    numberOfLoops: {lower: 1, upper: 2},
+                    lineLength: {lower: 100, upper: 400},
+                    numberOfLoops: {lower: 1, upper: 4},
                     accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
                     blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
                     featherTimes: {lower: 3, upper: 3},
@@ -284,24 +284,24 @@ const createComposition = async (colorScheme) => {
     });
 
 
-   /* await myTestProject.addFinalEffect({
+   await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect,
             percentChance: 100,
             currentEffectConfig: new CRTShadowConfig({
-                shadowOpacityRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 0.9, upper: 0.9}},
-                linesOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.7, upper: 0.7}},
+                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
+                linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
                 opacityTimes: {lower: 2, upper: 2},
-                lineRed: {lower: 127, upper: 127},
-                lineGreen: {lower: 0, upper: 0},
-                lineBlue: {lower: 127, upper: 127},
+                lineRed: {lower: 0, upper: 0},
+                lineGreen: {lower: 127, upper: 127},
+                lineBlue: {lower: 64, upper: 64},
                 lineHeight: {lower: 0.5, upper: 0.5},
-                edgePercentage: {lower: 0.4, upper: 0.4},
+                edgePercentage: {lower: 0.3, upper: 0.3},
                 maxLineHeight: {lower: 4, upper: 4},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
-    });*/
+    });
 
     /*  await myTestProject.addFinalEffect({
           layerConfig: new LayerConfig({
