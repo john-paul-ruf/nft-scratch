@@ -23,6 +23,8 @@ import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffe
 import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
 import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
 import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
+import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
+import {FadeKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
 
 
 const promiseArray = [];
@@ -30,7 +32,7 @@ const promiseArray = [];
 function createSecondaryEffects() {
     const secondaryEffects = [];
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
         secondaryEffects.push(new LayerConfig({
             effect: CRTDegaussEffect,
             percentChance: getRandomIntInclusive(20, 40),
@@ -57,9 +59,21 @@ function createSecondaryEffects() {
             currentEffectConfig: new GlowKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
-                lowerRange: {lower: 0, upper: 45},
-                upperRange: {lower: 45, upper: 90},
-                times: {lower: 1, upper: 10},
+                lowerRange: {lower: 30, upper: 60},
+                times: {lower: 1, upper: 2},
+            }),
+        }));
+    }
+
+    for (let i = 0; i < 50; i++) {
+        secondaryEffects.push(new LayerConfig({
+            effect: FadeKeyFrameEffect,
+            percentChance: getRandomIntInclusive(20, 40),
+            currentEffectConfig: new FadeKeyFrameConfig({
+                keyFrames: [getRandomIntInclusive(0, 1725)],
+                glitchFrameCount: [getRandomIntInclusive(15, 75)],
+                lowerRange: { lower: 0.6, upper: 0.8 },
+                times: {lower: 1, upper: 2},
             }),
         }));
     }
@@ -113,31 +127,31 @@ const createComposition = async (colorScheme) => {
                             minPercentage: 0,
                             maxPercentage: 20,
                             max: new Range(4, 12),
-                            times: new Range(1, i),
+                            times: new Range(1, i+1),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 20,
                             maxPercentage: 40,
                             max: new Range(4, 12),
-                            times: new Range(1, i),
+                            times: new Range(1, i+1),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 40,
                             maxPercentage: 60,
                             max: new Range(4, 12),
-                            times: new Range(1, i),
+                            times: new Range(1, i+1),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 60,
                             maxPercentage: 80,
                             max: new Range(4, 12),
-                            times: new Range(1, i),
+                            times: new Range(1, i+1),
                         }),
                         new MultiStepDefinitionConfig({
                             minPercentage: 80,
                             maxPercentage: 100,
                             max: new Range(4, 12),
-                            times: new Range(1, i),
+                            times: new Range(1, i+1),
                         }),
                     ],
 
