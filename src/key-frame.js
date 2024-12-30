@@ -269,21 +269,6 @@ const createComposition = async (colorScheme) => {
     ///
     /////////////////////////////////////
 
-    await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: CRTScanLinesEffect,
-            percentChance: 100,
-            currentEffectConfig: new CRTScanLinesConfig({
-                lines: {lower: 50, upper: 50},
-                loopTimes: {lower: 1, upper: 2},
-                brightness: {lower: 3000, upper: 4000},
-                thickness: {lower: 12, upper: 12},
-                lineBlur: {lower: 4, upper: 4},
-            }),
-        }),
-    });
-
-
    await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect,
@@ -300,6 +285,20 @@ const createComposition = async (colorScheme) => {
                 maxLineHeight: {lower: 4, upper: 4},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTScanLinesEffect,
+            percentChance: 100,
+            currentEffectConfig: new CRTScanLinesConfig({
+                lines: {lower: 50, upper: 50},
+                loopTimes: {lower: 1, upper: 2},
+                brightness: {lower: 3000, upper: 4000},
+                thickness: {lower: 12, upper: 12},
+                lineBlur: {lower: 4, upper: 4},
+            }),
         }),
     });
 
