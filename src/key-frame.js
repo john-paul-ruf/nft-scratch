@@ -284,7 +284,7 @@ const createComposition = async (colorScheme) => {
     });
 
 
-    await myTestProject.addFinalEffect({
+   /* await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect,
             percentChance: 100,
@@ -294,14 +294,14 @@ const createComposition = async (colorScheme) => {
                 opacityTimes: {lower: 2, upper: 2},
                 lineRed: {lower: 127, upper: 127},
                 lineGreen: {lower: 0, upper: 0},
-                lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 0.25, upper: 0.25},
-                edgePercentage: {lower: 0.3, upper: 0.30},
+                lineBlue: {lower: 127, upper: 127},
+                lineHeight: {lower: 0.5, upper: 0.5},
+                edgePercentage: {lower: 0.4, upper: 0.4},
                 maxLineHeight: {lower: 4, upper: 4},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
-    });
+    });*/
 
     /*  await myTestProject.addFinalEffect({
           layerConfig: new LayerConfig({
