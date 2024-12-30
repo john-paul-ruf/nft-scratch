@@ -60,7 +60,7 @@ function createSecondaryEffects() {
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
                 lowerRange: {lower: 30, upper: 60},
-                times: {lower: 1, upper: 2},
+                times: {lower: 1, upper: 1},
             }),
         }));
     }
@@ -73,7 +73,7 @@ function createSecondaryEffects() {
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
                 lowerRange: { lower: 0.6, upper: 0.8 },
-                times: {lower: 1, upper: 2},
+                times: {lower: 1, upper: 1},
             }),
         }));
     }
