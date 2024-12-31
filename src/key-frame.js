@@ -25,6 +25,8 @@ import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/Gl
 import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
 import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
 import {FadeKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
+import {BlurKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameEffect.js";
+import {BlurKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameConfig.js";
 
 
 const promiseArray = [];
@@ -74,6 +76,19 @@ function createSecondaryEffects() {
                 glitchFrameCount: [getRandomIntInclusive(15, 75)],
                 lowerRange: { lower: 0.6, upper: 0.8 },
                 times: {lower: 1, upper: 1},
+            }),
+        }));
+    }
+
+    for (let i = 0; i < 50; i++) {
+        secondaryEffects.push(new LayerConfig({
+            effect: BlurKeyFrameEffect,
+            percentChance: getRandomIntInclusive(20, 40),
+            currentEffectConfig: new BlurKeyFrameConfig({
+                keyFrames: [getRandomIntInclusive(0, 1725)],
+                glitchFrameCount: [getRandomIntInclusive(15, 75)],
+                upperRange: { lower: 4, upper: 12 },
+                times: { lower: 1, upper: 1 },
             }),
         }));
     }
