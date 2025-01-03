@@ -224,7 +224,7 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new AmpConfig({
                     invertLayers: false,
-                    invertDirection: ampCount % i === 0,
+                    invertDirection: ampCount % 2 === 0,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
                     sparsityFactor: [ampCount - i],
