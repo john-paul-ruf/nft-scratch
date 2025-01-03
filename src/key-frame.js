@@ -60,7 +60,7 @@ function createSecondaryEffects() {
             percentChance: getRandomIntInclusive(10, 25),
             currentEffectConfig: new GlowKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
-                glitchFrameCount: [getRandomIntInclusive(15, 75)],
+                glitchFrameCount: [getRandomIntInclusive(45, 75)],
                 lowerRange: {lower: 6, upper: 12},
                 times: {lower: 1, upper: 1},
             }),
@@ -73,7 +73,7 @@ function createSecondaryEffects() {
             percentChance: getRandomIntInclusive(10, 25),
             currentEffectConfig: new FadeKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
-                glitchFrameCount: [getRandomIntInclusive(15, 75)],
+                glitchFrameCount: [getRandomIntInclusive(45, 75)],
                 lowerRange: { lower: 0.8, upper: 0.9 },
                 times: {lower: 1, upper: 1},
             }),
@@ -86,7 +86,7 @@ function createSecondaryEffects() {
             percentChance: getRandomIntInclusive(10, 25),
             currentEffectConfig: new BlurKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
-                glitchFrameCount: [getRandomIntInclusive(15, 75)],
+                glitchFrameCount: [getRandomIntInclusive(45, 75)],
                 upperRange: { lower: 2, upper: 4 },
                 times: { lower: 1, upper: 1 },
             }),
@@ -121,7 +121,7 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    for (let i = 0; i < 3; i++) { //three batches of three
+    for (let i = 0; i < 5; i++) { //five batches of three
         for (let i = 0; i < 3; i++) {
             await myTestProject.addPrimaryEffect({
                 layerConfig: new LayerConfig({
@@ -199,6 +199,8 @@ const createComposition = async (colorScheme) => {
     const lineLength = 80;
     const lineReduction = 10;
 
+    let invertDirection = false;
+
     function getLineLength(index) {
         return lineLength - (lineReduction * index);
     }
@@ -218,13 +220,14 @@ const createComposition = async (colorScheme) => {
     }
 
     for (let i = 0; i < ampCount; i++) {
+        invertDirection = !invertDirection;
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: AmpEffect,
                 percentChance: 100,
                 currentEffectConfig: new AmpConfig({
                     invertLayers: false,
-                    invertDirection: ampCount % 2 === 0,
+                    invertDirection:invertDirection,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
                     sparsityFactor: [ampCount - i],
