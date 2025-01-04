@@ -121,6 +121,9 @@ const createComposition = async (colorScheme) => {
         backgrounds: ['#3A003A'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
+        longestSideInPixels: 3840,
+        shortestSideInPixels: 2160,
+        isHorizontal: false,
     });
 
     const ampCount = 6;
@@ -167,10 +170,10 @@ const createComposition = async (colorScheme) => {
                     accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
                     blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                     featherTimes: {lower: 2, upper: 4},
-                    speed: {lower: 72, upper: 72},
+                    speed: {lower: 8, upper: 8},
                     length: getLineLength(i),
                     lineStart: getLineStart(i),
-                    center: {x: 1080 / 2, y: 1920 / 2},
+                    center: {x: 2160 / 2, y: 3840 / 2},
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 }),
@@ -186,6 +189,7 @@ const createComposition = async (colorScheme) => {
                     effect: FuzzFlareEffect,
                     percentChance: 100,
                     currentEffectConfig: new FuzzFlareConfig({
+                        center: new Point2D(2160 / 2, 3840 / 2),
                         invertLayers: true,
 
                         outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
