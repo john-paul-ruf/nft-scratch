@@ -78,3 +78,17 @@ export const duskTillDawn = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: dusk till dawn\n"
 });
+
+
+export const neonHarmony = new ColorScheme({
+    colorBucket: [
+        '#00E5FF',
+        '#39FF14',
+        '#FFEA00',
+        '#FF7A00',
+        '#FF007F',
+        '#7D00FF',
+        '#FF1744'
+    ],
+    colorSchemeInfo: "**Color Strategy**:neon harmony\n"
+});

@@ -1,4 +1,4 @@
-import {neonLights} from "./assets/color-scheme-store.js";
+import {neonHarmony, neonLights} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -27,6 +27,8 @@ import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/Fa
 import {FadeKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
 import {BlurKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameEffect.js";
 import {BlurKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameConfig.js";
+import {PorousEffect} from "my-nft-gen/src/effects/primaryEffects/porous/PorousEffect.js";
+import {PorousConfig} from "my-nft-gen/src/effects/primaryEffects/porous/PorousConfig.js";
 
 
 const promiseArray = [];
@@ -61,7 +63,7 @@ function createSecondaryEffects() {
             currentEffectConfig: new GlowKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(45, 75)],
-                lowerRange: {lower: 6, upper: 12},
+                lowerRange: {lower: 16, upper: 32},
                 times: {lower: 1, upper: 1},
             }),
         }));
@@ -74,7 +76,7 @@ function createSecondaryEffects() {
             currentEffectConfig: new FadeKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(45, 75)],
-                lowerRange: { lower: 0.8, upper: 0.9 },
+                lowerRange: { lower: 0.6, upper: 0.8 },
                 times: {lower: 1, upper: 1},
             }),
         }));
@@ -87,7 +89,7 @@ function createSecondaryEffects() {
             currentEffectConfig: new BlurKeyFrameConfig({
                 keyFrames: [getRandomIntInclusive(0, 1725)],
                 glitchFrameCount: [getRandomIntInclusive(45, 75)],
-                upperRange: { lower: 2, upper: 4 },
+                upperRange: { lower: 2, upper: 6 },
                 times: { lower: 1, upper: 1 },
             }),
         }));
@@ -121,7 +123,7 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    for (let i = 0; i < 5; i++) { //five batches of three
+    for (let i = 0; i < 3; i++) { //batches of three
         for (let i = 0; i < 3; i++) {
             await myTestProject.addPrimaryEffect({
                 layerConfig: new LayerConfig({
@@ -142,31 +144,31 @@ const createComposition = async (colorScheme) => {
                             new MultiStepDefinitionConfig({
                                 minPercentage: 0,
                                 maxPercentage: 20,
-                                max: new Range(4, 12),
+                                max: new Range(2, 6),
                                 times: new Range(1, i + 1),
                             }),
                             new MultiStepDefinitionConfig({
                                 minPercentage: 20,
                                 maxPercentage: 40,
-                                max: new Range(4, 12),
+                                max: new Range(2, 6),
                                 times: new Range(1, i + 1),
                             }),
                             new MultiStepDefinitionConfig({
                                 minPercentage: 40,
                                 maxPercentage: 60,
-                                max: new Range(4, 12),
+                                max: new Range(2, 6),
                                 times: new Range(1, i + 1),
                             }),
                             new MultiStepDefinitionConfig({
                                 minPercentage: 60,
                                 maxPercentage: 80,
-                                max: new Range(4, 12),
+                                max: new Range(2, 6),
                                 times: new Range(1, i + 1),
                             }),
                             new MultiStepDefinitionConfig({
                                 minPercentage: 80,
                                 maxPercentage: 100,
-                                max: new Range(4, 12),
+                                max: new Range(2, 6),
                                 times: new Range(1, i + 1),
                             }),
                         ],
@@ -230,7 +232,7 @@ const createComposition = async (colorScheme) => {
                     invertDirection:invertDirection,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
-                    sparsityFactor: [ampCount - i],
+                    sparsityFactor: [i+1],
                     stroke: 3,
                     thickness: 1,
                     accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
@@ -280,6 +282,17 @@ const createComposition = async (colorScheme) => {
         });
     }*/
 
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: PorousEffect,
+            percentChance: 100,
+            currentEffectConfig: new PorousConfig({
+                layerOpacity: 0.85,
+            }),
+            possibleSecondaryEffects: createSecondaryEffects(),
+        }),
+    });
 
     /////////////////////////////////////
     ///
@@ -337,6 +350,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(neonLights);
+await createComposition(neonHarmony);
 
 await Promise.all(promiseArray);
