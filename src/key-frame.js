@@ -123,77 +123,6 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    for (let i = 0; i < 3; i++) { //batches of three
-        for (let i = 0; i < 3; i++) {
-            await myTestProject.addPrimaryEffect({
-                layerConfig: new LayerConfig({
-                    effect: FuzzFlareEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new FuzzFlareConfig({
-                        invertLayers: true,
-
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-
-                        layerOpacity: 0.7,
-
-                        underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
-                        underLayerOpacityTimes: {lower: 2, upper: 12},
-
-                        elementGastonMultiStep: [
-                            new MultiStepDefinitionConfig({
-                                minPercentage: 0,
-                                maxPercentage: 20,
-                                max: new Range(2, 6),
-                                times: new Range(1, i + 1),
-                            }),
-                            new MultiStepDefinitionConfig({
-                                minPercentage: 20,
-                                maxPercentage: 40,
-                                max: new Range(2, 6),
-                                times: new Range(1, i + 1),
-                            }),
-                            new MultiStepDefinitionConfig({
-                                minPercentage: 40,
-                                maxPercentage: 60,
-                                max: new Range(2, 6),
-                                times: new Range(1, i + 1),
-                            }),
-                            new MultiStepDefinitionConfig({
-                                minPercentage: 60,
-                                maxPercentage: 80,
-                                max: new Range(2, 6),
-                                times: new Range(1, i + 1),
-                            }),
-                            new MultiStepDefinitionConfig({
-                                minPercentage: 80,
-                                maxPercentage: 100,
-                                max: new Range(2, 6),
-                                times: new Range(1, i + 1),
-                            }),
-                        ],
-
-                        numberOfFlareRings: new Range(3, 3),
-                        flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.48)),
-                        flareRingStroke: new Range(2, 2),
-                        flareRingThickness: new Range(1, 1),
-
-                        numberOfFlareRays: new Range(5, 5),
-                        flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.75), new PercentageLongestSide(1)),
-                        flareRaysStroke: new Range(2, 2),
-                        flareRayThickness: new Range(1, 1),
-                        flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
-
-                        accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
-                        blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
-                        featherTimes: {lower: 5, upper: 5},
-                    }),
-                    possibleSecondaryEffects: createSecondaryEffects(),
-                }),
-            });
-        }
-    }
-
     const ampCount = 6;
     const lineStartInitial = myTestProject.shortestSideInPixels * 0.48;
     const gap = 10;
@@ -248,6 +177,77 @@ const createComposition = async (colorScheme) => {
                 possibleSecondaryEffects: []//createSecondaryEffects(),
             }),
         });
+    }
+
+    for (let i = 0; i < 3; i++) { //batches of three
+        for (let i = 0; i < 3; i++) {
+            await myTestProject.addPrimaryEffect({
+                layerConfig: new LayerConfig({
+                    effect: FuzzFlareEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new FuzzFlareConfig({
+                        invertLayers: true,
+
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+
+                        layerOpacity: 0.7,
+
+                        underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
+                        underLayerOpacityTimes: {lower: 2, upper: 12},
+
+                        elementGastonMultiStep: [
+                            new MultiStepDefinitionConfig({
+                                minPercentage: 0,
+                                maxPercentage: 20,
+                                max: new Range(2, 6),
+                                times: new Range(1, i + 1),
+                            }),
+                            new MultiStepDefinitionConfig({
+                                minPercentage: 20,
+                                maxPercentage: 40,
+                                max: new Range(2, 6),
+                                times: new Range(1, i + 1),
+                            }),
+                            new MultiStepDefinitionConfig({
+                                minPercentage: 40,
+                                maxPercentage: 60,
+                                max: new Range(2, 6),
+                                times: new Range(1, i + 1),
+                            }),
+                            new MultiStepDefinitionConfig({
+                                minPercentage: 60,
+                                maxPercentage: 80,
+                                max: new Range(2, 6),
+                                times: new Range(1, i + 1),
+                            }),
+                            new MultiStepDefinitionConfig({
+                                minPercentage: 80,
+                                maxPercentage: 100,
+                                max: new Range(2, 6),
+                                times: new Range(1, i + 1),
+                            }),
+                        ],
+
+                        numberOfFlareRings: new Range(1, 2),
+                        flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.48)),
+                        flareRingStroke: new Range(2, 2),
+                        flareRingThickness: new Range(1, 1),
+
+                        numberOfFlareRays: new Range(3, 6),
+                        flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.75), new PercentageLongestSide(1)),
+                        flareRaysStroke: new Range(2, 2),
+                        flareRayThickness: new Range(1, 1),
+                        flareOffset: new PercentageRange(new PercentageShortestSide(0.05), new PercentageShortestSide(0.15)),
+
+                        accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
+                        blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
+                        featherTimes: {lower: 5, upper: 5},
+                    }),
+                    possibleSecondaryEffects: createSecondaryEffects(),
+                }),
+            });
+        }
     }
 
 
