@@ -115,7 +115,7 @@ const createComposition = async (colorScheme) => {
 
     const elementCount = 8;
 
-    const lineStartInitial = myTestProject.shortestSideInPixels * 0.48;
+    const lineStartInitial = myTestProject.shortestSideInPixels * 0.2;
     const gap = 32;
     const gapReduction = 5;
     const lineLength = 100;
@@ -141,7 +141,7 @@ const createComposition = async (colorScheme) => {
         return result;
     }
 
-    for (let i = 0; i < elementCount; i++) {
+    for (let i = 0; i < 12; i++) {
         invertDirection = !invertDirection;
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
