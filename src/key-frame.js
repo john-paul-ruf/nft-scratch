@@ -1,4 +1,4 @@
-import {activatingVishuddha} from "./assets/color-scheme-store.js";
+import {activatingVishuddha, neonHarmony} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -115,7 +115,7 @@ const createComposition = async (colorScheme) => {
 
     const elementCount = 8;
 
-    const lineStartInitial = myTestProject.shortestSideInPixels * 0.2;
+    const lineStartInitial = myTestProject.shortestSideInPixels * 0.1;
     const gap = 32;
     const gapReduction = 5;
     const lineLength = 100;
@@ -141,7 +141,7 @@ const createComposition = async (colorScheme) => {
         return result;
     }
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 18; i++) {
         invertDirection = !invertDirection;
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
@@ -340,6 +340,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(activatingVishuddha);
+await createComposition(neonHarmony);
 
 await Promise.all(promiseArray);
