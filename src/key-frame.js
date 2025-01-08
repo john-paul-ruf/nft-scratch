@@ -111,6 +111,8 @@ const createComposition = async (colorScheme) => {
     const stroke = 8;
     const thickness = 4;
 
+    //const elementCount = 1;
+
     const elementCount = 8;
 
     const lineStartInitial = myTestProject.shortestSideInPixels * 0.48;
@@ -305,14 +307,18 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new CRTScanLinesConfig({
                 lines: {lower: 100, upper: 100},
                 loopTimes: {lower: 1, upper: 2},
-                brightness: {lower: 10, upper: 30},
-                thickness: {lower: 4, upper: 8},
-                lineBlur: {lower: 30, upper: 60},
-                colorTint: {
-                    red: {lower: 1, upper: 1},
-                    green: {lower: 1, upper: 1},
-                    blue: {lower: 1.5, upper: 2},
+                brightnessRange: {bottom: {lower: 20, upper: 25}, top: {lower: 50, upper: 75}},
+                brightnessTimes: {lower: 2, upper: 8},
+                thicknessRange: {bottom: {lower: 4, upper:8}, top: {lower: 10, upper: 12}},
+                thicknessTimes: {lower: 2, upper: 8},
+                lineBlurRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
+                lineBlurTimes: {lower: 2, upper: 8},
+                colorTintRange: {
+                    redRange: {bottom: {lower: 0.5, upper: 0.6}, top: {lower: 0.7, upper: 0.8}},
+                    greenRange: {bottom: {lower: 0.5, upper: 0.6}, top: {lower: 0.7, upper: 0.8}},
+                    blueRange: {bottom: {lower: 1.25, upper: 1.5}, top: {lower: 1.75, upper: 2}},
                 },
+                colorTintTimes: {lower: 2, upper: 8},
                 opacityRange: {bottom: {lower: 0.5, upper: 0.6}, top: {lower: 0.7, upper: 0.8}},
                 opacityTimes: {lower: 2, upper: 8},
             }),
