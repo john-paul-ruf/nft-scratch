@@ -111,7 +111,7 @@ const createComposition = async (colorScheme) => {
     const stroke = 8;
     const thickness = 4;
 
-    const elementCount = 1;
+    const elementCount = 8;
 
     const lineStartInitial = myTestProject.shortestSideInPixels * 0.48;
     const gap = 32;
