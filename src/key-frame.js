@@ -1,4 +1,4 @@
-import {activatingVishuddha, neonHarmony} from "./assets/color-scheme-store.js";
+import {activatingSahasrara, activatingVishuddha, earthenVeil, neonHarmony} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -29,69 +29,74 @@ import {BlurKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/blur/Bl
 
 const promiseArray = [];
 
-function createSecondaryEffects() {
-    const secondaryEffects = [];
+function createDegaussEffects(config) {
+    return Array.from({length: config.arraySize}, () => (
+            new LayerConfig({
+                effect: CRTDegaussEffect,
+                percentChance: getRandomIntInclusive(10, 25),
+                currentEffectConfig: new CRTDegaussConfig({
+                    keyFrames: [getRandomIntInclusive(0, 1675)],
+                    glitchFrameCount: [getRandomIntInclusive(15, 125)],
+                    sectionHeight: [1, 5, 10],
+                    offset: {lower: 5, upper: 15},
+                    direction: [-1, 1],
+                    glitchTimes: {lower: 3, upper: 8},
+                    backgroundRed: {lower: 0, upper: 0},
+                    backgroundGreen: {lower: 0, upper: 0},
+                    backgroundBlue: {lower: 0, upper: 0},
+                    backgroundAlpha: {lower: 0, upper: 0},
+                }),
+            })
+        )
+    );
+}
 
-    for (let i = 0; i < 50; i++) {
-        secondaryEffects.push(new LayerConfig({
-            effect: CRTDegaussEffect,
-            percentChance: getRandomIntInclusive(10, 25),
-            currentEffectConfig: new CRTDegaussConfig({
-                keyFrames: [getRandomIntInclusive(0, 1675)],
-                glitchFrameCount: [getRandomIntInclusive(15, 125)],
-                sectionHeight: [1, 5, 10],
-                offset: {lower: 5, upper: 15},
-                direction: [-1, 1],
-                glitchTimes: {lower: 3, upper: 8},
-                backgroundRed: {lower: 0, upper: 0},
-                backgroundGreen: {lower: 0, upper: 0},
-                backgroundBlue: {lower: 0, upper: 0},
-                backgroundAlpha: {lower: 0, upper: 0},
-            }),
-        }));
-    }
+function createGlowEffects(config) {
+    return Array.from({length: config.arraySize}, () => (
+            new LayerConfig({
+                effect: GlowKeyFrameEffect,
+                percentChance: getRandomIntInclusive(20, 40),
+                currentEffectConfig: new GlowKeyFrameConfig({
+                    keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
+                    glitchFrameCount: [getRandomIntInclusive(120, 160)],
+                    lowerRange: {lower: 32, upper: 64},
+                    times: {lower: 1, upper: 2},
+                }),
+            })
+        )
+    );
+}
 
+function createFadeEffects(config) {
+    return Array.from({length: config.arraySize}, () => (
+        new LayerConfig({
+                effect: FadeKeyFrameEffect,
+                percentChance: getRandomIntInclusive(10, 25),
+                currentEffectConfig: new FadeKeyFrameConfig({
+                    keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
+                    glitchFrameCount: [getRandomIntInclusive(120, 160)],
+                    lowerRange: {lower: 0.8, upper: 0.9},
+                    times: {lower: 1, upper: 1},
+                }),
+            })
+        )
+    );
+}
 
-    for (let i = 0; i < 25; i++) {
-        secondaryEffects.push(new LayerConfig({
-            effect: GlowKeyFrameEffect,
-            percentChance: getRandomIntInclusive(20, 40),
-            currentEffectConfig: new GlowKeyFrameConfig({
-                keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
-                glitchFrameCount: [getRandomIntInclusive(120, 160)],
-                lowerRange: {lower: 32, upper: 64},
-                times: {lower: 1, upper: 2},
-            }),
-        }));
-    }
-
-    for (let i = 0; i < 25; i++) {
-        secondaryEffects.push(new LayerConfig({
-            effect: FadeKeyFrameEffect,
-            percentChance: getRandomIntInclusive(10, 25),
-            currentEffectConfig: new FadeKeyFrameConfig({
-                keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
-                glitchFrameCount: [getRandomIntInclusive(120, 160)],
-                lowerRange: {lower: 0.8, upper: 0.9},
-                times: {lower: 1, upper: 1},
-            }),
-        }));
-    }
-
-    for (let i = 0; i < 25; i++) {
-        secondaryEffects.push(new LayerConfig({
-            effect: BlurKeyFrameEffect,
-            percentChance: getRandomIntInclusive(20, 30),
-            currentEffectConfig: new BlurKeyFrameConfig({
-                keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
-                glitchFrameCount: [getRandomIntInclusive(120, 160)],
-                upperRange: {lower: 4, upper: 12},
-                times: {lower: 1, upper: 2},
-            }),
-        }));
-    }
-
-    return secondaryEffects;
+function createBlurffects(config) {
+    return Array.from({length: config.arraySize}, () => (
+            new LayerConfig({
+                effect: BlurKeyFrameEffect,
+                percentChance: getRandomIntInclusive(20, 30),
+                currentEffectConfig: new BlurKeyFrameConfig({
+                    keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
+                    glitchFrameCount: [getRandomIntInclusive(120, 160)],
+                    upperRange: {lower: 4, upper: 12},
+                    times: {lower: 1, upper: 2},
+                }),
+            })
+        )
+    );
 }
 
 const createComposition = async (colorScheme) => {
@@ -103,23 +108,23 @@ const createComposition = async (colorScheme) => {
         backgrounds: ['#3A003A'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
-        longestSideInPixels: 3840,
-        shortestSideInPixels: 2160,
+        longestSideInPixels: 1920,
+        shortestSideInPixels: 1080,
         isHorizontal: false,
     });
 
-    const stroke = 8;
-    const thickness = 4;
+    const stroke = 15;
+    const thickness = 5;
 
     //const elementCount = 1;
 
-    const elementCount = 8;
+    const elementCount = 10;
 
     const lineStartInitial = myTestProject.shortestSideInPixels * 0.1;
-    const gap = 32;
-    const gapReduction = 5;
-    const lineLength = 100;
-    const lineReduction = 4;
+    const gap = 16;
+    const gapReduction = 3;
+    const lineLength = 50;
+    const lineReduction = 2;
 
     let invertDirection = false;
 
@@ -141,7 +146,7 @@ const createComposition = async (colorScheme) => {
         return result;
     }
 
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 12; i++) {
         invertDirection = !invertDirection;
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
@@ -158,10 +163,10 @@ const createComposition = async (colorScheme) => {
                     accentRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
                     blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
                     featherTimes: {lower: 5, upper: 5},
-                    speed: {lower: 8, upper: 8},
+                    speed: {lower: 1, upper: 1},
                     length: getLineLength(i),
                     lineStart: getLineStart(i),
-                    center: {x: 2160 / 2, y: 3840 / 2},
+                    center: {x: myTestProject.shortestSideInPixels / 2, y: myTestProject.longestSideInPixels / 2},
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 }),
@@ -171,13 +176,84 @@ const createComposition = async (colorScheme) => {
     }
 
 
-    for (let i = 0; i < elementCount; i++) {
+    for (let i = 0; i < 20; i++) {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: FuzzFlareEffect,
                 percentChance: 100,
                 currentEffectConfig: new FuzzFlareConfig({
-                    center: new Point2D(2160 / 2, 3840 / 2),
+                    center: new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2),
+                    invertLayers: true,
+
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+
+                    layerOpacity: 0.7,
+
+                    underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
+                    underLayerOpacityTimes: {lower: 2, upper: 12},
+
+                    elementGastonMultiStep: [
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 0,
+                            maxPercentage: 20,
+                            max: new Range(5, 15),
+                            times: new Range(1, 1),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 20,
+                            maxPercentage: 40,
+                            max: new Range(5, 20),
+                            times: new Range(1, 1),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 40,
+                            maxPercentage: 60,
+                            max: new Range(5, 25),
+                            times: new Range(1, 1),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 60,
+                            maxPercentage: 80,
+                            max: new Range(5, 20),
+                            times: new Range(1, 1),
+                        }),
+                        new MultiStepDefinitionConfig({
+                            minPercentage: 80,
+                            maxPercentage: 100,
+                            max: new Range(5, 15),
+                            times: new Range(1, 1),
+                        }),
+                    ],
+
+                    numberOfFlareRings: new Range(0, 0),
+                    flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.45)),
+                    flareRingStroke: new Range(stroke, stroke),
+                    flareRingThickness: new Range(thickness, thickness),
+
+                    numberOfFlareRays: new Range(4, 4),
+                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.75), new PercentageLongestSide(1)),
+                    flareRaysStroke: new Range(stroke, stroke),
+                    flareRayThickness: new Range(thickness, thickness),
+                    flareOffset: new PercentageRange(new PercentageShortestSide(0.2), new PercentageShortestSide(0.45)),
+
+                    accentRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
+                    blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
+                    featherTimes: {lower: 5, upper: 5},
+                }),
+                possibleSecondaryEffects: [...createDegaussEffects({arraySize:5})],
+            }),
+        });
+    }
+
+
+    for (let i = 0; i < 12; i++) {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: FuzzFlareEffect,
+                percentChance: 100,
+                currentEffectConfig: new FuzzFlareConfig({
+                    center: new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2),
                     invertLayers: true,
 
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -226,7 +302,7 @@ const createComposition = async (colorScheme) => {
                     flareRingStroke: new Range(stroke, stroke),
                     flareRingThickness: new Range(thickness, thickness),
 
-                    numberOfFlareRays: new Range(8, 10),
+                    numberOfFlareRays: new Range(0, 0),
                     flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.75), new PercentageLongestSide(1)),
                     flareRaysStroke: new Range(stroke, stroke),
                     flareRayThickness: new Range(thickness, thickness),
@@ -236,11 +312,10 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
                     featherTimes: {lower: 5, upper: 5},
                 }),
-                possibleSecondaryEffects: createSecondaryEffects(),
+                possibleSecondaryEffects: [],
             }),
         });
     }
-
 
     /* const redEyeCount = 12;
 
@@ -303,13 +378,13 @@ const createComposition = async (colorScheme) => {
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect,
-            percentChance: 100,
+            percentChance: 0,
             currentEffectConfig: new CRTScanLinesConfig({
                 lines: {lower: 100, upper: 100},
                 loopTimes: {lower: 1, upper: 2},
                 brightnessRange: {bottom: {lower: 20, upper: 25}, top: {lower: 50, upper: 75}},
                 brightnessTimes: {lower: 2, upper: 8},
-                thicknessRange: {bottom: {lower: 4, upper:8}, top: {lower: 10, upper: 12}},
+                thicknessRange: {bottom: {lower: 4, upper: 8}, top: {lower: 10, upper: 12}},
                 thicknessTimes: {lower: 2, upper: 8},
                 lineBlurRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
                 lineBlurTimes: {lower: 2, upper: 8},
@@ -340,6 +415,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(neonHarmony);
+await createComposition(earthenVeil);
 
 await Promise.all(promiseArray);

@@ -1,18 +1,18 @@
-import {eyeBurn, neonLights} from "./assets/color-scheme-store.js";
-import {Project} from "../../my-nft-gen/src/app/Project.js";
-import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
-import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
-import {CRTScanLinesConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
-import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
-import {CRTShadowConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {CRTShadowEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {CRTBarrelConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
-import {CRTBarrelEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
-import {MappedFramesConfig} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {MappedFramesEffect} from "../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {getRandomFromArray} from "../../my-nft-gen/src/core/math/random.js";
+import {eyeBurn, neonLights} from "../assets/color-scheme-store.js";
+import {Project} from "../../../my-nft-gen/src/app/Project.js";
+import {MultiStepDefinitionConfig} from "../../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
+import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
+import {CRTScanLinesEffect} from "../../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
+import {CRTScanLinesConfig} from "../../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {CRTDegaussConfig} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {CRTDegaussEffect} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTShadowConfig} from "../../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {CRTShadowEffect} from "../../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {CRTBarrelConfig} from "../../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
+import {CRTBarrelEffect} from "../../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
+import {MappedFramesConfig} from "../../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
+import {MappedFramesEffect} from "../../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
+import {getRandomFromArray} from "../../../my-nft-gen/src/core/math/random.js";
 
 
 const promiseArray = [];

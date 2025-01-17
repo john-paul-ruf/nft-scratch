@@ -92,3 +92,17 @@ export const neonHarmony = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**:neon harmony\n"
 });
+
+export const earthenVeil = new ColorScheme({
+    colorBucket: [
+        '#C2A878',
+        '#4B2F20',
+        '#3E6B3B',
+        '#D9C5A7',
+        '#2C2C2C',
+        '#D2B048',
+        '#A15E2E',
+        '#5A6E8A',
+    ],
+    colorSchemeInfo: "**Color Strategy**:earthen-veil\n"
+});
