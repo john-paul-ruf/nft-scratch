@@ -1,6 +1,7 @@
 /src/red-eye/
 /node_modules/
 /.idea/
+/.clinic/
 /src/fuzz-flare/
 /src/key-frame/
 /src/red-eye-mapped-frames/
