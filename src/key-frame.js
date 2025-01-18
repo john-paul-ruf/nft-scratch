@@ -415,6 +415,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(earthenVeil);
+await createComposition(activatingVishuddha);
 
 await Promise.all(promiseArray);

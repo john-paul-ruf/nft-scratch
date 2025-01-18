@@ -1,5 +1,5 @@
 
-// src/key-frame/key-frame-gdirs8i/key-frame-gdirs8i-settings.json
+// src/key-frame/key-frame-dg8941p/key-frame-dg8941p-settings.json
 
 
 import inquirer from "inquirer";
