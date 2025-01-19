@@ -1,4 +1,10 @@
-import {activatingSahasrara, activatingVishuddha, earthenVeil, neonHarmony} from "./assets/color-scheme-store.js";
+import {
+    activatingSahasrara,
+    activatingVishuddha,
+    earthenVeil,
+    eternalRise,
+    neonHarmony
+} from "./assets/color-scheme-store.js";
 import {Project} from "../../my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -415,6 +421,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(activatingVishuddha);
+await createComposition(eternalRise);
 
 await Promise.all(promiseArray);

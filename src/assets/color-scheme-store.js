@@ -106,3 +106,17 @@ export const earthenVeil = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**:earthen-veil\n"
 });
+
+export const eternalRise = new ColorScheme({
+    colorBucket: [
+        '#B2B2B2',
+        '#4A4A4A',
+        '#FF6A00',
+        '#FF4500',
+        '#FFD700',
+        '#DC143C',
+        '#800080',
+        '#FAD02E',
+    ],
+    colorSchemeInfo: "**Color Strategy**:eternal-rise\n"
+});
