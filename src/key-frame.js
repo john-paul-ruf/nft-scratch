@@ -117,6 +117,7 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
+        maxConcurrentFrameBuilderThreads: 8,
     });
 
     const stroke = 15;
@@ -247,7 +248,7 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
                     featherTimes: {lower: 5, upper: 5},
                 }),
-                possibleSecondaryEffects: [...createDegaussEffects({arraySize:5})],
+                possibleSecondaryEffects: [...createDegaussEffects({arraySize:20})],
             }),
         });
     }
@@ -421,6 +422,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(eternalRise);
+await createComposition(activatingVishuddha);
 
 await Promise.all(promiseArray);
