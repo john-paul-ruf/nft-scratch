@@ -4,27 +4,27 @@ import {
     earthenVeil,
     eternalRise,
     neonHarmony
-} from "./assets/color-scheme-store.js";
-import {Project} from "../../my-nft-gen/src/app/Project.js";
-import {LayerConfig} from "../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {CRTScanLinesEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
-import {CRTScanLinesConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
-import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
-import {CRTShadowConfig} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {CRTShadowEffect} from "../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {Point2D} from "../../my-nft-gen/src/core/layer/configType/Point2D.js";
-import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {getRandomIntInclusive} from "../../my-nft-gen/src/core/math/random.js";
-import {FuzzFlareEffect} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
-import {MultiStepDefinitionConfig} from "../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
-import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
-import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
-import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
-import {FuzzFlareConfig} from "../../my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
-import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
-import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
+} from "../assets/color-scheme-store.js";
+import {Project} from "my-nft-gen/src/app/Project.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
+import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {CRTDegaussConfig} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {CRTDegaussEffect} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
+import {FuzzFlareEffect} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
+import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
+import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
+import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";
+import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
+import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
+import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
+import {AmpEffect} from "my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
+import {AmpConfig} from "my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
 import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
 import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
 import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
@@ -41,10 +41,10 @@ function createDegaussEffects(config) {
                 effect: CRTDegaussEffect,
                 percentChance: getRandomIntInclusive(10, 25),
                 currentEffectConfig: new CRTDegaussConfig({
-                    keyFrames: [getRandomIntInclusive(0, 1675)],
-                    glitchFrameCount: [getRandomIntInclusive(15, 125)],
+                    keyFrames: [getRandomIntInclusive(0, 1800 - 240)],
+                    glitchFrameCount: [getRandomIntInclusive(120, 240)],
                     sectionHeight: [1, 5, 10],
-                    offset: {lower: 5, upper: 15},
+                    offset: {lower: 5, upper: 30},
                     direction: [-1, 1],
                     glitchTimes: {lower: 3, upper: 8},
                     backgroundRed: {lower: 0, upper: 0},
@@ -75,7 +75,7 @@ function createGlowEffects(config) {
 
 function createFadeEffects(config) {
     return Array.from({length: config.arraySize}, () => (
-        new LayerConfig({
+            new LayerConfig({
                 effect: FadeKeyFrameEffect,
                 percentChance: getRandomIntInclusive(10, 25),
                 currentEffectConfig: new FadeKeyFrameConfig({
@@ -117,11 +117,11 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 8,
+        maxConcurrentFrameBuilderThreads: 10,
     });
 
-    const stroke = 15;
-    const thickness = 5;
+    const stroke = 20;
+    const thickness = 6;
 
     //const elementCount = 1;
 
@@ -130,8 +130,8 @@ const createComposition = async (colorScheme) => {
     const lineStartInitial = myTestProject.shortestSideInPixels * 0.1;
     const gap = 16;
     const gapReduction = 3;
-    const lineLength = 50;
-    const lineReduction = 2;
+    const lineLength = 60;
+    const lineReduction = 5;
 
     let invertDirection = false;
 
@@ -248,7 +248,7 @@ const createComposition = async (colorScheme) => {
                     blurRange: {bottom: {lower: 4, upper: 5}, top: {lower: 8, upper: 10}},
                     featherTimes: {lower: 5, upper: 5},
                 }),
-                possibleSecondaryEffects: [...createDegaussEffects({arraySize:20})],
+                possibleSecondaryEffects: [...createDegaussEffects({arraySize: 20})],
             }),
         });
     }
@@ -422,6 +422,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(activatingVishuddha);
+await createComposition(earthenVeil);
 
 await Promise.all(promiseArray);
