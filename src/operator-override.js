@@ -37,7 +37,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'operator-override',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#848484'],
+        backgrounds: ['#2B2B2B'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
         longestSideInPixels: 1920,
