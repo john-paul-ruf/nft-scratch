@@ -17,7 +17,6 @@ import {AmpEffect} from "my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js"
 import {AmpConfig} from "my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
 
 
-
 export const createOrbElement = async ({
                                            project = new Project(),
                                            colorScheme = new ColorScheme({}),
@@ -30,7 +29,7 @@ export const createOrbElement = async ({
     const lineStartInitial = 20;
     const gap = 8;
     const gapReduction = 1;
-    const lineLength = 30;
+    const lineLength = 45;
     const lineReduction = 10;
 
     let invertDirection = false;
@@ -53,6 +52,7 @@ export const createOrbElement = async ({
         return result;
     }
 
+    //amp
     for (let i = 0; i < 5; i++) {
         invertDirection = !invertDirection;
         await project.addPrimaryEffect({
@@ -64,13 +64,13 @@ export const createOrbElement = async ({
                     invertDirection: invertDirection,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
-                    sparsityFactor: [8],
+                    sparsityFactor: [10],
                     stroke: stroke,
                     thickness: thickness,
-                    accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
-                    blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
-                    featherTimes: {lower: 2, upper: 8},
-                    speed: {lower: 1, upper: 1},
+                    accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 15, upper: 15}},
+                    blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
+                    featherTimes: {lower: 4, upper: 4},
+                    speed: {lower: 10, upper: 10},
                     length: getLineLength(i),
                     lineStart: getLineStart(i),
                     center: center,
@@ -82,6 +82,47 @@ export const createOrbElement = async ({
         });
     }
 
+    //rings
+    for (let i = 0; i < 8; i++) {
+        await project.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: FuzzFlareEffect,
+                percentChance: 100,
+                currentEffectConfig: new FuzzFlareConfig({
+                    center: center,
+                    invertLayers: true,
+
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+
+                    layerOpacity: 0.7,
+
+                    underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
+                    underLayerOpacityTimes: {lower: 2, upper: 12},
+
+                    elementGastonMultiStep: getMultiStep(),
+
+                    numberOfFlareRings: new Range(1, 1),
+                    flareRingsSizeRange: new PercentageRange(new PercentageLongestSide(0.02), new PercentageLongestSide(0.15)),
+                    flareRingStroke: new Range(stroke, stroke),
+                    flareRingThickness: new Range(thickness, thickness),
+
+                    numberOfFlareRays: new Range(0, 0),
+                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0), new PercentageLongestSide(0)),
+                    flareRaysStroke: new Range(stroke, stroke),
+                    flareRayThickness: new Range(thickness, thickness),
+                    flareOffset: new PercentageRange(new PercentageLongestSide(0), new PercentageLongestSide(0)),
+
+                    accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
+                    blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
+                    featherTimes: {lower: 2, upper: 8},
+                }),
+                possibleSecondaryEffects: [],
+            }),
+        });
+    }
+
+    //rays
     for (let i = 0; i < 20; i++) {
         await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
@@ -106,8 +147,8 @@ export const createOrbElement = async ({
                     flareRingStroke: new Range(stroke, stroke),
                     flareRingThickness: new Range(thickness, thickness),
 
-                    numberOfFlareRays: new Range(3, 3),
-                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.075),new PercentageLongestSide(0.165)),
+                    numberOfFlareRays: new Range(2, 2),
+                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.15), new PercentageLongestSide(0.2)),
                     flareRaysStroke: new Range(stroke, stroke),
                     flareRayThickness: new Range(thickness, thickness),
                     flareOffset: new PercentageRange(new PercentageLongestSide(0.04), new PercentageLongestSide(0.06)),
@@ -116,47 +157,7 @@ export const createOrbElement = async ({
                     blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
                     featherTimes: {lower: 2, upper: 8},
                 }),
-                possibleSecondaryEffects: [...createDegaussEffects({arraySize: 20})],
-            }),
-        });
-    }
-
-
-    for (let i = 0; i < 8; i++) {
-        await project.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: FuzzFlareEffect,
-                percentChance: 100,
-                currentEffectConfig: new FuzzFlareConfig({
-                    center: center,
-                    invertLayers: true,
-
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-
-                    layerOpacity: 0.7,
-
-                    underLayerOpacityRange: {bottom: {lower: 0.55, upper: 0.55}, top: {lower: 0.65, upper: 0.65}},
-                    underLayerOpacityTimes: {lower: 2, upper: 12},
-
-                    elementGastonMultiStep: getMultiStep(),
-
-                    numberOfFlareRings: new Range(1, 1),
-                    flareRingsSizeRange: new PercentageRange(new PercentageLongestSide(0.02), new PercentageLongestSide(0.1)),
-                    flareRingStroke: new Range(stroke, stroke),
-                    flareRingThickness: new Range(thickness, thickness),
-
-                    numberOfFlareRays: new Range(0, 0),
-                    flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0),new PercentageLongestSide(0)),
-                    flareRaysStroke: new Range(stroke, stroke),
-                    flareRayThickness: new Range(thickness, thickness),
-                    flareOffset: new PercentageRange(new PercentageLongestSide(0), new PercentageLongestSide(0)),
-
-                    accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
-                    blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
-                    featherTimes: {lower: 2, upper: 8},
-                }),
-                possibleSecondaryEffects: [],
+                possibleSecondaryEffects: [...createDegaussEffects({arraySize: 50})],
             }),
         });
     }
