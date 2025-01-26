@@ -60,8 +60,8 @@ const generateThePathOfReturn = async (project, lineCount) => {
                 percentChance: 100,
                 currentEffectConfig: new StaticPathConfig({
                     invertLayers: true,
-                    layerOpacity: 0.55,
-                    underLayerOpacity: 0.75,
+                    layerOpacity: 0.7,
+                    underLayerOpacity: 0.5,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
@@ -70,10 +70,10 @@ const generateThePathOfReturn = async (project, lineCount) => {
                     numberOfLoops: {lower: 1, upper: 5},
                     accentRange: {bottom: {lower: 3, upper: 5}, top: {lower: 8, upper: 10}},
                     blurRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-                    featherTimes: {lower: 0, upper: 0},
+                    featherTimes: {lower: 2, upper: 8},
                     path: await getPath(0),
                 }),
-                possibleSecondaryEffects: []
+                possibleSecondaryEffects: [...createDegaussEffects({arraySize: 100})]
             }),
         });
     }
@@ -95,6 +95,7 @@ const createComposition = async (colorScheme) => {
         maxConcurrentFrameBuilderThreads: 3,
     });
 
+    await generateThePathOfReturn(myTestProject, 25);
 
     await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: {x: 540, y: 200 + topYBuffer}})
     await createOrbElement({
@@ -157,8 +158,6 @@ const createComposition = async (colorScheme) => {
             possibleSecondaryEffects: []
         }),
     });
-
-    await generateThePathOfReturn(myTestProject, 25);
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
