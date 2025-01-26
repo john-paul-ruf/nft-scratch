@@ -9,27 +9,76 @@ import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 
 import {
+    activatingVishuddha,
     binahUnderstanding,
     chesedKindness,
     chokhmahWisdom,
     gevurahSeverity,
     hodSplendor,
     keterCrown,
-    malkuthKingdom,
+    malkuthKingdom, neonHarmony,
     netzachVictory,
     tiferetBeauty,
     yesodFoundation
 } from "./assets/color-scheme-store.js";
-import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {ViewportEffect} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
 import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {StaticPathEffect} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathEffect.js";
+import {StaticPathConfig} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathConfig.js";
+import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
+import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
 
 
 const promiseArray = [];
+const topYBuffer = 15;
+
+const generateThePathOfReturn = async (project, lineCount) => {
+    const getPath = async (radius) => {
+        return [
+            findPointByAngleAndCircle({x: 540, y: 1700 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 540, y: 200 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 240, y: 420 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 840, y: 420 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 240, y: 780 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 840, y: 780 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 540, y: 960 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 240, y: 1130 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 840, y: 1130 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+            findPointByAngleAndCircle({x: 540, y: 1330 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
+        ]
+    }
+
+    for (let i = 0; i < lineCount; i++) {
+        await project.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: StaticPathEffect,
+                percentChance: 100,
+                currentEffectConfig: new StaticPathConfig({
+                    invertLayers: true,
+                    layerOpacity: 0.55,
+                    underLayerOpacity: 0.75,
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    stroke: 1,
+                    thickness: 0,
+                    lineLength: {lower: 75, upper: 120},
+                    numberOfLoops: {lower: 1, upper: 5},
+                    accentRange: {bottom: {lower: 3, upper: 5}, top: {lower: 8, upper: 10}},
+                    blurRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
+                    featherTimes: {lower: 0, upper: 0},
+                    path: await getPath(0),
+                }),
+                possibleSecondaryEffects: []
+            }),
+        });
+    }
+}
+
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -37,7 +86,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'operator-override',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#2B2B2B'],
+        backgrounds: ['#001A00'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
         longestSideInPixels: 1920,
@@ -46,18 +95,37 @@ const createComposition = async (colorScheme) => {
         maxConcurrentFrameBuilderThreads: 3,
     });
 
-    const topYBuffer = 15;
 
-    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: {x: 540, y: 200+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: {x: 240, y: 420+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: {x: 840, y: 420+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: gevurahSeverity, center: {x: 240, y: 780+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: {x: 840, y: 780+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: {x: 540, y: 960+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: {x: 240, y: 1130+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: {x: 840, y: 1130+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: {x: 540, y: 1330+topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: {x: 540, y: 1700+topYBuffer}})
+    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: {x: 540, y: 200 + topYBuffer}})
+    await createOrbElement({
+        project: myTestProject,
+        colorScheme: binahUnderstanding,
+        center: {x: 240, y: 420 + topYBuffer}
+    })
+    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: {x: 840, y: 420 + topYBuffer}})
+    await createOrbElement({
+        project: myTestProject,
+        colorScheme: gevurahSeverity,
+        center: {x: 240, y: 780 + topYBuffer}
+    })
+    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: {x: 840, y: 780 + topYBuffer}})
+    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: {x: 540, y: 960 + topYBuffer}})
+    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: {x: 240, y: 1130 + topYBuffer}})
+    await createOrbElement({
+        project: myTestProject,
+        colorScheme: netzachVictory,
+        center: {x: 840, y: 1130 + topYBuffer}
+    })
+    await createOrbElement({
+        project: myTestProject,
+        colorScheme: yesodFoundation,
+        center: {x: 540, y: 1330 + topYBuffer}
+    })
+    await createOrbElement({
+        project: myTestProject,
+        colorScheme: malkuthKingdom,
+        center: {x: 540, y: 1700 + topYBuffer}
+    })
 
 
     await myTestProject.addPrimaryEffect({
@@ -68,7 +136,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: true,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
-                center: {x: 540, y: 940+topYBuffer},
+                center: {x: 540, y: 940 + topYBuffer},
                 color: new ColorPicker(ColorPicker.SelectionType.color, tiferetBeauty.getColorFromBucket()),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 stroke: 4,
@@ -84,12 +152,13 @@ const createComposition = async (colorScheme) => {
                 times: {lower: 4, upper: 4},
                 accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
                 blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
-                featherTimes: {lower: 2, upper: 8},
+                featherTimes: {lower: 4, upper: 4},
             }),
             possibleSecondaryEffects: []
         }),
     });
-    
+
+    await generateThePathOfReturn(myTestProject, 25);
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
@@ -99,7 +168,7 @@ const createComposition = async (colorScheme) => {
                 folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/og-eye-flux/',
                 layerOpacity: [0.6],
                 buffer: [750],
-                center: {x: 540, y: 600+topYBuffer},
+                center: {x: 540, y: 600 + topYBuffer},
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
@@ -178,6 +247,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(malkuthKingdom);
+await createComposition(keterCrown);
 
 await Promise.all(promiseArray);
