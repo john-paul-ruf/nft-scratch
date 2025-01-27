@@ -95,7 +95,7 @@ const createComposition = async (colorScheme) => {
         maxConcurrentFrameBuilderThreads: 3,
     });
 
-    await generateThePathOfReturn(myTestProject, 25);
+    //await generateThePathOfReturn(myTestProject, 25);
 
     await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: {x: 540, y: 200 + topYBuffer}})
     await createOrbElement({
