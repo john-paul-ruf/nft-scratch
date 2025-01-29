@@ -26,6 +26,8 @@ import {ViewportConfig} from "my-nft-gen/src/effects/primaryEffects/viewport/Vie
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
+import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
 import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {StaticPathEffect} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathEffect.js";
@@ -70,7 +72,7 @@ const generateThePathOfReturn = async (project, lineCount) => {
                     numberOfLoops: {lower: 1, upper: 5},
                     accentRange: {bottom: {lower: 3, upper: 5}, top: {lower: 8, upper: 10}},
                     blurRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-                    featherTimes: {lower: 2, upper: 8},
+                    featherTimes: {lower: 4, upper: 4},
                     path: await getPath(0),
                 }),
                 possibleSecondaryEffects: [...createDegaussEffects({arraySize: 100})]
@@ -86,7 +88,7 @@ const createComposition = async (colorScheme) => {
         projectName: 'operator-override',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#001A00'],
+        backgrounds: ['#3A003A'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
         longestSideInPixels: 1920,
@@ -164,10 +166,10 @@ const createComposition = async (colorScheme) => {
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/og-eye-flux/',
+                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/skull-idea/',
                 layerOpacity: [0.6],
                 buffer: [750],
-                center: {x: 540, y: 600 + topYBuffer},
+                center: {x: 540, y: 570 + topYBuffer},
                 loopTimesMultiStep: [
                     new MultiStepDefinitionConfig({
                         minPercentage: 0,
@@ -206,7 +208,7 @@ const createComposition = async (colorScheme) => {
             currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
                 linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
-                opacityTimes: {lower: 2, upper: 2},
+                opacityTimes: {lower: 8, upper: 8},
                 lineRed: {lower: 0, upper: 0},
                 lineGreen: {lower: 127, upper: 127},
                 lineBlue: {lower: 0, upper: 0},
@@ -224,21 +226,36 @@ const createComposition = async (colorScheme) => {
             percentChance: 100,
             currentEffectConfig: new CRTScanLinesConfig({
                 lines: {lower: 100, upper: 100},
-                loopTimes: {lower: 1, upper: 3},
-                brightnessRange: {bottom: {lower: 10, upper: 15}, top: {lower: 20, upper: 25}},
-                brightnessTimes: {lower: 2, upper: 8},
-                thicknessRange: {bottom: {lower: 4, upper: 8}, top: {lower: 10, upper: 12}},
-                thicknessTimes: {lower: 2, upper: 8},
-                lineBlurRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
-                lineBlurTimes: {lower: 2, upper: 8},
+                loopTimes: {lower: 1, upper: 2},
+                brightnessRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
+                brightnessTimes: {lower: 4, upper: 4},
+                thicknessRange: {bottom: {lower: 2, upper: 4}, top: {lower: 6, upper: 8}},
+                thicknessTimes: {lower: 4, upper: 4},
+                lineBlurRange: {bottom: {lower: 20, upper: 25}, top: {lower: 30, upper: 40}},
+                lineBlurTimes: {lower: 4, upper: 4},
                 colorTintRange: {
-                    redRange: {bottom: {lower: 0.5, upper: 0.6}, top: {lower: 0.7, upper: 0.8}},
-                    greenRange: {bottom: {lower: 1.5, upper: 1.6}, top: {lower: 1.7, upper: 1.8}},
-                    blueRange: {bottom: {lower: 0.5, upper: 0.6}, top: {lower: 0.7, upper: 0.8}},
+                    redRange: {bottom: {lower: 1.2, upper: 1.2}, top: {lower: 1.5, upper: 1.5}},
+                    greenRange: {bottom: {lower: 0.8, upper: 0.8}, top: {lower: 1.7, upper: 1.8}},
+                    blueRange: {bottom: {lower: 1.2, upper: 1.2}, top: {lower: 2, upper: 2}},
                 },
-                colorTintTimes: {lower: 2, upper: 8},
+                colorTintTimes: {lower: 4, upper: 4},
                 opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-                opacityTimes: {lower: 2, upper: 8},
+                opacityTimes: {lower: 4, upper: 4},
+            }),
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: ModulateEffect,
+            percentChance: 100,
+            currentEffectConfig: new ModulateConfig({
+                brightnessRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 1, upper: 1}},
+                brightnessTimes: {lower: 4, upper: 4},
+                saturationRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 1.2, upper: 1.2}},
+                saturationTimes: {lower: 4, upper: 4},
+                contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 1.5}},
+                contrastTimes: {lower: 4, upper: 4},
             }),
         }),
     });

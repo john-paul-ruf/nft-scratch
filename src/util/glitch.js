@@ -20,7 +20,7 @@ export function createDegaussEffects(config) {
                     keyFrames: [getRandomIntInclusive(0, 1800 - 240)],
                     glitchFrameCount: [getRandomIntInclusive(120, 240)],
                     sectionHeight: [1, 5, 10],
-                    offset: {lower: 1, upper: 5},
+                    offset: {lower: 3, upper: 15},
                     direction: [-1, 1],
                     glitchTimes: {lower: 3, upper: 8},
                     backgroundRed: {lower: 0, upper: 0},

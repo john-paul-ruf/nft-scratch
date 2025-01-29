@@ -115,7 +115,7 @@ export const createOrbElement = async ({
 
                     accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
                     blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
-                    featherTimes: {lower: 2, upper: 8},
+                    featherTimes: {lower: 4, upper: 4},
                 }),
                 possibleSecondaryEffects: [],
             }),
@@ -155,7 +155,7 @@ export const createOrbElement = async ({
 
                     accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
                     blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
-                    featherTimes: {lower: 2, upper: 8},
+                    featherTimes: {lower: 4, upper: 4},
                 }),
                 possibleSecondaryEffects: [...createDegaussEffects({arraySize: 50})],
             }),
