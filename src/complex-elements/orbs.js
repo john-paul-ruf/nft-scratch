@@ -26,7 +26,7 @@ export const createOrbElement = async ({
     const stroke = 4;
     const thickness = 2;
 
-    const lineStartInitial = 20;
+    const lineStartInitial = 60;
     const gap = 8;
     const gapReduction = 1;
     const lineLength = 45;
@@ -74,8 +74,8 @@ export const createOrbElement = async ({
                     length: getLineLength(i),
                     lineStart: getLineStart(i),
                     center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
                 }),
                 possibleSecondaryEffects: []//createSecondaryEffects(),
             }),

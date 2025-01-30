@@ -37,18 +37,20 @@ import {StaticPathEffect} from "my-nft-gen/src/effects/primaryEffects/static-pat
 import {StaticPathConfig} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathConfig.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
+import {createDecayingOrbElement} from "./complex-elements/decayingOrbs.js";
 
 
 const promiseArray = [];
 const topYBuffer = 15;
+const backgroundHex = '#000000'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
         artist: 'John Ruf',
         projectName: 'operator-override',
-        projectDirectory: 'src/key-frame',
+        projectDirectory: 'src/scratch',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#101820'],
+        backgrounds: [backgroundHex],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
         longestSideInPixels: 1920,
@@ -57,135 +59,143 @@ const createComposition = async (colorScheme) => {
         maxConcurrentFrameBuilderThreads: 3,
     });
 
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
-                invertLayers: false,
-                layerOpacity: 1,
-                underLayerOpacity: 0.8,
-                stroke: 4,
-                thickness: 6,
-                center: {x: 540, y: 600 + topYBuffer},
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#101820'),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#0051FF'),
-                speed: 1,
-                largeRadius: {
-                    lower: (finalSize) => finalSize.longestSide * 0.12,
-                    upper: (finalSize) => finalSize.longestSide * 0.12,
-                },
-                smallRadius: {
-                    lower: (finalSize) => finalSize.longestSide * 0.07,
-                    upper: (finalSize) => finalSize.longestSide * 0.07,
-                },
-                largeNumberOfRings: { lower: 7, upper: 7 },
-                smallNumberOfRings: { lower: 4, upper: 4 },
-                ripple: {
-                    lower: (finalSize) => finalSize.longestSide * 0.05,
-                    upper: (finalSize) => finalSize.longestSide * 0.05,
-                },
-                times: { lower: 2, upper: 4 },
-                smallerRingsGroupRadius: {
-                    lower: (finalSize) => finalSize.longestSide * 0.08,
-                    upper: (finalSize) => finalSize.longestSide * 0.08,
-                },
-                accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
-                blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
-                featherTimes: {lower: 4, upper: 4},
-            })
-        }),
-    });
-
-    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: {x: 540, y: 200 + topYBuffer}})
-    await createOrbElement({
-        project: myTestProject,
-        colorScheme: binahUnderstanding,
-        center: {x: 240, y: 420 + topYBuffer}
-    })
-    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: {x: 840, y: 420 + topYBuffer}})
-    await createOrbElement({
-        project: myTestProject,
-        colorScheme: gevurahSeverity,
-        center: {x: 240, y: 780 + topYBuffer}
-    })
-    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: {x: 840, y: 780 + topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: {x: 540, y: 960 + topYBuffer}})
-    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: {x: 240, y: 1130 + topYBuffer}})
-    await createOrbElement({
-        project: myTestProject,
-        colorScheme: netzachVictory,
-        center: {x: 840, y: 1130 + topYBuffer}
-    })
-    await createOrbElement({
-        project: myTestProject,
-        colorScheme: yesodFoundation,
-        center: {x: 540, y: 1330 + topYBuffer}
-    })
-    await createOrbElement({
-        project: myTestProject,
-        colorScheme: malkuthKingdom,
-        center: {x: 540, y: 1700 + topYBuffer}
-    })
+    const keterPoint = {x: 540, y: 200 + topYBuffer};
+    const binahPoint = {x: 240, y: 420 + topYBuffer};
+    const chokhmahPoint = {x: 840, y: 420 + topYBuffer};
+    const gevurahPoint = {x: 240, y: 780 + topYBuffer};
+    const chesedPoint = {x: 840, y: 780 + topYBuffer};
+    const tiferetPoint = {x: 540, y: 960 + topYBuffer};
+    const hodPoint = {x: 240, y: 1130 + topYBuffer};
+    const netzachPoint = {x: 840, y: 1130 + topYBuffer};
+    const yesodPoint = {x: 540, y: 1330 + topYBuffer};
+    const malkuthPoint = {x: 540, y: 1700 + topYBuffer};
+    const daatPoint = {x: 540, y: 600 + topYBuffer}
 
 
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: ViewportEffect, percentChance: 100, currentEffectConfig: new ViewportConfig({
-                invertLayers: true,
-                layerOpacity: 0.7,
-                underLayerOpacity: 0.5,
-                center: {x: 540, y: 940 + topYBuffer},
-                color: new ColorPicker(ColorPicker.SelectionType.color, tiferetBeauty.getColorFromBucket()),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                stroke: 4,
-                thickness: 2,
-                ampStroke: 0,
-                ampThickness: 0,
-                radius: [80],
-                startAngle: [270],
-                ampLength: [50, 75, 100],
-                ampRadius: [40],
-                sparsityFactor: [3, 4, 5, 6],
-                amplitude: {lower: 40, upper: 40},
-                times: {lower: 4, upper: 4},
-                accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
-                blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
-                featherTimes: {lower: 4, upper: 4},
-            }), possibleSecondaryEffects: []
-        }),
-    });
+    const placePulse = async ({colorScheme, center}) => {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
+                    invertLayers: false,
+                    layerOpacity: 1,
+                    underLayerOpacity: 0.9,
+                    stroke: 0,
+                    thickness: 5,
+                    center: center,
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, backgroundHex),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
+                    speed: 4,
+                    largeRadius: {
+                        lower: (finalSize) => finalSize.longestSide * 0.14,
+                        upper: (finalSize) => finalSize.longestSide * 0.14,
+                    },
+                    smallRadius: {
+                        lower: (finalSize) => finalSize.longestSide * 0.06,
+                        upper: (finalSize) => finalSize.longestSide * 0.06,
+                    },
+                    largeNumberOfRings: {lower: 7, upper: 7},
+                    smallNumberOfRings: {lower: 4, upper: 4},
+                    ripple: {
+                        lower: (finalSize) => finalSize.longestSide * 0.02,
+                        upper: (finalSize) => finalSize.longestSide * 0.02,
+                    },
+                    times: {lower: 2, upper: 2},
+                    smallerRingsGroupRadius: {
+                        lower: (finalSize) => finalSize.longestSide * 0.06,
+                        upper: (finalSize) => finalSize.longestSide * 0.06,
+                    },
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 5, upper: 5}},
+                    blurRange: {bottom: {lower: 4, upper: 4}, top: {lower: 6, upper: 6}},
+                    featherTimes: {lower: 4, upper: 4},
+                })
+            }),
+        });
+    }
 
-/*    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: MappedFramesEffect, percentChance: 100, currentEffectConfig: new MappedFramesConfig({
-                folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/skull-idea/',
-                layerOpacity: [0.6],
-                buffer: [750],
-                center: {x: 540, y: 570 + topYBuffer},
-                loopTimesMultiStep: [new MultiStepDefinitionConfig({
-                    minPercentage: 0, maxPercentage: 25, max: new Range(2, 8), times: new Range(8, 8),
-                }), new MultiStepDefinitionConfig({
-                    minPercentage: 25, maxPercentage: 50, max: new Range(2, 10), times: new Range(12, 12),
-                }), new MultiStepDefinitionConfig({
-                    minPercentage: 50, maxPercentage: 75, max: new Range(2, 8), times: new Range(12, 12),
-                }), new MultiStepDefinitionConfig({
-                    minPercentage: 75, maxPercentage: 100, max: new Range(2, 10), times: new Range(8, 8),
-                }),],
-            }), possibleSecondaryEffects: [...createDegaussEffects({arraySize: 50})]
-        }),
-    });*/
+    const placePulseOverlay = async ({colorScheme, center}) => {
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
+                    invertLayers: false,
+                    layerOpacity: 1,
+                    underLayerOpacity: 0.9,
+                    stroke: 0,
+                    thickness: 5,
+                    center: center,
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, backgroundHex),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, backgroundHex),
+                    speed: 4,
+                    largeRadius: {
+                        lower: (finalSize) => finalSize.longestSide * 0.14,
+                        upper: (finalSize) => finalSize.longestSide * 0.14,
+                    },
+                    smallRadius: {
+                        lower: (finalSize) => finalSize.longestSide * 0.06,
+                        upper: (finalSize) => finalSize.longestSide * 0.06,
+                    },
+                    largeNumberOfRings: {lower: 7, upper: 7},
+                    smallNumberOfRings: {lower: 4, upper: 4},
+                    ripple: {
+                        lower: (finalSize) => finalSize.longestSide * 0.02,
+                        upper: (finalSize) => finalSize.longestSide * 0.02,
+                    },
+                    times: {lower: 2, upper: 2},
+                    smallerRingsGroupRadius: {
+                        lower: (finalSize) => finalSize.longestSide * 0.06,
+                        upper: (finalSize) => finalSize.longestSide * 0.06,
+                    },
+                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                    featherTimes: {lower: 0, upper: 0},
+                })
+            }),
+        });
+    }
+
+    await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: yesodFoundation, center: yesodPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: netzachVictory, center: netzachPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: hodSplendor, center: hodPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: tiferetBeauty, center: tiferetPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: chesedKindness, center: chesedPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: gevurahSeverity, center: gevurahPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: chokhmahWisdom, center: chokhmahPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: binahUnderstanding, center: binahPoint,})
+    await createOrbElement({project: myTestProject,colorScheme: keterCrown, center: keterPoint,})
+
+    await placePulse({colorScheme: malkuthKingdom, center: malkuthPoint,})
+    await placePulse({colorScheme: yesodFoundation, center: yesodPoint,})
+    await placePulse({colorScheme: netzachVictory, center: netzachPoint,})
+    await placePulse({colorScheme: hodSplendor, center: hodPoint,})
+    await placePulse({colorScheme: tiferetBeauty, center: tiferetPoint,})
+    await placePulse({colorScheme: chesedKindness, center: chesedPoint,})
+    await placePulse({colorScheme: gevurahSeverity, center: gevurahPoint,})
+    await placePulse({colorScheme: chokhmahWisdom, center: chokhmahPoint,})
+    await placePulse({colorScheme: binahUnderstanding, center: binahPoint,})
+    await placePulse({colorScheme: keterCrown, center: keterPoint,})
+
+    await placePulseOverlay({colorScheme: malkuthKingdom, center: malkuthPoint,})
+    await placePulseOverlay({colorScheme: yesodFoundation, center: yesodPoint,})
+    await placePulseOverlay({colorScheme: netzachVictory, center: netzachPoint,})
+    await placePulseOverlay({colorScheme: hodSplendor, center: hodPoint,})
+    await placePulseOverlay({colorScheme: tiferetBeauty, center: tiferetPoint,})
+    await placePulseOverlay({colorScheme: chesedKindness, center: chesedPoint,})
+    await placePulseOverlay({colorScheme: gevurahSeverity, center: gevurahPoint,})
+    await placePulseOverlay({colorScheme: chokhmahWisdom, center: chokhmahPoint,})
+    await placePulseOverlay({colorScheme: binahUnderstanding, center: binahPoint,})
+    await placePulseOverlay({colorScheme: keterCrown, center: keterPoint,})
 
 
 
-
-    await myTestProject.addFinalEffect({
+   await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
                 linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
                 opacityTimes: {lower: 8, upper: 8},
-                lineRed: {lower: 0, upper: 0},
-                lineGreen: {lower: 0, upper: 0},
-                lineBlue: {lower: 127, upper: 127},
+                lineRed: {lower: 111, upper: 111},
+                lineGreen: {lower: 24, upper: 24},
+                lineBlue: {lower: 24, upper: 24},
                 lineHeight: {lower: 0.5, upper: 0.5},
                 edgePercentage: {lower: 0.15, upper: 0.15},
                 maxLineHeight: {lower: 4, upper: 4},
@@ -206,11 +216,11 @@ const createComposition = async (colorScheme) => {
                 lineBlurRange: {bottom: {lower: 20, upper: 25}, top: {lower: 30, upper: 40}},
                 lineBlurTimes: {lower: 4, upper: 4},
                 colorTintRange: {
-                    redRange: {bottom: {lower: 1.2, upper: 1.2}, top: {lower: 1.5, upper: 1.5}},
-                    greenRange: {bottom: {lower: 0.8, upper: 0.8}, top: {lower: 1.7, upper: 1.8}},
-                    blueRange: {bottom: {lower: 1.2, upper: 1.2}, top: {lower: 2, upper: 2}},
+                    redRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 2}},
+                    greenRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                    blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper:1}},
                 },
-                colorTintTimes: {lower: 4, upper: 4},
+                colorTintTimes: {lower: 8, upper: 8},
                 opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
                 opacityTimes: {lower: 4, upper: 4},
             }),
@@ -220,12 +230,12 @@ const createComposition = async (colorScheme) => {
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                brightnessRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 1, upper: 1}},
-                brightnessTimes: {lower: 4, upper: 4},
-                saturationRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 1.2, upper: 1.2}},
-                saturationTimes: {lower: 4, upper: 4},
+                brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
+                brightnessTimes: {lower: 8, upper: 8},
+                saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
+                saturationTimes: {lower: 8, upper: 8},
                 contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 1.5}},
-                contrastTimes: {lower: 4, upper: 4},
+                contrastTimes: {lower: 8, upper: 8},
             }),
         }),
     });
