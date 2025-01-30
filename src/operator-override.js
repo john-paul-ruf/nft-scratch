@@ -5,6 +5,8 @@ import {createDegaussEffects} from "./util/glitch.js";
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
+import {FuzzyRipplesConfig} from "my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesConfig.js";
+import {FuzzyRipplesEffect} from "my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesEffect.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 
@@ -16,7 +18,8 @@ import {
     gevurahSeverity,
     hodSplendor,
     keterCrown,
-    malkuthKingdom, neonHarmony,
+    malkuthKingdom,
+    neonHarmony,
     netzachVictory,
     tiferetBeauty,
     yesodFoundation
@@ -39,56 +42,13 @@ import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js
 const promiseArray = [];
 const topYBuffer = 15;
 
-const generateThePathOfReturn = async (project, lineCount) => {
-    const getPath = async (radius) => {
-        return [
-            findPointByAngleAndCircle({x: 540, y: 1700 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 540, y: 200 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 240, y: 420 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 840, y: 420 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 240, y: 780 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 840, y: 780 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 540, y: 960 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 240, y: 1130 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 840, y: 1130 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-            findPointByAngleAndCircle({x: 540, y: 1330 + topYBuffer}, getRandomIntInclusive(0, 360), radius),
-        ]
-    }
-
-    for (let i = 0; i < lineCount; i++) {
-        await project.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: StaticPathEffect,
-                percentChance: 100,
-                currentEffectConfig: new StaticPathConfig({
-                    invertLayers: true,
-                    layerOpacity: 0.7,
-                    underLayerOpacity: 0.5,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                    stroke: 1,
-                    thickness: 0,
-                    lineLength: {lower: 75, upper: 120},
-                    numberOfLoops: {lower: 1, upper: 5},
-                    accentRange: {bottom: {lower: 3, upper: 5}, top: {lower: 8, upper: 10}},
-                    blurRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-                    featherTimes: {lower: 4, upper: 4},
-                    path: await getPath(0),
-                }),
-                possibleSecondaryEffects: [...createDegaussEffects({arraySize: 100})]
-            }),
-        });
-    }
-}
-
-
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
         artist: 'John Ruf',
         projectName: 'operator-override',
         projectDirectory: 'src/key-frame',
         neutrals: ['#FFFFFF'],
-        backgrounds: ['#3A003A'],
+        backgrounds: ['#101820'],
         numberOfFrame: 1800,
         colorScheme: colorScheme,
         longestSideInPixels: 1920,
@@ -97,7 +57,43 @@ const createComposition = async (colorScheme) => {
         maxConcurrentFrameBuilderThreads: 3,
     });
 
-    //await generateThePathOfReturn(myTestProject, 25);
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
+                invertLayers: false,
+                layerOpacity: 1,
+                underLayerOpacity: 0.8,
+                stroke: 4,
+                thickness: 6,
+                center: {x: 540, y: 600 + topYBuffer},
+                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#101820'),
+                outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#0051FF'),
+                speed: 1,
+                largeRadius: {
+                    lower: (finalSize) => finalSize.longestSide * 0.12,
+                    upper: (finalSize) => finalSize.longestSide * 0.12,
+                },
+                smallRadius: {
+                    lower: (finalSize) => finalSize.longestSide * 0.07,
+                    upper: (finalSize) => finalSize.longestSide * 0.07,
+                },
+                largeNumberOfRings: { lower: 7, upper: 7 },
+                smallNumberOfRings: { lower: 4, upper: 4 },
+                ripple: {
+                    lower: (finalSize) => finalSize.longestSide * 0.05,
+                    upper: (finalSize) => finalSize.longestSide * 0.05,
+                },
+                times: { lower: 2, upper: 4 },
+                smallerRingsGroupRadius: {
+                    lower: (finalSize) => finalSize.longestSide * 0.08,
+                    upper: (finalSize) => finalSize.longestSide * 0.08,
+                },
+                accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
+                blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
+                featherTimes: {lower: 4, upper: 4},
+            })
+        }),
+    });
 
     await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: {x: 540, y: 200 + topYBuffer}})
     await createOrbElement({
@@ -133,9 +129,7 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
-            effect: ViewportEffect,
-            percentChance: 100,
-            currentEffectConfig: new ViewportConfig({
+            effect: ViewportEffect, percentChance: 100, currentEffectConfig: new ViewportConfig({
                 invertLayers: true,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
@@ -156,62 +150,42 @@ const createComposition = async (colorScheme) => {
                 accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
                 blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
                 featherTimes: {lower: 4, upper: 4},
-            }),
-            possibleSecondaryEffects: []
+            }), possibleSecondaryEffects: []
         }),
     });
 
-    await myTestProject.addPrimaryEffect({
+/*    await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
-            effect: MappedFramesEffect,
-            percentChance: 100,
-            currentEffectConfig: new MappedFramesConfig({
+            effect: MappedFramesEffect, percentChance: 100, currentEffectConfig: new MappedFramesConfig({
                 folderName: '/Users/the.dude/WebstormProjects/nft-scratch/src/assets/mappedFrames/skull-idea/',
                 layerOpacity: [0.6],
                 buffer: [750],
                 center: {x: 540, y: 570 + topYBuffer},
-                loopTimesMultiStep: [
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 0,
-                        maxPercentage: 25,
-                        max: new Range(2, 8),
-                        times: new Range(8, 8),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 25,
-                        maxPercentage: 50,
-                        max: new Range(2, 10),
-                        times: new Range(12, 12),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 50,
-                        maxPercentage: 75,
-                        max: new Range(2, 8),
-                        times: new Range(12, 12),
-                    }),
-                    new MultiStepDefinitionConfig({
-                        minPercentage: 75,
-                        maxPercentage: 100,
-                        max: new Range(2, 10),
-                        times: new Range(8, 8),
-                    }),
-                ],
-            }),
-            possibleSecondaryEffects: [...createDegaussEffects({arraySize: 50})]
+                loopTimesMultiStep: [new MultiStepDefinitionConfig({
+                    minPercentage: 0, maxPercentage: 25, max: new Range(2, 8), times: new Range(8, 8),
+                }), new MultiStepDefinitionConfig({
+                    minPercentage: 25, maxPercentage: 50, max: new Range(2, 10), times: new Range(12, 12),
+                }), new MultiStepDefinitionConfig({
+                    minPercentage: 50, maxPercentage: 75, max: new Range(2, 8), times: new Range(12, 12),
+                }), new MultiStepDefinitionConfig({
+                    minPercentage: 75, maxPercentage: 100, max: new Range(2, 10), times: new Range(8, 8),
+                }),],
+            }), possibleSecondaryEffects: [...createDegaussEffects({arraySize: 50})]
         }),
-    });
+    });*/
+
+
+
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
-            effect: CRTShadowEffect,
-            percentChance: 100,
-            currentEffectConfig: new CRTShadowConfig({
+            effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
                 linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
                 opacityTimes: {lower: 8, upper: 8},
                 lineRed: {lower: 0, upper: 0},
-                lineGreen: {lower: 127, upper: 127},
-                lineBlue: {lower: 0, upper: 0},
+                lineGreen: {lower: 0, upper: 0},
+                lineBlue: {lower: 127, upper: 127},
                 lineHeight: {lower: 0.5, upper: 0.5},
                 edgePercentage: {lower: 0.15, upper: 0.15},
                 maxLineHeight: {lower: 4, upper: 4},
@@ -222,9 +196,7 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
-            effect: CRTScanLinesEffect,
-            percentChance: 100,
-            currentEffectConfig: new CRTScanLinesConfig({
+            effect: CRTScanLinesEffect, percentChance: 100, currentEffectConfig: new CRTScanLinesConfig({
                 lines: {lower: 100, upper: 100},
                 loopTimes: {lower: 1, upper: 2},
                 brightnessRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
@@ -247,9 +219,7 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
-            effect: ModulateEffect,
-            percentChance: 100,
-            currentEffectConfig: new ModulateConfig({
+            effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                 brightnessRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 1, upper: 1}},
                 brightnessTimes: {lower: 4, upper: 4},
                 saturationRange: {bottom: {lower: 0.9, upper: 0.9}, top: {lower: 1.2, upper: 1.2}},
