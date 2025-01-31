@@ -20,7 +20,7 @@ import {AmpConfig} from "my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js"
 export const createOrbElement = async ({
                                            project = new Project(),
                                            colorScheme = new ColorScheme({}),
-                                           center = {x: 0, y: 0}
+                                           center = {x: 0, y: 0},
                                        }) => {
 
     const stroke = 4;

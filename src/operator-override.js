@@ -56,7 +56,7 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 3,
+        maxConcurrentFrameBuilderThreads: 5,
     });
 
     const keterPoint = {x: 540, y: 200 + topYBuffer};
@@ -71,20 +71,46 @@ const createComposition = async (colorScheme) => {
     const malkuthPoint = {x: 540, y: 1700 + topYBuffer};
     const daatPoint = {x: 540, y: 600 + topYBuffer}
 
+    const keterColor = '#FFD700';
+    const binahColor = '#6A0DAD';
+    const chokhmahColor = '#1F51FF';
+    const gevurahColor = '#D70000';
+    const chesedColor = '#00C957';
+    const tiferetColor = '#FFAE42';
+    const hodColor = '#9932CC';
+    const netzachColor = '#FF4500';
+    const yesodColor = '#00FFFF';
+    const malkuthColor = '#8B4513';
+    const daatColor = '#0F3D0F';
 
-    const placePulse = async ({colorScheme, center}) => {
+    const keterHighlight = '#FFFFFF';
+    const binahHighlight = '#D8BFD8';
+    const chokhmahHighlight = '#87CEEB';
+    const gevurahHighlight = '#FF4500';
+    const chesedHighlight = '#98FF98';
+    const tiferetHighlight = '#FFF44F';
+    const hodHighlight = '#9932CC';
+    const netzachHighlight = '#FF8C00';
+    const yesodHighlight = '#7DF9FF';
+    const malkuthHighlight = '#DAA520';
+    const daatHighlight = '#32CD32';
+
+    const highlight = '#87CEFA'
+
+    const placePulse = async ({color, highlight, center, invertDirection = false}) => {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
                     invertLayers: false,
                     layerOpacity: 1,
                     underLayerOpacity: 0.9,
-                    stroke: 0,
-                    thickness: 5,
+                    stroke: 4,
+                    thickness: 2,
                     center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, backgroundHex),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, highlight),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                     speed: 4,
+                    invertDirection: invertDirection,
                     largeRadius: {
                         lower: (finalSize) => finalSize.longestSide * 0.14,
                         upper: (finalSize) => finalSize.longestSide * 0.14,
@@ -112,7 +138,7 @@ const createComposition = async (colorScheme) => {
         });
     }
 
-    const placePulseOverlay = async ({colorScheme, center}) => {
+    const placePulseOverlay = async ({color, center, highlight, invertDirection = false}) => {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
@@ -120,11 +146,12 @@ const createComposition = async (colorScheme) => {
                     layerOpacity: 1,
                     underLayerOpacity: 0.9,
                     stroke: 0,
-                    thickness: 5,
+                    thickness: 2,
                     center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, backgroundHex),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, backgroundHex),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, highlight),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                     speed: 4,
+                    invertDirection: invertDirection,
                     largeRadius: {
                         lower: (finalSize) => finalSize.longestSide * 0.14,
                         upper: (finalSize) => finalSize.longestSide * 0.14,
@@ -153,41 +180,42 @@ const createComposition = async (colorScheme) => {
     }
 
     await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: yesodFoundation, center: yesodPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: netzachVictory, center: netzachPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: hodSplendor, center: hodPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: tiferetBeauty, center: tiferetPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: chesedKindness, center: chesedPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: gevurahSeverity, center: gevurahPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: chokhmahWisdom, center: chokhmahPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: binahUnderstanding, center: binahPoint,})
-    await createOrbElement({project: myTestProject,colorScheme: keterCrown, center: keterPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: hodPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: tiferetPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: chesedPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: gevurahSeverity, center: gevurahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: chokhmahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: binahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: keterPoint,})
 
-    await placePulse({colorScheme: malkuthKingdom, center: malkuthPoint,})
-    await placePulse({colorScheme: yesodFoundation, center: yesodPoint,})
-    await placePulse({colorScheme: netzachVictory, center: netzachPoint,})
-    await placePulse({colorScheme: hodSplendor, center: hodPoint,})
-    await placePulse({colorScheme: tiferetBeauty, center: tiferetPoint,})
-    await placePulse({colorScheme: chesedKindness, center: chesedPoint,})
-    await placePulse({colorScheme: gevurahSeverity, center: gevurahPoint,})
-    await placePulse({colorScheme: chokhmahWisdom, center: chokhmahPoint,})
-    await placePulse({colorScheme: binahUnderstanding, center: binahPoint,})
-    await placePulse({colorScheme: keterCrown, center: keterPoint,})
+    await placePulse({color: daatColor, highlight: highlight, center: daatPoint,})
+    await placePulse({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
+    await placePulse({color: yesodColor, highlight: highlight, center: yesodPoint,})
+    await placePulse({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection:true})
+    await placePulse({color: hodColor, highlight: highlight, center: hodPoint, invertDirection:true})
+    await placePulse({color: tiferetColor, highlight: highlight, center: tiferetPoint,})
+    await placePulse({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection:true})
+    await placePulse({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection:true})
+    await placePulse({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection:true})
+    await placePulse({color: binahColor, highlight: highlight, center: binahPoint, invertDirection:true})
+    await placePulse({color: keterColor, highlight: highlight, center: keterPoint,})
 
-    await placePulseOverlay({colorScheme: malkuthKingdom, center: malkuthPoint,})
-    await placePulseOverlay({colorScheme: yesodFoundation, center: yesodPoint,})
-    await placePulseOverlay({colorScheme: netzachVictory, center: netzachPoint,})
-    await placePulseOverlay({colorScheme: hodSplendor, center: hodPoint,})
-    await placePulseOverlay({colorScheme: tiferetBeauty, center: tiferetPoint,})
-    await placePulseOverlay({colorScheme: chesedKindness, center: chesedPoint,})
-    await placePulseOverlay({colorScheme: gevurahSeverity, center: gevurahPoint,})
-    await placePulseOverlay({colorScheme: chokhmahWisdom, center: chokhmahPoint,})
-    await placePulseOverlay({colorScheme: binahUnderstanding, center: binahPoint,})
-    await placePulseOverlay({colorScheme: keterCrown, center: keterPoint,})
+    await placePulseOverlay({color: daatColor, highlight: highlight, center: daatPoint,})
+    await placePulseOverlay({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
+    await placePulseOverlay({color: yesodColor, highlight: highlight, center: yesodPoint,})
+    await placePulseOverlay({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection:true})
+    await placePulseOverlay({color: hodColor, highlight: highlight, center: hodPoint, invertDirection:true})
+    await placePulseOverlay({color: tiferetColor, highlight: highlight, center: tiferetPoint,})
+    await placePulseOverlay({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection:true})
+    await placePulseOverlay({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection:true})
+    await placePulseOverlay({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection:true})
+    await placePulseOverlay({color: binahColor, highlight: highlight, center: binahPoint, invertDirection:true})
+    await placePulseOverlay({color: keterColor, highlight: highlight, center: keterPoint,})
 
 
-
-   await myTestProject.addFinalEffect({
+    await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
@@ -218,7 +246,7 @@ const createComposition = async (colorScheme) => {
                 colorTintRange: {
                     redRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 2}},
                     greenRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                    blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper:1}},
+                    blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                 },
                 colorTintTimes: {lower: 8, upper: 8},
                 opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
