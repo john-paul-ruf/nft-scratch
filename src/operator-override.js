@@ -42,7 +42,7 @@ import {createDecayingOrbElement} from "./complex-elements/decayingOrbs.js";
 
 const promiseArray = [];
 const topYBuffer = 15;
-const backgroundHex = '#000000'
+const backgroundHex = '#1b0038'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -103,9 +103,9 @@ const createComposition = async (colorScheme) => {
                 effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
                     invertLayers: false,
                     layerOpacity: 1,
-                    underLayerOpacity: 0.9,
-                    stroke: 4,
-                    thickness: 2,
+                    underLayerOpacity: 0.7,
+                    stroke: 6,
+                    thickness: 3,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, highlight),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
@@ -119,8 +119,8 @@ const createComposition = async (colorScheme) => {
                         lower: (finalSize) => finalSize.longestSide * 0.06,
                         upper: (finalSize) => finalSize.longestSide * 0.06,
                     },
-                    largeNumberOfRings: {lower: 7, upper: 7},
-                    smallNumberOfRings: {lower: 4, upper: 4},
+                    largeNumberOfRings: {lower: 5, upper: 5},
+                    smallNumberOfRings: {lower: 3, upper: 3},
                     ripple: {
                         lower: (finalSize) => finalSize.longestSide * 0.02,
                         upper: (finalSize) => finalSize.longestSide * 0.02,
@@ -146,7 +146,7 @@ const createComposition = async (colorScheme) => {
                     layerOpacity: 1,
                     underLayerOpacity: 0.9,
                     stroke: 0,
-                    thickness: 2,
+                    thickness: 3,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, highlight),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
@@ -160,8 +160,8 @@ const createComposition = async (colorScheme) => {
                         lower: (finalSize) => finalSize.longestSide * 0.06,
                         upper: (finalSize) => finalSize.longestSide * 0.06,
                     },
-                    largeNumberOfRings: {lower: 7, upper: 7},
-                    smallNumberOfRings: {lower: 4, upper: 4},
+                    largeNumberOfRings: {lower: 5, upper: 5},
+                    smallNumberOfRings: {lower: 3, upper: 3},
                     ripple: {
                         lower: (finalSize) => finalSize.longestSide * 0.02,
                         upper: (finalSize) => finalSize.longestSide * 0.02,
