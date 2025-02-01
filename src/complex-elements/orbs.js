@@ -23,7 +23,7 @@ export const createOrbElement = async ({
                                            center = {x: 0, y: 0},
                                        }) => {
 
-    const stroke = 4;
+    const stroke = 1;
     const thickness = 2;
 
     const lineStartInitial = 60;

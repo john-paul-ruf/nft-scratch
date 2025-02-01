@@ -99,6 +99,8 @@ const createComposition = async (colorScheme) => {
 
     const pathColor = '#87CEFA'
 
+    const lineCount = 20;
+
     const placePulse = async ({color, highlight, center, invertDirection = false}) => {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
@@ -109,8 +111,8 @@ const createComposition = async (colorScheme) => {
                     stroke: 1,
                     thickness: 4,
                     center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
                     speed: 4,
                     invertDirection: invertDirection,
                     largeRadius: {
@@ -150,8 +152,8 @@ const createComposition = async (colorScheme) => {
                     stroke: 0,
                     thickness: 4,
                     center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
                     speed: speed,
                     invertDirection: invertDirection,
                     largeRadius: {
@@ -225,174 +227,166 @@ const createComposition = async (colorScheme) => {
         }
     }
     
-    const lineCount = 20;
 
-    await placePath({
-        point1:keterPoint,
-        point2:chokhmahPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+    const createAllPaths = async () => {
+        await placePath({
+            point1: keterPoint,
+            point2: chokhmahPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:keterPoint,
-        point2:binahPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: keterPoint,
+            point2: binahPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:keterPoint,
-        point2:tiferetPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: keterPoint,
+            point2: tiferetPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:chokhmahPoint,
-        point2:binahPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: chokhmahPoint,
+            point2: binahPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:chokhmahPoint,
-        point2:chesedPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: chokhmahPoint,
+            point2: chesedPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:chokhmahPoint,
-        point2:tiferetPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: chokhmahPoint,
+            point2: tiferetPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:binahPoint,
-        point2:gevurahPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: binahPoint,
+            point2: gevurahPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:binahPoint,
-        point2:tiferetPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: binahPoint,
+            point2: tiferetPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:chesedPoint,
-        point2:gevurahPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: chesedPoint,
+            point2: gevurahPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:chesedPoint,
-        point2:tiferetPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: chesedPoint,
+            point2: tiferetPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:chesedPoint,
-        point2:netzachPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: chesedPoint,
+            point2: netzachPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:gevurahPoint,
-        point2:tiferetPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: gevurahPoint,
+            point2: tiferetPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:gevurahPoint,
-        point2:hodPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: gevurahPoint,
+            point2: hodPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:tiferetPoint,
-        point2:netzachPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: tiferetPoint,
+            point2: netzachPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:tiferetPoint,
-        point2:hodPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: tiferetPoint,
+            point2: hodPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:tiferetPoint,
-        point2:yesodPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: tiferetPoint,
+            point2: yesodPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:netzachPoint,
-        point2:hodPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: netzachPoint,
+            point2: hodPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:netzachPoint,
-        point2:yesodPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: netzachPoint,
+            point2: yesodPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
-    await placePath({
-        point1:netzachPoint,
-        point2:malkuthPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
-
-
-    await placePath({
-        point1:hodPoint,
-        point2:yesodPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
-
-    await placePath({
-        point1:hodPoint,
-        point2:malkuthPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
-
-    await placePath({
-        point1:yesodPoint,
-        point2:malkuthPoint,
-        lineCount: lineCount,
-        color:pathColor,
-    });
+        await placePath({
+            point1: netzachPoint,
+            point2: malkuthPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
 
 
-    await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: hodPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: tiferetPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: chesedPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: gevurahSeverity, center: gevurahPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: chokhmahPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: binahPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: keterPoint,})
+        await placePath({
+            point1: hodPoint,
+            point2: yesodPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
+
+        await placePath({
+            point1: hodPoint,
+            point2: malkuthPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
+
+        await placePath({
+            point1: yesodPoint,
+            point2: malkuthPoint,
+            lineCount: lineCount,
+            color: pathColor,
+        });
+    }
+
+
+    await createAllPaths();
 
     await placePulse({color: daatColor, highlight: highlight, center: daatPoint,})
     await placePulse({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
@@ -417,6 +411,17 @@ const createComposition = async (colorScheme) => {
     await placePulseOverlay({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection: false, speed:4})
     await placePulseOverlay({color: binahColor, highlight: highlight, center: binahPoint, invertDirection: true, speed:4})
     await placePulseOverlay({color: keterColor, highlight: highlight, center: keterPoint,})
+
+    await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: hodPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: tiferetPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: chesedPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: gevurahSeverity, center: gevurahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: chokhmahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: binahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: keterPoint,})
 
 
     await myTestProject.addFinalEffect({
