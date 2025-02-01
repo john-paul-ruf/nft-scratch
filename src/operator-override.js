@@ -107,7 +107,7 @@ const createComposition = async (colorScheme) => {
     const pulseStroke = 4;
     const pulseThickness = 8;
 
-    const placePulse = async ({color, highlight, center, invertDirection = false}) => {
+    const placePulse = async ({color, highlight, center, invertDirection = false, speed = 0}) => {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
@@ -119,7 +119,7 @@ const createComposition = async (colorScheme) => {
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#C0C0C0'),
-                    speed: 4,
+                    speed: speed,
                     invertDirection: invertDirection,
                     largeRadius: {
                         lower: (finalSize) => finalSize.longestSide * 0.14,
@@ -232,7 +232,7 @@ const createComposition = async (colorScheme) => {
             });
         }
     }
-    
+
 
     const createAllPaths = async () => {
         await placePath({
@@ -392,8 +392,6 @@ const createComposition = async (colorScheme) => {
     }
 
 
-    await createAllPaths();
-
     await placePulse({color: daatColor, highlight: highlight, center: daatPoint,})
     await placePulse({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
     await placePulse({color: yesodColor, highlight: highlight, center: yesodPoint,})
@@ -418,7 +416,6 @@ const createComposition = async (colorScheme) => {
     await placePulseOverlay({color: binahColor, highlight: highlight, center: binahPoint, invertDirection: true, speed:4})
     await placePulseOverlay({color: keterColor, highlight: highlight, center: keterPoint,})
 
-
     await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
     await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
     await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
@@ -430,6 +427,7 @@ const createComposition = async (colorScheme) => {
     await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: binahPoint,})
     await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: keterPoint,})
 
+    await createAllPaths();
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
