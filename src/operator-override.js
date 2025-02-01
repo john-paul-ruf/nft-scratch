@@ -118,7 +118,7 @@ const createComposition = async (colorScheme) => {
                     thickness: pulseThickness,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#B300FF'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#C0C0C0'),
                     speed: 4,
                     invertDirection: invertDirection,
                     largeRadius: {
@@ -158,8 +158,8 @@ const createComposition = async (colorScheme) => {
                     stroke: 0,
                     thickness: pulseThickness,
                     center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#B300FF'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#C0C0C0'),
                     speed: speed,
                     invertDirection: invertDirection,
                     largeRadius: {
