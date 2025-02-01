@@ -35,6 +35,9 @@ import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtSc
 import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {StaticPathEffect} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathEffect.js";
 import {StaticPathConfig} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathConfig.js";
+
+import {GlowEffect} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
+import {GlowConfig} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
 import {createDecayingOrbElement} from "./complex-elements/decayingOrbs.js";
@@ -56,7 +59,7 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 1,
+        maxConcurrentFrameBuilderThreads: 3,
     });
 
     const keterPoint = {x: 540, y: 200 + topYBuffer};
@@ -101,18 +104,21 @@ const createComposition = async (colorScheme) => {
 
     const lineCount = 20;
 
+    const pulseStroke = 2;
+    const pulseThickness = 8;
+
     const placePulse = async ({color, highlight, center, invertDirection = false}) => {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
                     invertLayers: false,
                     layerOpacity: 1,
-                    underLayerOpacity: 0.3,
-                    stroke: 1,
-                    thickness: 4,
+                    underLayerOpacity: 0.6,
+                    stroke: pulseStroke,
+                    thickness: pulseThickness,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#B300FF'),
                     speed: 4,
                     invertDirection: invertDirection,
                     largeRadius: {
@@ -134,7 +140,7 @@ const createComposition = async (colorScheme) => {
                         lower: (finalSize) => finalSize.longestSide * 0.06,
                         upper: (finalSize) => finalSize.longestSide * 0.06,
                     },
-                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 5, upper: 5}},
+                    accentRange: {bottom: {lower: 4, upper: 4}, top: {lower: 12, upper:12}},
                     blurRange: {bottom: {lower: 4, upper: 4}, top: {lower: 6, upper: 6}},
                     featherTimes: {lower: 4, upper: 4},
                 })
@@ -148,11 +154,11 @@ const createComposition = async (colorScheme) => {
                 effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
                     invertLayers: false,
                     layerOpacity: 1,
-                    underLayerOpacity: 0.9,
+                    underLayerOpacity: 0,
                     stroke: 0,
-                    thickness: 4,
+                    thickness: pulseThickness,
                     center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#B300FF'),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FF0000'),
                     speed: speed,
                     invertDirection: invertDirection,
@@ -391,13 +397,13 @@ const createComposition = async (colorScheme) => {
     await placePulse({color: daatColor, highlight: highlight, center: daatPoint,})
     await placePulse({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
     await placePulse({color: yesodColor, highlight: highlight, center: yesodPoint,})
-    await placePulse({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection: false})
-    await placePulse({color: hodColor, highlight: highlight, center: hodPoint, invertDirection: true})
+    await placePulse({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection: false, speed:4})
+    await placePulse({color: hodColor, highlight: highlight, center: hodPoint, invertDirection: true, speed:4})
     await placePulse({color: tiferetColor, highlight: highlight, center: tiferetPoint,})
-    await placePulse({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection: false})
-    await placePulse({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection: true})
-    await placePulse({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection: false})
-    await placePulse({color: binahColor, highlight: highlight, center: binahPoint, invertDirection: true})
+    await placePulse({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection: false, speed:4})
+    await placePulse({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection: true, speed:4})
+    await placePulse({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection: false, speed:4})
+    await placePulse({color: binahColor, highlight: highlight, center: binahPoint, invertDirection: true, speed:4})
     await placePulse({color: keterColor, highlight: highlight, center: keterPoint,})
 
     await placePulseOverlay({color: daatColor, highlight: highlight, center: daatPoint,})
@@ -411,6 +417,7 @@ const createComposition = async (colorScheme) => {
     await placePulseOverlay({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection: false, speed:4})
     await placePulseOverlay({color: binahColor, highlight: highlight, center: binahPoint, invertDirection: true, speed:4})
     await placePulseOverlay({color: keterColor, highlight: highlight, center: keterPoint,})
+
 
     await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
     await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
@@ -466,12 +473,22 @@ const createComposition = async (colorScheme) => {
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
+            effect: GlowEffect, percentChance: 100, currentEffectConfig: new GlowConfig({
+                lowerRange: { lower: -18, upper: -18 },
+                upperRange: { lower: 18, upper: 18 },
+                times: { lower: 1, upper: 1 },
+            }),
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
             effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
+                brightnessRange: {bottom: {lower: 0.8, upper: 0.8}, top: {lower: 1.2, upper: 1.2}},
                 brightnessTimes: {lower: 2, upper: 2},
-                saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
+                saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 1.5}},
                 saturationTimes: {lower: 4, upper: 4},
-                contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 1.5}},
+                contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
                 contrastTimes: {lower: 2, upper: 2},
             }),
         }),
