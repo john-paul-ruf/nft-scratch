@@ -104,7 +104,7 @@ const createComposition = async (colorScheme) => {
 
     const lineCount = 20;
 
-    const pulseStroke = 2;
+    const pulseStroke = 4;
     const pulseThickness = 8;
 
     const placePulse = async ({color, highlight, center, invertDirection = false}) => {
