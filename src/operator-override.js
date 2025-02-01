@@ -95,7 +95,9 @@ const createComposition = async (colorScheme) => {
     const malkuthHighlight = '#DAA520';
     const daatHighlight = '#32CD32';
 
-    const highlight = '#87CEFA'
+    const highlight = '#FFFFFF'
+
+    const pathColor = '#87CEFA'
 
     const placePulse = async ({color, highlight, center, invertDirection = false}) => {
         await myTestProject.addPrimaryEffect({
@@ -104,8 +106,8 @@ const createComposition = async (colorScheme) => {
                     invertLayers: false,
                     layerOpacity: 1,
                     underLayerOpacity: 0.7,
-                    stroke: 6,
-                    thickness: 3,
+                    stroke: 1,
+                    thickness: 4,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, highlight),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
@@ -138,7 +140,7 @@ const createComposition = async (colorScheme) => {
         });
     }
 
-    const placePulseOverlay = async ({color, center, highlight, invertDirection = false}) => {
+    const placePulseOverlay = async ({color, center, highlight, invertDirection = false, speed = 0}) => {
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: FuzzyRipplesEffect, percentChance: 100, currentEffectConfig: new FuzzyRipplesConfig({
@@ -146,11 +148,11 @@ const createComposition = async (colorScheme) => {
                     layerOpacity: 1,
                     underLayerOpacity: 0.9,
                     stroke: 0,
-                    thickness: 3,
+                    thickness: 4,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, highlight),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
-                    speed: 4,
+                    speed: speed,
                     invertDirection: invertDirection,
                     largeRadius: {
                         lower: (finalSize) => finalSize.longestSide * 0.14,
@@ -179,6 +181,208 @@ const createComposition = async (colorScheme) => {
         });
     }
 
+    const placePath = async({point1, point2, lineCount, color}) => {
+        for(let i = 0; i < lineCount; i++) {
+            await myTestProject.addPrimaryEffect({
+                layerConfig: new LayerConfig({
+                    effect: StaticPathEffect, percentChance: 100, currentEffectConfig: new StaticPathConfig({
+                        invertLayers: true,
+                        layerOpacity: 0.7,
+                        underLayerOpacity: 0.5,
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
+                        stroke: 2,
+                        thickness: 1,
+                        lineLength: {lower: 10, upper: 25},
+                        numberOfLoops: {lower: 1, upper: 5},
+                        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
+                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                        featherTimes: {lower: 2, upper: 4},
+                        path: [point1, point2, point1],
+                    })
+                }),
+            });
+
+            await myTestProject.addPrimaryEffect({
+                layerConfig: new LayerConfig({
+                    effect: StaticPathEffect, percentChance: 100, currentEffectConfig: new StaticPathConfig({
+                        invertLayers: true,
+                        layerOpacity: 0.7,
+                        underLayerOpacity: 0.5,
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
+                        stroke: 2,
+                        thickness: 1,
+                        lineLength: {lower: 50, upper: 125},
+                        numberOfLoops: {lower: 1, upper: 5},
+                        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
+                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
+                        featherTimes: {lower: 2, upper: 4},
+                        path: [point2, point1, point2],
+                    })
+                }),
+            });
+        }
+    }
+    
+    const lineCount = 20;
+
+    await placePath({
+        point1:keterPoint,
+        point2:chokhmahPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:keterPoint,
+        point2:binahPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:keterPoint,
+        point2:tiferetPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:chokhmahPoint,
+        point2:binahPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:chokhmahPoint,
+        point2:chesedPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:chokhmahPoint,
+        point2:tiferetPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:binahPoint,
+        point2:gevurahPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:binahPoint,
+        point2:tiferetPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:chesedPoint,
+        point2:gevurahPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:chesedPoint,
+        point2:tiferetPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:chesedPoint,
+        point2:netzachPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:gevurahPoint,
+        point2:tiferetPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:gevurahPoint,
+        point2:hodPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:tiferetPoint,
+        point2:netzachPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:tiferetPoint,
+        point2:hodPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:tiferetPoint,
+        point2:yesodPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:netzachPoint,
+        point2:hodPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:netzachPoint,
+        point2:yesodPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:netzachPoint,
+        point2:malkuthPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+
+    await placePath({
+        point1:hodPoint,
+        point2:yesodPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:hodPoint,
+        point2:malkuthPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+    await placePath({
+        point1:yesodPoint,
+        point2:malkuthPoint,
+        lineCount: lineCount,
+        color:pathColor,
+    });
+
+
     await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
     await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
     await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
@@ -193,25 +397,25 @@ const createComposition = async (colorScheme) => {
     await placePulse({color: daatColor, highlight: highlight, center: daatPoint,})
     await placePulse({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
     await placePulse({color: yesodColor, highlight: highlight, center: yesodPoint,})
-    await placePulse({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection:true})
-    await placePulse({color: hodColor, highlight: highlight, center: hodPoint, invertDirection:true})
+    await placePulse({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection: true})
+    await placePulse({color: hodColor, highlight: highlight, center: hodPoint, invertDirection: true})
     await placePulse({color: tiferetColor, highlight: highlight, center: tiferetPoint,})
-    await placePulse({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection:true})
-    await placePulse({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection:true})
-    await placePulse({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection:true})
-    await placePulse({color: binahColor, highlight: highlight, center: binahPoint, invertDirection:true})
+    await placePulse({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection: true})
+    await placePulse({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection: true})
+    await placePulse({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection: true})
+    await placePulse({color: binahColor, highlight: highlight, center: binahPoint, invertDirection: true})
     await placePulse({color: keterColor, highlight: highlight, center: keterPoint,})
 
     await placePulseOverlay({color: daatColor, highlight: highlight, center: daatPoint,})
     await placePulseOverlay({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
     await placePulseOverlay({color: yesodColor, highlight: highlight, center: yesodPoint,})
-    await placePulseOverlay({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection:true})
-    await placePulseOverlay({color: hodColor, highlight: highlight, center: hodPoint, invertDirection:true})
+    await placePulseOverlay({color: netzachColor, highlight: highlight, center: netzachPoint, invertDirection: false, speed:4})
+    await placePulseOverlay({color: hodColor, highlight: highlight, center: hodPoint, invertDirection: true, speed:4})
     await placePulseOverlay({color: tiferetColor, highlight: highlight, center: tiferetPoint,})
-    await placePulseOverlay({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection:true})
-    await placePulseOverlay({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection:true})
-    await placePulseOverlay({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection:true})
-    await placePulseOverlay({color: binahColor, highlight: highlight, center: binahPoint, invertDirection:true})
+    await placePulseOverlay({color: chesedColor, highlight: highlight, center: chesedPoint, invertDirection: false, speed:4})
+    await placePulseOverlay({color: gevurahColor, highlight: highlight, center: gevurahPoint, invertDirection: true, speed:4})
+    await placePulseOverlay({color: chokhmahColor, highlight: highlight, center: chokhmahPoint, invertDirection: false, speed:4})
+    await placePulseOverlay({color: binahColor, highlight: highlight, center: binahPoint, invertDirection: true, speed:4})
     await placePulseOverlay({color: keterColor, highlight: highlight, center: keterPoint,})
 
 
