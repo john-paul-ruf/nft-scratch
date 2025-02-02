@@ -59,7 +59,7 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 3,
+        maxConcurrentFrameBuilderThreads: 2,
     });
 
     const keterPoint = {x: 540, y: 200 + topYBuffer};
@@ -102,7 +102,7 @@ const createComposition = async (colorScheme) => {
 
     const pathColor = '#87CEFA'
 
-    const lineCount = 20;
+    const lineCount = 10;
 
     const pulseStroke = 4;
     const pulseThickness = 8;
@@ -118,7 +118,7 @@ const createComposition = async (colorScheme) => {
                     thickness: pulseThickness,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#C0C0C0'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#6B2929'),
                     speed: speed,
                     invertDirection: invertDirection,
                     largeRadius: {
@@ -159,7 +159,7 @@ const createComposition = async (colorScheme) => {
                     thickness: pulseThickness,
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#C0C0C0'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, '#6B2929'),
                     speed: speed,
                     invertDirection: invertDirection,
                     largeRadius: {
@@ -201,12 +201,12 @@ const createComposition = async (colorScheme) => {
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 2,
                         thickness: 1,
-                        lineLength: {lower: 50, upper: 50},
+                        lineLength: {lower: 5, upper: 5},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
                         blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                         featherTimes: {lower: 2, upper: 4},
-                        path: [point1, point2, point1],
+                        path: [point1, point2],
                     })
                 }),
             });
@@ -221,12 +221,12 @@ const createComposition = async (colorScheme) => {
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 2,
                         thickness: 1,
-                        lineLength: {lower: 50, upper: 50},
+                        lineLength: {lower: 5, upper: 5},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
                         blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                         featherTimes: {lower: 2, upper: 4},
-                        path: [point2, point1, point2],
+                        path: [point2, point1],
                     })
                 }),
             });
@@ -390,6 +390,7 @@ const createComposition = async (colorScheme) => {
             color: pathColor,
         });
     }
+
 
 
     await placePulse({color: daatColor, highlight: highlight, center: daatPoint,})
