@@ -200,7 +200,7 @@ const createComposition = async (colorScheme) => {
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 2,
-                        thickness: 1,
+                        thickness: 3,
                         lineLength: {lower: 5, upper: 5},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
@@ -220,7 +220,7 @@ const createComposition = async (colorScheme) => {
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 2,
-                        thickness: 1,
+                        thickness: 3,
                         lineLength: {lower: 5, upper: 5},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
@@ -232,7 +232,6 @@ const createComposition = async (colorScheme) => {
             });
         }
     }
-
 
     const createAllPaths = async () => {
         await placePath({
@@ -390,8 +389,6 @@ const createComposition = async (colorScheme) => {
             color: pathColor,
         });
     }
-
-
 
     await placePulse({color: daatColor, highlight: highlight, center: daatPoint,})
     await placePulse({color: malkuthColor, highlight: highlight, center: malkuthPoint,})
