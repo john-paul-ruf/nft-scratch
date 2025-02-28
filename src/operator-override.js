@@ -120,7 +120,7 @@ const createComposition = async (colorScheme) => {
     const createRings = async ({
                                    center = new Point2D(0, 0),
                                    colorScheme = new ColorScheme(),
-                                   ringSpoke = 40,
+                                   ringSpoke = 45,
 
                                    outerRadius = 160,
                                    secondRadiusReduction = 0.75,
@@ -133,7 +133,7 @@ const createComposition = async (colorScheme) => {
                                    firstRingSpeed = 4,
                                    secondRingSpeed = 6,
                                    thirdRingSPeed = 8,
-                                   fourthRingSpeed = 2,
+                                   fourthRingSpeed = 10,
 
                                    numberOfRings = 4,
 
@@ -169,7 +169,7 @@ const createComposition = async (colorScheme) => {
                     sequencePixelConstant: sequencePixelConstant,
                     sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                     minSequenceIndex: [10],
-                    numberOfSequenceElements: [5],
+                    numberOfSequenceElements: [3],
                     speed: {lower: fourthRingSpeed, upper: fourthRingSpeed},
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
@@ -228,7 +228,7 @@ const createComposition = async (colorScheme) => {
                         sequencePixelConstant: sequencePixelConstant,
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
-                        numberOfSequenceElements: [4],
+                        numberOfSequenceElements: [3],
                         speed: {lower: secondRingSpeed, upper: secondRingSpeed},
                         center: findPointByAngleAndCircle(center, i, secondRadius),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
@@ -258,7 +258,7 @@ const createComposition = async (colorScheme) => {
                         sequencePixelConstant: sequencePixelConstant,
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
-                        numberOfSequenceElements: [3],
+                        numberOfSequenceElements: [2],
                         speed: {lower: thirdRingSPeed, upper: thirdRingSPeed},
                         center: findPointByAngleAndCircle(center, i, thirdRadius),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
