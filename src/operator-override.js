@@ -14,7 +14,7 @@ import {
     activatingVishuddha,
     binahUnderstanding,
     chesedKindness,
-    chokhmahWisdom,
+    chokhmahWisdom, eternalRise,
     gevurahSeverity,
     hodSplendor,
     keterCrown,
@@ -53,7 +53,7 @@ import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 
 const promiseArray = [];
 const topYBuffer = 10;
-const backgroundHex = '#1b0038'
+const backgroundHex = '#000000'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -67,7 +67,8 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 2,
+        maxConcurrentFrameBuilderThreads: 5,
+
     });
 
     const keterPoint = {x: 540, y: 220 + topYBuffer};
@@ -108,7 +109,7 @@ const createComposition = async (colorScheme) => {
 
     const highlight = '#FFFFFF'
 
-    const pathColor = '#87CEFA'
+    const pathColor = '#550000'
 
     const lineCount = 10;
 
@@ -119,7 +120,7 @@ const createComposition = async (colorScheme) => {
     const createRings = async ({
                                    center = new Point2D(0, 0),
                                    colorScheme = new ColorScheme(),
-                                   ringSpoke = 30,
+                                   ringSpoke = 40,
 
                                    outerRadius = 160,
                                    secondRadiusReduction = 0.75,
@@ -129,17 +130,17 @@ const createComposition = async (colorScheme) => {
                                    thirdRadius = outerRadius * thirdRadiusReduction,
 
 
-                                   firstRingSpeed = 2,
+                                   firstRingSpeed = 4,
                                    secondRingSpeed = 6,
                                    thirdRingSPeed = 8,
-                                   fourthRingSpeed = 6,
+                                   fourthRingSpeed = 2,
 
                                    numberOfRings = 4,
 
                                    stroke = 1,
                                    thickness = 0,
 
-                                   underLayerOpacity = 0.5,
+                                   underLayerOpacity = 0.7,
                                    opacity = 0,
                                    sequencePixelConstant = {
                                        lower: (finalSize) => finalSize.shortestSide * 0.0002,
@@ -168,13 +169,13 @@ const createComposition = async (colorScheme) => {
                     sequencePixelConstant: sequencePixelConstant,
                     sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                     minSequenceIndex: [10],
-                    numberOfSequenceElements: [4],
+                    numberOfSequenceElements: [5],
                     speed: {lower: fourthRingSpeed, upper: fourthRingSpeed},
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, fourthRingColor),
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                    blurRange: {bottom: {lower: 0, upper:0}, top: {lower: 0, upper:0}},
+                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
                 }),
             }),
@@ -197,13 +198,13 @@ const createComposition = async (colorScheme) => {
                         sequencePixelConstant: sequencePixelConstant,
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
-                        numberOfSequenceElements: [3],
+                        numberOfSequenceElements: [4],
                         speed: {lower: firstRingSpeed, upper: firstRingSpeed},
                         center: findPointByAngleAndCircle(center, i, outerRadius),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 0, upper:0}, top: {lower: 0, upper:0}},
+                        blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         featherTimes: {lower: 0, upper: 0},
                     }),
                 }),
@@ -227,13 +228,13 @@ const createComposition = async (colorScheme) => {
                         sequencePixelConstant: sequencePixelConstant,
                         sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                         minSequenceIndex: [10],
-                        numberOfSequenceElements: [3],
+                        numberOfSequenceElements: [4],
                         speed: {lower: secondRingSpeed, upper: secondRingSpeed},
                         center: findPointByAngleAndCircle(center, i, secondRadius),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 0, upper:0}, top: {lower: 0, upper:0}},
+                        blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         featherTimes: {lower: 0, upper: 0},
                     }),
                 }),
@@ -263,14 +264,12 @@ const createComposition = async (colorScheme) => {
                         innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 0, upper:0}, top: {lower: 0, upper:0}},
+                        blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         featherTimes: {lower: 0, upper: 0},
                     }),
                 }),
             });
         }
-
-
 
 
     };
@@ -285,13 +284,13 @@ const createComposition = async (colorScheme) => {
                         underLayerOpacity: 0.5,
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
-                        stroke: 2,
-                        thickness: 3,
-                        lineLength: {lower: 5, upper: 5},
+                        stroke: 0,
+                        thickness: 1,
+                        lineLength: {lower: 30, upper: 30},
                         numberOfLoops: {lower: i, upper: i},
-                        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
-                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                        featherTimes: {lower: 2, upper: 4},
+                        accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 8, upper: 8}},
+                        blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
+                        featherTimes: {lower: 4, upper: 4},
                         path: [point1, point2],
                     })
                 }),
@@ -305,13 +304,13 @@ const createComposition = async (colorScheme) => {
                         underLayerOpacity: 0.5,
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
-                        stroke: 2,
-                        thickness: 3,
-                        lineLength: {lower: 5, upper: 5},
+                        stroke: 0,
+                        thickness: 1,
+                        lineLength: {lower:30, upper: 30},
                         numberOfLoops: {lower: i, upper: i},
-                        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 6}},
-                        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                        featherTimes: {lower: 2, upper: 4},
+                        accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 8, upper: 6}},
+                        blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
+                        featherTimes: {lower: 4, upper: 4},
                         path: [point2, point1],
                     })
                 }),
@@ -476,6 +475,7 @@ const createComposition = async (colorScheme) => {
         });
     }
 
+    await createRings({center: daatPoint, colorScheme: eternalRise})
 
     await createRings({center: malkuthPoint, colorScheme: malkuthKingdom})
     await createRings({center: yesodPoint, colorScheme: yesodFoundation})
@@ -491,7 +491,7 @@ const createComposition = async (colorScheme) => {
 
     await createAllPaths();
 
-    await myTestProject.addFinalEffect({
+    /*await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
@@ -506,7 +506,7 @@ const createComposition = async (colorScheme) => {
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
-    });
+    });*/
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
@@ -520,7 +520,7 @@ const createComposition = async (colorScheme) => {
                 lineBlurRange: {bottom: {lower: 20, upper: 25}, top: {lower: 30, upper: 40}},
                 lineBlurTimes: {lower: 4, upper: 4},
                 colorTintRange: {
-                    redRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 2}},
+                    redRange: {bottom: {lower: 1.3, upper: 1.6}, top: {lower: 1.5, upper: 2}},
                     greenRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                     blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
                 },
