@@ -133,7 +133,7 @@ const createComposition = async (colorScheme) => {
                                    firstRingSpeed = 4,
                                    secondRingSpeed = 6,
                                    thirdRingSPeed = 8,
-                                   fourthRingSpeed = 10,
+                                   fourthRingSpeed = 4,
 
                                    numberOfRings = 4,
 
@@ -181,7 +181,7 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
-        for (let i = 0; i < 360; i = i + ringSpoke) {
+        /*for (let i = 0; i < 360; i = i + ringSpoke) {
             await myTestProject.addPrimaryEffect({
                 layerConfig: new LayerConfig({
                     effect: EncircledSpiralEffect,
@@ -269,9 +269,7 @@ const createComposition = async (colorScheme) => {
                     }),
                 }),
             });
-        }
-
-
+        } */
     };
 
     const placePath = async ({point1, point2, lineCount, color}) => {
@@ -488,6 +486,17 @@ const createComposition = async (colorScheme) => {
     await createRings({center: binahPoint, colorScheme: binahUnderstanding})
     await createRings({center: keterPoint, colorScheme: keterCrown})
 
+
+    await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: hodPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: tiferetPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: chesedPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: gevurahSeverity, center: gevurahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: chokhmahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: binahPoint,})
+    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: keterPoint,})
 
     await createAllPaths();
 

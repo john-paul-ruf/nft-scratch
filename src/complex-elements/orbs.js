@@ -103,7 +103,7 @@ export const createOrbElement = async ({
                     elementGastonMultiStep: getMultiStep(),
 
                     numberOfFlareRings: new Range(1, 1),
-                    flareRingsSizeRange: new PercentageRange(new PercentageLongestSide(0.02), new PercentageLongestSide(0.15)),
+                    flareRingsSizeRange: new PercentageRange(new PercentageLongestSide(0.15), new PercentageLongestSide(0.19)),
                     flareRingStroke: new Range(stroke, stroke),
                     flareRingThickness: new Range(thickness, thickness),
 
