@@ -103,7 +103,7 @@ export const createOrbElement = async ({
                     elementGastonMultiStep: getMultiStep(),
 
                     numberOfFlareRings: new Range(1, 1),
-                    flareRingsSizeRange: new PercentageRange(new PercentageLongestSide(0.15), new PercentageLongestSide(0.19)),
+                    flareRingsSizeRange: new PercentageRange(new PercentageLongestSide(0.12), new PercentageLongestSide(0.19)),
                     flareRingStroke: new Range(stroke, stroke),
                     flareRingThickness: new Range(thickness, thickness),
 
@@ -117,7 +117,7 @@ export const createOrbElement = async ({
                     blurRange: {bottom: {lower: 2, upper: 4}, top: {lower: 4, upper: 6}},
                     featherTimes: {lower: 4, upper: 4},
                 }),
-                possibleSecondaryEffects: [],
+                possibleSecondaryEffects: [...createDegaussEffects({arraySize: 50})],
             }),
         });
     }

@@ -53,7 +53,7 @@ import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 
 const promiseArray = [];
 const topYBuffer = 10;
-const backgroundHex = '#000000'
+const backgroundHex = '#1C1C1C'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -67,7 +67,7 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 5,
+        maxConcurrentFrameBuilderThreads: 2,
 
     });
 
@@ -109,7 +109,7 @@ const createComposition = async (colorScheme) => {
 
     const highlight = '#FFFFFF'
 
-    const pathColor = '#550000'
+    const pathColor = '#9F2386'
 
     const lineCount = 10;
 
@@ -278,13 +278,13 @@ const createComposition = async (colorScheme) => {
                 layerConfig: new LayerConfig({
                     effect: StaticPathEffect, percentChance: 100, currentEffectConfig: new StaticPathConfig({
                         invertLayers: true,
-                        layerOpacity: 0.7,
-                        underLayerOpacity: 0.5,
+                        layerOpacity: 0.8,
+                        underLayerOpacity: 0.7,
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 0,
-                        thickness: 1,
-                        lineLength: {lower: 30, upper: 30},
+                        thickness: 2,
+                        lineLength: {lower: 15, upper: 15},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 8, upper: 8}},
                         blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
@@ -298,13 +298,13 @@ const createComposition = async (colorScheme) => {
                 layerConfig: new LayerConfig({
                     effect: StaticPathEffect, percentChance: 100, currentEffectConfig: new StaticPathConfig({
                         invertLayers: true,
-                        layerOpacity: 0.7,
-                        underLayerOpacity: 0.5,
+                        layerOpacity: 0.8,
+                        underLayerOpacity: 0.7,
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 0,
-                        thickness: 1,
-                        lineLength: {lower:30, upper: 30},
+                        thickness: 2,
+                        lineLength: {lower:15, upper: 15},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 8, upper: 6}},
                         blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
@@ -473,7 +473,9 @@ const createComposition = async (colorScheme) => {
         });
     }
 
-    await createRings({center: daatPoint, colorScheme: eternalRise})
+    await createAllPaths();
+
+    await createRings({center: daatPoint, colorScheme: activatingVishuddha})
 
     await createRings({center: malkuthPoint, colorScheme: malkuthKingdom})
     await createRings({center: yesodPoint, colorScheme: yesodFoundation})
@@ -487,6 +489,7 @@ const createComposition = async (colorScheme) => {
     await createRings({center: keterPoint, colorScheme: keterCrown})
 
 
+    await createOrbElement({project: myTestProject, colorScheme: activatingVishuddha, center: daatPoint,})
     await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
     await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
     await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
@@ -498,24 +501,24 @@ const createComposition = async (colorScheme) => {
     await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: binahPoint,})
     await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: keterPoint,})
 
-    await createAllPaths();
 
-    /*await myTestProject.addFinalEffect({
+
+    await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
                 linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
                 opacityTimes: {lower: 8, upper: 8},
                 lineRed: {lower: 111, upper: 111},
-                lineGreen: {lower: 24, upper: 24},
-                lineBlue: {lower: 24, upper: 24},
-                lineHeight: {lower: 0.5, upper: 0.5},
-                edgePercentage: {lower: 0.15, upper: 0.15},
-                maxLineHeight: {lower: 4, upper: 4},
+                lineGreen: {lower: 0, upper: 0},
+                lineBlue: {lower: 111, upper: 111},
+                lineHeight: {lower: 0.25, upper: 0.25},
+                edgePercentage: {lower: 0.10, upper: 0.10},
+                maxLineHeight: {lower: 2, upper: 2},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
-    });*/
+    });
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
