@@ -53,7 +53,7 @@ import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 
 const promiseArray = [];
 const topYBuffer = 10;
-const backgroundHex = '#1C1C1C'
+const backgroundHex = '#3D1C1C'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -67,7 +67,7 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 2,
+        maxConcurrentFrameBuilderThreads: 5,
 
     });
 
@@ -109,168 +109,9 @@ const createComposition = async (colorScheme) => {
 
     const highlight = '#FFFFFF'
 
-    const pathColor = '#9F2386'
+    const pathColor = '#1c8D1c'
 
     const lineCount = 10;
-
-    const pulseStroke = 4;
-    const pulseThickness = 8;
-
-
-    const createRings = async ({
-                                   center = new Point2D(0, 0),
-                                   colorScheme = new ColorScheme(),
-                                   ringSpoke = 45,
-
-                                   outerRadius = 160,
-                                   secondRadiusReduction = 0.75,
-                                   secondRadius = outerRadius * secondRadiusReduction,
-
-                                   thirdRadiusReduction = 0.5,
-                                   thirdRadius = outerRadius * thirdRadiusReduction,
-
-
-                                   firstRingSpeed = 4,
-                                   secondRingSpeed = 6,
-                                   thirdRingSPeed = 8,
-                                   fourthRingSpeed = 4,
-
-                                   numberOfRings = 4,
-
-                                   stroke = 1,
-                                   thickness = 0,
-
-                                   underLayerOpacity = 0.7,
-                                   opacity = 0,
-                                   sequencePixelConstant = {
-                                       lower: (finalSize) => finalSize.shortestSide * 0.0002,
-                                       upper: (finalSize) => finalSize.shortestSide * 0.0002,
-                                   }
-                               }) => {
-
-        const outerRingColor = colorScheme.getColorFromBucket();
-        const innerRingColor = colorScheme.getColorFromBucket();
-        const thirdRingColor = colorScheme.getColorFromBucket();
-        const fourthRingColor = colorScheme.getColorFromBucket();
-
-        await myTestProject.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: EncircledSpiralEffect,
-                percentChance: 100,
-                currentEffectConfig: new EncircledSpiralConfig({
-                    invertLayers: true,
-                    layerOpacity: opacity,
-                    underLayerOpacity: underLayerOpacity,
-                    startAngle: {lower: 0, upper: 360},
-                    numberOfRings: {lower: numberOfRings, upper: numberOfRings},
-                    stroke: stroke,
-                    thickness: thickness,
-                    sparsityFactor: [ringSpoke],
-                    sequencePixelConstant: sequencePixelConstant,
-                    sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                    minSequenceIndex: [10],
-                    numberOfSequenceElements: [3],
-                    speed: {lower: fourthRingSpeed, upper: fourthRingSpeed},
-                    center: center,
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, fourthRingColor),
-                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                    featherTimes: {lower: 0, upper: 0},
-                }),
-            }),
-        });
-
-        /*for (let i = 0; i < 360; i = i + ringSpoke) {
-            await myTestProject.addPrimaryEffect({
-                layerConfig: new LayerConfig({
-                    effect: EncircledSpiralEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new EncircledSpiralConfig({
-                        invertLayers: true,
-                        layerOpacity: opacity,
-                        underLayerOpacity: underLayerOpacity,
-                        startAngle: {lower: 0, upper: 360},
-                        numberOfRings: {lower: numberOfRings, upper: numberOfRings},
-                        stroke: stroke,
-                        thickness: thickness,
-                        sparsityFactor: [ringSpoke],
-                        sequencePixelConstant: sequencePixelConstant,
-                        sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                        minSequenceIndex: [10],
-                        numberOfSequenceElements: [4],
-                        speed: {lower: firstRingSpeed, upper: firstRingSpeed},
-                        center: findPointByAngleAndCircle(center, i, outerRadius),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
-                        accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        featherTimes: {lower: 0, upper: 0},
-                    }),
-                }),
-            });
-        }
-
-        for (let i = 0; i < 360; i = i + ringSpoke) {
-            await myTestProject.addPrimaryEffect({
-                layerConfig: new LayerConfig({
-                    effect: EncircledSpiralEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new EncircledSpiralConfig({
-                        invertLayers: true,
-                        layerOpacity: opacity,
-                        underLayerOpacity: underLayerOpacity,
-                        startAngle: {lower: 0, upper: 360},
-                        numberOfRings: {lower: numberOfRings, upper: numberOfRings},
-                        stroke: stroke,
-                        thickness: thickness,
-                        sparsityFactor: [ringSpoke],
-                        sequencePixelConstant: sequencePixelConstant,
-                        sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                        minSequenceIndex: [10],
-                        numberOfSequenceElements: [3],
-                        speed: {lower: secondRingSpeed, upper: secondRingSpeed},
-                        center: findPointByAngleAndCircle(center, i, secondRadius),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
-                        accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        featherTimes: {lower: 0, upper: 0},
-                    }),
-                }),
-            });
-        }
-
-        for (let i = 0; i < 360; i = i + ringSpoke) {
-            await myTestProject.addPrimaryEffect({
-                layerConfig: new LayerConfig({
-                    effect: EncircledSpiralEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new EncircledSpiralConfig({
-                        invertLayers: true,
-                        layerOpacity: opacity,
-                        underLayerOpacity: underLayerOpacity,
-                        startAngle: {lower: 0, upper: 360},
-                        numberOfRings: {lower: numberOfRings, upper: numberOfRings},
-                        stroke: stroke,
-                        thickness: thickness,
-                        sparsityFactor: [ringSpoke],
-                        sequencePixelConstant: sequencePixelConstant,
-                        sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
-                        minSequenceIndex: [10],
-                        numberOfSequenceElements: [2],
-                        speed: {lower: thirdRingSPeed, upper: thirdRingSPeed},
-                        center: findPointByAngleAndCircle(center, i, thirdRadius),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
-                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
-                        accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                        featherTimes: {lower: 0, upper: 0},
-                    }),
-                }),
-            });
-        } */
-    };
 
     const placePath = async ({point1, point2, lineCount, color}) => {
         for (let i = 0; i < lineCount; i++) {
@@ -284,7 +125,7 @@ const createComposition = async (colorScheme) => {
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 0,
                         thickness: 2,
-                        lineLength: {lower: 15, upper: 15},
+                        lineLength: {lower: 5, upper: 5},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 8, upper: 8}},
                         blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
@@ -304,7 +145,7 @@ const createComposition = async (colorScheme) => {
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         stroke: 0,
                         thickness: 2,
-                        lineLength: {lower:15, upper: 15},
+                        lineLength: {lower: 5, upper: 5},
                         numberOfLoops: {lower: i, upper: i},
                         accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 8, upper: 6}},
                         blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
@@ -473,35 +314,84 @@ const createComposition = async (colorScheme) => {
         });
     }
 
+    const addSpiral = async (myTestProject, color, point) => {
+
+        const sequencePixelConstant = {
+            lower: (finalSize) => finalSize.shortestSide * 0.0003,
+            upper: (finalSize) => finalSize.shortestSide * 0.0003,
+        }
+
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: EncircledSpiralEffect, percentChance: 100, currentEffectConfig: new EncircledSpiralConfig({
+                    outerColor:new ColorPicker(ColorPicker.SelectionType.color, color),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
+                    invertLayers: true,
+                    layerOpacity: 0.7,
+                    underLayerOpacity: 0.5,
+                    startAngle: {lower: 0, upper: 360},
+                    numberOfRings: new Range(6, 6),
+                    stroke: 1,
+                    thickness: 1,
+                    sparsityFactor: [45],
+                    sequencePixelConstant: sequencePixelConstant,
+                    sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
+                    minSequenceIndex: [9],
+                    numberOfSequenceElements: [3],
+                    speed: {lower: 4, upper: 4},
+                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 3, upper: 3}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+                    featherTimes: {lower: 8, upper: 8}, //center
+                    center: point,
+                }), defaultEffectConfig: EncircledSpiralConfig, possibleSecondaryEffects: [
+
+                ]
+            })
+        })
+        ;
+    }
+
+
+    const createLantern = async ({colorScheme, center}) => {
+
+        const length = 64;
+        const outlierColor = colorScheme.getColorFromBucket();
+        const squareColor = colorScheme.getColorFromBucket();
+        const crossColor = colorScheme.getColorFromBucket();
+
+        //outliers
+        await addSpiral(myTestProject, outlierColor, new Point2D(center.x, center.y + (2 * length)));
+        await addSpiral(myTestProject, outlierColor, new Point2D(center.x - (2 * length), center.y));
+        await addSpiral(myTestProject, outlierColor, new Point2D(center.x + (2 * length), center.y));
+        await addSpiral(myTestProject, outlierColor, new Point2D(center.x, center.y - (2 * length)));
+
+        //square
+        await addSpiral(myTestProject, squareColor, new Point2D(center.x + (length), center.y + (length)));
+        await addSpiral(myTestProject, squareColor, new Point2D(center.x - (length), center.y + (length)));
+        await addSpiral(myTestProject, squareColor, new Point2D(center.x - (length), center.y - (length)));
+        await addSpiral(myTestProject, squareColor, new Point2D(center.x + (length), center.y - (length)));
+
+        //cross
+        await addSpiral(myTestProject, crossColor, new Point2D(center.x, center.y + (length)));
+        await addSpiral(myTestProject, crossColor, new Point2D(center.x - length, center.y));
+        await addSpiral(myTestProject, crossColor, new Point2D(center.x + length, center.y));
+        await addSpiral(myTestProject, crossColor, new Point2D(center.x, center.y - (length)));
+    }
+
     await createAllPaths();
 
-    await createRings({center: daatPoint, colorScheme: activatingVishuddha})
+    await createLantern({center: daatPoint, colorScheme: activatingVishuddha});
 
-    await createRings({center: malkuthPoint, colorScheme: malkuthKingdom})
-    await createRings({center: yesodPoint, colorScheme: yesodFoundation})
-    await createRings({center: netzachPoint, colorScheme: netzachVictory})
-    await createRings({center: hodPoint, colorScheme: hodSplendor})
-    await createRings({center: tiferetPoint, colorScheme: tiferetBeauty})
-    await createRings({center: chesedPoint, colorScheme: chokhmahWisdom})
-    await createRings({center: gevurahPoint, colorScheme: gevurahSeverity})
-    await createRings({center: chokhmahPoint, colorScheme: chokhmahWisdom})
-    await createRings({center: binahPoint, colorScheme: binahUnderstanding})
-    await createRings({center: keterPoint, colorScheme: keterCrown})
-
-
-    await createOrbElement({project: myTestProject, colorScheme: activatingVishuddha, center: daatPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: malkuthKingdom, center: malkuthPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: yesodFoundation, center: yesodPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: netzachVictory, center: netzachPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: hodSplendor, center: hodPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: tiferetBeauty, center: tiferetPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: chesedKindness, center: chesedPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: gevurahSeverity, center: gevurahPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: chokhmahWisdom, center: chokhmahPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: binahUnderstanding, center: binahPoint,})
-    await createOrbElement({project: myTestProject, colorScheme: keterCrown, center: keterPoint,})
-
-
+    await createLantern({center: malkuthPoint, colorScheme: malkuthKingdom});
+    await createLantern({center: yesodPoint, colorScheme: yesodFoundation});
+    await createLantern({center: netzachPoint, colorScheme: netzachVictory});
+    await createLantern({center: hodPoint, colorScheme: hodSplendor});
+    await createLantern({center: tiferetPoint, colorScheme: tiferetBeauty});
+    await createLantern({center: chesedPoint, colorScheme: chokhmahWisdom});
+    await createLantern({center: gevurahPoint, colorScheme: gevurahSeverity});
+    await createLantern({center: chokhmahPoint, colorScheme: chokhmahWisdom});
+    await createLantern({center: binahPoint, colorScheme: binahUnderstanding});
+    await createLantern({center: keterPoint, colorScheme: keterCrown});
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
