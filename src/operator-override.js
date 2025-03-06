@@ -317,8 +317,8 @@ const createComposition = async (colorScheme) => {
     const addSpiral = async (myTestProject, color, point) => {
 
         const sequencePixelConstant = {
-            lower: (finalSize) => finalSize.shortestSide * 0.0003,
-            upper: (finalSize) => finalSize.shortestSide * 0.0003,
+            lower: (finalSize) => finalSize.shortestSide * 0.0005,
+            upper: (finalSize) => finalSize.shortestSide * 0.0005,
         }
 
         await myTestProject.addPrimaryEffect({
@@ -327,20 +327,20 @@ const createComposition = async (colorScheme) => {
                     outerColor:new ColorPicker(ColorPicker.SelectionType.color, color),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFFFFF'),
                     invertLayers: true,
-                    layerOpacity: 0.7,
-                    underLayerOpacity: 0.5,
+                    layerOpacity: 0.6,
+                    underLayerOpacity: 0.4,
                     startAngle: {lower: 0, upper: 360},
-                    numberOfRings: new Range(6, 6),
-                    stroke: 1,
+                    numberOfRings: new Range(4, 4),
+                    stroke: 0,
                     thickness: 1,
                     sparsityFactor: [45],
                     sequencePixelConstant: sequencePixelConstant,
                     sequence: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181],
                     minSequenceIndex: [9],
                     numberOfSequenceElements: [3],
-                    speed: {lower: 4, upper: 4},
-                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 3, upper: 3}},
-                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+                    speed: {lower: 2, upper: 2},
+                    accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 1, upper: 1}},
+                    blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 2, upper: 2}},
                     featherTimes: {lower: 8, upper: 8}, //center
                     center: point,
                 }), defaultEffectConfig: EncircledSpiralConfig, possibleSecondaryEffects: [
