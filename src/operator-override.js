@@ -1,7 +1,7 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {createOrbElement} from "./complex-elements/orbs.js";
 import {getMultiStep} from "./util/multistep.js";
-import {createDegaussEffects} from "./util/glitch.js";
+import {createDegaussEffects, createGlowEffects} from "./util/glitch.js";
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
@@ -50,10 +50,12 @@ import {
     EncircledSpiralConfig
 } from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
+import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
 
 const promiseArray = [];
 const topYBuffer = 10;
-const backgroundHex = '#3D1C1C'
+const backgroundHex = '#1c1c2d'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -378,20 +380,87 @@ const createComposition = async (colorScheme) => {
         await addSpiral(myTestProject, crossColor, new Point2D(center.x, center.y - (length)));
     }
 
+    const createTabs = async ({
+                                               colorScheme = new ColorScheme({}),
+                                               center = {x: 0, y: 0},
+                                           }) => {
+
+        const stroke = 1;
+        const thickness = 2;
+
+        const lineStartInitial = 15 ;
+        const gap = 12;
+        const gapReduction = 1;
+        const lineLength = 20;
+        const lineReduction = 3;
+
+        let invertDirection = false;
+
+        function getLineLength(index) {
+            return lineLength - (lineReduction * index);
+        }
+
+        function getLineStart(index) {
+            let result = 0;
+
+            result += lineStartInitial;
+
+            for (let i = 0; i < index; i++) {
+                result += getLineLength(i);
+            }
+
+            result += ((gap * index) - (gapReduction * index))
+
+            return result;
+        }
+
+        //amp
+        for (let i = 0; i < 8; i++) {
+            invertDirection = !invertDirection;
+            await myTestProject.addPrimaryEffect({
+                layerConfig: new LayerConfig({
+                    effect: AmpEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new AmpConfig({
+                        invertLayers: false,
+                        invertDirection: invertDirection,
+                        layerOpacity: 0.7,
+                        underLayerOpacity: 0.5,
+                        sparsityFactor: [10],
+                        stroke: stroke,
+                        thickness: thickness,
+                        accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 15, upper: 15}},
+                        blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
+                        featherTimes: {lower: 4, upper: 4},
+                        speed: {lower: i, upper: i},
+                        length: getLineLength(i),
+                        lineStart: getLineStart(i),
+                        center: center,
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
+                    }),
+                    possibleSecondaryEffects: [...createGlowEffects({arraySize: 100})]//createSecondaryEffects(),
+                }),
+            });
+        }
+    }
+
+
+
+    await createTabs({center: daatPoint, colorScheme: activatingVishuddha});
+
+    await createTabs({center: malkuthPoint, colorScheme: malkuthKingdom});
+    await createTabs({center: yesodPoint, colorScheme: yesodFoundation});
+    await createTabs({center: netzachPoint, colorScheme: netzachVictory});
+    await createTabs({center: hodPoint, colorScheme: hodSplendor});
+    await createTabs({center: tiferetPoint, colorScheme: tiferetBeauty});
+    await createTabs({center: chesedPoint, colorScheme: chokhmahWisdom});
+    await createTabs({center: gevurahPoint, colorScheme: gevurahSeverity});
+    await createTabs({center: chokhmahPoint, colorScheme: chokhmahWisdom});
+    await createTabs({center: binahPoint, colorScheme: binahUnderstanding});
+    await createTabs({center: keterPoint, colorScheme: keterCrown});
+
     await createAllPaths();
-
-    await createLantern({center: daatPoint, colorScheme: activatingVishuddha});
-
-    await createLantern({center: malkuthPoint, colorScheme: malkuthKingdom});
-    await createLantern({center: yesodPoint, colorScheme: yesodFoundation});
-    await createLantern({center: netzachPoint, colorScheme: netzachVictory});
-    await createLantern({center: hodPoint, colorScheme: hodSplendor});
-    await createLantern({center: tiferetPoint, colorScheme: tiferetBeauty});
-    await createLantern({center: chesedPoint, colorScheme: chokhmahWisdom});
-    await createLantern({center: gevurahPoint, colorScheme: gevurahSeverity});
-    await createLantern({center: chokhmahPoint, colorScheme: chokhmahWisdom});
-    await createLantern({center: binahPoint, colorScheme: binahUnderstanding});
-    await createLantern({center: keterPoint, colorScheme: keterCrown});
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({

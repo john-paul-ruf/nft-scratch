@@ -41,8 +41,8 @@ export function createGlowEffects(config) {
                 currentEffectConfig: new GlowKeyFrameConfig({
                     keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
                     glitchFrameCount: [getRandomIntInclusive(120, 160)],
-                    lowerRange: {lower: 32, upper: 64},
-                    times: {lower: 1, upper: 2},
+                    lowerRange: {lower: 16, upper: 32},
+                    times: {lower: 1, upper: 4},
                 }),
             })
         )
