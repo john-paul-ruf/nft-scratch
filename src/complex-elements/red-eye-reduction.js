@@ -39,12 +39,15 @@ export const createRedEyeReduction = async ({
 
     //amp
     for (let i = 0; i < 5; i++) {
+
+        const lineStart = getLineStart(i);
+
         await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: RedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new RedEyeConfig({
-                    innerRadius: getLineStart(i),
+                    innerRadius: lineStart,
                     outerRadius: outerRadius,
                     possibleJumpRangeInPixels: {lower: 5, upper: 20},
                     lineLength: {lower: 20, upper: 40},
