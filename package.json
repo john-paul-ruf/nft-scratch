@@ -6,7 +6,8 @@
     "fuzz-flare": "node src/composition-scripts/fuzz-flare.js",
     "key-frame": "node src/composition-scripts/key-frame.js",
     "key-frame-clinic": "clinic doctor -- node src/composition-scripts/key-frame.js",
-    "operator-override": "node src/operator-override.js"
+    "operator-override": "node src/composition-scripts/operator-override.js",
+    "red-eye-reduction": "node src/red-eye-reduction.js"
   },
   "name": "nft-scratch",
   "version": "1.0.0",

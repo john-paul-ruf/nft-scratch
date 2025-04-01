@@ -1,14 +1,14 @@
-import {Project} from "my-nft-gen/src/app/Project.js";
-import {createOrbElement} from "./complex-elements/orbs.js";
-import {getMultiStep} from "./util/multistep.js";
-import {createDegaussEffects, createGlowEffects} from "./util/glitch.js";
-import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {FuzzyRipplesConfig} from "my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesConfig.js";
-import {FuzzyRipplesEffect} from "my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesEffect.js";
-import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
+import {Project} from "../my-nft-gen/src/app/Project.js";
+import {createOrbElement} from "../complex-elements/orbs.js";
+import {getMultiStep} from "../util/multistep.js";
+import {createDegaussEffects, createGlowEffects} from "../util/glitch.js";
+import {MultiStepDefinitionConfig} from "../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
+import {MappedFramesConfig} from "../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
+import {MappedFramesEffect} from "../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
+import {FuzzyRipplesConfig} from "../my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesConfig.js";
+import {FuzzyRipplesEffect} from "../my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesEffect.js";
+import {LayerConfig} from "../my-nft-gen/src/core/layer/LayerConfig.js";
+import {Range} from "../my-nft-gen/src/core/layer/configType/Range.js";
 
 import {
     activatingVishuddha,
@@ -23,37 +23,37 @@ import {
     netzachVictory,
     tiferetBeauty,
     yesodFoundation
-} from "./assets/color-scheme-store.js";
-import {ViewportEffect} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
-import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
-import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
-import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
-import {StaticPathEffect} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathEffect.js";
-import {StaticPathConfig} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathConfig.js";
+} from "../assets/color-scheme-store.js";
+import {ViewportEffect} from "../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {ColorPicker} from "../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {CRTShadowEffect} from "../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {CRTShadowConfig} from "../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {ModulateEffect} from "../my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
+import {ModulateConfig} from "../my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
+import {CRTScanLinesEffect} from "../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
+import {CRTScanLinesConfig} from "../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {StaticPathEffect} from "../my-nft-gen/src/effects/primaryEffects/static-path/StaticPathEffect.js";
+import {StaticPathConfig} from "../my-nft-gen/src/effects/primaryEffects/static-path/StaticPathConfig.js";
 
-import {GlowEffect} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {GlowConfig} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
-import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
-import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
-import {createDecayingOrbElement} from "./complex-elements/decayingOrbs.js";
-import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
+import {GlowEffect} from "../my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
+import {GlowConfig} from "../my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
+import {getRandomIntInclusive} from "../my-nft-gen/src/core/math/random.js";
+import {findPointByAngleAndCircle} from "../my-nft-gen/src/core/math/drawingMath.js";
+import {createDecayingOrbElement} from "../complex-elements/decayingOrbs.js";
+import {ColorScheme} from "../my-nft-gen/src/core/color/ColorScheme.js";
 
 import {
     EncircledSpiralEffect
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
+} from "../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
 import {
     EncircledSpiralConfig
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
-import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
-import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
-import {RedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
+} from "../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+import {Point2D} from "../my-nft-gen/src/core/layer/configType/Point2D.js";
+import {AmpEffect} from "../../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
+import {AmpConfig} from "../../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
+import {RedEyeEffect} from "../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 
 const promiseArray = [];
 const topYBuffer = 10;

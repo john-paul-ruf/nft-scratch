@@ -108,7 +108,11 @@ const createComposition = async (colorScheme) => {
     let currentOuterRadius = initialOuterRadius;
 
     for (let i = 0; i < colorSchemeList.length; i++) {
+
+        const index = i + 1;
+
         await createRedEyeReduction({
+            project: myTestProject,
             colorScheme: colorSchemeList[i],
             lineStartInitial: currentLineStart,
             gap: currentGap,
@@ -118,9 +122,9 @@ const createComposition = async (colorScheme) => {
             sparsityFactor: 3,
             outerRadius: currentOuterRadius,
         });
-        currentOuterRadius = initialOuterRadius * i;
-        currentLineStart = initialOuterRadius * (i + radiusExpansionConstant);
-        currentLineLength = initialLineLength * (i + lineExpansionConstant);
+        currentOuterRadius = initialOuterRadius * index;
+        currentLineStart = initialOuterRadius * (index * radiusExpansionConstant);
+        currentLineLength = Math.ceil(initialLineLength * (index + lineExpansionConstant));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,16 +5,17 @@ import {RedEyeConfig} from "../../../my-nft-gen/src/effects/primaryEffects/red-e
 import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
 export const createRedEyeReduction = async ({
-                                         colorScheme = new ColorScheme({}),
-                                         center = {x: 0, y: 0},
-                                         lineStartInitial = 15,
-                                         gap = 12,
-                                         gapReduction = 1,
-                                         lineLength = 10,
-                                         lineReduction = 1,
-                                         sparsityFactor = 10,
-                                         outerRadius = 160,
-                                     }) => {
+                                                project = null,
+                                                colorScheme = new ColorScheme({}),
+                                                center = {x: 0, y: 0},
+                                                lineStartInitial = 15,
+                                                gap = 12,
+                                                gapReduction = 1,
+                                                lineLength = 10,
+                                                lineReduction = 1,
+                                                sparsityFactor = 10,
+                                                outerRadius = 160,
+                                            }) => {
     const stroke = 1;
     const thickness = 2;
 
@@ -38,7 +39,7 @@ export const createRedEyeReduction = async ({
 
     //amp
     for (let i = 0; i < 5; i++) {
-        await myTestProject.addPrimaryEffect({
+        await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: RedEyeEffect,
                 percentChance: 100,
@@ -48,7 +49,6 @@ export const createRedEyeReduction = async ({
                     possibleJumpRangeInPixels: {lower: 5, upper: 20},
                     lineLength: {lower: 20, upper: 40},
                     numberOfLoops: {lower: i + 1, upper: i + 1},
-
                     invertLayers: true,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
