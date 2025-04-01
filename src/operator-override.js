@@ -52,10 +52,12 @@ import {
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
 import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
+import {RedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 
 const promiseArray = [];
 const topYBuffer = 10;
-const backgroundHex = '#1c1c2d'
+const backgroundHex = '#1c2d1c'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -69,7 +71,7 @@ const createComposition = async (colorScheme) => {
         longestSideInPixels: 1920,
         shortestSideInPixels: 1080,
         isHorizontal: false,
-        maxConcurrentFrameBuilderThreads: 5,
+        maxConcurrentFrameBuilderThreads: 1,
 
     });
 
@@ -444,23 +446,88 @@ const createComposition = async (colorScheme) => {
             });
         }
     }
+    
+    const createRedEyeReduction = async ({
+                                             colorScheme = new ColorScheme({}),
+                                             center = {x: 0, y: 0},
+                                         }) => {
+        const stroke = 1;
+        const thickness = 2;
+
+        const lineStartInitial = 15 ;
+        const gap = 12;
+        const gapReduction = 1;
+        const lineLength = 10;
+        const lineReduction = 1;
+
+
+        function getLineLength(index) {
+            return lineLength - (lineReduction * index);
+        }
+
+        function getLineStart(index) {
+            let result = 0;
+
+            result += lineStartInitial;
+
+            for (let i = 0; i < index; i++) {
+                result += getLineLength(i);
+            }
+
+            result += ((gap * index) - (gapReduction * index))
+
+            return result;
+        }
+
+        //amp
+        for (let i = 0; i < 7; i++) {
+            await myTestProject.addPrimaryEffect({
+                layerConfig: new LayerConfig({
+                    effect: RedEyeEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new RedEyeConfig({
+
+                        innerRadius: getLineStart(i),
+                        outerRadius: 180,
+                        possibleJumpRangeInPixels: { lower: 5, upper: 20 },
+                        lineLength: { lower: 20, upper: 40 },
+                        numberOfLoops: { lower: i+1, upper: i+1 },
+
+                        invertLayers: true,
+                        layerOpacity: 0.7,
+                        underLayerOpacity: 0.5,
+                        sparsityFactor: [8],
+                        stroke: stroke,
+                        thickness: thickness,
+                        accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 15, upper: 15}},
+                        blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
+                        featherTimes: {lower: 4, upper: 4},
+                        center: center,
+                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                        outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
+                    }),
+                    possibleSecondaryEffects: [],
+                }),
+            });
+        }
+    }
 
 
 
-    await createTabs({center: daatPoint, colorScheme: activatingVishuddha});
+    await createRedEyeReduction({center: daatPoint, colorScheme: activatingVishuddha});
 
-    await createTabs({center: malkuthPoint, colorScheme: malkuthKingdom});
-    await createTabs({center: yesodPoint, colorScheme: yesodFoundation});
-    await createTabs({center: netzachPoint, colorScheme: netzachVictory});
-    await createTabs({center: hodPoint, colorScheme: hodSplendor});
-    await createTabs({center: tiferetPoint, colorScheme: tiferetBeauty});
-    await createTabs({center: chesedPoint, colorScheme: chokhmahWisdom});
-    await createTabs({center: gevurahPoint, colorScheme: gevurahSeverity});
-    await createTabs({center: chokhmahPoint, colorScheme: chokhmahWisdom});
-    await createTabs({center: binahPoint, colorScheme: binahUnderstanding});
-    await createTabs({center: keterPoint, colorScheme: keterCrown});
+    await createRedEyeReduction({center: malkuthPoint, colorScheme: malkuthKingdom});
+    await createRedEyeReduction({center: yesodPoint, colorScheme: yesodFoundation});
+    await createRedEyeReduction({center: netzachPoint, colorScheme: netzachVictory});
+    await createRedEyeReduction({center: hodPoint, colorScheme: hodSplendor});
+    await createRedEyeReduction({center: tiferetPoint, colorScheme: tiferetBeauty});
+    await createRedEyeReduction({center: chesedPoint, colorScheme: chokhmahWisdom});
+    await createRedEyeReduction({center: gevurahPoint, colorScheme: gevurahSeverity});
+    await createRedEyeReduction({center: chokhmahPoint, colorScheme: chokhmahWisdom});
+    await createRedEyeReduction({center: binahPoint, colorScheme: binahUnderstanding});
+    await createRedEyeReduction({center: keterPoint, colorScheme: keterCrown});
 
-    await createAllPaths();
+    //await createAllPaths();
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
@@ -482,13 +549,13 @@ const createComposition = async (colorScheme) => {
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTScanLinesEffect, percentChance: 100, currentEffectConfig: new CRTScanLinesConfig({
-                lines: {lower: 100, upper: 100},
+                lines: {lower: 50, upper: 50},
                 loopTimes: {lower: 1, upper: 2},
-                brightnessRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 20}},
+                brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
                 brightnessTimes: {lower: 4, upper: 4},
-                thicknessRange: {bottom: {lower: 2, upper: 4}, top: {lower: 6, upper: 8}},
+                thicknessRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
                 thicknessTimes: {lower: 4, upper: 4},
-                lineBlurRange: {bottom: {lower: 20, upper: 25}, top: {lower: 30, upper: 40}},
+                lineBlurRange: {bottom: {lower: 10, upper: 10}, top: {lower: 15, upper: 15}},
                 lineBlurTimes: {lower: 4, upper: 4},
                 colorTintRange: {
                     redRange: {bottom: {lower: 1.3, upper: 1.6}, top: {lower: 1.5, upper: 2}},
@@ -507,9 +574,9 @@ const createComposition = async (colorScheme) => {
             effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                 brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
                 brightnessTimes: {lower: 8, upper: 8},
-                saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 1.5}},
+                saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
                 saturationTimes: {lower: 4, upper: 4},
-                contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.8}},
+                contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
                 contrastTimes: {lower: 8, upper: 8},
             }),
         }),
