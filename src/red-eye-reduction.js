@@ -76,7 +76,7 @@ const createComposition = async (colorScheme) => {
     });
 
 
-    const radiusExpansionConstant = .750;
+    const radiusExpansionConstant = .5;
     const lineExpansionConstant = 1.25;
 
 
@@ -123,7 +123,7 @@ const createComposition = async (colorScheme) => {
             outerRadius: currentOuterRadius,
         });
         currentOuterRadius = initialOuterRadius * index;
-        currentLineStart = initialOuterRadius * (index * radiusExpansionConstant);
+        currentLineStart = initialOuterRadius * ((index-1) * radiusExpansionConstant);
         currentLineLength = Math.ceil(initialLineLength * (index + lineExpansionConstant));
     }
 
