@@ -17,8 +17,8 @@ export function createDegaussEffects(config) {
                 effect: CRTDegaussEffect,
                 percentChance: getRandomIntInclusive(10, 25),
                 currentEffectConfig: new CRTDegaussConfig({
-                    keyFrames: [getRandomIntInclusive(0, 1800 - 240)],
-                    glitchFrameCount: [getRandomIntInclusive(120, 240)],
+                    keyFrames: [getRandomIntInclusive(0, 1800 - 160)],
+                    glitchFrameCount: [getRandomIntInclusive(25, 160)],
                     sectionHeight: [1, 5, 10],
                     offset: {lower: 3, upper: 15},
                     direction: [-1, 1],
@@ -55,9 +55,9 @@ export function createFadeEffects(config) {
                 effect: FadeKeyFrameEffect,
                 percentChance: getRandomIntInclusive(10, 25),
                 currentEffectConfig: new FadeKeyFrameConfig({
-                    keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
-                    glitchFrameCount: [getRandomIntInclusive(120, 160)],
-                    lowerRange: {lower: 0.8, upper: 0.9},
+                    keyFrames: [getRandomIntInclusive(0, (1800 - 240))],
+                    glitchFrameCount: [getRandomIntInclusive(120, 240)],
+                    lowerRange: {lower: 0.4, upper: 0.8},
                     times: {lower: 1, upper: 1},
                 }),
             })
@@ -69,11 +69,11 @@ export function createBlurffects(config) {
     return Array.from({length: config.arraySize}, () => (
             new LayerConfig({
                 effect: BlurKeyFrameEffect,
-                percentChance: getRandomIntInclusive(20, 30),
+                percentChance: getRandomIntInclusive(10, 25),
                 currentEffectConfig: new BlurKeyFrameConfig({
                     keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
-                    glitchFrameCount: [getRandomIntInclusive(120, 160)],
-                    upperRange: {lower: 4, upper: 12},
+                    glitchFrameCount: [getRandomIntInclusive(25, 160)],
+                    upperRange: {lower: 2, upper: 12},
                     times: {lower: 1, upper: 2},
                 }),
             })
