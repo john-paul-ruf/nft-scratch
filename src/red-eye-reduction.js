@@ -80,12 +80,12 @@ const createComposition = async (colorScheme) => {
     const lineExpansionConstant = 1.25;
 
 
-    const initialLineStart = 15;
-    const initialGap = 12;
-    const initialGapReduction = 1;
+    const initialLineStart = 25;
+    const initialGap = 0;
+    const initialGapReduction = 0;
     const initialLineLength = 10;
-    const initialLineReduction = 1;
-    const initialOuterRadius = 160;
+    const initialLineReduction = 0;
+    const initialOuterRadius = 150;
 
     const colorSchemeList = [
         keterCrown,
@@ -109,12 +109,11 @@ const createComposition = async (colorScheme) => {
 
     for (let i = 0; i < colorSchemeList.length; i++) {
 
-        const index = i + 2;
-
         await createRedEyeReduction({
             project: myTestProject,
             colorScheme: colorSchemeList[i],
             center: new Point2D(1080 / 2, 1920 / 2),
+            numberOfRedEyes: 5,
             lineStartInitial: currentLineStart,
             gap: currentGap,
             gapReduction: currentGapReduction,
@@ -123,9 +122,11 @@ const createComposition = async (colorScheme) => {
             sparsityFactor: 3,
             outerRadius: currentOuterRadius,
         });
-        currentOuterRadius = initialOuterRadius * index;
-        currentLineStart = initialOuterRadius * ((index - 1) * radiusExpansionConstant);
-        currentLineLength = Math.ceil(initialLineLength * (index + lineExpansionConstant));
+
+        currentLineStart += initialLineStart;
+        currentOuterRadius += initialOuterRadius;
+        currentLineLength = Math.ceil(initialLineLength * ((i + 1) * lineExpansionConstant));
+
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,8 +156,8 @@ const createComposition = async (colorScheme) => {
                     startAngle: [270],
                     amplitude: {lower: 150, upper: 150},
                     times: {lower: 1, upper: 2},
-                    accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 20, upper: 40}},
-                    blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 10, upper: 10}},
+                    accentRange: {bottom: {lower: 15, upper: 30}, top: {lower: 40, upper: 80}},
+                    blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 12, upper: 12}},
                     featherTimes: {lower: 4, upper: 12},
                 }),
                 possibleSecondaryEffects: [
@@ -193,9 +194,6 @@ const createComposition = async (colorScheme) => {
                 featherTimes: {lower: 0, upper: 0},
             }),
             possibleSecondaryEffects: [
-                ...createFadeEffects({arraySize: 75}),
-                ...createDegaussEffects({arraySize: 200}),
-                ...createBlurffects({arraySize: 75}),
             ],
         }),
     });

@@ -8,6 +8,7 @@ export const createRedEyeReduction = async ({
                                                 project = null,
                                                 colorScheme = new ColorScheme({}),
                                                 center = {x: 0, y: 0},
+                                                numberOfRedEyes = 8,
                                                 lineStartInitial = 15,
                                                 gap = 12,
                                                 gapReduction = 1,
@@ -38,9 +39,13 @@ export const createRedEyeReduction = async ({
     }
 
     //amp
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < numberOfRedEyes; i++) {
 
         const lineStart = getLineStart(i);
+
+        if(lineStart >= outerRadius) {
+            throw new Error('lineStart must less than outer radius');
+        }
 
         await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
