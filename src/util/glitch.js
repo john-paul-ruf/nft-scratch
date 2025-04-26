@@ -11,7 +11,7 @@ import {BlurKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/blur/Bl
 import {BlurKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameConfig.js";
 
 
-export function createDegaussEffects(configs = [
+export function createDegaussEffects(config = [
     {
         arraySize: 100,
         randomChance: {lower: 10, upper: 25},
@@ -24,18 +24,18 @@ export function createDegaussEffects(configs = [
     }
 ]) {
 
-    return configs.flatMap(config =>
+    return config.flatMap(config =>
         Array.from({length: config.arraySize}, () => (
                 new LayerConfig({
                     effect: CRTDegaussEffect,
-                    percentChance: getRandomIntInclusive(configs[i].randomChance.lower, configs[i].randomChance.upper),
+                    percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                     currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [getRandomIntInclusive(configs[i].glitchFrameCount.lower, configs[i].glitchFrameCount.upper)],
-                        glitchFrameCount: [getRandomIntInclusive(configs[i].glitchFrameCount.lower, configs[i].glitchFrameCount.upper)],
-                        sectionHeight: configs[i].sectionHeight,
-                        offset: configs[i].offset,
+                        keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                        glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                        sectionHeight: config.sectionHeight,
+                        offset: config.offset,
                         direction: [-1, 1],
-                        glitchTimes: configs[i].glitchTimes,
+                        glitchTimes: config.glitchTimes,
                         backgroundRed: {lower: 0, upper: 0},
                         backgroundGreen: {lower: 0, upper: 0},
                         backgroundBlue: {lower: 0, upper: 0},
@@ -46,7 +46,7 @@ export function createDegaussEffects(configs = [
         ));
 }
 
-export function createGlowEffects(configs = [
+export function createGlowEffects(config = [
     {
         arraySize: 100,
         randomChance: {lower: 10, upper: 25},
@@ -56,7 +56,7 @@ export function createGlowEffects(configs = [
         times: {lower: 1, upper: 3},
     }
 ]) {
-    return configs.flatMap(config =>
+    return config.flatMap(config =>
         Array.from({length: config.arraySize}, () => (
             new LayerConfig({
                 effect: GlowKeyFrameEffect,
@@ -72,7 +72,7 @@ export function createGlowEffects(configs = [
     );
 }
 
-export function createFadeEffects(configs = [
+export function createFadeEffects(config = [
     {
         arraySize: 100,
         randomChance: {lower: 10, upper: 25},
@@ -83,7 +83,7 @@ export function createFadeEffects(configs = [
     }
 ]) {
 
-    return configs.flatMap(config =>
+    return config.flatMap(config =>
         Array.from({length: config.arraySize}, () => (
             new LayerConfig({
                 effect: FadeKeyFrameEffect,
@@ -99,7 +99,7 @@ export function createFadeEffects(configs = [
     );
 }
 
-export function createBlurEffects(configs = [
+export function createBlurEffects(config = [
     {
         arraySize: 100,
         randomChance: {lower: 10, upper: 25},
@@ -109,7 +109,7 @@ export function createBlurEffects(configs = [
         times: {lower: 1, upper: 3},
     }
 ]) {
-    return configs.flatMap(config =>
+    return config.flatMap(config =>
         Array.from({length: config.arraySize}, () => (
             new LayerConfig({
                 effect: BlurKeyFrameEffect,

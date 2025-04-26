@@ -85,16 +85,16 @@ const createComposition = async (colorScheme) => {
     });
 
 
-    const radiusExpansionConstant = 1.25;
+    const radiusExpansionConstant = 1.5;
     const lineExpansionConstant = 1.25;
 
 
     const initialLineStart = 75;
     const initialGap = 10;
     const initialGapReduction = 1;
-    const initialLineLength = 10;
+    const initialLineLength = 15;
     const initialLineReduction = 0;
-    const initialOuterRadius = 150;
+    const initialOuterRadius = 200;
 
     const colorSchemeList = [
         deepGrayMinimalTint,

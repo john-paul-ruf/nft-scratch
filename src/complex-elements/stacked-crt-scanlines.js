@@ -85,6 +85,8 @@ export const createStackedScanlines = async (project,
         throw new Error('must include project');
     }
 
+    const results = [];
+
     for (let i = 0; i < configs.length; i++) {
 
         await project.addFinalEffect({
