@@ -1,11 +1,12 @@
 import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {ViewportEffect} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
 import {ViewportConfig} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEffects} from "../util/glitch.js";
+import {randomNumber} from "my-nft-gen/src/core/math/random.js";
 
-export const createGlitchedTriangle = async ({project, colorScheme, radius, amplitude, times, center, thickness}) => {
+
+export const createGlitchedTriangle = async ({project, colorScheme, radius, amplitude, times, center, thickness, underlayOpacityRange}) => {
     for (let i = 0; i < 3; i++) {
         for (let i = 0; i < colorScheme.colorBucket.length; i++) {
             await project.addPrimaryEffect({
@@ -15,7 +16,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                     currentEffectConfig: new ViewportConfig({
                         invertLayers: true,
                         layerOpacity: 1,
-                        underLayerOpacity: 0.5,
+                        underLayerOpacity: randomNumber(underlayOpacityRange.lower, underlayOpacityRange.upper),
                         center: center,
                         color: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.colorBucket[i]),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
@@ -28,7 +29,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                         amplitude: amplitude,
                         times: times,
                         accentRange: {bottom: {lower: 30, upper: 80}, top: {lower: 120, upper: 180}},
-                        blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 12, upper: 12}},
+                        blurRange: {bottom: {lower: 15, upper: 30}, top: {lower: 40, upper: 60}},
                         featherTimes: {lower: 4, upper: 20},
                     }),
                     possibleSecondaryEffects: [
@@ -156,7 +157,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
             currentEffectConfig: new ViewportConfig({
                 invertLayers: true,
                 layerOpacity: 1,
-                underLayerOpacity: 0.5,
+                underLayerOpacity: 0,
                 center:  center,
                 color: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),

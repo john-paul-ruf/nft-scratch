@@ -30,7 +30,7 @@ export function createDegaussEffects(config = [
                     effect: CRTDegaussEffect,
                     percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                     currentEffectConfig: new CRTDegaussConfig({
-                        keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                        keyFrames: [getRandomIntInclusive(config.keyFrames.lower, config.keyFrames.upper)],
                         glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
                         sectionHeight: config.sectionHeight,
                         offset: config.offset,
@@ -62,7 +62,7 @@ export function createGlowEffects(config = [
                 effect: GlowKeyFrameEffect,
                 percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                 currentEffectConfig: new GlowKeyFrameConfig({
-                    keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    keyFrames: [getRandomIntInclusive(config.keyFrames.lower, config.keyFrames.upper)],
                     glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
                     lowerRange: config.lowerRange,
                     times: config.times,
@@ -89,7 +89,7 @@ export function createFadeEffects(config = [
                 effect: FadeKeyFrameEffect,
                 percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                 currentEffectConfig: new FadeKeyFrameConfig({
-                    keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    keyFrames: [getRandomIntInclusive(config.keyFrames.lower, config.keyFrames.upper)],
                     glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
                     lowerRange: config.lowerRange,
                     times: config.times,
@@ -115,7 +115,7 @@ export function createBlurEffects(config = [
                 effect: BlurKeyFrameEffect,
                 percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                 currentEffectConfig: new BlurKeyFrameConfig({
-                    keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    keyFrames: [getRandomIntInclusive(config.keyFrames.lower, config.keyFrames.upper)],
                     glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
                     lowerRange: config.lowerRange,
                     times: config.times,

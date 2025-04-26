@@ -66,7 +66,7 @@ import {createStackedScanlines} from "./complex-elements/stacked-crt-scanlines.j
 import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
 const promiseArray = [];
-const backgroundHex = '#1c001C'
+const backgroundHex = '#000000'
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -85,8 +85,8 @@ const createComposition = async (colorScheme) => {
     });
 
 
-    const radiusExpansionConstant = 1.5;
-    const lineExpansionConstant = 1.25;
+    const radiusExpansionConstant = 1;
+    const lineExpansionConstant = 1;
 
 
     const initialLineStart = 75;
@@ -97,10 +97,6 @@ const createComposition = async (colorScheme) => {
     const initialOuterRadius = 200;
 
     const colorSchemeList = [
-        deepGrayMinimalTint,
-        deepGrayMinimalTint,
-        deepGrayMinimalTint,
-        deepGrayMinimalTint,
         deepGrayMinimalTint,
         deepGrayMinimalTint,
         deepGrayMinimalTint,
@@ -126,7 +122,7 @@ const createComposition = async (colorScheme) => {
             gapReduction: currentGapReduction,
             lineLength: currentLineLength,
             lineReduction: currentLineReduction,
-            sparsityFactor: 5,
+            sparsityFactor: 4,
             outerRadius: currentOuterRadius,
             secondaryEffects: [
                 new LayerConfig({
@@ -153,44 +149,28 @@ const createComposition = async (colorScheme) => {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    await createGlitchedTriangle({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        radius: [100],
+        amplitude: {lower: 400, upper: 400},
+        times: {lower: 15, upper: 15},
+        center: new Point2D(1080 / 2, (1920 / 2) - 25),
+        thickness: 15,
+        underlayOpacityRange: {lower: 0.3, upper: 0.6},
+    });
 
     await createGlitchedTriangle({
         project: myTestProject,
         colorScheme: colorScheme,
-        radius: [200],
+        radius: [300],
         amplitude: {lower: 100, upper: 100},
         times: {lower: 15, upper: 15},
-        center: new Point2D(1080 / 2, 1920 / 2),
+        center: new Point2D(1080 / 2, (1920 / 2) - 75),
         thickness: 15,
+        underlayOpacityRange: {lower: 0.3, upper: 0.6},
     });
 
-
-    await myTestProject.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: ViewportEffect,
-            percentChance: 100,
-            currentEffectConfig: new ViewportConfig({
-                invertLayers: true,
-                layerOpacity: 1,
-                underLayerOpacity: 0.5,
-                center: new Point2D(1080 / 2, 1920 / 2),
-                color: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                stroke: 0,
-                thickness: 20,
-                ampStroke: 0,
-                ampThickness: 1,
-                radius: [350],
-                startAngle: [270],
-                amplitude: {lower: 150, upper: 150},
-                times: {lower: 3, upper: 3},
-                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                featherTimes: {lower: 0, upper: 0},
-            }),
-            possibleSecondaryEffects: [],
-        }),
-    });
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
