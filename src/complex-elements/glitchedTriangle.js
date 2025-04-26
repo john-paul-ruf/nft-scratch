@@ -149,7 +149,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
         }
     }
 
-    await myTestProject.addPrimaryEffect({
+    await project.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: ViewportEffect,
             percentChance: 100,
