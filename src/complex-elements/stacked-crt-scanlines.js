@@ -1,14 +1,14 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {CRTDegaussEffect} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
-import {getRandomIntInclusive} from "../../../my-nft-gen/src/core/math/random.js";
-import {CRTDegaussConfig} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {CRTScanLinesEffect} from "../../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
-import {CRTScanLinesConfig} from "../../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+import {CRTDegaussEffect} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
+import {CRTDegaussConfig} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
+import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 
 export const createStackedScanlines = async (project,
                                              configs = [
     {
-        lines: {lower: 20, upper: 20},
+        lines: {lower: 30, upper: 30},
         loopTimes: {lower: 1, upper: 2},
         brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
         brightnessTimes: {lower: 1, upper: 15},
@@ -26,7 +26,7 @@ export const createStackedScanlines = async (project,
         opacityTimes: {lower: 1, upper: 15},
     },
     {
-        lines: {lower: 20, upper: 20},
+        lines: {lower: 30, upper: 30},
         loopTimes: {lower: 1, upper: 2},
         brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
         brightnessTimes: {lower: 1, upper: 15},
@@ -44,7 +44,7 @@ export const createStackedScanlines = async (project,
         opacityTimes: {lower: 1, upper: 15},
     },
     {
-        lines: {lower: 20, upper: 20},
+        lines: {lower: 30, upper: 30},
         loopTimes: {lower: 1, upper: 2},
         brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
         brightnessTimes: {lower: 1, upper: 15},
@@ -62,7 +62,7 @@ export const createStackedScanlines = async (project,
         opacityTimes:{lower: 1, upper: 15},
     },
     {
-        lines: {lower: 20, upper: 20},
+        lines: {lower: 30, upper: 30},
         loopTimes: {lower: 1, upper: 2},
         brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
         brightnessTimes: {lower: 1, upper: 15},

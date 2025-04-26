@@ -63,7 +63,7 @@ import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEye
 import {createRedEyeReduction} from "./complex-elements/red-eye-reduction.js";
 import {GlowKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
 import {GlowKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
-import {createStackedScanlines} from "./util/stacked-crt-scanlines.js";
+import {createStackedScanlines} from "./complex-elements/stacked-crt-scanlines.js";
 import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
 const promiseArray = [];
@@ -210,6 +210,23 @@ const createComposition = async (colorScheme) => {
                 lineBlue: {lower: 0, upper: 0},
                 lineHeight: {lower: 0.8, upper: 0.8},
                 edgePercentage: {lower: 0.10, upper: 0.10},
+                maxLineHeight: {lower: 4, upper: 4},
+                numberOfEdgeSections: {lower: 40, upper: 40},
+            })
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
+                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
+                linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
+                opacityTimes: {lower: 8, upper: 8},
+                lineRed: {lower: 0, upper: 0},
+                lineGreen: {lower: 128, upper: 128},
+                lineBlue: {lower: 0, upper: 0},
+                lineHeight: {lower: 0.4, upper: 0.4},
+                edgePercentage: {lower: 0.15, upper: 0.15},
                 maxLineHeight: {lower: 2, upper: 2},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
