@@ -3,7 +3,6 @@ import {createOrbElement} from "./complex-elements/orbs.js";
 import {getMultiStep} from "./util/multistep.js";
 import {
     createBlurEffects,
-    createBlurffects,
     createDegaussEffects,
     createFadeEffects,
     createGlowEffects
@@ -86,13 +85,13 @@ const createComposition = async (colorScheme) => {
     });
 
 
-    const radiusExpansionConstant = .5;
-    const lineExpansionConstant = 1.1;
+    const radiusExpansionConstant = 1.25;
+    const lineExpansionConstant = 1.25;
 
 
     const initialLineStart = 75;
-    const initialGap = 0;
-    const initialGapReduction = 0;
+    const initialGap = 10;
+    const initialGapReduction = 1;
     const initialLineLength = 10;
     const initialLineReduction = 0;
     const initialOuterRadius = 150;
@@ -132,7 +131,7 @@ const createComposition = async (colorScheme) => {
             secondaryEffects: [
                 new LayerConfig({
                     effect: GlowEffect,
-                    percentChance: getRandomIntInclusive(configs[i].randomChance.lower, configs[i].randomChance.upper),
+                    percentChance: 100,
                     currentEffectConfig: new GlowConfig({
                         lowerRange: {lower: -12, upper: 0},
                         upperRange: {lower: 0, upper: 12},
@@ -142,8 +141,8 @@ const createComposition = async (colorScheme) => {
             ]
         });
 
-        currentLineStart += initialLineStart;
-        currentOuterRadius += initialOuterRadius;
+        currentLineStart = Math.ceil(initialLineStart * ((i + 1) * radiusExpansionConstant));
+        currentOuterRadius = Math.ceil(initialOuterRadius * ((i + 1) * radiusExpansionConstant));
         currentLineLength = Math.ceil(initialLineLength * ((i + 1) * lineExpansionConstant));
 
     }
