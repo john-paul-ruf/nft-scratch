@@ -278,13 +278,3 @@ export const deepGrayMinimalTint = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: deep-gray-minimal-tint\n"
 });
-
-export const eyeStatic = new ColorScheme({
-    colorBucket: [
-        '#FF0000',
-        '#00FF00',
-        '#0000FF',
-        '#FFFF00',
-    ],
-    colorSchemeInfo: "**Color Strategy**: eye-static\n"
-});

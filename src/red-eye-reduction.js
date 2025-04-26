@@ -19,7 +19,7 @@ import {
     activatingVishuddha,
     binahUnderstanding,
     chesedKindness,
-    chokhmahWisdom, deepGrayMinimalTint, eternalRise, eyeStatic,
+    chokhmahWisdom, deepGrayMinimalTint, eternalRise, eyeBurn,
     gevurahSeverity,
     hodSplendor,
     keterCrown,
@@ -97,11 +97,12 @@ const createComposition = async (colorScheme) => {
     const initialOuterRadius = 200;
 
     const colorSchemeList = [
-        deepGrayMinimalTint,
-        deepGrayMinimalTint,
-        deepGrayMinimalTint,
-        deepGrayMinimalTint,
+        chesedKindness,
+        chesedKindness,
+        chesedKindness,
+        chesedKindness,
     ];
+
 
     let currentLineStart = initialLineStart;
     let currentGap = initialGap;
@@ -125,15 +126,7 @@ const createComposition = async (colorScheme) => {
             sparsityFactor: 4,
             outerRadius: currentOuterRadius,
             secondaryEffects: [
-                new LayerConfig({
-                    effect: GlowEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new GlowConfig({
-                        lowerRange: {lower: -12, upper: 0},
-                        upperRange: {lower: 0, upper: 12},
-                        times: {lower: 5, upper: 32},
-                    }),
-                })
+
             ]
         });
 
@@ -152,12 +145,15 @@ const createComposition = async (colorScheme) => {
     await createGlitchedTriangle({
         project: myTestProject,
         colorScheme: colorScheme,
-        radius: [100],
-        amplitude: {lower: 400, upper: 400},
+        radius: [300],
+        amplitude: {lower: 100, upper: 100},
         times: {lower: 15, upper: 15},
-        center: new Point2D(1080 / 2, (1920 / 2) - 25),
+        center: new Point2D(1080 / 2, (1920 / 2) - 75),
         thickness: 15,
-        underlayOpacityRange: {lower: 0.3, upper: 0.6},
+        underlayOpacityRange: {lower: 0.4, upper: 0.5},
+        accentRange: {bottom: {lower: 15, upper: 30}, top: {lower: 40, upper: 60}},
+        blurRange: {bottom: {lower: 8, upper: 12}, top: {lower: 20, upper: 40}},
+        featherTimes: {lower: 4, upper: 20},
     });
 
     await createGlitchedTriangle({
@@ -168,7 +164,10 @@ const createComposition = async (colorScheme) => {
         times: {lower: 15, upper: 15},
         center: new Point2D(1080 / 2, (1920 / 2) - 75),
         thickness: 15,
-        underlayOpacityRange: {lower: 0.3, upper: 0.6},
+        underlayOpacityRange: {lower: 0.7, upper: 0.9},
+        accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 25}},
+        blurRange: {bottom: {lower: 2, upper: 3}, top: {lower: 5, upper: 10}},
+        featherTimes: {lower: 4, upper: 20},
     });
 
 
@@ -212,17 +211,34 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
+                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
+                linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
+                opacityTimes: {lower: 8, upper: 8},
+                lineRed: {lower: 0, upper: 0},
+                lineGreen: {lower: 128, upper: 128},
+                lineBlue: {lower: 0, upper: 0},
+                lineHeight: {lower: 0.2, upper: 0.2},
+                edgePercentage: {lower: 0.20, upper: 0.20},
+                maxLineHeight: {lower: 2, upper: 2},
+                numberOfEdgeSections: {lower: 40, upper: 40},
+            })
+        }),
+    });
+
     await createStackedScanlines(myTestProject);
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                 brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
-                brightnessTimes: {lower: 12, upper: 12},
+                brightnessTimes: {lower: 15, upper: 15},
                 saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
-                saturationTimes: {lower: 4, upper: 4},
+                saturationTimes: {lower: 15, upper: 15},
                 contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
-                contrastTimes: {lower: 12, upper: 12},
+                contrastTimes: {lower: 15, upper: 15},
             }),
         }),
     });
@@ -230,6 +246,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(eyeStatic);
+await createComposition(eyeBurn);
 
 await Promise.all(promiseArray);

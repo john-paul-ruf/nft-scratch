@@ -66,7 +66,7 @@ export const createRedEyeReduction = async ({
                     thickness: thickness,
                     accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 15, upper: 15}},
                     blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 6, upper: 6}},
-                    featherTimes: {lower: 4, upper: 4},
+                    featherTimes: {lower: 15, upper: 15},
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),

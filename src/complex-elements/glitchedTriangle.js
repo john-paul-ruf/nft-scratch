@@ -28,8 +28,8 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                         startAngle: [270],
                         amplitude: amplitude,
                         times: times,
-                        accentRange: {bottom: {lower: 30, upper: 80}, top: {lower: 120, upper: 180}},
-                        blurRange: {bottom: {lower: 15, upper: 30}, top: {lower: 40, upper: 60}},
+                        accentRange: {bottom: {lower: 15, upper: 30}, top: {lower: 60, upper: 120}},
+                        blurRange: {bottom: {lower: 8, upper: 12}, top: {lower: 20, upper: 40}},
                         featherTimes: {lower: 4, upper: 20},
                     }),
                     possibleSecondaryEffects: [

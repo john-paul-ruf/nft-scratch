@@ -7,79 +7,163 @@ import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtSc
 
 export const createStackedScanlines = async (project,
                                              configs = [
-    {
-        lines: {lower: 30, upper: 30},
-        loopTimes: {lower: 1, upper: 2},
-        brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
-        brightnessTimes: {lower: 1, upper: 15},
-        thicknessRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-        thicknessTimes: {lower: 1, upper: 15},
-        lineBlurRange: {bottom: {lower: 10, upper: 10}, top: {lower: 15, upper: 15}},
-        lineBlurTimes: {lower: 1, upper: 15},
-        colorTintRange: {
-            redRange: {bottom: {lower: 1.3, upper: 1.6}, top: {lower: 1.5, upper: 2}},
-            greenRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-            blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-        },
-        colorTintTimes: {lower: 1, upper: 15},
-        opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-        opacityTimes: {lower: 1, upper: 15},
-    },
-    {
-        lines: {lower: 30, upper: 30},
-        loopTimes: {lower: 1, upper: 2},
-        brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
-        brightnessTimes: {lower: 1, upper: 15},
-        thicknessRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-        thicknessTimes: {lower: 1, upper: 15},
-        lineBlurRange: {bottom: {lower: 10, upper: 10}, top: {lower: 15, upper: 15}},
-        lineBlurTimes: {lower: 1, upper: 15},
-        colorTintRange: {
-            redRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-            greenRange: {bottom: {lower: 1.3, upper: 1.6}, top: {lower: 1.5, upper: 2}},
-            blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-        },
-        colorTintTimes: {lower: 1, upper: 15},
-        opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-        opacityTimes: {lower: 1, upper: 15},
-    },
-    {
-        lines: {lower: 30, upper: 30},
-        loopTimes: {lower: 1, upper: 2},
-        brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
-        brightnessTimes: {lower: 1, upper: 15},
-        thicknessRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-        thicknessTimes: {lower: 1, upper: 15},
-        lineBlurRange: {bottom: {lower: 10, upper: 10}, top: {lower: 15, upper: 15}},
-        lineBlurTimes: {lower: 1, upper: 15},
-        colorTintRange: {
-            redRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-            greenRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-            blueRange: {bottom: {lower: 1.3, upper: 1.6}, top: {lower: 1.5, upper: 2}},
-        },
-        colorTintTimes: {lower: 1, upper: 15},
-        opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-        opacityTimes:{lower: 1, upper: 15},
-    },
-    {
-        lines: {lower: 30, upper: 30},
-        loopTimes: {lower: 1, upper: 2},
-        brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
-        brightnessTimes: {lower: 1, upper: 15},
-        thicknessRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-        thicknessTimes: {lower: 1, upper: 15},
-        lineBlurRange: {bottom: {lower: 10, upper: 10}, top: {lower: 15, upper: 15}},
-        lineBlurTimes: {lower: 1, upper: 15},
-        colorTintRange: {
-            redRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-            greenRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-            blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-        },
-        colorTintTimes: {lower: 1, upper: 15},
-        opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-        opacityTimes: {lower: 1, upper: 15},
-    }
-]) => {
+                                                 {
+                                                     lines: {lower: 30, upper: 30},
+                                                     loopTimes: {lower: 1, upper: 2},
+                                                     brightnessRange: {
+                                                         bottom: {lower: 10, upper: 20},
+                                                         top: {lower: 30, upper: 40}
+                                                     },
+                                                     brightnessTimes: {lower: 1, upper: 15},
+                                                     thicknessRange: {
+                                                         bottom: {lower: 1, upper: 2},
+                                                         top: {lower: 3, upper: 4}
+                                                     },
+                                                     thicknessTimes: {lower: 1, upper: 15},
+                                                     lineBlurRange: {
+                                                         bottom: {lower: 10, upper: 10},
+                                                         top: {lower: 15, upper: 15}
+                                                     },
+                                                     lineBlurTimes: {lower: 1, upper: 15},
+                                                     colorTintRange: {
+                                                         redRange: {
+                                                             bottom: {lower: 1.3, upper: 1.6},
+                                                             top: {lower: 1.5, upper: 2}
+                                                         },
+                                                         greenRange: {
+                                                             bottom: {lower: 0, upper: 0},
+                                                             top: {lower: 0, upper: 0}
+                                                         },
+                                                         blueRange: {
+                                                             bottom: {lower: 0, upper: 0},
+                                                             top: {lower: 0, upper: 0}
+                                                         },
+                                                     },
+                                                     colorTintTimes: {lower: 1, upper: 15},
+                                                     opacityRange: {
+                                                         bottom: {lower: 0.5, upper: 0.6},
+                                                         top: {lower: 0.7, upper: 0.9}
+                                                     },
+                                                     opacityTimes: {lower: 1, upper: 15},
+                                                 },
+                                                 {
+                                                     lines: {lower: 30, upper: 30},
+                                                     loopTimes: {lower: 1, upper: 2},
+                                                     brightnessRange: {
+                                                         bottom: {lower: 10, upper: 20},
+                                                         top: {lower: 30, upper: 40}
+                                                     },
+                                                     brightnessTimes: {lower: 1, upper: 15},
+                                                     thicknessRange: {
+                                                         bottom: {lower: 1, upper: 2},
+                                                         top: {lower: 3, upper: 4}
+                                                     },
+                                                     thicknessTimes: {lower: 1, upper: 15},
+                                                     lineBlurRange: {
+                                                         bottom: {lower: 10, upper: 10},
+                                                         top: {lower: 15, upper: 15}
+                                                     },
+                                                     lineBlurTimes: {lower: 1, upper: 15},
+                                                     colorTintRange: {
+                                                         redRange: {
+                                                             bottom: {lower: 0, upper: 0},
+                                                             top: {lower: 0, upper: 0}
+                                                         },
+                                                         greenRange: {
+                                                             bottom: {lower: 1.3, upper: 1.6},
+                                                             top: {lower: 1.5, upper: 2}
+                                                         },
+                                                         blueRange: {
+                                                             bottom: {lower: 0, upper: 0},
+                                                             top: {lower: 0, upper: 0}
+                                                         },
+                                                     },
+                                                     colorTintTimes: {lower: 1, upper: 15},
+                                                     opacityRange: {
+                                                         bottom: {lower: 0.5, upper: 0.6},
+                                                         top: {lower: 0.7, upper: 0.9}
+                                                     },
+                                                     opacityTimes: {lower: 1, upper: 15},
+                                                 },
+                                                 {
+                                                     lines: {lower: 30, upper: 30},
+                                                     loopTimes: {lower: 1, upper: 2},
+                                                     brightnessRange: {
+                                                         bottom: {lower: 10, upper: 20},
+                                                         top: {lower: 30, upper: 40}
+                                                     },
+                                                     brightnessTimes: {lower: 1, upper: 15},
+                                                     thicknessRange: {
+                                                         bottom: {lower: 1, upper: 2},
+                                                         top: {lower: 3, upper: 4}
+                                                     },
+                                                     thicknessTimes: {lower: 1, upper: 15},
+                                                     lineBlurRange: {
+                                                         bottom: {lower: 10, upper: 10},
+                                                         top: {lower: 15, upper: 15}
+                                                     },
+                                                     lineBlurTimes: {lower: 1, upper: 15},
+                                                     colorTintRange: {
+                                                         redRange: {
+                                                             bottom: {lower: 0, upper: 0},
+                                                             top: {lower: 0, upper: 0}
+                                                         },
+                                                         greenRange: {
+                                                             bottom: {lower: 0, upper: 0},
+                                                             top: {lower: 0, upper: 0}
+                                                         },
+                                                         blueRange: {
+                                                             bottom: {lower: 1.3, upper: 1.6},
+                                                             top: {lower: 1.5, upper: 2}
+                                                         },
+                                                     },
+                                                     colorTintTimes: {lower: 1, upper: 15},
+                                                     opacityRange: {
+                                                         bottom: {lower: 0.5, upper: 0.6},
+                                                         top: {lower: 0.7, upper: 0.9}
+                                                     },
+                                                     opacityTimes: {lower: 1, upper: 15},
+                                                 },
+                                                 {
+                                                     lines: {lower: 30, upper: 30},
+                                                     loopTimes: {lower: 1, upper: 2},
+                                                     brightnessRange: {
+                                                         bottom: {lower: 10, upper: 20},
+                                                         top: {lower: 30, upper: 40}
+                                                     },
+                                                     brightnessTimes: {lower: 1, upper: 15},
+                                                     thicknessRange: {
+                                                         bottom: {lower: 1, upper: 2},
+                                                         top: {lower: 3, upper: 4}
+                                                     },
+                                                     thicknessTimes: {lower: 1, upper: 15},
+                                                     lineBlurRange: {
+                                                         bottom: {lower: 10, upper: 10},
+                                                         top: {lower: 15, upper: 15}
+                                                     },
+                                                     lineBlurTimes: {lower: 1, upper: 15},
+                                                     colorTintRange: {
+                                                         redRange: {
+                                                             bottom: {lower: 1, upper: 1},
+                                                             top: {lower: 1, upper: 1}
+                                                         },
+                                                         greenRange: {
+                                                             bottom: {lower: 1, upper: 1},
+                                                             top: {lower: 1, upper: 1}
+                                                         },
+                                                         blueRange: {
+                                                             bottom: {lower: 1, upper: 1},
+                                                             top: {lower: 1, upper: 1}
+                                                         },
+                                                     },
+                                                     colorTintTimes: {lower: 1, upper: 15},
+                                                     opacityRange: {
+                                                         bottom: {lower: 0.5, upper: 0.6},
+                                                         top: {lower: 0.7, upper: 0.9}
+                                                     },
+                                                     opacityTimes: {lower: 1, upper: 15},
+                                                 }
+                                             ]) => {
 
     if (!project) {
         throw new Error('must include project');
