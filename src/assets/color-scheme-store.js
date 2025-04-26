@@ -260,3 +260,31 @@ export const malkuthKingdom = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**:malkuth-kingdom\n"
 });
+
+export const deepGrayMinimalTint = new ColorScheme({
+    colorBucket: [
+        '#787878',
+        '#7D7D7D',
+        '#828282',
+        '#878787',
+        '#6E6E6E',
+        '#737373',
+        '#646464',
+        '#696969',
+        '#5F5F5F',
+        '#5A5A5A',
+        '#555555',
+        '#505050',
+    ],
+    colorSchemeInfo: "**Color Strategy**: deep-gray-minimal-tint\n"
+});
+
+export const eyeStatic = new ColorScheme({
+    colorBucket: [
+        '#FF0000',
+        '#00FF00',
+        '#0000FF',
+        '#FFFF00',
+    ],
+    colorSchemeInfo: "**Color Strategy**: eye-static\n"
+});

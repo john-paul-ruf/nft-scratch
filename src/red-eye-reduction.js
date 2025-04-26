@@ -1,7 +1,13 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {createOrbElement} from "./complex-elements/orbs.js";
 import {getMultiStep} from "./util/multistep.js";
-import {createBlurffects, createDegaussEffects, createFadeEffects, createGlowEffects} from "./util/glitch.js";
+import {
+    createBlurEffects,
+    createBlurffects,
+    createDegaussEffects,
+    createFadeEffects,
+    createGlowEffects
+} from "./util/glitch.js";
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
@@ -14,7 +20,7 @@ import {
     activatingVishuddha,
     binahUnderstanding,
     chesedKindness,
-    chokhmahWisdom, eternalRise,
+    chokhmahWisdom, deepGrayMinimalTint, eternalRise, eyeStatic,
     gevurahSeverity,
     hodSplendor,
     keterCrown,
@@ -55,6 +61,10 @@ import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConf
 import {RedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 import {createRedEyeReduction} from "./complex-elements/red-eye-reduction.js";
+import {GlowKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
+import {GlowKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
+import {createStackedScanlines} from "./util/stacked-crt-scanlines.js";
+import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
 const promiseArray = [];
 const backgroundHex = '#1c001C'
@@ -72,15 +82,15 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-
+        renderJumpFrames: 400,
     });
 
 
     const radiusExpansionConstant = .5;
-    const lineExpansionConstant = 1.25;
+    const lineExpansionConstant = 1.1;
 
 
-    const initialLineStart = 25;
+    const initialLineStart = 75;
     const initialGap = 0;
     const initialGapReduction = 0;
     const initialLineLength = 10;
@@ -88,16 +98,14 @@ const createComposition = async (colorScheme) => {
     const initialOuterRadius = 150;
 
     const colorSchemeList = [
-        keterCrown,
-        chokhmahWisdom,
-        binahUnderstanding,
-        chesedKindness,
-        gevurahSeverity,
-        tiferetBeauty,
-        netzachVictory,
-        hodSplendor,
-        yesodFoundation,
-        malkuthKingdom
+        deepGrayMinimalTint,
+        deepGrayMinimalTint,
+        deepGrayMinimalTint,
+        deepGrayMinimalTint,
+        deepGrayMinimalTint,
+        deepGrayMinimalTint,
+        deepGrayMinimalTint,
+        deepGrayMinimalTint,
     ];
 
     let currentLineStart = initialLineStart;
@@ -119,8 +127,19 @@ const createComposition = async (colorScheme) => {
             gapReduction: currentGapReduction,
             lineLength: currentLineLength,
             lineReduction: currentLineReduction,
-            sparsityFactor: 3,
+            sparsityFactor: 5,
             outerRadius: currentOuterRadius,
+            secondaryEffects: [
+                new LayerConfig({
+                    effect: GlowEffect,
+                    percentChance: getRandomIntInclusive(configs[i].randomChance.lower, configs[i].randomChance.upper),
+                    currentEffectConfig: new GlowConfig({
+                        lowerRange: {lower: -12, upper: 0},
+                        upperRange: {lower: 0, upper: 12},
+                        times: {lower: 5, upper: 32},
+                    }),
+                })
+            ]
         });
 
         currentLineStart += initialLineStart;
@@ -136,38 +155,15 @@ const createComposition = async (colorScheme) => {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    for (let i = 0; i < colorScheme.colorBucket.length; i++) {
-        await myTestProject.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: ViewportEffect,
-                percentChance: 100,
-                currentEffectConfig: new ViewportConfig({
-                    invertLayers: true,
-                    layerOpacity: 1,
-                    underLayerOpacity: 0.5,
-                    center: new Point2D(1080 / 2, 1920 / 2),
-                    color: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.colorBucket[i]),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    stroke: 0,
-                    thickness: 20,
-                    ampStroke: 0,
-                    ampThickness: 1,
-                    radius: [350],
-                    startAngle: [270],
-                    amplitude: {lower: 150, upper: 150},
-                    times: {lower: 1, upper: 2},
-                    accentRange: {bottom: {lower: 15, upper: 30}, top: {lower: 40, upper: 80}},
-                    blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 12, upper: 12}},
-                    featherTimes: {lower: 4, upper: 12},
-                }),
-                possibleSecondaryEffects: [
-                    ...createFadeEffects({arraySize: 75}),
-                    ...createDegaussEffects({arraySize: 200}),
-                    ...createBlurffects({arraySize: 75}),
-                ],
-            }),
-        });
-    }
+    await createGlitchedTriangle({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        radius: [200],
+        amplitude: {lower: 100, upper: 100},
+        times: {lower: 15, upper: 15},
+        center: new Point2D(1080 / 2, 1920 / 2),
+        thickness: 15,
+    });
 
 
     await myTestProject.addPrimaryEffect({
@@ -188,13 +184,12 @@ const createComposition = async (colorScheme) => {
                 radius: [350],
                 startAngle: [270],
                 amplitude: {lower: 150, upper: 150},
-                times: {lower: 1, upper: 2},
+                times: {lower: 3, upper: 3},
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
             }),
-            possibleSecondaryEffects: [
-            ],
+            possibleSecondaryEffects: [],
         }),
     });
 
@@ -210,10 +205,10 @@ const createComposition = async (colorScheme) => {
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
                 linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
                 opacityTimes: {lower: 8, upper: 8},
-                lineRed: {lower: 111, upper: 111},
+                lineRed: {lower: 0, upper: 0},
                 lineGreen: {lower: 0, upper: 0},
-                lineBlue: {lower: 111, upper: 111},
-                lineHeight: {lower: 0.25, upper: 0.25},
+                lineBlue: {lower: 0, upper: 0},
+                lineHeight: {lower: 0.8, upper: 0.8},
                 edgePercentage: {lower: 0.10, upper: 0.10},
                 maxLineHeight: {lower: 2, upper: 2},
                 numberOfEdgeSections: {lower: 40, upper: 40},
@@ -221,38 +216,17 @@ const createComposition = async (colorScheme) => {
         }),
     });
 
-    await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: CRTScanLinesEffect, percentChance: 100, currentEffectConfig: new CRTScanLinesConfig({
-                lines: {lower: 50, upper: 50},
-                loopTimes: {lower: 1, upper: 2},
-                brightnessRange: {bottom: {lower: 10, upper: 20}, top: {lower: 30, upper: 40}},
-                brightnessTimes: {lower: 4, upper: 4},
-                thicknessRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 4}},
-                thicknessTimes: {lower: 4, upper: 4},
-                lineBlurRange: {bottom: {lower: 10, upper: 10}, top: {lower: 15, upper: 15}},
-                lineBlurTimes: {lower: 4, upper: 4},
-                colorTintRange: {
-                    redRange: {bottom: {lower: 1.3, upper: 1.6}, top: {lower: 1.5, upper: 2}},
-                    greenRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                    blueRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1, upper: 1}},
-                },
-                colorTintTimes: {lower: 8, upper: 8},
-                opacityRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-                opacityTimes: {lower: 4, upper: 4},
-            }),
-        }),
-    });
+    await createStackedScanlines(myTestProject);
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                 brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
-                brightnessTimes: {lower: 8, upper: 8},
+                brightnessTimes: {lower: 12, upper: 12},
                 saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
                 saturationTimes: {lower: 4, upper: 4},
                 contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
-                contrastTimes: {lower: 8, upper: 8},
+                contrastTimes: {lower: 12, upper: 12},
             }),
         }),
     });
@@ -260,6 +234,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(eternalRise);
+await createComposition(eyeStatic);
 
 await Promise.all(promiseArray);

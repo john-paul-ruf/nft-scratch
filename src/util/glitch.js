@@ -11,72 +11,116 @@ import {BlurKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/blur/Bl
 import {BlurKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameConfig.js";
 
 
-export function createDegaussEffects(config) {
-    return Array.from({length: config.arraySize}, () => (
-            new LayerConfig({
-                effect: CRTDegaussEffect,
-                percentChance: getRandomIntInclusive(10, 25),
-                currentEffectConfig: new CRTDegaussConfig({
-                    keyFrames: [getRandomIntInclusive(0, 1800 - 160)],
-                    glitchFrameCount: [getRandomIntInclusive(25, 160)],
-                    sectionHeight: [1, 5, 10],
-                    offset: {lower: 3, upper: 15},
-                    direction: [-1, 1],
-                    glitchTimes: {lower: 3, upper: 8},
-                    backgroundRed: {lower: 0, upper: 0},
-                    backgroundGreen: {lower: 0, upper: 0},
-                    backgroundBlue: {lower: 0, upper: 0},
-                    backgroundAlpha: {lower: 0, upper: 0},
-                }),
-            })
-        )
-    );
+export function createDegaussEffects(configs = [
+    {
+        arraySize: 100,
+        randomChance: {lower: 10, upper: 25},
+        glitchFrameCount: {lower: 25, upper: 160},
+        keyFrames: {lower: 0, upper: 1800 - 160},
+        sectionHeight: [1, 5, 10],
+        offset: {lower: 3, upper: 15},
+        direction: [-1, 1],
+        glitchTimes: {lower: 3, upper: 8},
+    }
+]) {
+
+    return configs.flatMap(config =>
+        Array.from({length: config.arraySize}, () => (
+                new LayerConfig({
+                    effect: CRTDegaussEffect,
+                    percentChance: getRandomIntInclusive(configs[i].randomChance.lower, configs[i].randomChance.upper),
+                    currentEffectConfig: new CRTDegaussConfig({
+                        keyFrames: [getRandomIntInclusive(configs[i].glitchFrameCount.lower, configs[i].glitchFrameCount.upper)],
+                        glitchFrameCount: [getRandomIntInclusive(configs[i].glitchFrameCount.lower, configs[i].glitchFrameCount.upper)],
+                        sectionHeight: configs[i].sectionHeight,
+                        offset: configs[i].offset,
+                        direction: [-1, 1],
+                        glitchTimes: configs[i].glitchTimes,
+                        backgroundRed: {lower: 0, upper: 0},
+                        backgroundGreen: {lower: 0, upper: 0},
+                        backgroundBlue: {lower: 0, upper: 0},
+                        backgroundAlpha: {lower: 0, upper: 0},
+                    }),
+                })
+            )
+        ));
 }
 
-export function createGlowEffects(config) {
-    return Array.from({length: config.arraySize}, () => (
+export function createGlowEffects(configs = [
+    {
+        arraySize: 100,
+        randomChance: {lower: 10, upper: 25},
+        glitchFrameCount: {lower: 25, upper: 160},
+        keyFrames: {lower: 0, upper: 1800 - 160},
+        lowerRange: {lower: 16, upper: 32},
+        times: {lower: 1, upper: 3},
+    }
+]) {
+    return configs.flatMap(config =>
+        Array.from({length: config.arraySize}, () => (
             new LayerConfig({
                 effect: GlowKeyFrameEffect,
-                percentChance: getRandomIntInclusive(20, 40),
+                percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                 currentEffectConfig: new GlowKeyFrameConfig({
-                    keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
-                    glitchFrameCount: [getRandomIntInclusive(120, 160)],
-                    lowerRange: {lower: 16, upper: 32},
-                    times: {lower: 1, upper: 4},
+                    keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    lowerRange: config.lowerRange,
+                    times: config.times,
                 }),
             })
-        )
+        ))
     );
 }
 
-export function createFadeEffects(config) {
-    return Array.from({length: config.arraySize}, () => (
+export function createFadeEffects(configs = [
+    {
+        arraySize: 100,
+        randomChance: {lower: 10, upper: 25},
+        glitchFrameCount: {lower: 25, upper: 160},
+        keyFrames: {lower: 0, upper: 1800 - 160},
+        lowerRange: {lower: 0.4, upper: 0.8},
+        times: {lower: 1, upper: 3},
+    }
+]) {
+
+    return configs.flatMap(config =>
+        Array.from({length: config.arraySize}, () => (
             new LayerConfig({
                 effect: FadeKeyFrameEffect,
-                percentChance: getRandomIntInclusive(10, 25),
+                percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                 currentEffectConfig: new FadeKeyFrameConfig({
-                    keyFrames: [getRandomIntInclusive(0, (1800 - 240))],
-                    glitchFrameCount: [getRandomIntInclusive(120, 240)],
-                    lowerRange: {lower: 0.4, upper: 0.8},
-                    times: {lower: 1, upper: 1},
+                    keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    lowerRange: config.lowerRange,
+                    times: config.times,
                 }),
             })
-        )
+        ))
     );
 }
 
-export function createBlurffects(config) {
-    return Array.from({length: config.arraySize}, () => (
+export function createBlurEffects(configs = [
+    {
+        arraySize: 100,
+        randomChance: {lower: 10, upper: 25},
+        glitchFrameCount: {lower: 25, upper: 160},
+        keyFrames: {lower: 0, upper: 1800 - 160},
+        lowerRange: {lower: 16, upper: 32},
+        times: {lower: 1, upper: 3},
+    }
+]) {
+    return configs.flatMap(config =>
+        Array.from({length: config.arraySize}, () => (
             new LayerConfig({
                 effect: BlurKeyFrameEffect,
-                percentChance: getRandomIntInclusive(10, 25),
+                percentChance: getRandomIntInclusive(config.randomChance.lower, config.randomChance.upper),
                 currentEffectConfig: new BlurKeyFrameConfig({
-                    keyFrames: [getRandomIntInclusive(0, (1800 - 160))],
-                    glitchFrameCount: [getRandomIntInclusive(25, 160)],
-                    upperRange: {lower: 2, upper: 12},
-                    times: {lower: 1, upper: 2},
+                    keyFrames: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    glitchFrameCount: [getRandomIntInclusive(config.glitchFrameCount.lower, config.glitchFrameCount.upper)],
+                    lowerRange: config.lowerRange,
+                    times: config.times,
                 }),
             })
-        )
+        ))
     );
 }

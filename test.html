@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cursive Signature - John Ruf</title>
+  <style>
+    canvas {
+      border: 1px solid #ccc;
+      background: #fff;
+      display: block;
+      margin: 40px auto;
+    }
+  </style>
+</head>
+<body>
+<canvas id="signatureCanvas" width="700" height="300"></canvas>
+
+<script>
+  const canvas = document.getElementById('signatureCanvas');
+  const ctx = canvas.getContext('2d');
+
+  const centerX = 350;
+  const centerY = 150;
+  const size = 1.8;
+
+  function drawCursiveSignature(ctx, x, y, scale) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+    ctx.beginPath();
+
+    // Start "J"
+    ctx.moveTo(-130, 10);
+    ctx.bezierCurveTo(-120, -40, -80, -40, -85, 5);  // upper swoop
+    ctx.bezierCurveTo(-90, 35, -60, 40, -60, 10);    // lower swoop
+
+    // o
+    ctx.bezierCurveTo(-55, -5, -35, -5, -40, 10);
+    ctx.bezierCurveTo(-45, 25, -60, 25, -55, 10);
+
+    // h
+    ctx.bezierCurveTo(-30, -10, -30, 30, -10, 10);
+
+    // n
+    ctx.bezierCurveTo(-5, 5, 0, 5, 5, 10);
+    ctx.bezierCurveTo(10, 20, 25, 0, 25, 10);
+
+    // r
+    ctx.bezierCurveTo(35, -10, 45, -10, 45, 10);
+
+    // u
+    ctx.bezierCurveTo(50, 30, 70, 0, 70, 10);
+
+    // f
+    ctx.bezierCurveTo(75, 15, 80, -10, 85, -30);
+    ctx.bezierCurveTo(90, -50, 105, -10, 90, 0);
+    ctx.moveTo(80, -20);
+    ctx.lineTo(100, -20); // crossbar
+
+    // Style
+    ctx.strokeStyle = '#111';
+    ctx.lineWidth = 2;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  drawCursiveSignature(ctx, centerX, centerY, size);
+</script>
+</body>
+</html>

@@ -16,6 +16,7 @@ export const createRedEyeReduction = async ({
                                                 lineReduction = 1,
                                                 sparsityFactor = 10,
                                                 outerRadius = 160,
+                                                secondaryEffects = []
                                             }) => {
     const stroke = 1;
     const thickness = 2;
@@ -43,7 +44,7 @@ export const createRedEyeReduction = async ({
 
         const lineStart = getLineStart(i);
 
-        if(lineStart >= outerRadius) {
+        if (lineStart >= outerRadius) {
             throw new Error('lineStart must less than outer radius');
         }
 
@@ -70,7 +71,7 @@ export const createRedEyeReduction = async ({
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
                 }),
-                possibleSecondaryEffects: [],
+                possibleSecondaryEffects: [...secondaryEffects],
             }),
         });
     }
