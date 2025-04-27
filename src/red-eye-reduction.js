@@ -66,7 +66,7 @@ import {createStackedScanlines} from "./complex-elements/stacked-crt-scanlines.j
 import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
 const promiseArray = [];
-const backgroundHex = '#000000'
+const backgroundHex = '#242424'
 const scheme = malkuthKingdom;
 
 const createComposition = async (colorScheme) => {
@@ -82,8 +82,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 100,
-        frameStart: 30,
+        renderJumpFrames: 1,
+        frameStart: 0,
     });
 
     const numberOfRedEyes = 3;
@@ -154,7 +154,7 @@ const createComposition = async (colorScheme) => {
         },
         secondaryEffects: [...createFadeEffects([
             {
-                arraySize: 75,
+                arraySize: 10,
                 randomChance: {lower: 10, upper: 25},
                 glitchFrameCount: {lower: 25, upper: 160},
                 keyFrames: {lower: 0, upper: 1800 - 160},
@@ -162,7 +162,7 @@ const createComposition = async (colorScheme) => {
                 times: {lower: 1, upper: 3},
             },
             {
-                arraySize: 50,
+                arraySize: 20,
                 randomChance: {lower: 10, upper: 25},
                 glitchFrameCount: {lower: 25, upper: 75},
                 keyFrames: {lower: 0, upper: 1800 - 75},
@@ -170,7 +170,7 @@ const createComposition = async (colorScheme) => {
                 times: {lower: 1, upper: 3},
             },
             {
-                arraySize: 50,
+                arraySize: 10,
                 randomChance: {lower: 10, upper: 25},
                 glitchFrameCount: {lower: 60, upper: 120},
                 keyFrames: {lower: 0, upper: 1800 - 120},
@@ -381,14 +381,14 @@ const createComposition = async (colorScheme) => {
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
-                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
-                linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
-                opacityTimes: {lower: 8, upper: 8},
-                lineRed:  {lower: 64, upper: 64},
-                lineGreen: {lower: 0, upper: 0},
-                lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 3, upper: 3},
-                edgePercentage: {lower: 0.20, upper: 0.20},
+                shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                opacityTimes: {lower: 15, upper: 15},
+                lineRed:  {lower: 32, upper: 32},
+                lineGreen: {lower: 32, upper: 32},
+                lineBlue: {lower: 32, upper: 32},
+                lineHeight: {lower: 1, upper: 1},
+                edgePercentage: {lower: 0.15, upper: 0.15},
                 maxLineHeight: {lower: 8, upper: 8},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })

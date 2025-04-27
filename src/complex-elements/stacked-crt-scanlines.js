@@ -16,13 +16,13 @@ export const createStackedScanlines = async (project,
                                                      },
                                                      brightnessTimes: {lower: 1, upper: 15},
                                                      thicknessRange: {
-                                                         bottom: {lower: 1, upper: 2},
-                                                         top: {lower: 3, upper: 4}
+                                                         bottom: {lower: 4, upper: 8},
+                                                         top: {lower: 10, upper: 12}
                                                      },
                                                      thicknessTimes: {lower: 1, upper: 15},
                                                      lineBlurRange: {
-                                                         bottom: {lower: 10, upper: 10},
-                                                         top: {lower: 15, upper: 15}
+                                                         bottom: {lower: 20, upper: 30},
+                                                         top: {lower: 40, upper: 60}
                                                      },
                                                      lineBlurTimes: {lower: 1, upper: 15},
                                                      colorTintRange: {
@@ -41,8 +41,8 @@ export const createStackedScanlines = async (project,
                                                      },
                                                      colorTintTimes: {lower: 1, upper: 15},
                                                      opacityRange: {
-                                                         bottom: {lower: 0.5, upper: 0.6},
-                                                         top: {lower: 0.7, upper: 0.9}
+                                                         bottom: {lower: 0.3, upper: 0.4},
+                                                         top: {lower: 0.5, upper: 0.6}
                                                      },
                                                      opacityTimes: {lower: 1, upper: 15},
                                                  },
@@ -55,13 +55,13 @@ export const createStackedScanlines = async (project,
                                                      },
                                                      brightnessTimes: {lower: 1, upper: 15},
                                                      thicknessRange: {
-                                                         bottom: {lower: 1, upper: 2},
-                                                         top: {lower: 3, upper: 4}
+                                                         bottom: {lower: 4, upper: 8},
+                                                         top: {lower: 10, upper: 12}
                                                      },
                                                      thicknessTimes: {lower: 1, upper: 15},
                                                      lineBlurRange: {
-                                                         bottom: {lower: 10, upper: 10},
-                                                         top: {lower: 15, upper: 15}
+                                                         bottom: {lower: 20, upper: 30},
+                                                         top: {lower: 40, upper: 60}
                                                      },
                                                      lineBlurTimes: {lower: 1, upper: 15},
                                                      colorTintRange: {
@@ -80,8 +80,8 @@ export const createStackedScanlines = async (project,
                                                      },
                                                      colorTintTimes: {lower: 1, upper: 15},
                                                      opacityRange: {
-                                                         bottom: {lower: 0.5, upper: 0.6},
-                                                         top: {lower: 0.7, upper: 0.9}
+                                                         bottom: {lower: 0.3, upper: 0.4},
+                                                         top: {lower: 0.5, upper: 0.6}
                                                      },
                                                      opacityTimes: {lower: 1, upper: 15},
                                                  },
@@ -94,13 +94,13 @@ export const createStackedScanlines = async (project,
                                                      },
                                                      brightnessTimes: {lower: 1, upper: 15},
                                                      thicknessRange: {
-                                                         bottom: {lower: 1, upper: 2},
-                                                         top: {lower: 3, upper: 4}
+                                                         bottom: {lower: 4, upper: 8},
+                                                         top: {lower: 10, upper: 12}
                                                      },
                                                      thicknessTimes: {lower: 1, upper: 15},
                                                      lineBlurRange: {
-                                                         bottom: {lower: 10, upper: 10},
-                                                         top: {lower: 15, upper: 15}
+                                                         bottom: {lower: 20, upper: 30},
+                                                         top: {lower: 40, upper: 60}
                                                      },
                                                      lineBlurTimes: {lower: 1, upper: 15},
                                                      colorTintRange: {
@@ -119,12 +119,12 @@ export const createStackedScanlines = async (project,
                                                      },
                                                      colorTintTimes: {lower: 1, upper: 15},
                                                      opacityRange: {
-                                                         bottom: {lower: 0.5, upper: 0.6},
-                                                         top: {lower: 0.7, upper: 0.9}
+                                                         bottom: {lower: 0.3, upper: 0.4},
+                                                         top: {lower: 0.5, upper: 0.6}
                                                      },
                                                      opacityTimes: {lower: 1, upper: 15},
                                                  },
-                                                 {
+                                                 /*{
                                                      lines: {lower: 30, upper: 30},
                                                      loopTimes: {lower: 1, upper: 2},
                                                      brightnessRange: {
@@ -133,8 +133,8 @@ export const createStackedScanlines = async (project,
                                                      },
                                                      brightnessTimes: {lower: 1, upper: 15},
                                                      thicknessRange: {
-                                                         bottom: {lower: 1, upper: 2},
-                                                         top: {lower: 3, upper: 4}
+                                                         bottom: {lower: 4, upper: 8},
+                                                         top: {lower: 10, upper: 12}
                                                      },
                                                      thicknessTimes: {lower: 1, upper: 15},
                                                      lineBlurRange: {
@@ -162,7 +162,7 @@ export const createStackedScanlines = async (project,
                                                          top: {lower: 0.7, upper: 0.9}
                                                      },
                                                      opacityTimes: {lower: 1, upper: 15},
-                                                 }
+                                                 }*/
                                              ]) => {
 
     if (!project) {
