@@ -81,8 +81,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 100,
-        frameStart: 30,
+        renderJumpFrames: 1,
+        frameStart: 0,
     });
 
     const numberOfRedEyes = 3;
