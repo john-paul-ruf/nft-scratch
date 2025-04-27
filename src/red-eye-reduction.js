@@ -90,8 +90,8 @@ const createComposition = async (colorScheme) => {
     const lineReduction = 15;
     const gap = 20;
     const gapReduction = 5;
-    const sparsityFactor= 4;
-    const secondSparsityFactor= 6;
+    const sparsityFactor= 6;
+    const secondSparsityFactor= 3;
 
     await createRedEyeReduction({
         project: myTestProject,
