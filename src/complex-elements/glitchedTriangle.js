@@ -19,147 +19,157 @@ export const createGlitchedTriangle = async ({
                                                  blurRang,
                                                  featherTimes,
                                              }) => {
-    for (let i = 0; i < 3; i++) {
-        for (let i = 0; i < colorScheme.colorBucket.length; i++) {
-            await project.addPrimaryEffect({
-                layerConfig: new LayerConfig({
-                    effect: ViewportEffect,
-                    percentChance: 100,
-                    currentEffectConfig: new ViewportConfig({
-                        invertLayers: true,
-                        layerOpacity: 1,
-                        underLayerOpacity: randomNumber(underlayOpacityRange.lower, underlayOpacityRange.upper),
-                        center: center,
-                        color: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.colorBucket[i]),
-                        innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                        stroke: 0,
-                        thickness: thickness,
-                        ampStroke: 0,
-                        ampThickness: 1,
-                        radius: radius,
-                        startAngle: [270],
-                        amplitude: amplitude,
-                        times: times,
-                        accentRange: accentRange,
-                        blurRange: blurRang,
-                        featherTimes: featherTimes,
-                    }),
-                    possibleSecondaryEffects: [
-                        ...createFadeEffects([
-                            {
-                                arraySize: 75,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 160},
-                                keyFrames: {lower: 0, upper: 1800 - 160},
-                                lowerRange: {lower: 0.4, upper: 0.8},
-                                times: {lower: 1, upper: 3},
-                            },
-                            {
-                                arraySize: 50,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 75},
-                                keyFrames: {lower: 0, upper: 1800 - 75},
-                                lowerRange: {lower: 0.2, upper: 0.6},
-                                times: {lower: 1, upper: 3},
-                            },
-                            {
-                                arraySize: 50,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 60, upper: 120},
-                                keyFrames: {lower: 0, upper: 1800 - 120},
-                                lowerRange: {lower: 0.2, upper: 0.8},
-                                times: {lower: 1, upper: 3},
-                            },
-                        ]),
-                        ...createDegaussEffects([
-                            {
-                                arraySize: 75,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 160},
-                                keyFrames: {lower: 0, upper: 1800 - 160},
-                                sectionHeight: [1, 5, 10],
-                                offset: {lower: 3, upper: 15},
-                                direction: [-1, 1],
-                                glitchTimes: {lower: 3, upper: 8},
-                            },
-                            {
-                                arraySize: 50,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 75},
-                                keyFrames: {lower: 0, upper: 1800 - 75},
-                                sectionHeight: [1, 2, 5],
-                                offset: {lower: 5, upper: 25},
-                                direction: [-1, 1],
-                                glitchTimes: {lower: 3, upper: 8},
-                            },
-                            {
-                                arraySize: 50,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 60, upper: 120},
-                                keyFrames: {lower: 0, upper: 1800 - 120},
-                                sectionHeight: [1, 2, 5],
-                                offset: {lower: 5, upper: 25},
-                                direction: [-1, 1],
-                                glitchTimes: {lower: 3, upper: 8},
-                            },
-                        ]),
-                        /*  ...createBlurEffects([
-                              {
-                                  arraySize: 100,
-                                  randomChance: {lower: 10, upper: 25},
-                                  glitchFrameCount: {lower: 25, upper: 160},
-                                  keyFrames: {lower: 0, upper: 1800 - 160},
-                                  lowerRange: {lower: 16, upper: 32},
-                                  times: {lower: 1, upper: 3},
-                              },
-                              {
-                                  arraySize: 100,
-                                  randomChance: {lower: 10, upper: 25},
-                                  glitchFrameCount: {lower: 25, upper: 75},
-                                  keyFrames: {lower: 0, upper: 1800 - 75},
-                                  lowerRange: {lower: 4, upper: 16},
-                                  times: {lower: 1, upper: 3},
-                              },
-                              {
-                                  arraySize: 100,
-                                  randomChance: {lower: 10, upper: 25},
-                                  glitchFrameCount: {lower: 60, upper: 120},
-                                  keyFrames: {lower: 0, upper: 1800 - 120},
-                                  lowerRange: {lower: 12, upper: 24},
-                                  times: {lower: 1, upper: 3},
-                              },
-                          ]),*/
-                        ...createGlowEffects([
-                            {
-                                arraySize: 75,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 160},
-                                keyFrames: {lower: 0, upper: 1800 - 160},
-                                lowerRange: {lower: 16, upper: 32},
-                                times: {lower: 1, upper: 3},
-                            },
-                            {
-                                arraySize: 50,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 75},
-                                keyFrames: {lower: 0, upper: 1800 - 75},
-                                lowerRange: {lower: 4, upper: 16},
-                                times: {lower: 1, upper: 3},
-                            },
-                            {
-                                arraySize: 50,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 60, upper: 120},
-                                keyFrames: {lower: 0, upper: 1800 - 120},
-                                lowerRange: {lower: 1, upper: 32},
-                                times: {lower: 1, upper: 3},
-                            }
-                        ])
 
-                    ],
-                }),
-            });
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+            [array[i], array[j]] = [array[j], array[i]];   // swap elements
         }
+        return array;
+    }
+
+    const shuffled = shuffleArray(colorScheme.colorBucket)
+
+    for (let i = 0; i < shuffled.length; i++) {
+        await project.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: ViewportEffect,
+                percentChance: 100,
+                currentEffectConfig: new ViewportConfig({
+                    invertLayers: true,
+                    layerOpacity: 1,
+                    underLayerOpacity: randomNumber(underlayOpacityRange.lower, underlayOpacityRange.upper),
+                    center: center,
+                    color: new ColorPicker(ColorPicker.SelectionType.color, shuffled[i]),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    stroke: 0,
+                    thickness: thickness,
+                    ampStroke: 0,
+                    ampThickness: 1,
+                    radius: radius,
+                    startAngle: [270],
+                    amplitude: amplitude,
+                    times: times,
+                    accentRange: accentRange,
+                    blurRange: blurRang,
+                    featherTimes: featherTimes,
+                }),
+                possibleSecondaryEffects: [
+                    ...createFadeEffects([
+                        {
+                            arraySize: 75,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 160},
+                            keyFrames: {lower: 0, upper: 1800 - 160},
+                            lowerRange: {lower: 0.2, upper: 0.4},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 50,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 75},
+                            keyFrames: {lower: 0, upper: 1800 - 75},
+                            lowerRange: {lower: 0.2, upper: 0.6},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 50,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 60, upper: 120},
+                            keyFrames: {lower: 0, upper: 1800 - 120},
+                            lowerRange: {lower: 0.2, upper: 0.3},
+                            times: {lower: 1, upper: 3},
+                        },
+                    ]),
+                    ...createDegaussEffects([
+                        {
+                            arraySize: 75,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 160},
+                            keyFrames: {lower: 0, upper: 1800 - 160},
+                            sectionHeight: [1, 5, 10],
+                            offset: {lower: 3, upper: 15},
+                            direction: [-1, 1],
+                            glitchTimes: {lower: 3, upper: 8},
+                        },
+                        {
+                            arraySize: 50,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 75},
+                            keyFrames: {lower: 0, upper: 1800 - 75},
+                            sectionHeight: [1, 2, 5],
+                            offset: {lower: 5, upper: 25},
+                            direction: [-1, 1],
+                            glitchTimes: {lower: 3, upper: 8},
+                        },
+                        {
+                            arraySize: 50,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 60, upper: 120},
+                            keyFrames: {lower: 0, upper: 1800 - 120},
+                            sectionHeight: [1, 2, 5],
+                            offset: {lower: 5, upper: 25},
+                            direction: [-1, 1],
+                            glitchTimes: {lower: 3, upper: 8},
+                        },
+                    ]),
+                    /*  ...createBlurEffects([
+                          {
+                              arraySize: 100,
+                              randomChance: {lower: 10, upper: 25},
+                              glitchFrameCount: {lower: 25, upper: 160},
+                              keyFrames: {lower: 0, upper: 1800 - 160},
+                              lowerRange: {lower: 16, upper: 32},
+                              times: {lower: 1, upper: 3},
+                          },
+                          {
+                              arraySize: 100,
+                              randomChance: {lower: 10, upper: 25},
+                              glitchFrameCount: {lower: 25, upper: 75},
+                              keyFrames: {lower: 0, upper: 1800 - 75},
+                              lowerRange: {lower: 4, upper: 16},
+                              times: {lower: 1, upper: 3},
+                          },
+                          {
+                              arraySize: 100,
+                              randomChance: {lower: 10, upper: 25},
+                              glitchFrameCount: {lower: 60, upper: 120},
+                              keyFrames: {lower: 0, upper: 1800 - 120},
+                              lowerRange: {lower: 12, upper: 24},
+                              times: {lower: 1, upper: 3},
+                          },
+                      ]),*/
+                    ...createGlowEffects([
+                        {
+                            arraySize: 75,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 160},
+                            keyFrames: {lower: 0, upper: 1800 - 160},
+                            lowerRange: {lower: 4, upper: 8},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 50,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 75},
+                            keyFrames: {lower: 0, upper: 1800 - 75},
+                            lowerRange: {lower: 2, upper: 6},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 50,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 60, upper: 120},
+                            keyFrames: {lower: 0, upper: 1800 - 120},
+                            lowerRange: {lower: 1, upper: 4},
+                            times: {lower: 1, upper: 3},
+                        }
+                    ])
+
+                ],
+            }),
+        });
     }
 
     await project.addPrimaryEffect({
