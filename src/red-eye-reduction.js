@@ -67,7 +67,7 @@ import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
 const promiseArray = [];
 const backgroundHex = '#000000'
-const scheme = binahUnderstanding;
+const scheme = malkuthKingdom;
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -87,7 +87,7 @@ const createComposition = async (colorScheme) => {
     });
 
     const numberOfRedEyes = 3;
-    const lineLength = 200;
+    const lineLength = 60;
     const lineReduction = 15;
     const gap = 20;
     const gapReduction = 5;
@@ -109,7 +109,32 @@ const createComposition = async (colorScheme) => {
         loopTimesFunction: (index) => {
             return numberOfRedEyes - index;
         },
-        secondaryEffects: []
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 75,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
     });
 
     await createRedEyeReduction({
@@ -127,7 +152,32 @@ const createComposition = async (colorScheme) => {
         loopTimesFunction: (index) => {
             return numberOfRedEyes - index;
         },
-        secondaryEffects: []
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 75,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
     });
 
     await createRedEyeReduction({
@@ -145,7 +195,32 @@ const createComposition = async (colorScheme) => {
         loopTimesFunction: (index) => {
             return numberOfRedEyes - index;
         },
-        secondaryEffects: []
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 75,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
     });
 
     await createRedEyeReduction({
@@ -163,7 +238,32 @@ const createComposition = async (colorScheme) => {
         loopTimesFunction: (index) => {
             return numberOfRedEyes - index;
         },
-        secondaryEffects: []
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 75,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
     });
 
     await createRedEyeReduction({
@@ -181,7 +281,32 @@ const createComposition = async (colorScheme) => {
         loopTimesFunction: (index) => {
             return numberOfRedEyes - index;
         },
-        secondaryEffects: []
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 75,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
     });
 
     await createRedEyeReduction({
@@ -199,7 +324,32 @@ const createComposition = async (colorScheme) => {
         loopTimesFunction: (index) => {
             return numberOfRedEyes - index;
         },
-        secondaryEffects: []
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 75,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 50,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,7 +365,7 @@ const createComposition = async (colorScheme) => {
         amplitude: {lower: 100, upper: 100},
         times: {lower: 5, upper: 5},
         center: new Point2D(1080 / 2, (1920 / 2) - 50),
-        thickness: 18,
+        thickness: 16,
         underlayOpacityRange: {lower: 0.4, upper: 0.6},
         accentRange: {bottom: {lower: 20, upper: 20}, top: {lower: 30, upper: 60}},
         blurRange: {bottom: {lower: 4, upper: 4}, top: {lower: 6, upper: 6}},
@@ -234,42 +384,8 @@ const createComposition = async (colorScheme) => {
                 shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
                 linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
                 opacityTimes: {lower: 8, upper: 8},
-                lineRed: {lower: 0, upper: 0},
+                lineRed:  {lower: 64, upper: 64},
                 lineGreen: {lower: 0, upper: 0},
-                lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 1, upper: 1},
-                edgePercentage: {lower: 0.10, upper: 0.10},
-                maxLineHeight: {lower: 8, upper: 8},
-                numberOfEdgeSections: {lower: 40, upper: 40},
-            })
-        }),
-    });
-
-    await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
-                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
-                linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
-                opacityTimes: {lower: 8, upper: 8},
-                lineRed: {lower: 0, upper: 0},
-                lineGreen: {lower: 128, upper: 128},
-                lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 2, upper: 2},
-                edgePercentage: {lower: 0.15, upper: 0.15},
-                maxLineHeight: {lower: 8, upper: 8},
-                numberOfEdgeSections: {lower: 40, upper: 40},
-            })
-        }),
-    });
-
-    await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
-                shadowOpacityRange: {bottom: {lower: 0.7, upper: 0.7}, top: {lower: 0.9, upper: 0.9}},
-                linesOpacityRange: {bottom: {lower: 0.6, upper: 0.6}, top: {lower: 0.9, upper: 0.9}},
-                opacityTimes: {lower: 8, upper: 8},
-                lineRed: {lower: 0, upper: 0},
-                lineGreen: {lower: 128, upper: 128},
                 lineBlue: {lower: 0, upper: 0},
                 lineHeight: {lower: 3, upper: 3},
                 edgePercentage: {lower: 0.20, upper: 0.20},
