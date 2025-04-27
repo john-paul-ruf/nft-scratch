@@ -278,3 +278,17 @@ export const deepGrayMinimalTint = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**: deep-gray-minimal-tint\n"
 });
+
+export const daatKnowledge = new ColorScheme({
+    colorBucket: [
+        '#00FFFF', // Vibrant Cyan
+        '#FF00FF', // Vivid Magenta
+        '#FFFF00', // Electric Yellow
+        '#FF4500', // Fiery Orange-Red
+        '#7CFC00', // Bright Lime Green
+        '#00BFFF', // Deep Sky Blue
+        '#FF1493', // Deep Pink
+        '#FFD700', // Radiant Gold
+    ],
+    colorSchemeInfo: "**Color Strategy**:daat-knowledge\n"
+});

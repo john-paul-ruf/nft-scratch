@@ -67,6 +67,7 @@ import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
 const promiseArray = [];
 const backgroundHex = '#000000'
+const scheme = binahUnderstanding;
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
@@ -81,8 +82,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 1,
-        frameStart: 0,
+        renderJumpFrames: 100,
+        frameStart: 30,
     });
 
     const numberOfRedEyes = 3;
@@ -90,17 +91,17 @@ const createComposition = async (colorScheme) => {
     const lineReduction = 15;
     const gap = 20;
     const gapReduction = 5;
-    const sparsityFactor= 6;
-    const secondSparsityFactor= 3;
+    const sparsityFactor = 6;
+    const secondSparsityFactor = 3;
 
     await createRedEyeReduction({
         project: myTestProject,
-        colorScheme: neonHarmony,
+        colorScheme: colorScheme,
         center: new Point2D(1080 / 2, 1920 / 2),
         numberOfRedEyes: numberOfRedEyes,
         lineStartInitial: 100,
         gap: gap,
-        gapReduction:gapReduction,
+        gapReduction: gapReduction,
         lineLength: lineLength,
         lineReduction: lineReduction,
         sparsityFactor: sparsityFactor,
@@ -113,12 +114,12 @@ const createComposition = async (colorScheme) => {
 
     await createRedEyeReduction({
         project: myTestProject,
-        colorScheme: neonHarmony,
+        colorScheme: colorScheme,
         center: new Point2D(1080 / 2, 1920 / 2),
         numberOfRedEyes: numberOfRedEyes,
         lineStartInitial: 200,
         gap: gap,
-        gapReduction:gapReduction,
+        gapReduction: gapReduction,
         lineLength: lineLength,
         lineReduction: lineReduction,
         sparsityFactor: sparsityFactor,
@@ -131,7 +132,7 @@ const createComposition = async (colorScheme) => {
 
     await createRedEyeReduction({
         project: myTestProject,
-        colorScheme: neonHarmony,
+        colorScheme: colorScheme,
         center: new Point2D(1080 / 2, 1920 / 2),
         numberOfRedEyes: numberOfRedEyes,
         lineStartInitial: 300,
@@ -149,12 +150,12 @@ const createComposition = async (colorScheme) => {
 
     await createRedEyeReduction({
         project: myTestProject,
-        colorScheme: neonHarmony,
+        colorScheme: colorScheme,
         center: new Point2D(1080 / 2, 1920 / 2),
         numberOfRedEyes: numberOfRedEyes,
         lineStartInitial: 150,
         gap: gap,
-        gapReduction:gapReduction,
+        gapReduction: gapReduction,
         lineLength: lineLength,
         lineReduction: lineReduction,
         sparsityFactor: secondSparsityFactor,
@@ -167,12 +168,12 @@ const createComposition = async (colorScheme) => {
 
     await createRedEyeReduction({
         project: myTestProject,
-        colorScheme: neonHarmony,
+        colorScheme: colorScheme,
         center: new Point2D(1080 / 2, 1920 / 2),
         numberOfRedEyes: numberOfRedEyes,
         lineStartInitial: 250,
         gap: gap,
-        gapReduction:gapReduction,
+        gapReduction: gapReduction,
         lineLength: lineLength,
         lineReduction: lineReduction,
         sparsityFactor: secondSparsityFactor,
@@ -185,7 +186,7 @@ const createComposition = async (colorScheme) => {
 
     await createRedEyeReduction({
         project: myTestProject,
-        colorScheme: neonHarmony,
+        colorScheme: colorScheme,
         center: new Point2D(1080 / 2, 1920 / 2),
         numberOfRedEyes: numberOfRedEyes,
         lineStartInitial: 350,
@@ -236,9 +237,9 @@ const createComposition = async (colorScheme) => {
                 lineRed: {lower: 0, upper: 0},
                 lineGreen: {lower: 0, upper: 0},
                 lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 0.8, upper: 0.8},
+                lineHeight: {lower: 1, upper: 1},
                 edgePercentage: {lower: 0.10, upper: 0.10},
-                maxLineHeight: {lower: 4, upper: 4},
+                maxLineHeight: {lower: 8, upper: 8},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
@@ -253,9 +254,9 @@ const createComposition = async (colorScheme) => {
                 lineRed: {lower: 0, upper: 0},
                 lineGreen: {lower: 128, upper: 128},
                 lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 0.4, upper: 0.4},
+                lineHeight: {lower: 2, upper: 2},
                 edgePercentage: {lower: 0.15, upper: 0.15},
-                maxLineHeight: {lower: 4, upper: 4},
+                maxLineHeight: {lower: 8, upper: 8},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
@@ -270,9 +271,9 @@ const createComposition = async (colorScheme) => {
                 lineRed: {lower: 0, upper: 0},
                 lineGreen: {lower: 128, upper: 128},
                 lineBlue: {lower: 0, upper: 0},
-                lineHeight: {lower: 0.2, upper: 0.2},
+                lineHeight: {lower: 3, upper: 3},
                 edgePercentage: {lower: 0.20, upper: 0.20},
-                maxLineHeight: {lower: 4, upper: 4},
+                maxLineHeight: {lower: 8, upper: 8},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
@@ -296,6 +297,6 @@ const createComposition = async (colorScheme) => {
     promiseArray.push(myTestProject.generateRandomLoop());
 };
 
-await createComposition(neonHarmony);
+await createComposition(scheme);
 
 await Promise.all(promiseArray);

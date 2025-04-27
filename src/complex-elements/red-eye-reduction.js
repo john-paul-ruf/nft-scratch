@@ -58,8 +58,8 @@ export const createRedEyeReduction = async ({
                 currentEffectConfig: new RedEyeConfig({
                     innerRadius: lineStart,
                     outerRadius: outerRadius,
-                    possibleJumpRangeInPixels: {lower: 5, upper: 20},
-                    lineLength: {lower: 20, upper: 40},
+                    possibleJumpRangeInPixels: {lower: 3, upper: 30},
+                    lineLength: {lower: lineLength, upper: lineLength},
                     numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
                     invertLayers: true,
                     layerOpacity: 0.7,
