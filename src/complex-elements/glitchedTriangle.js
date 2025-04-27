@@ -6,7 +6,19 @@ import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEf
 import {randomNumber} from "my-nft-gen/src/core/math/random.js";
 
 
-export const createGlitchedTriangle = async ({project, colorScheme, radius, amplitude, times, center, thickness, underlayOpacityRange}) => {
+export const createGlitchedTriangle = async ({
+                                                 project,
+                                                 colorScheme,
+                                                 radius,
+                                                 amplitude,
+                                                 times,
+                                                 center,
+                                                 thickness,
+                                                 underlayOpacityRange,
+                                                 accentRange,
+                                                 blurRang,
+                                                 featherTimes,
+                                             }) => {
     for (let i = 0; i < 3; i++) {
         for (let i = 0; i < colorScheme.colorBucket.length; i++) {
             await project.addPrimaryEffect({
@@ -28,9 +40,9 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                         startAngle: [270],
                         amplitude: amplitude,
                         times: times,
-                        accentRange: {bottom: {lower: 15, upper: 30}, top: {lower: 60, upper: 120}},
-                        blurRange: {bottom: {lower: 8, upper: 12}, top: {lower: 20, upper: 40}},
-                        featherTimes: {lower: 4, upper: 20},
+                        accentRange: accentRange,
+                        blurRange: blurRang,
+                        featherTimes: featherTimes,
                     }),
                     possibleSecondaryEffects: [
                         ...createFadeEffects([
@@ -91,32 +103,32 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 glitchTimes: {lower: 3, upper: 8},
                             },
                         ]),
-                      /*  ...createBlurEffects([
-                            {
-                                arraySize: 100,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 160},
-                                keyFrames: {lower: 0, upper: 1800 - 160},
-                                lowerRange: {lower: 16, upper: 32},
-                                times: {lower: 1, upper: 3},
-                            },
-                            {
-                                arraySize: 100,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 25, upper: 75},
-                                keyFrames: {lower: 0, upper: 1800 - 75},
-                                lowerRange: {lower: 4, upper: 16},
-                                times: {lower: 1, upper: 3},
-                            },
-                            {
-                                arraySize: 100,
-                                randomChance: {lower: 10, upper: 25},
-                                glitchFrameCount: {lower: 60, upper: 120},
-                                keyFrames: {lower: 0, upper: 1800 - 120},
-                                lowerRange: {lower: 12, upper: 24},
-                                times: {lower: 1, upper: 3},
-                            },
-                        ]),*/
+                        /*  ...createBlurEffects([
+                              {
+                                  arraySize: 100,
+                                  randomChance: {lower: 10, upper: 25},
+                                  glitchFrameCount: {lower: 25, upper: 160},
+                                  keyFrames: {lower: 0, upper: 1800 - 160},
+                                  lowerRange: {lower: 16, upper: 32},
+                                  times: {lower: 1, upper: 3},
+                              },
+                              {
+                                  arraySize: 100,
+                                  randomChance: {lower: 10, upper: 25},
+                                  glitchFrameCount: {lower: 25, upper: 75},
+                                  keyFrames: {lower: 0, upper: 1800 - 75},
+                                  lowerRange: {lower: 4, upper: 16},
+                                  times: {lower: 1, upper: 3},
+                              },
+                              {
+                                  arraySize: 100,
+                                  randomChance: {lower: 10, upper: 25},
+                                  glitchFrameCount: {lower: 60, upper: 120},
+                                  keyFrames: {lower: 0, upper: 1800 - 120},
+                                  lowerRange: {lower: 12, upper: 24},
+                                  times: {lower: 1, upper: 3},
+                              },
+                          ]),*/
                         ...createGlowEffects([
                             {
                                 arraySize: 75,
@@ -158,7 +170,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                 invertLayers: true,
                 layerOpacity: 1,
                 underLayerOpacity: 0,
-                center:  center,
+                center: center,
                 color: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 stroke: 0,
@@ -173,8 +185,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
             }),
-            possibleSecondaryEffects: [
-            ],
+            possibleSecondaryEffects: [],
         }),
     });
 }

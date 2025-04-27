@@ -16,6 +16,9 @@ export const createRedEyeReduction = async ({
                                                 lineReduction = 1,
                                                 sparsityFactor = 10,
                                                 outerRadius = 160,
+                                                loopTimesFunction = (index) => {
+                                                    return index + 1
+                                                },
                                                 secondaryEffects = []
                                             }) => {
     const stroke = 1;
@@ -57,7 +60,7 @@ export const createRedEyeReduction = async ({
                     outerRadius: outerRadius,
                     possibleJumpRangeInPixels: {lower: 5, upper: 20},
                     lineLength: {lower: 20, upper: 40},
-                    numberOfLoops: {lower: i + 1, upper: i + 1},
+                    numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
                     invertLayers: true,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,

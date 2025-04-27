@@ -81,8 +81,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 1,
-        frameStart:0,
+        renderJumpFrames: 100,
+        frameStart:20,
     });
 
 
@@ -123,6 +123,7 @@ const createComposition = async (colorScheme) => {
             lineReduction: currentLineReduction,
             sparsityFactor: 3,
             outerRadius: currentOuterRadius,
+            loopTimesFunction: (index) => {return colorSchemeList.length - index; },
             secondaryEffects: [
 
             ]
@@ -147,9 +148,9 @@ const createComposition = async (colorScheme) => {
         amplitude: {lower: 100, upper: 100},
         times: {lower: 5, upper: 5},
         center: new Point2D(1080 / 2, (1920 / 2) - 75),
-        thickness: 18,
+        thickness: 12,
         underlayOpacityRange: {lower: 0.3, upper: 0.4},
-        accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 5}},
+        accentRange: {bottom: {lower: 15, upper: 20}, top: {lower: 30, upper: 50}},
         blurRange: {bottom: {lower:2, upper: 2}, top: {lower: 3, upper: 3}},
         featherTimes: {lower: 4, upper: 20},
     });
@@ -161,9 +162,9 @@ const createComposition = async (colorScheme) => {
         amplitude: {lower: 100, upper: 100},
         times: {lower: 5, upper: 5},
         center: new Point2D(1080 / 2, (1920 / 2) - 75),
-        thickness: 18,
+        thickness: 12,
         underlayOpacityRange: {lower: 0.7, upper: 0.9},
-        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+        accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 10, upper: 15}},
         blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
         featherTimes: {lower: 4, upper: 20},
     });
