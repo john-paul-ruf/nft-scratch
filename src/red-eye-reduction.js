@@ -81,8 +81,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 100,
-        frameStart:100,
+        renderJumpFrames: 1,
+        frameStart:0,
     });
 
 
@@ -90,17 +90,14 @@ const createComposition = async (colorScheme) => {
     const lineExpansionConstant = 1;
 
 
-    const initialLineStart = 50;
-    const initialGap = 10;
-    const initialGapReduction = 1;
+    const initialLineStart = 350;
+    const initialGap = 2;
+    const initialGapReduction = 0;
     const initialLineLength = 15;
-    const initialLineReduction = 0;
-    const initialOuterRadius = 250;
+    const initialLineReduction = 1;
+    const initialOuterRadius = 650;
 
     const colorSchemeList = [
-        chesedKindness,
-        chesedKindness,
-        chesedKindness,
         chesedKindness,
     ];
 
@@ -118,13 +115,13 @@ const createComposition = async (colorScheme) => {
             project: myTestProject,
             colorScheme: colorSchemeList[i],
             center: new Point2D(1080 / 2, 1920 / 2),
-            numberOfRedEyes: 5,
+            numberOfRedEyes: 12,
             lineStartInitial: currentLineStart,
             gap: currentGap,
             gapReduction: currentGapReduction,
             lineLength: currentLineLength,
             lineReduction: currentLineReduction,
-            sparsityFactor: 4,
+            sparsityFactor: 3,
             outerRadius: currentOuterRadius,
             secondaryEffects: [
 
@@ -146,28 +143,28 @@ const createComposition = async (colorScheme) => {
     await createGlitchedTriangle({
         project: myTestProject,
         colorScheme: colorScheme,
-        radius: [300],
+        radius: [200],
         amplitude: {lower: 100, upper: 100},
         times: {lower: 5, upper: 5},
         center: new Point2D(1080 / 2, (1920 / 2) - 75),
-        thickness: 15,
-        underlayOpacityRange: {lower: 0.4, upper: 0.5},
-        accentRange: {bottom: {lower: 15, upper: 30}, top: {lower: 40, upper: 60}},
-        blurRange: {bottom: {lower: 8, upper: 12}, top: {lower: 20, upper: 40}},
+        thickness: 18,
+        underlayOpacityRange: {lower: 0.3, upper: 0.4},
+        accentRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 5}},
+        blurRange: {bottom: {lower:2, upper: 2}, top: {lower: 3, upper: 3}},
         featherTimes: {lower: 4, upper: 20},
     });
 
     await createGlitchedTriangle({
         project: myTestProject,
         colorScheme: colorScheme,
-        radius: [300],
+        radius: [200],
         amplitude: {lower: 100, upper: 100},
         times: {lower: 5, upper: 5},
         center: new Point2D(1080 / 2, (1920 / 2) - 75),
-        thickness: 15,
+        thickness: 18,
         underlayOpacityRange: {lower: 0.7, upper: 0.9},
-        accentRange: {bottom: {lower: 5, upper: 10}, top: {lower: 15, upper: 25}},
-        blurRange: {bottom: {lower: 2, upper: 3}, top: {lower: 5, upper: 10}},
+        accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+        blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
         featherTimes: {lower: 4, upper: 20},
     });
 

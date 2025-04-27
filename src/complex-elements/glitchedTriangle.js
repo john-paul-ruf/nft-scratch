@@ -35,7 +35,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                     possibleSecondaryEffects: [
                         ...createFadeEffects([
                             {
-                                arraySize: 100,
+                                arraySize: 75,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 25, upper: 160},
                                 keyFrames: {lower: 0, upper: 1800 - 160},
@@ -43,7 +43,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 times: {lower: 1, upper: 3},
                             },
                             {
-                                arraySize: 100,
+                                arraySize: 50,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 25, upper: 75},
                                 keyFrames: {lower: 0, upper: 1800 - 75},
@@ -51,7 +51,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 times: {lower: 1, upper: 3},
                             },
                             {
-                                arraySize: 100,
+                                arraySize: 50,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 60, upper: 120},
                                 keyFrames: {lower: 0, upper: 1800 - 120},
@@ -61,7 +61,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                         ]),
                         ...createDegaussEffects([
                             {
-                                arraySize: 100,
+                                arraySize: 75,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 25, upper: 160},
                                 keyFrames: {lower: 0, upper: 1800 - 160},
@@ -71,7 +71,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 glitchTimes: {lower: 3, upper: 8},
                             },
                             {
-                                arraySize: 100,
+                                arraySize: 50,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 25, upper: 75},
                                 keyFrames: {lower: 0, upper: 1800 - 75},
@@ -81,7 +81,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 glitchTimes: {lower: 3, upper: 8},
                             },
                             {
-                                arraySize: 100,
+                                arraySize: 50,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 60, upper: 120},
                                 keyFrames: {lower: 0, upper: 1800 - 120},
@@ -119,7 +119,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                         ]),*/
                         ...createGlowEffects([
                             {
-                                arraySize: 100,
+                                arraySize: 75,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 25, upper: 160},
                                 keyFrames: {lower: 0, upper: 1800 - 160},
@@ -127,7 +127,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 times: {lower: 1, upper: 3},
                             },
                             {
-                                arraySize: 100,
+                                arraySize: 50,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 25, upper: 75},
                                 keyFrames: {lower: 0, upper: 1800 - 75},
@@ -135,7 +135,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 times: {lower: 1, upper: 3},
                             },
                             {
-                                arraySize: 100,
+                                arraySize: 50,
                                 randomChance: {lower: 10, upper: 25},
                                 glitchFrameCount: {lower: 60, upper: 120},
                                 keyFrames: {lower: 0, upper: 1800 - 120},
