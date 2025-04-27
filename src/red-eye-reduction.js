@@ -86,7 +86,7 @@ const createComposition = async (colorScheme) => {
     });
 
     const numberOfRedEyes = 3;
-    const lineLength = 100;
+    const lineLength = 200;
     const lineReduction = 15;
     const gap = 20;
     const gapReduction = 5;
