@@ -81,7 +81,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 400,
+        renderJumpFrames: 100,
+        frameStart:100,
     });
 
 
@@ -89,12 +90,12 @@ const createComposition = async (colorScheme) => {
     const lineExpansionConstant = 1;
 
 
-    const initialLineStart = 75;
+    const initialLineStart = 50;
     const initialGap = 10;
     const initialGapReduction = 1;
     const initialLineLength = 15;
     const initialLineReduction = 0;
-    const initialOuterRadius = 200;
+    const initialOuterRadius = 250;
 
     const colorSchemeList = [
         chesedKindness,
@@ -147,7 +148,7 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
         radius: [300],
         amplitude: {lower: 100, upper: 100},
-        times: {lower: 15, upper: 15},
+        times: {lower: 5, upper: 5},
         center: new Point2D(1080 / 2, (1920 / 2) - 75),
         thickness: 15,
         underlayOpacityRange: {lower: 0.4, upper: 0.5},
@@ -161,7 +162,7 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
         radius: [300],
         amplitude: {lower: 100, upper: 100},
-        times: {lower: 15, upper: 15},
+        times: {lower: 5, upper: 5},
         center: new Point2D(1080 / 2, (1920 / 2) - 75),
         thickness: 15,
         underlayOpacityRange: {lower: 0.7, upper: 0.9},

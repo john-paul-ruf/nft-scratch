@@ -91,7 +91,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 glitchTimes: {lower: 3, upper: 8},
                             },
                         ]),
-                        ...createBlurEffects([
+                      /*  ...createBlurEffects([
                             {
                                 arraySize: 100,
                                 randomChance: {lower: 10, upper: 25},
@@ -116,7 +116,7 @@ export const createGlitchedTriangle = async ({project, colorScheme, radius, ampl
                                 lowerRange: {lower: 12, upper: 24},
                                 times: {lower: 1, upper: 3},
                             },
-                        ]),
+                        ]),*/
                         ...createGlowEffects([
                             {
                                 arraySize: 100,
