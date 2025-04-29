@@ -1,70 +1,15 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
-import {createOrbElement} from "./complex-elements/orbs.js";
-import {getMultiStep} from "./util/multistep.js";
-import {
-    createBlurEffects,
-    createDegaussEffects,
-    createFadeEffects,
-    createGlowEffects
-} from "./util/glitch.js";
-import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {FuzzyRipplesConfig} from "my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesConfig.js";
-import {FuzzyRipplesEffect} from "my-nft-gen/src/effects/primaryEffects/fuzzyRipples/FuzzyRipplesEffect.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 
-import {
-    activatingVishuddha,
-    binahUnderstanding,
-    chesedKindness,
-    chokhmahWisdom, deepGrayMinimalTint, eternalRise, eyeBurn,
-    gevurahSeverity,
-    hodSplendor,
-    keterCrown,
-    malkuthKingdom,
-    neonHarmony,
-    netzachVictory,
-    tiferetBeauty,
-    yesodFoundation
-} from "./assets/color-scheme-store.js";
-import {ViewportEffect} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {malkuthKingdom} from "./assets/color-scheme-store.js";
 import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {CRTBarrelEffect} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
+import {CRTBarrelConfig} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
-import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
-import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
-import {StaticPathEffect} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathEffect.js";
-import {StaticPathConfig} from "my-nft-gen/src/effects/primaryEffects/static-path/StaticPathConfig.js";
-
-import {GlowEffect} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowEffect.js";
-import {GlowConfig} from "my-nft-gen/src/effects/secondaryEffects/glow/GlowConfig.js";
-import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
-import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
-import {createDecayingOrbElement} from "./complex-elements/decayingOrbs.js";
-import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
-
-import {
-    EncircledSpiralEffect
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
-import {
-    EncircledSpiralConfig
-} from "my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
-import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffect.js";
-import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
-import {RedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {
-    createRedEyeReduction,
-    layeredRedEye,
-} from "./complex-elements/red-eye-reduction.js";
-import {GlowKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
-import {GlowKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
+import {layeredRedEye,} from "./complex-elements/red-eye-reduction.js";
 import {createStackedScanlines} from "./complex-elements/stacked-crt-scanlines.js";
 import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
@@ -85,8 +30,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 100,
-        frameStart: 60,
+        renderJumpFrames: 1,
+        frameStart: 0,
     });
 
     const numberOfRedEyes = 3;
@@ -190,6 +135,8 @@ const createComposition = async (colorScheme) => {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    await createStackedScanlines(myTestProject);
+
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
@@ -199,15 +146,13 @@ const createComposition = async (colorScheme) => {
                 lineRed: {lower: 64, upper: 64},
                 lineGreen: {lower: 32, upper: 32},
                 lineBlue: {lower: 32, upper: 32},
-                lineHeight: {lower: 2, upper: 2},
-                edgePercentage: {lower: 0.15, upper: 0.15},
+                lineHeight: {lower: 3, upper: 3},
+                edgePercentage: {lower: 0.10, upper: 0.10},
                 maxLineHeight: {lower: 8, upper: 8},
                 numberOfEdgeSections: {lower: 40, upper: 40},
             })
         }),
     });
-
-    await createStackedScanlines(myTestProject);
 
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
@@ -218,6 +163,16 @@ const createComposition = async (colorScheme) => {
                 saturationTimes: {lower: 15, upper: 15},
                 contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
                 contrastTimes: {lower: 15, upper: 15},
+            }),
+        }),
+    });
+
+    await myTestProject.addFinalEffect({
+        layerConfig: new LayerConfig({
+            effect: CRTBarrelEffect, percentChance: 100, currentEffectConfig: new CRTBarrelConfig({
+                strength: {lower: 0.2, upper: 0.2},
+                edgeThreshold: {lower: 0.05, upper: 0.05},
+                corner: {lower: 0.05, upper: 0.05},
             }),
         }),
     });
