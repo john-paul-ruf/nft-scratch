@@ -59,7 +59,10 @@ import {AmpEffect} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpEffe
 import {AmpConfig} from "../../my-nft-gen/src/effects/primaryEffects/amp/AmpConfig.js";
 import {RedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {createRedEyeReduction, innerLayerRedEye, outerLayerRedEye} from "./complex-elements/red-eye-reduction.js";
+import {
+    createRedEyeReduction,
+    layeredRedEye,
+} from "./complex-elements/red-eye-reduction.js";
 import {GlowKeyFrameEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
 import {GlowKeyFrameConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
 import {createStackedScanlines} from "./complex-elements/stacked-crt-scanlines.js";
@@ -82,8 +85,8 @@ const createComposition = async (colorScheme) => {
         shortestSideInPixels: 1080,
         isHorizontal: false,
         maxConcurrentFrameBuilderThreads: 1,
-        renderJumpFrames: 1,
-        frameStart: 0,
+        renderJumpFrames: 100,
+        frameStart: 60,
     });
 
     const numberOfRedEyes = 3;
@@ -94,11 +97,72 @@ const createComposition = async (colorScheme) => {
     const sparsityFactor = 6;
     const secondSparsityFactor = 3;
 
+    const center = new Point2D(1080 / 2, 1920 / 2);
 
+    const lineStartInitial = 100;
+    const lineStartIncrease = 50;
+    const outerRadius = 600;
+    const outerRadiusIncrease = 50;
+    const numberOfLayers = 3;
 
-    await outerLayerRedEye(myTestProject, colorScheme, numberOfRedEyes, gap, gapReduction, lineLength, lineReduction, secondSparsityFactor);
+    const loopTimesFunction = (index) => {
+        return numberOfRedEyes - index;
+    }
 
-    await innerLayerRedEye(myTestProject, colorScheme, numberOfRedEyes, gap, gapReduction, lineLength, lineReduction, sparsityFactor);
+    await layeredRedEye({
+        myTestProject,
+        colorScheme,
+        numberOfRedEyes,
+        gap,
+        gapReduction,
+        lineLength,
+        lineReduction,
+        sparsityFactor: 3,
+        center,
+        lineStartInitial: 350,
+        lineStartIncrease,
+        outerRadius: 950,
+        outerRadiusIncrease,
+        loopTimesFunction,
+        numberOfLayers,
+    });
+
+    await layeredRedEye({
+        myTestProject,
+        colorScheme,
+        numberOfRedEyes,
+        gap,
+        gapReduction,
+        lineLength,
+        lineReduction,
+        sparsityFactor: 4,
+        center,
+        lineStartInitial: 250,
+        lineStartIncrease,
+        outerRadius: 850,
+        outerRadiusIncrease,
+        loopTimesFunction,
+        numberOfLayers,
+    });
+
+    await layeredRedEye({
+        myTestProject,
+        colorScheme,
+        numberOfRedEyes,
+        gap,
+        gapReduction,
+        lineLength,
+        lineReduction,
+        sparsityFactor,
+        center,
+        lineStartInitial,
+        lineStartIncrease,
+        outerRadius,
+        outerRadiusIncrease,
+        loopTimesFunction,
+        numberOfLayers,
+    });
+
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,10 +196,10 @@ const createComposition = async (colorScheme) => {
                 shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
                 linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
                 opacityTimes: {lower: 15, upper: 15},
-                lineRed:  {lower: 32, upper: 32},
+                lineRed: {lower: 64, upper: 64},
                 lineGreen: {lower: 32, upper: 32},
                 lineBlue: {lower: 32, upper: 32},
-                lineHeight: {lower: 1, upper: 1},
+                lineHeight: {lower: 2, upper: 2},
                 edgePercentage: {lower: 0.15, upper: 0.15},
                 maxLineHeight: {lower: 8, upper: 8},
                 numberOfEdgeSections: {lower: 40, upper: 40},
