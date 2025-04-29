@@ -170,9 +170,9 @@ const createComposition = async (colorScheme) => {
     await myTestProject.addFinalEffect({
         layerConfig: new LayerConfig({
             effect: CRTBarrelEffect, percentChance: 100, currentEffectConfig: new CRTBarrelConfig({
-                strength: {lower: 0.2, upper: 0.2},
-                edgeThreshold: {lower: 0.05, upper: 0.05},
-                corner: {lower: 0.05, upper: 0.05},
+                strength: {lower: 0.09, upper: 0.09},
+                edgeThreshold: {lower: 0.025, upper: 0.025},
+                corner: {lower: 0.025, upper: 0.025},
             }),
         }),
     });
