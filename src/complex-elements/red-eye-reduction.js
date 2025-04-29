@@ -3,6 +3,7 @@ import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
 import {RedEyeEffect} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {createFadeEffects} from "../util/glitch.js";
 
 export const createRedEyeReduction = async ({
                                                 project = null,
@@ -62,8 +63,8 @@ export const createRedEyeReduction = async ({
                     lineLength: {lower: lineLength, upper: lineLength},
                     numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
                     invertLayers: true,
-                    layerOpacity: 0.7,
-                    underLayerOpacity: 0.5,
+                    layerOpacity: 1,
+                    underLayerOpacity: 0.7,
                     sparsityFactor: [sparsityFactor],
                     stroke: stroke,
                     thickness: thickness,
@@ -78,4 +79,267 @@ export const createRedEyeReduction = async ({
             }),
         });
     }
+}
+
+export const innerLayerRedEye = async (myTestProject, colorScheme, numberOfRedEyes, gap, gapReduction, lineLength, lineReduction, sparsityFactor) => {
+
+    await createRedEyeReduction({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        center: new Point2D(1080 / 2, 1920 / 2),
+        numberOfRedEyes: numberOfRedEyes,
+        lineStartInitial: 100,
+        gap: gap,
+        gapReduction: gapReduction,
+        lineLength: lineLength,
+        lineReduction: lineReduction,
+        sparsityFactor: sparsityFactor,
+        outerRadius: 800,
+        loopTimesFunction: (index) => {
+            return numberOfRedEyes - index;
+        },
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 20,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
+    });
+
+    await createRedEyeReduction({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        center: new Point2D(1080 / 2, 1920 / 2),
+        numberOfRedEyes: numberOfRedEyes,
+        lineStartInitial: 200,
+        gap: gap,
+        gapReduction: gapReduction,
+        lineLength: lineLength,
+        lineReduction: lineReduction,
+        sparsityFactor: sparsityFactor,
+        outerRadius: 850,
+        loopTimesFunction: (index) => {
+            return numberOfRedEyes - index;
+        },
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 20,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
+    });
+
+    await createRedEyeReduction({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        center: new Point2D(1080 / 2, 1920 / 2),
+        numberOfRedEyes: numberOfRedEyes,
+        lineStartInitial: 300,
+        gap: gap,
+        gapReduction: gapReduction,
+        lineLength: lineLength,
+        lineReduction: lineReduction,
+        sparsityFactor: sparsityFactor,
+        outerRadius: 900,
+        loopTimesFunction: (index) => {
+            return numberOfRedEyes - index;
+        },
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 20,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
+    });
+}
+
+export const outerLayerRedEye = async (myTestProject, colorScheme, numberOfRedEyes, gap, gapReduction, lineLength, lineReduction, secondSparsityFactor) => {
+    await createRedEyeReduction({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        center: new Point2D(1080 / 2, 1920 / 2),
+        numberOfRedEyes: numberOfRedEyes,
+        lineStartInitial: 150,
+        gap: gap,
+        gapReduction: gapReduction,
+        lineLength: lineLength,
+        lineReduction: lineReduction,
+        sparsityFactor: secondSparsityFactor,
+        outerRadius: 800,
+        loopTimesFunction: (index) => {
+            return numberOfRedEyes - index;
+        },
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 20,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
+    });
+
+    await createRedEyeReduction({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        center: new Point2D(1080 / 2, 1920 / 2),
+        numberOfRedEyes: numberOfRedEyes,
+        lineStartInitial: 250,
+        gap: gap,
+        gapReduction: gapReduction,
+        lineLength: lineLength,
+        lineReduction: lineReduction,
+        sparsityFactor: secondSparsityFactor,
+        outerRadius: 850,
+        loopTimesFunction: (index) => {
+            return numberOfRedEyes - index;
+        },
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 20,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
+    });
+
+    await createRedEyeReduction({
+        project: myTestProject,
+        colorScheme: colorScheme,
+        center: new Point2D(1080 / 2, 1920 / 2),
+        numberOfRedEyes: numberOfRedEyes,
+        lineStartInitial: 350,
+        gap: gap,
+        gapReduction: gapReduction,
+        lineLength: lineLength,
+        lineReduction: lineReduction,
+        sparsityFactor: secondSparsityFactor,
+        outerRadius: 900,
+        loopTimesFunction: (index) => {
+            return numberOfRedEyes - index;
+        },
+        secondaryEffects: [...createFadeEffects([
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 160},
+                keyFrames: {lower: 0, upper: 1800 - 160},
+                lowerRange: {lower: 0.2, upper: 0.4},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 20,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 25, upper: 75},
+                keyFrames: {lower: 0, upper: 1800 - 75},
+                lowerRange: {lower: 0.2, upper: 0.6},
+                times: {lower: 1, upper: 3},
+            },
+            {
+                arraySize: 10,
+                randomChance: {lower: 10, upper: 25},
+                glitchFrameCount: {lower: 60, upper: 120},
+                keyFrames: {lower: 0, upper: 1800 - 120},
+                lowerRange: {lower: 0.2, upper: 0.3},
+                times: {lower: 1, upper: 3},
+            },
+        ]),]
+    });
 }
