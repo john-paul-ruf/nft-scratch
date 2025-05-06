@@ -207,28 +207,28 @@ export const tiferetBeauty = new ColorScheme({
 
 export const netzachVictory = new ColorScheme({
     colorBucket: [
-        '#FFD700',
-        '#FFA500',
-        '#FF8C00',
-        '#FF7F50',
-        '#FFA07A',
-        '#FFDAB9',
-        '#FFE4B5',
-        '#FFDEAD',
+        '#FFD700', // gold (core victory energy)
+        '#FFA500', // orange (Venusian drive)
+        '#FF8C00', // dark orange (endurance)
+        '#FFB347', // amber (emotional momentum)
+        '#FFC87C', // golden peach (beauty)
+        '#FFDAB9', // peach puff (softness of Venus)
+        '#FFE4B5', // moccasin (graceful persistence)
+        '#FFF8DC', // cornsilk (glory, divine light)
     ],
     colorSchemeInfo: "**Color Strategy**:netzach-victory\n"
 });
 
 export const hodSplendor = new ColorScheme({
     colorBucket: [
-        '#6A5ACD',
-        '#483D8B',
-        '#9370DB',
-        '#8A2BE2',
-        '#BA55D3',
-        '#9400D3',
-        '#9932CC',
-        '#8B008B',
+        '#FFA500', // vivid orange (traditional)
+        '#FF8C00', // dark orange
+        '#DA70D6', // orchid (splendor)
+        '#BA55D3', // medium orchid
+        '#8A2BE2', // blue violet (intellect)
+        '#9932CC', // dark orchid
+        '#9400D3', // dark violet
+        '#6A5ACD', // slate blue (reflective of structure/logic)
     ],
     colorSchemeInfo: "**Color Strategy**:hod-splendor\n"
 });
