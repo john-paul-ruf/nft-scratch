@@ -96,32 +96,7 @@ export const layeredRedEye = async ({myTestProject, colorScheme, numberOfRedEyes
             sparsityFactor: sparsityFactor,
             outerRadius: outerRadius + (outerRadiusIncrease * i),
             loopTimesFunction: loopTimesFunction,
-            secondaryEffects: [...createFadeEffects([
-                {
-                    arraySize: 10,
-                    randomChance: {lower: 10, upper: 25},
-                    glitchFrameCount: {lower: 25, upper: 160},
-                    keyFrames: {lower: 0, upper: 1800 - 160},
-                    lowerRange: {lower: 0.2, upper: 0.4},
-                    times: {lower: 1, upper: 3},
-                },
-                {
-                    arraySize: 20,
-                    randomChance: {lower: 10, upper: 25},
-                    glitchFrameCount: {lower: 25, upper: 75},
-                    keyFrames: {lower: 0, upper: 1800 - 75},
-                    lowerRange: {lower: 0.2, upper: 0.6},
-                    times: {lower: 1, upper: 3},
-                },
-                {
-                    arraySize: 10,
-                    randomChance: {lower: 10, upper: 25},
-                    glitchFrameCount: {lower: 60, upper: 120},
-                    keyFrames: {lower: 0, upper: 1800 - 120},
-                    lowerRange: {lower: 0.2, upper: 0.3},
-                    times: {lower: 1, upper: 3},
-                },
-            ]),]
+            secondaryEffects: []
         });
     }
 }

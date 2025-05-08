@@ -1,7 +1,7 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
-import {malkuthKingdom} from "./assets/color-scheme-store.js";
+import {malkuthKingdom, yesodFoundation} from "./assets/color-scheme-store.js";
 import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 import {CRTBarrelEffect} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
@@ -15,7 +15,7 @@ import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
 
 const promiseArray = [];
 const backgroundHex = '#242424'
-const scheme = malkuthKingdom;
+const scheme = yesodFoundation;
 
 const createComposition = async (colorScheme) => {
     const myTestProject = new Project({
