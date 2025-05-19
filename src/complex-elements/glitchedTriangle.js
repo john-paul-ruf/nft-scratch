@@ -18,6 +18,8 @@ export const createGlitchedTriangle = async ({
                                                  accentRange,
                                                  blurRang,
                                                  featherTimes,
+                                                 accentBottomRangeReduction,
+                                                 accentTopRangeReduction
                                              }) => {
 
 
@@ -51,7 +53,16 @@ export const createGlitchedTriangle = async ({
                     startAngle: [270],
                     amplitude: amplitude,
                     times: times,
-                    accentRange: accentRange,
+                    accentRange: {
+                        bottom: {
+                            lower: accentRange.bottom.lower - (accentBottomRangeReduction * (i+1)),
+                            upper: accentRange.bottom.upper - (accentBottomRangeReduction * (i+1))
+                        },
+                        top: {
+                            lower: accentRange.top.lower - (accentTopRangeReduction * (i+1)),
+                            upper: accentRange.top.upper - (accentTopRangeReduction * (i+1))
+                        }
+                    },
                     blurRange: blurRang,
                     featherTimes: featherTimes,
                 }),

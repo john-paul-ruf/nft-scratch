@@ -124,9 +124,11 @@ const createComposition = async (colorScheme) => {
         center: new Point2D(1080 / 2, (1920 / 2) - 50),
         thickness: 16,
         underlayOpacityRange: {lower: 0.4, upper: 0.6},
-        accentRange: {bottom: {lower: 20, upper: 20}, top: {lower: 30, upper: 60}},
-        blurRange: {bottom: {lower: 4, upper: 4}, top: {lower: 6, upper: 6}},
-        featherTimes: {lower: 4, upper: 20},
+        accentRange: {bottom: {lower: 35, upper: 35}, top: {lower: 80, upper: 80}},
+        blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 12, upper: 12}},
+        featherTimes: {lower: 10, upper: 20},
+        accentBottomRangeReduction: 4,
+        accentTopRangeReduction: 8,
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
