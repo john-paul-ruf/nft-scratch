@@ -9,7 +9,7 @@ export const createStackedScanlines = async (project,
                                              configs = [
                                                  {
                                                      lines: {lower: 30, upper: 30},
-                                                     loopTimes: {lower: 1, upper: 2},
+                                                     loopTimes: {lower: 1, upper: 1},
                                                      brightnessRange: {
                                                          bottom: {lower: 10, upper: 20},
                                                          top: {lower: 30, upper: 40}
@@ -48,7 +48,7 @@ export const createStackedScanlines = async (project,
                                                  },
                                                  {
                                                      lines: {lower: 30, upper: 30},
-                                                     loopTimes: {lower: 1, upper: 2},
+                                                     loopTimes: {lower: 1, upper: 1},
                                                      brightnessRange: {
                                                          bottom: {lower: 10, upper: 20},
                                                          top: {lower: 30, upper: 40}
@@ -87,7 +87,7 @@ export const createStackedScanlines = async (project,
                                                  },
                                                  {
                                                      lines: {lower: 30, upper: 30},
-                                                     loopTimes: {lower: 1, upper: 2},
+                                                     loopTimes: {lower: 1, upper: 1},
                                                      brightnessRange: {
                                                          bottom: {lower: 10, upper: 20},
                                                          top: {lower: 30, upper: 40}
