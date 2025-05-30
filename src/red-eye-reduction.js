@@ -34,13 +34,12 @@ const createComposition = async (colorScheme) => {
         frameStart: 0,
     });
 
-    const numberOfRedEyes = 3;
+    const numberOfRedEyes = 4;
     const lineLength = 60;
     const lineReduction = 15;
     const gap = 20;
     const gapReduction = 5;
-    const sparsityFactor = 6;
-    const secondSparsityFactor = 3;
+    const sparsityFactor = 9;
 
     const center = new Point2D(1080 / 2, 1920 / 2);
 
@@ -62,7 +61,7 @@ const createComposition = async (colorScheme) => {
         gapReduction,
         lineLength,
         lineReduction,
-        sparsityFactor: 3,
+        sparsityFactor: 5,
         center,
         lineStartInitial: 350,
         lineStartIncrease,
@@ -80,7 +79,7 @@ const createComposition = async (colorScheme) => {
         gapReduction,
         lineLength,
         lineReduction,
-        sparsityFactor: 4,
+        sparsityFactor: 6,
         center,
         lineStartInitial: 250,
         lineStartIncrease,
@@ -123,7 +122,7 @@ const createComposition = async (colorScheme) => {
         times: {lower: 3, upper: 3},
         center: new Point2D(1080 / 2, (1920 / 2) - 50),
         thickness: 16,
-        underlayOpacityRange: {lower: 0.4, upper: 0.6},
+        underlayOpacityRange: {lower: 0.5, upper: 0.7},
         accentRange: {bottom: {lower: 35, upper: 35}, top: {lower: 80, upper: 80}},
         blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 12, upper: 12}},
         featherTimes: {lower: 10, upper: 20},

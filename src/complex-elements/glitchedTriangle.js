@@ -67,13 +67,13 @@ export const createGlitchedTriangle = async ({
                     featherTimes: featherTimes,
                 }),
                 possibleSecondaryEffects: [
-                    ...createFadeEffects([
+                  /*  ...createFadeEffects([
                         {
                             arraySize: 75,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 275, upper: 320},
                             keyFrames: {lower: 0, upper: 1800 - 320},
-                            lowerRange: {lower: 0.2, upper: 0.4},
+                            lowerRange: {lower: 0.4, upper: 0.45},
                             times: {lower: 1, upper: 3},
                         },
                         {
@@ -81,10 +81,10 @@ export const createGlitchedTriangle = async ({
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 180, upper: 240},
                             keyFrames: {lower: 0, upper: 1800 - 240},
-                            lowerRange: {lower: 0.2, upper: 0.3},
+                            lowerRange: {lower: 0.35, upper: 0.4},
                             times: {lower: 1, upper: 3},
                         },
-                    ]),
+                    ]),*/
                     ...createDegaussEffects([
                         {
                             arraySize: 75,
