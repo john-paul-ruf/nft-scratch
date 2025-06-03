@@ -12,6 +12,13 @@ import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {layeredRedEye,} from "./complex-elements/red-eye-reduction.js";
 import {createStackedScanlines} from "./complex-elements/stacked-crt-scanlines.js";
 import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
+import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {randomNumber} from "../../my-nft-gen/src/core/math/random.js";
+import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {createDegaussEffects, createGlowEffects} from "./util/glitch.js";
+import {ScopesEffect} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesEffect.js";
+import {ScopesConfig} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#242424'
@@ -34,12 +41,70 @@ const createComposition = async (colorScheme) => {
         frameStart: 0,
     });
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    await myTestProject.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: ScopesEffect,
+            percentChance: 100,
+            currentEffectConfig: new ScopesConfig({
+                layerOpacity: 1,
+                sparsityFactor: [3],
+                gapFactor: {lower: 0.15, upper: 0.15},
+                radiusFactor: {lower: 0.05, upper: 0.1},
+                scaleFactor: 1.1,
+                alphaRange: {bottom: {lower: 0.1, upper: 0.2}, top: {lower: 0.3, upper: 0.4}},
+                alphaTimes: {lower: 8, upper: 16},
+                rotationTimes: {lower: 0, upper: 0},
+                numberOfScopesInALine: 80,
+            }),
+            possibleSecondaryEffects: [
+                ...createGlowEffects([
+                    {
+                        arraySize: 200,
+                        randomChance: {lower: 10, upper: 25},
+                        glitchFrameCount: {lower: 25, upper: 160},
+                        keyFrames: {lower: 0, upper: 1800 - 160},
+                        lowerRange: {lower: 4, upper: 8},
+                        times: {lower: 1, upper: 3},
+                    },
+                    {
+                        arraySize: 200,
+                        randomChance: {lower: 10, upper: 25},
+                        glitchFrameCount: {lower: 25, upper: 75},
+                        keyFrames: {lower: 0, upper: 1800 - 75},
+                        lowerRange: {lower: 2, upper: 6},
+                        times: {lower: 1, upper: 3},
+                    },
+                    {
+                        arraySize: 200,
+                        randomChance: {lower: 10, upper: 25},
+                        glitchFrameCount: {lower: 60, upper: 120},
+                        keyFrames: {lower: 0, upper: 1800 - 120},
+                        lowerRange: {lower: 1, upper: 4},
+                        times: {lower: 1, upper: 3},
+                    }
+                ])
+
+            ],
+        }),
+    });
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     const numberOfRedEyes = 4;
     const lineLength = 60;
     const lineReduction = 15;
     const gap = 20;
     const gapReduction = 5;
-    const sparsityFactor = 9;
 
     const center = new Point2D(1080 / 2, 1920 / 2);
 
@@ -61,7 +126,7 @@ const createComposition = async (colorScheme) => {
         gapReduction,
         lineLength,
         lineReduction,
-        sparsityFactor: 5,
+        sparsityFactor: 10,
         center,
         lineStartInitial: 350,
         lineStartIncrease,
@@ -79,7 +144,7 @@ const createComposition = async (colorScheme) => {
         gapReduction,
         lineLength,
         lineReduction,
-        sparsityFactor: 6,
+        sparsityFactor: 12,
         center,
         lineStartInitial: 250,
         lineStartIncrease,
@@ -97,7 +162,7 @@ const createComposition = async (colorScheme) => {
         gapReduction,
         lineLength,
         lineReduction,
-        sparsityFactor,
+        sparsityFactor: 15,
         center,
         lineStartInitial,
         lineStartIncrease,
@@ -122,12 +187,12 @@ const createComposition = async (colorScheme) => {
         times: {lower: 3, upper: 3},
         center: new Point2D(1080 / 2, (1920 / 2) - 50),
         thickness: 16,
-        underlayOpacityRange: {lower: 0.5, upper: 0.7},
-        accentRange: {bottom: {lower: 35, upper: 35}, top: {lower: 80, upper: 80}},
-        blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 12, upper: 12}},
-        featherTimes: {lower: 10, upper: 20},
-        accentBottomRangeReduction: 4,
-        accentTopRangeReduction: 8,
+        underlayOpacityRange: {lower: 0.3, upper: 0.3},
+        accentRange: {bottom: {lower: 50, upper: 50}, top: {lower: 120, upper: 120}},
+        blurRange: {bottom: {lower:12, upper: 12}, top: {lower: 24, upper: 24}},
+        featherTimes: {lower: 18, upper: 18},
+        accentBottomRangeReduction: 5,
+        accentTopRangeReduction: 12,
     });
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

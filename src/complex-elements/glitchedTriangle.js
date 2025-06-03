@@ -39,7 +39,7 @@ export const createGlitchedTriangle = async ({
                 effect: ViewportEffect,
                 percentChance: 100,
                 currentEffectConfig: new ViewportConfig({
-                    invertLayers: true,
+                    invertLayers: false,
                     layerOpacity: 0.7,
                     underLayerOpacity: randomNumber(underlayOpacityRange.lower, underlayOpacityRange.upper),
                     center: center,
