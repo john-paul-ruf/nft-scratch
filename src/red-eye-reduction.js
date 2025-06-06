@@ -134,14 +134,14 @@ const createComposition = async (colorScheme) => {
                 percentChance: 100,
                 currentEffectConfig: new ScopesConfig({
                     layerOpacity: 1,
-                    sparsityFactor: [3],
+                    sparsityFactor: [1],
                     gapFactor: {lower: 0.15, upper: 0.15},
                     radiusFactor: {lower: 0.08, upper: 0.1},
                     scaleFactor: 1.1,
                     alphaRange: {bottom: {lower: 0.1, upper: 0.2}, top: {lower: 0.3, upper: 0.4}},
                     alphaTimes: {lower: 8, upper: 16},
                     rotationTimes: {lower: 0, upper: 0},
-                    numberOfScopesInALine: 80,
+                    numberOfScopesInALine: 200,
                 }),
                 possibleSecondaryEffects: [
                     ...createGlowEffects([
