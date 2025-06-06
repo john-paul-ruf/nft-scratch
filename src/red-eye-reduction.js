@@ -44,13 +44,15 @@ const createComposition = async (colorScheme) => {
             backgrounds: [backgroundHex],
             numberOfFrame: 1800,
             colorScheme: colorScheme,
-            longestSideInPixels: 1920,
-            shortestSideInPixels: 1080,
+            longestSideInPixels: 7680,
+            shortestSideInPixels: 4320,
             isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
             frameStart: 0,
         });
+
+        const center = new Point2D(4320 / 2, 7680 / 2)
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +63,7 @@ const createComposition = async (colorScheme) => {
         await createMultiFuzzFlare({
                 project: myTestProject,
                 colorScheme: colorScheme,
-                center: new Point2D(1080 / 2, 1920 / 2),
+                center: center,
                 invertLayers: true,
                 layerOpacity: 0.6,
                 underLayerOpacityRange: {
@@ -180,16 +182,14 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         const numberOfRedEyes = 10;
-        const lineLength = 120;
-        const lineReduction = 30;
-        const gap = 60;
-        const gapReduction = 10;
+        const lineLength = 250;
+        const lineReduction = 50;
+        const gap = 120;
+        const gapReduction = 20;
 
-        const center = new Point2D(1080 / 2, 1920 / 2);
-
-        const lineStartInitial = 100;
+        const lineStartInitial = 250;
         const lineStartIncrease = 50;
-        const outerRadius = 600;
+        const outerRadius = 2500;
         const outerRadiusIncrease = 50;
         const numberOfLayers = 1;
 
@@ -207,9 +207,9 @@ const createComposition = async (colorScheme) => {
             lineReduction,
             sparsityFactor: 2,
             center,
-            lineStartInitial: 100,
+            lineStartInitial: lineStartInitial,
             lineStartIncrease,
-            outerRadius: 800,
+            outerRadius: outerRadius,
             outerRadiusIncrease,
             loopTimesFunction: (index) => {
                 return 1;
@@ -226,11 +226,11 @@ const createComposition = async (colorScheme) => {
         await createGlitchedTriangle({
             project: myTestProject,
             colorScheme: colorScheme,
-            radius: [200],
-            amplitude: {lower: 200, upper: 200},
+            radius: [500],
+            amplitude: {lower: 700, upper: 700},
             times: {lower: 3, upper: 3},
-            center: new Point2D(1080 / 2, (1920 / 2) - 50),
-            thickness: 16,
+            center: new Point2D(center.x / 2, (center.y / 2) - 50),
+            thickness: 32,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
             accentRange: {bottom: {lower: 25, upper: 25}, top: {lower: 60, upper: 60}},
             blurRange: {bottom: {lower: 6, upper: 6}, top: {lower: 12, upper: 12}},
