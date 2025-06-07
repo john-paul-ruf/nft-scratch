@@ -44,8 +44,8 @@ const createComposition = async (colorScheme) => {
             backgrounds: [backgroundHex],
             numberOfFrame: 1800,
             colorScheme: colorScheme,
-            longestSideInPixels: 7680,
-            shortestSideInPixels: 4320,
+            longestSideInPixels: 2560,
+            shortestSideInPixels: 1440,
             isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
@@ -182,14 +182,14 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         const numberOfRedEyes = 10;
-        const lineLength = 250;
-        const lineReduction = 50;
-        const gap = 120;
-        const gapReduction = 20;
+        const lineLength = 100;
+        const lineReduction = 20;
+        const gap = 60;
+        const gapReduction = 4
 
-        const lineStartInitial = 250;
+        const lineStartInitial = 100;
         const lineStartIncrease = 50;
-        const outerRadius = 2500;
+        const outerRadius = 1000;
         const outerRadiusIncrease = 50;
         const numberOfLayers = 1;
 
@@ -227,9 +227,9 @@ const createComposition = async (colorScheme) => {
             project: myTestProject,
             colorScheme: colorScheme,
             radius: [500],
-            amplitude: {lower: 700, upper: 700},
+            amplitude: {lower: 500, upper: 500},
             times: {lower: 3, upper: 3},
-            center: new Point2D(center.x / 2, (center.y / 2) - 50),
+            center: new Point2D(center.x, center.y - 250),
             thickness: 32,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
             accentRange: {bottom: {lower: 25, upper: 25}, top: {lower: 60, upper: 60}},
