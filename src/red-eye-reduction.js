@@ -30,6 +30,7 @@ import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
 import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
 import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
+import {createColorArrayScanlines} from "./complex-elements/color-array-crt-scanlines.js";
 
 const promiseArray = [];
 const backgroundHex = '#242424'
@@ -52,7 +53,7 @@ const createComposition = async (colorScheme) => {
             frameStart: 0,
         });
 
-        const center = new Point2D(myTestProject.longestSideInPixels / 2, myTestProject.shortestSideInPixels / 2)
+        const center = new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2)
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,10 +227,10 @@ const createComposition = async (colorScheme) => {
         await createGlitchedTriangle({
             project: myTestProject,
             colorScheme: colorScheme,
-            radius: [500],
-            amplitude: {lower: 500, upper: 500},
+            radius: [400],
+            amplitude: {lower: 250, upper: 250},
             times: {lower: 3, upper: 3},
-            center: new Point2D(center.x, center.y - 250),
+            center: new Point2D(center.x, center.y - 100),
             thickness: 32,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
             accentRange: {bottom: {lower: 25, upper: 25}, top: {lower: 60, upper: 60}},
@@ -245,7 +246,34 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        await createStackedScanlines(myTestProject);
+        await createColorArrayScanlines(
+            {
+                project: myTestProject,
+                colorArray: colorScheme.colorBucket,
+                lines: {lower: 4, upper: 4},
+                loopTimes: {lower: 1, upper: 1},
+                brightnessRange: {
+                    bottom: {lower: 10, upper: 30},
+                    top: {lower: 30, upper: 40}
+                },
+                brightnessTimes: {lower: 1, upper: 8},
+                thicknessRange: {
+                    bottom: {lower: 4, upper: 8},
+                    top: {lower: 10, upper: 12}
+                },
+                thicknessTimes: {lower: 1, upper: 8},
+                lineBlurRange: {
+                    bottom: {lower: 20, upper: 30},
+                    top: {lower: 40, upper: 60}
+                },
+                lineBlurTimes: {lower: 1, upper: 8},
+
+                opacityRange: {
+                    bottom: {lower: 0.2, upper: 0.3},
+                    top: {lower: 0.4, upper: 0.5}
+                },
+                opacityTimes: {lower: 1, upper: 8},
+            });
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
