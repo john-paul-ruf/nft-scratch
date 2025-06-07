@@ -194,10 +194,6 @@ const createComposition = async (colorScheme) => {
         const outerRadiusIncrease = 50;
         const numberOfLayers = 1;
 
-        const x = (index) => {
-            return numberOfRedEyes - index;
-        }
-
         await layeredRedEye({
             myTestProject,
             colorScheme,
