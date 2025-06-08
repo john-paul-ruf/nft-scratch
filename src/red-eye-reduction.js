@@ -227,9 +227,9 @@ const createComposition = async (colorScheme) => {
             amplitude: {lower: 250, upper: 250},
             times: {lower: 3, upper: 3},
             center: new Point2D(center.x, center.y - 100),
-            thickness: 32,
+            thickness: 24,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
-            accentRange: {bottom: {lower: 25, upper: 25}, top: {lower: 60, upper: 60}},
+            accentRange: {bottom: {lower: 60, upper: 60}, top: {lower: 120, upper: 120}},
             blurRange: {bottom: {lower: 6, upper: 6}, top: {lower: 12, upper: 12}},
             featherTimes: {lower: 6, upper: 6},
             accentBottomRangeReduction: 5,
@@ -285,19 +285,6 @@ const createComposition = async (colorScheme) => {
                     maxLineHeight: {lower: 8, upper: 8},
                     numberOfEdgeSections: {lower: 40, upper: 40},
                 })
-            }),
-        });
-
-        await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                    brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.2, upper: 1.2}},
-                    brightnessTimes: {lower: 15, upper: 15},
-                    saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
-                    saturationTimes: {lower: 15, upper: 15},
-                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.3, upper: 1.3}},
-                    contrastTimes: {lower: 15, upper: 15},
-                }),
             }),
         });
 
