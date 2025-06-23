@@ -1,7 +1,7 @@
 
 import {ResumeProject} from "../../my-nft-gen/src/app/ResumeProject.js";
 
-// src/scratch/red-eye-reduction-hz4r6w2/red-eye-reduction-hz4r6w2-settings.json
+// npm run resume-folder src/scratch/red-eye-reduction-4vqysy5/red-eye-reduction-4vqysy5-settings.json
 
 await ResumeProject(process.argv[2])
 

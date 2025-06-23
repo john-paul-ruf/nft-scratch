@@ -2,8 +2,10 @@ import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
+    chesedKindness,
+    eternalRise, gevurahSeverity,
     hodSplendor,
-    malkuthKingdom,
+    malkuthKingdom, neonHarmony, neonLights,
     netzachVictory,
     tiferetBeauty,
     yesodFoundation
@@ -34,7 +36,7 @@ import {createColorArrayScanlines} from "./complex-elements/color-array-crt-scan
 
 const promiseArray = [];
 const backgroundHex = '#242424'
-const scheme = tiferetBeauty;
+const scheme = chesedKindness;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
