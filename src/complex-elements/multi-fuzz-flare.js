@@ -11,7 +11,7 @@ import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
 import {PercentageRange} from "../../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
 import {PercentageShortestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {PercentageLongestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
-import {getMultiStep} from "../util/multistep.js";
+import {generateSmoothRandomMultistep, getMultiStep} from "../util/multistep.js";
 import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
 
 export const createMultiFuzzFlare = async ({
@@ -64,7 +64,11 @@ export const createMultiFuzzFlare = async ({
                     underLayerOpacityRange: underLayerOpacityRange,
                     underLayerOpacityTimes: underLayerOpacityTimes,
                     center: center,
-                    elementGastonMultiStep: getMultiStep(),
+                    elementGastonMultiStep: generateSmoothRandomMultistep({
+                        numberOfSegments: 8,
+                        max: new Range(2, 6),
+                        times: new Range(1, 2),
+                    }),
                     numberOfFlareRings: numberOfRings,
                     flareRingsSizeRange: flareRingsSizeRange,
                     flareRingStroke: ringStroke,
