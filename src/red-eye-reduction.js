@@ -94,7 +94,7 @@ const createComposition = async (colorScheme) => {
                         bottom: {lower: 6, upper: 10},
                         top: {lower: 12, upper: 14}
                     },
-                    featherTimes: {lower: 3, upper: 6},
+                    featherTimes: {lower: 2, upper:8},
 
                 },
                 secondaryEffects: [...createGlowEffects([
@@ -144,7 +144,7 @@ const createComposition = async (colorScheme) => {
                     scaleFactor: 1.1,
                     alphaRange: {bottom: {lower: 0.1, upper: 0.2}, top: {lower: 0.3, upper: 0.4}},
                     alphaTimes: {lower: 8, upper: 16},
-                    rotationTimes: {lower: 0, upper: 0},
+                    rotationTimes: {lower: 2, upper: 8},
                     numberOfScopesInALine: 200,
                 }),
                 possibleSecondaryEffects: [
@@ -234,7 +234,7 @@ const createComposition = async (colorScheme) => {
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
             accentRange: {bottom: {lower: 60, upper: 60}, top: {lower: 120, upper: 120}},
             blurRange: {bottom: {lower: 6, upper: 6}, top: {lower: 12, upper: 12}},
-            featherTimes: {lower: 6, upper: 6},
+            featherTimes: {lower: 4, upper: 4},
             accentBottomRangeReduction: 5,
             accentTopRangeReduction: 12,
         });
