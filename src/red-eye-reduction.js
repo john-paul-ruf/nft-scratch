@@ -59,6 +59,74 @@ const createComposition = async (colorScheme) => {
 
         const center = new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2)
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    await createMultiFuzzFlare({
+            project: myTestProject,
+            colorScheme: colorScheme,
+            center: center,
+            invertLayers: true,
+            layerOpacity: 0.7,
+            underLayerOpacityRange: {
+                bottom: {lower: 0.5, upper: 0.53},
+                top: {lower: 0.6, upper: 0.65}
+            },
+            underLayerOpacityTimes: {lower: 2, upper: 8},
+            numberOfFlares: 12,
+            numberOfRings: new Range(3, 3),
+            numberOfFlareRays: new Range(3, 3),
+            flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(1)),
+            flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.4), new PercentageLongestSide(1)),
+            flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.06)),
+            ringStroke: new Range(1, 3),
+            ringThickness: new Range(1, 3),
+            rayStroke: new Range(1, 3),
+            rayThickness: new Range(1, 3),
+            featureStructure: {
+                accentRange: {
+                    bottom: {lower: 6, upper: 12},
+                    top: {lower: 25, upper: 50}
+                },
+                blurRange: {
+                    bottom: {lower: 6, upper: 10},
+                    top: {lower: 12, upper: 14}
+                },
+                featherTimes: {lower: 2, upper:8},
+
+            },
+            secondaryEffects: [...createGlowEffects([
+                {
+                    arraySize: 50,
+                    randomChance: {lower: 10, upper: 25},
+                    glitchFrameCount: {lower: 25, upper: 160},
+                    keyFrames: {lower: 0, upper: 1800 - 160},
+                    lowerRange: {lower: 4, upper: 8},
+                    times: {lower: 1, upper: 3},
+                },
+                {
+                    arraySize: 50,
+                    randomChance: {lower: 10, upper: 25},
+                    glitchFrameCount: {lower: 25, upper: 75},
+                    keyFrames: {lower: 0, upper: 1800 - 75},
+                    lowerRange: {lower: 4, upper: 8},
+                    times: {lower: 1, upper: 3},
+                },
+                {
+                    arraySize: 50,
+                    randomChance: {lower: 10, upper: 25},
+                    glitchFrameCount: {lower: 60, upper: 120},
+                    keyFrames: {lower: 0, upper: 1800 - 120},
+                    lowerRange: {lower: 3, upper: 6},
+                    times: {lower: 1, upper: 3},
+                }
+            ])]
+        },
+    )
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -138,7 +206,7 @@ const createComposition = async (colorScheme) => {
             gapReduction,
             lineLength,
             lineReduction,
-            sparsityFactor: 2,
+            sparsityFactor: 3,
             center,
             lineStartInitial: lineStartInitial,
             lineStartIncrease,
