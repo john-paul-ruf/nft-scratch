@@ -34,7 +34,7 @@ export const metaMappedFramesRing = async ({
             currentEffectConfig: new MappedFramesConfig({
                 center: center,
                 folderName: centerMappedFramePath,
-                layerOpacity: [centerOpacity + 0.05],
+                layerOpacity: [centerOpacity + 0.1],
                 buffer: [centerBuffer],
                 loopTimesMultiStep: generateSmoothRandomMultistep({
                     numberOfSegments: 15,
@@ -136,7 +136,7 @@ export const metaMappedFramesRing = async ({
                 currentEffectConfig: new MappedFramesConfig({
                     center: point,
                     folderName: ringMappedFramePath,
-                    layerOpacity: [ringOpacity + 0.05],
+                    layerOpacity: [ringOpacity + 0.1],
                     buffer: [ringBuffer],
                     loopTimesMultiStep: generateSmoothRandomMultistep({
                         numberOfSegments: 15,

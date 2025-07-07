@@ -188,7 +188,7 @@ const createComposition = async (colorScheme) => {
                 centerBuffer: 1050,
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/skull-idea/',
-                ringOpacity: 0.6,
+                ringOpacity: 0.8,
                 ringBuffer: 1300,
                 ringYAdjustment: 20,
             },
