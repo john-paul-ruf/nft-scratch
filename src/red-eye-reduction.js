@@ -34,10 +34,11 @@ import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/Percen
 import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {createColorArrayScanlines} from "./complex-elements/color-array-crt-scanlines.js";
+import {metaMappedFramesRing} from "./complex-elements/metaMappedFramesRing.js";
 
 const promiseArray = [];
 const backgroundHex = '#242424'
-const scheme = binahUnderstanding;
+const scheme = chesedKindness;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -57,74 +58,6 @@ const createComposition = async (colorScheme) => {
         });
 
         const center = new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2)
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        await createMultiFuzzFlare({
-                project: myTestProject,
-                colorScheme: colorScheme,
-                center: center,
-                invertLayers: true,
-                layerOpacity: 0.6,
-                underLayerOpacityRange: {
-                    bottom: {lower: 0.5, upper: 0.53},
-                    top: {lower: 0.6, upper: 0.65}
-                },
-                underLayerOpacityTimes: {lower: 2, upper: 8},
-                numberOfFlares: 8,
-                numberOfRings: new Range(5, 5),
-                numberOfFlareRays: new Range(5, 5),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(1)),
-                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.4), new PercentageLongestSide(1)),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.06)),
-                ringStroke: new Range(1, 1),
-                ringThickness: new Range(1, 1),
-                rayStroke: new Range(1, 1),
-                rayThickness: new Range(1, 1),
-                featureStructure: {
-                    accentRange: {
-                        bottom: {lower: 6, upper: 12},
-                        top: {lower: 24, upper: 30}
-                    },
-                    blurRange: {
-                        bottom: {lower: 6, upper: 10},
-                        top: {lower: 12, upper: 14}
-                    },
-                    featherTimes: {lower: 2, upper:8},
-
-                },
-                secondaryEffects: [...createGlowEffects([
-                    {
-                        arraySize: 50,
-                        randomChance: {lower: 10, upper: 25},
-                        glitchFrameCount: {lower: 25, upper: 160},
-                        keyFrames: {lower: 0, upper: 1800 - 160},
-                        lowerRange: {lower: 4, upper: 8},
-                        times: {lower: 1, upper: 3},
-                    },
-                    {
-                        arraySize: 50,
-                        randomChance: {lower: 10, upper: 25},
-                        glitchFrameCount: {lower: 25, upper: 75},
-                        keyFrames: {lower: 0, upper: 1800 - 75},
-                        lowerRange: {lower: 4, upper: 8},
-                        times: {lower: 1, upper: 3},
-                    },
-                    {
-                        arraySize: 50,
-                        randomChance: {lower: 10, upper: 25},
-                        glitchFrameCount: {lower: 60, upper: 120},
-                        keyFrames: {lower: 0, upper: 1800 - 120},
-                        lowerRange: {lower: 3, upper: 6},
-                        times: {lower: 1, upper: 3},
-                    }
-                ])]
-            },
-        )
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -226,8 +159,8 @@ const createComposition = async (colorScheme) => {
         await createGlitchedTriangle({
             project: myTestProject,
             colorScheme: colorScheme,
-            radius: [400],
-            amplitude: {lower: 250, upper: 250},
+            radius: [550],
+            amplitude: {lower: 100, upper: 100},
             times: {lower: 3, upper: 3},
             center: new Point2D(center.x, center.y - 100),
             thickness: 24,
@@ -238,6 +171,29 @@ const createComposition = async (colorScheme) => {
             accentBottomRangeReduction: 5,
             accentTopRangeReduction: 12,
         });
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        await metaMappedFramesRing({
+                project: myTestProject,
+                center: center,
+                ringRadius: 175,
+                numberOfPoints: 12,
+                centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
+                centerOpacity: 0.9,
+                centerBuffer: 1050,
+                centerYAdjustment: 0,
+                ringMappedFramePath: './src/assets/mappedFrames/skull-idea/',
+                ringOpacity: 0.6,
+                ringBuffer: 1300,
+                ringYAdjustment: 20,
+            },
+        )
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

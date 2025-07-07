@@ -40,11 +40,11 @@ export const createGlitchedTriangle = async ({
                 percentChance: 100,
                 currentEffectConfig: new ViewportConfig({
                     invertLayers: false,
-                    layerOpacity: 0.7,
+                    layerOpacity: 0.5,
                     underLayerOpacity: randomNumber(underlayOpacityRange.lower, underlayOpacityRange.upper),
                     center: center,
                     color: new ColorPicker(ColorPicker.SelectionType.color, shuffled[i]),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, shuffled[i]),
                     stroke: 0,
                     thickness: thickness,
                     ampStroke: 0,
@@ -87,7 +87,7 @@ export const createGlitchedTriangle = async ({
                     ]),*/
                     ...createDegaussEffects([
                         {
-                            arraySize: 75,
+                            arraySize: 50,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 275, upper: 320},
                             keyFrames: {lower: 0, upper: 1800 - 320},
@@ -97,7 +97,7 @@ export const createGlitchedTriangle = async ({
                             glitchTimes: {lower: 3, upper: 8},
                         },
                         {
-                            arraySize: 50,
+                            arraySize: 25,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 25, upper: 75},
                             keyFrames: {lower: 0, upper: 1800 - 75},
@@ -107,7 +107,7 @@ export const createGlitchedTriangle = async ({
                             glitchTimes: {lower: 3, upper: 8},
                         },
                         {
-                            arraySize: 50,
+                            arraySize: 25,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 180, upper: 240},
                             keyFrames: {lower: 0, upper: 1800 - 240},
