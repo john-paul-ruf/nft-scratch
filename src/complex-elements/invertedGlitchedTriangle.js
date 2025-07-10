@@ -6,7 +6,7 @@ import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEf
 import {randomNumber} from "my-nft-gen/src/core/math/random.js";
 
 
-export const createGlitchedTriangle = async ({
+export const createInvertedGlitchedTriangle = async ({
                                                  project,
                                                  colorScheme,
                                                  radius,
@@ -22,6 +22,32 @@ export const createGlitchedTriangle = async ({
                                                  accentTopRangeReduction
                                              }) => {
 
+    await project.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: ViewportEffect,
+            percentChance: 100,
+            currentEffectConfig: new ViewportConfig({
+                invertLayers: true,
+                layerOpacity: 0.7,
+                underLayerOpacity: 0,
+                center: center,
+                color: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                stroke: 0,
+                thickness: thickness,
+                ampStroke: 0,
+                ampThickness: 1,
+                radius: radius,
+                startAngle: [270],
+                amplitude: amplitude,
+                times: times,
+                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
+                featherTimes: {lower: 0, upper: 0},
+            }),
+            possibleSecondaryEffects: [],
+        }),
+    });
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -175,30 +201,5 @@ export const createGlitchedTriangle = async ({
         });
     }
 
-    await project.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: ViewportEffect,
-            percentChance: 100,
-            currentEffectConfig: new ViewportConfig({
-                invertLayers: true,
-                layerOpacity: 1,
-                underLayerOpacity: 0,
-                center: center,
-                color: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                stroke: 0,
-                thickness: thickness,
-                ampStroke: 0,
-                ampThickness: 1,
-                radius: radius,
-                startAngle: [270],
-                amplitude: amplitude,
-                times: times,
-                accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
-                featherTimes: {lower: 0, upper: 0},
-            }),
-            possibleSecondaryEffects: [],
-        }),
-    });
+
 }

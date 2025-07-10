@@ -1,14 +1,13 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {ViewportEffect} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+
 import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEffects} from "../util/glitch.js";
-import {randomNumber} from "my-nft-gen/src/core/math/random.js";
-import {MappedFramesEffect} from "../../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {MappedFramesConfig} from "../../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {MultiStepDefinitionConfig} from "../../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
+
+import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
+import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
+import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {generateSmoothRandomMultistep} from "../util/multistep.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
+import {ArcPath} from "my-nft-gen/src/core/position/ArcPath.js";
 
 
 export const metaMappedFramesRing = async ({
@@ -27,38 +26,21 @@ export const metaMappedFramesRing = async ({
                                            }) => {
     center.y -= centerYAdjustment;
 
-    await project.addPrimaryEffect({
-        layerConfig: new LayerConfig({
-            effect: MappedFramesEffect,
-            percentChance: 100,
-            currentEffectConfig: new MappedFramesConfig({
-                center: center,
-                folderName: centerMappedFramePath,
-                layerOpacity: [centerOpacity + 0.1],
-                buffer: [centerBuffer],
-                loopTimesMultiStep: generateSmoothRandomMultistep({
-                    numberOfSegments: 15,
-                    times: new Range(1, 5),
-                }),
-            }),
-            possibleSecondaryEffects: [],
-        }),
-    });
-
+    const multiStep = generateSmoothRandomMultistep({
+            numberOfSegments: 15,
+            times: new Range(1, 5),
+        });
 
     await project.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: MappedFramesEffect,
             percentChance: 100,
             currentEffectConfig: new MappedFramesConfig({
-                center: center,
+                center: new Position({x: center.x, y: center.y}),
                 folderName: centerMappedFramePath,
                 layerOpacity: [centerOpacity],
                 buffer: [centerBuffer],
-                loopTimesMultiStep: generateSmoothRandomMultistep({
-                    numberOfSegments: 15,
-                    times: new Range(1, 5),
-                }),
+                loopTimesMultiStep: multiStep,
             }),
             possibleSecondaryEffects: [
                 ...createDegaussEffects([
@@ -123,48 +105,53 @@ export const metaMappedFramesRing = async ({
         }),
     });
 
-    for (let i = 0; i < numberOfPoints; i++) {
-        const angle = (i / numberOfPoints) * 2 * Math.PI; // Full circle = 2π radians
-        const point = {x: center.x + ringRadius * Math.cos(angle), y: center.y + ringRadius * Math.sin(angle)}
-
-        point.y -= ringYAdjustment;
-
-        await project.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: MappedFramesEffect,
-                percentChance: 100,
-                currentEffectConfig: new MappedFramesConfig({
-                    center: point,
-                    folderName: ringMappedFramePath,
-                    layerOpacity: [ringOpacity + 0.1],
-                    buffer: [ringBuffer],
-                    loopTimesMultiStep: generateSmoothRandomMultistep({
-                        numberOfSegments: 15,
-                        times: new Range(1, 5),
-                    }),
-                }),
-                possibleSecondaryEffects: [],
+    await project.addPrimaryEffect({
+        layerConfig: new LayerConfig({
+            effect: MappedFramesEffect,
+            percentChance: 100,
+            currentEffectConfig: new MappedFramesConfig({
+                center: new Position({x: center.x, y: center.y}),
+                folderName: centerMappedFramePath,
+                layerOpacity: [0.1],
+                buffer: [centerBuffer],
+                loopTimesMultiStep: multiStep,
             }),
+            possibleSecondaryEffects: [],
+        }),
+    });
+
+    const point = {x: center.x, y: center.y -ringYAdjustment};
+
+    for (let i = 0; i < numberOfPoints; i++) {
+
+        const multiStep = generateSmoothRandomMultistep({
+            numberOfSegments: 15,
+            times: new Range(1, 5),
         });
+        const angle = (360 / numberOfPoints);
 
         await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: MappedFramesEffect,
                 percentChance: 100,
                 currentEffectConfig: new MappedFramesConfig({
-                    center: point,
+                    center: new ArcPath({
+                            center: point,
+                            radius: ringRadius,
+                            startAngle: angle * i,
+                            endAngle: angle * (i + 1),
+                            direction: 1
+                        }
+                    ),
                     folderName: ringMappedFramePath,
                     layerOpacity: [ringOpacity],
                     buffer: [ringBuffer],
-                    loopTimesMultiStep: generateSmoothRandomMultistep({
-                        numberOfSegments: 15,
-                        times: new Range(1, 5),
-                    }),
+                    loopTimesMultiStep: multiStep,
                 }),
                 possibleSecondaryEffects: [
                     ...createDegaussEffects([
                         {
-                            arraySize: 50,
+                            arraySize: 150,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 275, upper: 320},
                             keyFrames: {lower: 0, upper: 1800 - 320},
@@ -174,7 +161,7 @@ export const metaMappedFramesRing = async ({
                             glitchTimes: {lower: 3, upper: 8},
                         },
                         {
-                            arraySize: 25,
+                            arraySize: 125,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 25, upper: 75},
                             keyFrames: {lower: 0, upper: 1800 - 75},
@@ -184,7 +171,7 @@ export const metaMappedFramesRing = async ({
                             glitchTimes: {lower: 3, upper: 8},
                         },
                         {
-                            arraySize: 25,
+                            arraySize: 125,
                             randomChance: {lower: 5, upper: 25},
                             glitchFrameCount: {lower: 180, upper: 240},
                             keyFrames: {lower: 0, upper: 1800 - 240},
@@ -221,6 +208,28 @@ export const metaMappedFramesRing = async ({
                         }
                     ])
                 ],
+            }),
+        });
+
+        await project.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: MappedFramesEffect,
+                percentChance: 100,
+                currentEffectConfig: new MappedFramesConfig({
+                    center: new ArcPath({
+                            center: point,
+                            radius: ringRadius,
+                            startAngle: angle * i,
+                            endAngle: angle * (i + 1),
+                            direction: 1
+                        }
+                    ),
+                    folderName: ringMappedFramePath,
+                    layerOpacity: [0.1],
+                    buffer: [ringBuffer],
+                    loopTimesMultiStep: multiStep,
+                }),
+                possibleSecondaryEffects: [],
             }),
         });
 

@@ -17,8 +17,8 @@ export function generateSmoothRandomMultistep(
     for (let i = 0; i < numberOfSegments; i++) {
         result.push(
             new MultiStepDefinitionConfig({
-                minPercentage: Math.ceil(seg * i),
-                maxPercentage: Math.ceil(seg * (i +1)),
+                minPercentage: Math.floor(seg * i),
+                maxPercentage: Math.floor(seg * (i +1)),
                 max: max,
                 times: times,
             })
