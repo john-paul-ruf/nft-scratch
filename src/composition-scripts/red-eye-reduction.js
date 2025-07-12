@@ -10,7 +10,7 @@ import {
     netzachVictory,
     tiferetBeauty,
     yesodFoundation
-} from "./assets/color-scheme-store.js";
+} from "../assets/color-scheme-store.js";
 import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 import {CRTBarrelEffect} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
@@ -18,24 +18,24 @@ import {CRTBarrelConfig} from "my-nft-gen/src/effects/finalImageEffects/crtBarre
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
-import {layeredRedEye,} from "./complex-elements/red-eye-reduction.js";
-import {createStackedScanlines} from "./complex-elements/stacked-crt-scanlines.js";
-import {createGlitchedTriangle} from "./complex-elements/glitchedTriangle.js";
-import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {randomNumber} from "../../my-nft-gen/src/core/math/random.js";
-import {ColorPicker} from "../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {createDegaussEffects, createGlowEffects} from "./util/glitch.js";
-import {ScopesEffect} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesEffect.js";
-import {ScopesConfig} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesConfig.js";
-import {createMultiFuzzFlare} from "./complex-elements/multi-fuzz-flare.js";
-import {Range} from "../../my-nft-gen/src/core/layer/configType/Range.js";
-import {PercentageRange} from "../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
-import {PercentageShortestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
-import {PercentageLongestSide} from "../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
-import {createColorArrayScanlines} from "./complex-elements/color-array-crt-scanlines.js";
-import {metaMappedFramesRing} from "./complex-elements/metaMappedFramesRing.js";
-import {createInvertedGlitchedTriangle} from "./complex-elements/invertedGlitchedTriangle.js";
+import {layeredRedEye,} from "../complex-elements/red-eye-reduction.js";
+import {createStackedScanlines} from "../complex-elements/stacked-crt-scanlines.js";
+import {createGlitchedTriangle} from "../complex-elements/glitchedTriangle.js";
+import {ViewportEffect} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {randomNumber} from "my-nft-gen/src/core/math/random.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {createDegaussEffects, createGlowEffects} from "../util/glitch.js";
+import {ScopesEffect} from "my-nft-gen/src/effects/primaryEffects/scopes/ScopesEffect.js";
+import {ScopesConfig} from "my-nft-gen/src/effects/primaryEffects/scopes/ScopesConfig.js";
+import {createMultiFuzzFlare} from "../complex-elements/multi-fuzz-flare.js";
+import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
+import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";
+import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
+import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
+import {createColorArrayScanlines} from "../complex-elements/color-array-crt-scanlines.js";
+import {metaMappedFramesRing} from "../complex-elements/metaMappedFramesRing.js";
+import {createInvertedGlitchedTriangle} from "../complex-elements/invertedGlitchedTriangle.js";
 
 const promiseArray = [];
 const backgroundHex = '#242424'

@@ -7,7 +7,8 @@
     "key-frame": "node src/composition-scripts/key-frame.js",
     "key-frame-clinic": "clinic doctor -- node src/composition-scripts/key-frame.js",
     "operator-override": "node src/composition-scripts/operator-override.js",
-    "red-eye-reduction": "node src/red-eye-reduction.js"
+    "red-eye-reduction": "node src/composition-scripts/red-eye-reduction.js",
+    "curved-red-eye-reduction": "node src/curved-red-eye-reduction.js"
   },
   "name": "nft-scratch",
   "version": "1.0.0",

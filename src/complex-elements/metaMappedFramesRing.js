@@ -23,6 +23,7 @@ export const metaMappedFramesRing = async ({
                                                ringOpacity,
                                                ringBuffer,
                                                ringYAdjustment,
+                                               rotationAmount,
                                            }) => {
     center.y -= centerYAdjustment;
 
@@ -139,7 +140,7 @@ export const metaMappedFramesRing = async ({
                             center: point,
                             radius: ringRadius,
                             startAngle: angle * i,
-                            endAngle: angle * (i + 1),
+                            endAngle: angle * (i + rotationAmount),
                             direction: 1
                         }
                     ),
@@ -220,7 +221,7 @@ export const metaMappedFramesRing = async ({
                             center: point,
                             radius: ringRadius,
                             startAngle: angle * i,
-                            endAngle: angle * (i + 1),
+                            endAngle: angle * (i + rotationAmount),
                             direction: 1
                         }
                     ),
