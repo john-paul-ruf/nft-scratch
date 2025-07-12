@@ -231,13 +231,13 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        await createInvertedGlitchedTriangle({
+        await createGlitchedTriangle({
             project: myTestProject,
             colorScheme: colorScheme,
             radius: [550],
             amplitude: {lower: 100, upper: 100},
             times: {lower: 3, upper: 3},
-            center: new Point2D(center.x, center.y - 100),
+            center: new Point2D(center.x, center.y - 137.5),
             thickness: 24,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
             accentRange: {bottom: {lower: 120, upper: 120}, top: {lower: 240, upper: 240}},
@@ -289,7 +289,7 @@ const createComposition = async (colorScheme) => {
                 },
                 brightnessTimes: {lower: 1, upper: 8},
                 thicknessRange: {
-                    bottom: {lower: 4, upper: 8},
+                    bottom: {lower: 12, upper: 24},
                     top: {lower: 10, upper: 12}
                 },
                 thicknessTimes: {lower: 1, upper: 8},
@@ -300,8 +300,8 @@ const createComposition = async (colorScheme) => {
                 lineBlurTimes: {lower: 1, upper: 8},
 
                 opacityRange: {
-                    bottom: {lower: 0.2, upper: 0.3},
-                    top: {lower: 0.4, upper: 0.5}
+                    bottom: {lower: 0.4, upper: 0.5},
+                    top: {lower: 0.6, upper: 0.7}
                 },
                 opacityTimes: {lower: 1, upper: 8},
             });
