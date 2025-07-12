@@ -190,13 +190,16 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        const radius = 500;
+        const radiusAdjustment = radius / 4;
+
         await createGlitchedTriangle({
             project: myTestProject,
             colorScheme: colorScheme,
-            radius: [550],
+            radius: [radius],
             amplitude: {lower: 100, upper: 100},
             times: {lower: 3, upper: 3},
-            center: new Point2D(center.x, center.y),
+            center: new Point2D(center.x, center.y-radiusAdjustment),
             thickness: 24,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
             accentRange: {bottom: {lower: 120, upper: 120}, top: {lower: 240, upper: 240}},
