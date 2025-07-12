@@ -41,7 +41,7 @@ import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.j
 
 const promiseArray = [];
 const backgroundHex = '#250516'
-const scheme = chesedKindness;
+const scheme = eternalRise;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -225,7 +225,7 @@ const createComposition = async (colorScheme) => {
         const innerRadius = 100;
         const radiusGitter = new Range(0, 100);
         const numberOfSpokes = new Range(40, 80);
-        const arcSteps = new Range(5, 20);
+        const arcSteps = new Range(15, 50);
         const lineLength = new Range(75, 150);
         const possibleJumpRangeInPixels = new Range(5, 35);
         const sparsityFactor = [18, 30, 45, 60, 90, 120];
@@ -267,7 +267,7 @@ const createComposition = async (colorScheme) => {
                 centerBuffer: 900,
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
-                ringOpacity: 0.7,
+                ringOpacity: 0.85,
                 ringBuffer: 1300,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
