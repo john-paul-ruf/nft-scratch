@@ -189,39 +189,34 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        const stroke = 2;
+        const thickness = 1;
         const numberOfRedEyes = 10;
-        const lineLength = 100;
-        const lineReduction = 20;
-        const gap = 30;
-        const gapReduction = 1
-
-        const lineStartInitial = 100;
-        const lineStartIncrease = 50;
-        const outerRadius = 1000;
-        const outerRadiusIncrease = 50;
+        const outerRadius = 1500;
+        const innerRadius = 200;
         const numberOfLayers = 1;
-        const numberOfSpokes = new Range(150,200);
-        const arcSteps = new Range(30, 120);
+        const numberOfSpokes = new Range(75, 75);
+        const arcSteps = new Range(5, 20);
+        const lineLength = new Range(100, 250);
+        const possibleJumpRangeInPixels = new Range(5, 50);
+        const sparsityFactor = [18, 30, 45];
 
         await layeredCurvedRedEye({
             myTestProject,
-            colorScheme,
+            stroke,
+            thickness,
             numberOfRedEyes,
-            gap,
-            gapReduction,
             lineLength,
-            lineReduction,
-            sparsityFactor: 360,
+            sparsityFactor: sparsityFactor,
             center,
-            lineStartInitial: lineStartInitial,
-            lineStartIncrease,
+            innerRadius: innerRadius,
             outerRadius: outerRadius,
-            outerRadiusIncrease,
             loopTimesFunction: (index) => {
                 return getRandomIntInclusive(1, 5);
             },
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
+            possibleJumpRangeInPixels: possibleJumpRangeInPixels,
             numberOfLayers,
         });
 
@@ -265,7 +260,7 @@ const createComposition = async (colorScheme) => {
                 ringMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
                 ringOpacity: 0.6,
                 ringBuffer: 1300,
-                ringYAdjustment: 20,
+                ringYAdjustment: 0,
                 rotationAmount: 3,
             },
         )
@@ -323,18 +318,18 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
-    await myTestProject.addFinalEffect({
-        layerConfig: new LayerConfig({
-            effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                brightnessTimes: {lower: 2, upper: 2},
-                saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
-                saturationTimes: {lower: 4, upper: 4},
-                contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                contrastTimes: {lower: 2, upper: 2},
+        await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
+                    brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                    brightnessTimes: {lower: 2, upper: 2},
+                    saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+                    saturationTimes: {lower: 4, upper: 4},
+                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                    contrastTimes: {lower: 2, upper: 2},
+                }),
             }),
-        }),
-    });
+        });
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({

@@ -7,67 +7,42 @@ import {createFadeEffects} from "../util/glitch.js";
 
 export const createCurvedRedEyeReduction = async ({
                                                       project = null,
-                                                      colorScheme = new ColorScheme({}),
+                                                      stroke,
+                                                      thickness,
                                                       center = {x: 0, y: 0},
                                                       numberOfRedEyes = 8,
-                                                      lineStartInitial = 15,
-                                                      gap = 12,
-                                                      gapReduction = 1,
                                                       lineLength = 10,
-                                                      lineReduction = 1,
                                                       sparsityFactor = 10,
-                                                      outerRadius = 160,
+                                                      innerRadius = 20,
+                                                      outerRadius = 200,
                                                       loopTimesFunction = (index) => {
                                                           return index + 1
                                                       },
                                                       arcSteps,
                                                       numberOfSpokes,
+                                                      possibleJumpRangeInPixels,
                                                       secondaryEffects = []
                                                   }) => {
-    const stroke = 2;
-    const thickness = 1;
 
-    function getLineLength(index) {
-        return lineLength - (lineReduction * index);
-    }
 
-    function getLineStart(index) {
-        let result = 0;
+    const areaSegment = (outerRadius - innerRadius)/(numberOfRedEyes + 1);
 
-        result += lineStartInitial;
-
-        for (let i = 0; i < index; i++) {
-            result += getLineLength(i);
-        }
-
-        result += ((gap * index) - (gapReduction * index))
-
-        return result;
-    }
-
-    //amp
     for (let i = 0; i < numberOfRedEyes; i++) {
-
-        const lineStart = getLineStart(i);
-
-        if (lineStart >= outerRadius) {
-            throw new Error('lineStart must less than outer radius');
-        }
 
         await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: CurvedRedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new CurvedRedEyeConfig({
-                    innerRadius: lineStart,
+                    innerRadius: innerRadius + (areaSegment * i),
                     outerRadius: outerRadius,
-                    possibleJumpRangeInPixels: {lower: 3, upper: 30},
-                    lineLength: {lower: lineLength, upper: lineLength},
+                    possibleJumpRangeInPixels: possibleJumpRangeInPixels,
+                    lineLength: lineLength,
                     numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
                     invertLayers: true,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
-                    sparsityFactor: [sparsityFactor],
+                    sparsityFactor: sparsityFactor,
                     stroke: stroke,
                     thickness: thickness,
                     accentRange: {bottom: {lower: 5, upper: 5}, top: {lower: 15, upper: 15}},
@@ -77,7 +52,7 @@ export const createCurvedRedEyeReduction = async ({
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     arcSteps: arcSteps,
-                    numberOfSpokes:numberOfSpokes,
+                    numberOfSpokes: numberOfSpokes,
                 }),
                 possibleSecondaryEffects: [...secondaryEffects],
             }),
@@ -87,39 +62,36 @@ export const createCurvedRedEyeReduction = async ({
 
 export const layeredCurvedRedEye = async ({
                                               myTestProject,
-                                              colorScheme,
+                                              stroke,
+                                              thickness,
                                               numberOfRedEyes,
-                                              gap,
-                                              gapReduction,
                                               lineLength,
-                                              lineReduction,
                                               sparsityFactor,
                                               center,
-                                              lineStartInitial,
-                                              lineStartIncrease,
+                                              innerRadius,
                                               outerRadius,
-                                              outerRadiusIncrease,
-                                              loopTimesFunction,
                                               arcSteps,
                                               numberOfSpokes,
+                                              possibleJumpRangeInPixels,
                                               numberOfLayers
                                           }) => {
     for (let i = 0; i < numberOfLayers; i++) {
         await createCurvedRedEyeReduction({
             project: myTestProject,
-            colorScheme: colorScheme,
+            stroke: stroke,
+            thickness: thickness,
             center: center,
             numberOfRedEyes: numberOfRedEyes,
-            lineStartInitial: lineStartInitial + (lineStartIncrease * i),
-            gap: gap,
-            gapReduction: gapReduction,
             lineLength: lineLength,
-            lineReduction: lineReduction,
             sparsityFactor: sparsityFactor,
-            outerRadius: outerRadius + (outerRadiusIncrease * i),
-            loopTimesFunction: loopTimesFunction,
-            arcSteps: arcSteps,
-            numberOfSpokes: numberOfSpokes,
+            innerRadius: innerRadius,
+            outerRadius: outerRadius,
+            loopTimesFunction: (index) => {
+                return index + 1
+            },
+            arcSteps,
+            numberOfSpokes,
+            possibleJumpRangeInPixels,
             secondaryEffects: []
         });
     }
