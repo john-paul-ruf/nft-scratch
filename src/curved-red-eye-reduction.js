@@ -219,7 +219,7 @@ const createComposition = async (colorScheme) => {
         const outerRadius = 1000;
         const innerRadius = 100;
         const radiusGitter = new Range(0, 100);
-        const numberOfSpokes = new Range(60, 60);
+        const numberOfSpokes = new Range(40, 80);
         const arcSteps = new Range(5, 20);
         const lineLength = new Range(75, 150);
         const possibleJumpRangeInPixels = new Range(5, 35);
@@ -237,7 +237,7 @@ const createComposition = async (colorScheme) => {
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
             loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 5);
+                return getRandomIntInclusive(1, 3);
             },
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
