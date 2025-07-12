@@ -62,6 +62,60 @@ const createComposition = async (colorScheme) => {
 
         const center = new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2)
 
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: ScopesEffect,
+                percentChance: 100,
+                currentEffectConfig: new ScopesConfig({
+                    layerOpacity: 1,
+                    sparsityFactor: [1],
+                    gapFactor: {lower: 0.15, upper: 0.15},
+                    radiusFactor: {lower: 0.1, upper: 0.1},
+                    scaleFactor: 1.1,
+                    alphaRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
+                    alphaTimes: {lower: 8, upper: 16},
+                    rotationTimes: {lower: 2, upper: 8},
+                    numberOfScopesInALine: 200,
+                }),
+                possibleSecondaryEffects: [
+                    ...createGlowEffects([
+                        {
+                            arraySize: 200,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 160},
+                            keyFrames: {lower: 0, upper: 1800 - 160},
+                            lowerRange: {lower: 4, upper: 8},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 200,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 75},
+                            keyFrames: {lower: 0, upper: 1800 - 75},
+                            lowerRange: {lower: 2, upper: 6},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 200,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 60, upper: 120},
+                            keyFrames: {lower: 0, upper: 1800 - 120},
+                            lowerRange: {lower: 1, upper: 4},
+                            times: {lower: 1, upper: 3},
+                        }
+                    ])
+
+                ],
+            }),
+        });
+
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,96 +190,6 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        await myTestProject.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: ScopesEffect,
-                percentChance: 100,
-                currentEffectConfig: new ScopesConfig({
-                    layerOpacity: 1,
-                    sparsityFactor: [1],
-                    gapFactor: {lower: 0.15, upper: 0.15},
-                    radiusFactor: {lower: 0.1, upper: 0.1},
-                    scaleFactor: 1.1,
-                    alphaRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-                    alphaTimes: {lower: 8, upper: 16},
-                    rotationTimes: {lower: 2, upper: 8},
-                    numberOfScopesInALine: 200,
-                }),
-                possibleSecondaryEffects: [
-                    ...createGlowEffects([
-                        {
-                            arraySize: 200,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 25, upper: 160},
-                            keyFrames: {lower: 0, upper: 1800 - 160},
-                            lowerRange: {lower: 4, upper: 8},
-                            times: {lower: 1, upper: 3},
-                        },
-                        {
-                            arraySize: 200,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 25, upper: 75},
-                            keyFrames: {lower: 0, upper: 1800 - 75},
-                            lowerRange: {lower: 2, upper: 6},
-                            times: {lower: 1, upper: 3},
-                        },
-                        {
-                            arraySize: 200,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 60, upper: 120},
-                            keyFrames: {lower: 0, upper: 1800 - 120},
-                            lowerRange: {lower: 1, upper: 4},
-                            times: {lower: 1, upper: 3},
-                        }
-                    ])
-
-                ],
-            }),
-        });
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        const stroke = 2;
-        const thickness = 1;
-        const numberOfRedEyes = 10;
-        const outerRadius = 1000;
-        const innerRadius = 100;
-        const numberOfLayers = 8;
-        const numberOfSpokes = new Range(10, 10);
-        const arcSteps = new Range(5, 20);
-        const lineLength = new Range(100, 250);
-        const possibleJumpRangeInPixels = new Range(5, 50);
-        const sparsityFactor = [18, 30, 45];
-
-        await layeredCurvedRedEye({
-            myTestProject,
-            stroke,
-            thickness,
-            numberOfRedEyes,
-            lineLength,
-            sparsityFactor: sparsityFactor,
-            center,
-            innerRadius: innerRadius,
-            outerRadius: outerRadius,
-            loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 5);
-            },
-            arcSteps: arcSteps,
-            numberOfSpokes: numberOfSpokes,
-            possibleJumpRangeInPixels: possibleJumpRangeInPixels,
-            numberOfLayers,
-        });
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         await createGlitchedTriangle({
             project: myTestProject,
             colorScheme: colorScheme,
@@ -241,6 +205,46 @@ const createComposition = async (colorScheme) => {
             accentBottomRangeReduction: 30,
             accentTopRangeReduction: 30,
         });
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        const stroke = 2;
+        const thickness = 1;
+        const numberOfRedEyes = 4;
+        const numberOfLayers = 4;
+        const outerRadius = 1000;
+        const innerRadius = 100;
+        const radiusGitter = new Range(0, 100);
+        const numberOfSpokes = new Range(60, 60);
+        const arcSteps = new Range(5, 20);
+        const lineLength = new Range(75, 150);
+        const possibleJumpRangeInPixels = new Range(5, 35);
+        const sparsityFactor = [18, 30, 45, 60, 90, 120];
+
+        await layeredCurvedRedEye({
+            myTestProject,
+            stroke,
+            thickness,
+            numberOfRedEyes,
+            lineLength,
+            sparsityFactor: sparsityFactor,
+            center,
+            innerRadius: innerRadius,
+            outerRadius: outerRadius,
+            radiusGitter: radiusGitter,
+            loopTimesFunction: (index) => {
+                return getRandomIntInclusive(1, 5);
+            },
+            arcSteps: arcSteps,
+            numberOfSpokes: numberOfSpokes,
+            possibleJumpRangeInPixels: possibleJumpRangeInPixels,
+            numberOfLayers,
+        });
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@ import {CurvedRedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/curved-r
 import {CurvedRedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/curved-red-eye/CurvedRedEyeConfig.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createFadeEffects} from "../util/glitch.js";
+import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
 
 export const createCurvedRedEyeReduction = async ({
                                                       project = null,
@@ -15,6 +16,7 @@ export const createCurvedRedEyeReduction = async ({
                                                       sparsityFactor = 10,
                                                       innerRadius = 20,
                                                       outerRadius = 200,
+                                                      radiusGitter,
                                                       loopTimesFunction = (index) => {
                                                           return index + 1
                                                       },
@@ -25,17 +27,19 @@ export const createCurvedRedEyeReduction = async ({
                                                   }) => {
 
 
-    const areaSegment = (outerRadius - innerRadius)/(numberOfRedEyes + 1);
+    const areaSegment = (outerRadius - innerRadius) / (numberOfRedEyes + 1);
 
     for (let i = 0; i < numberOfRedEyes; i++) {
+
+        const gitter = getRandomIntInclusive(radiusGitter.lower, radiusGitter.upper);
 
         await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: CurvedRedEyeEffect,
                 percentChance: 100,
                 currentEffectConfig: new CurvedRedEyeConfig({
-                    innerRadius: innerRadius + (areaSegment * i),
-                    outerRadius: outerRadius,
+                    innerRadius: gitter + innerRadius + (areaSegment * i),
+                    outerRadius: gitter + outerRadius,
                     possibleJumpRangeInPixels: possibleJumpRangeInPixels,
                     lineLength: lineLength,
                     numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
@@ -70,6 +74,7 @@ export const layeredCurvedRedEye = async ({
                                               center,
                                               innerRadius,
                                               outerRadius,
+                                              radiusGitter,
                                               arcSteps,
                                               numberOfSpokes,
                                               possibleJumpRangeInPixels,
@@ -86,6 +91,7 @@ export const layeredCurvedRedEye = async ({
             sparsityFactor: sparsityFactor,
             innerRadius: innerRadius,
             outerRadius: outerRadius,
+            radiusGitter: radiusGitter,
             loopTimesFunction: (index) => {
                 return index + 1
             },
