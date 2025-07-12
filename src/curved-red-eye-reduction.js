@@ -202,7 +202,7 @@ const createComposition = async (colorScheme) => {
             center: new Point2D(center.x, center.y-radiusAdjustment),
             thickness: 24,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
-            accentRange: {bottom: {lower: 120, upper: 120}, top: {lower: 240, upper: 240}},
+            accentRange: {bottom: {lower: 75, upper: 85}, top: {lower: 120, upper: 140}},
             blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 24, upper: 24}},
             featherTimes: {lower: 4, upper: 4},
             accentBottomRangeReduction: 30,
