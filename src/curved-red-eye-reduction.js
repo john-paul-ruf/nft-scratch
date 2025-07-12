@@ -41,7 +41,7 @@ import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.j
 
 const promiseArray = [];
 const backgroundHex = '#250516'
-const scheme = binahUnderstanding;
+const scheme = chesedKindness;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -54,13 +54,13 @@ const createComposition = async (colorScheme) => {
             colorScheme: colorScheme,
             longestSideInPixels: 2560,
             shortestSideInPixels: 1440,
-            isHorizontal: false,
+            isHorizontal: true,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
             frameStart: 0,
         });
 
-        const center = new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2)
+        const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
