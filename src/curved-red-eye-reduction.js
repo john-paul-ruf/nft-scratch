@@ -192,10 +192,10 @@ const createComposition = async (colorScheme) => {
         const stroke = 2;
         const thickness = 1;
         const numberOfRedEyes = 10;
-        const outerRadius = 1500;
-        const innerRadius = 200;
-        const numberOfLayers = 1;
-        const numberOfSpokes = new Range(75, 75);
+        const outerRadius = 1000;
+        const innerRadius = 100;
+        const numberOfLayers = 8;
+        const numberOfSpokes = new Range(10, 10);
         const arcSteps = new Range(5, 20);
         const lineLength = new Range(100, 250);
         const possibleJumpRangeInPixels = new Range(5, 50);
