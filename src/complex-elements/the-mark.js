@@ -30,7 +30,7 @@ export const createTheMark = async ({
             effect: StaticImageKeyFrameEffect,
             percentChance: 100,
             currentEffectConfig: new StaticImageKeyFrameConfig({
-                fileName: 'src/assets/imageOverlay/image-store/original-artwork/remix-logo.png',
+                fileName: 'src/assets/imageOverlay/image-store/original-artwork/the-mark.png',
                 center: center,
                 layerOpacity: [1],
                 buffer: [buffer],
@@ -66,10 +66,10 @@ export const createTheMark = async ({
                         randomChance: {lower: 100, upper: 100},
                         glitchFrameCount: {lower: 5, upper: 15},
                         keyFrames: {lower: keyFrames, upper: keyFrames + glitchFrameCount},
-                        sectionHeight: [1, 2, 3],
-                        offset: {lower: 2, upper: 8},
+                        sectionHeight: [1, 2, 5],
+                        offset: {lower: 1, upper: 4},
                         direction: [-1, 1],
-                        glitchTimes: {lower: 1, upper: 3},
+                        glitchTimes: {lower: 1, upper: 1},
                     },
                 ])
             ],

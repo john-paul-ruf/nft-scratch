@@ -68,7 +68,7 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        await myTestProject.addPrimaryEffect({
+        /*await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: ScopesEffect,
                 percentChance: 100,
@@ -348,13 +348,13 @@ const createComposition = async (colorScheme) => {
                 }),
             }),
         });
+*/
 
-
-        const buffer = 100;
+        const buffer = 800;
 
         await createTheMark({
             project: myTestProject,
-            center: new Point2D(myTestProject.width - 700, myTestProject.height + 200),
+            center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
             fadeFrom: 0.3,
             opacity: 0.7,
             keyFrames: 30,
