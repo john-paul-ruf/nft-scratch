@@ -53,8 +53,8 @@ const createComposition = async (colorScheme) => {
             backgrounds: [backgroundHex],
             numberOfFrame: 1800,
             colorScheme: colorScheme,
-            longestSideInPixels: 2560,
-            shortestSideInPixels: 1440,
+            longestSideInPixels: 1920,
+            shortestSideInPixels: 1080,
             isHorizontal: true,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
@@ -62,7 +62,6 @@ const createComposition = async (colorScheme) => {
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
-
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,7 +81,7 @@ const createComposition = async (colorScheme) => {
                     alphaRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
                     alphaTimes: {lower: 8, upper: 16},
                     rotationTimes: {lower: 2, upper: 8},
-                    numberOfScopesInALine: 200,
+                    numberOfScopesInALine: 80,
                 }),
                 possibleSecondaryEffects: [
                     ...createGlowEffects([
@@ -122,7 +121,7 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const radius = 500;
+        const radius = 300;
         const radiusAdjustment = radius / 4;
 
         await createGlitchedTriangle({
@@ -221,8 +220,8 @@ const createComposition = async (colorScheme) => {
         const thickness = 1;
         const numberOfRedEyes = 4;
         const numberOfLayers = 4;
-        const outerRadius = 1000;
-        const innerRadius = 100;
+        const outerRadius = 800;
+        const innerRadius = 50;
         const radiusGitter = new Range(0, 100);
         const numberOfSpokes = new Range(40, 80);
         const arcSteps = new Range(15, 50);
@@ -260,15 +259,15 @@ const createComposition = async (colorScheme) => {
         await metaMappedFramesRing({
                 project: myTestProject,
                 center: center,
-                ringRadius: 175,
+                ringRadius: 200,
                 numberOfPoints: 8,
                 centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
                 centerOpacity: 0.8,
-                centerBuffer: 900,
+                centerBuffer: 1100,
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
                 ringOpacity: 0.85,
-                ringBuffer: 1300,
+                ringBuffer: 1200,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
             },
@@ -351,7 +350,7 @@ const createComposition = async (colorScheme) => {
         });
 
 
-        const buffer = 0;
+        const buffer = 100;
 
         await createTheMark({
             project: myTestProject,
