@@ -8,7 +8,34 @@ import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {generateSmoothRandomMultistep} from "../util/multistep.js";
 import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ArcPath} from "my-nft-gen/src/core/position/ArcPath.js";
+import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
+import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 
+const generateCustomRandomMultistep = async ({
+                                                 numberOfSegments = 4,
+                                                 max = new Range(2, 5),
+                                                 times = new Range(1, 2),
+                                             }) => {
+
+    const result = [];
+    const seg = 100 / numberOfSegments;
+
+    for (let i = 0; i < numberOfSegments; i++) {
+
+        const pick = getRandomIntInclusive(times.lower, times.upper);
+
+        result.push(
+            new MultiStepDefinitionConfig({
+                minPercentage: Math.floor(seg * i),
+                maxPercentage: Math.floor(seg * (i + 1)),
+                max: max,
+                times: new Range(pick, pick),
+            })
+        );
+    }
+
+    return result;
+}
 
 export const metaMappedFramesRing = async ({
                                                project,
@@ -27,14 +54,13 @@ export const metaMappedFramesRing = async ({
                                            }) => {
     center.y -= centerYAdjustment;
 
-    const multiStep = generateSmoothRandomMultistep({
-            numberOfSegments: 15,
-            times: new Range(1, 5),
-        });
+    const multiStep = await generateCustomRandomMultistep({
+        numberOfSegments: 15,
+        times: new Range(1, 5),
+    });
 
 
-
-    const point = {x: center.x, y: center.y -ringYAdjustment};
+    const point = {x: center.x, y: center.y - ringYAdjustment};
 
     for (let i = 0; i < numberOfPoints; i++) {
 
