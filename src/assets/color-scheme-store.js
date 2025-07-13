@@ -304,7 +304,7 @@ export const neonCyberdream = new ColorScheme({
         '#0FF0FC', // Light Cyan Glow — holographic UI accent
         '#FF3CAC', // Sunset Pink Gradient — synthetic and emotional
         '#FF9A00', // Deep Orange — heat and contrast, adds urgency
-        '#212121', // Deep Charcoal — grounding tone, allows neons to pop
+        /*'#212121', // Deep Charcoal — grounding tone, allows neons to pop*/
         '#39FF14', // Pure Neon Lime — a signal tone, eerie and alive
     ],
     colorSchemeInfo: "**Color Strategy**:neon-cyberdream\n" +

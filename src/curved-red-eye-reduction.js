@@ -38,9 +38,10 @@ import {createColorArrayScanlines} from "./complex-elements/color-array-crt-scan
 import {metaMappedFramesRing} from "./complex-elements/metaMappedFramesRing.js";
 import {createInvertedGlitchedTriangle} from "./complex-elements/invertedGlitchedTriangle.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
+import {createTheMark} from "./complex-elements/the-mark.js";
 
 const promiseArray = [];
-const backgroundHex = '#250516'
+const backgroundHex = '#212121'
 const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
@@ -61,7 +62,6 @@ const createComposition = async (colorScheme) => {
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
-
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ const createComposition = async (colorScheme) => {
             times: {lower: 3, upper: 3},
             center: new Point2D(center.x, center.y - radiusAdjustment),
             thickness: 24,
-            underlayOpacityRange: {lower: 0.3, upper: 0.3},
+            underlayOpacityRange: {lower: 0.4, upper: 0.5},
             accentRange: {bottom: {lower: 75, upper: 85}, top: {lower: 120, upper: 140}},
             blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 24, upper: 24}},
             featherTimes: {lower: 4, upper: 4},
@@ -153,7 +153,7 @@ const createComposition = async (colorScheme) => {
                 colorScheme: colorScheme,
                 center: center,
                 invertLayers: true,
-                layerOpacity: 0.6,
+                layerOpacity: 0.5,
                 underLayerOpacityRange: {
                     bottom: {lower: 0.3, upper: 0.4},
                     top: {lower: 0.5, upper: 0.6}
@@ -349,6 +349,19 @@ const createComposition = async (colorScheme) => {
                 }),
             }),
         });
+
+
+        const buffer = 0;
+
+        await createTheMark({
+            project: myTestProject,
+            center: new Point2D(myTestProject.width - 700, myTestProject.height + 200),
+            fadeFrom: 0.3,
+            opacity: 0.7,
+            keyFrames: 30,
+            glitchFrameCount: 240,
+            buffer: buffer,
+        })
 
         promiseArray.push(myTestProject.generateRandomLoop());
     }

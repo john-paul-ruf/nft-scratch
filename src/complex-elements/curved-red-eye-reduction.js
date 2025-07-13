@@ -44,7 +44,7 @@ export const createCurvedRedEyeReduction = async ({
                     lineLength: lineLength,
                     numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
                     invertLayers: true,
-                    layerOpacity: 0.7,
+                    layerOpacity: 0.6,
                     underLayerOpacity: 0.4,
                     sparsityFactor: sparsityFactor,
                     stroke: stroke,
