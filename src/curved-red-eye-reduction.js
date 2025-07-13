@@ -6,7 +6,7 @@ import {
     chesedKindness,
     eternalRise, gevurahSeverity,
     hodSplendor,
-    malkuthKingdom, neonHarmony, neonLights,
+    malkuthKingdom, neonCyberdream, neonHarmony, neonLights,
     netzachVictory,
     tiferetBeauty,
     yesodFoundation
@@ -41,7 +41,7 @@ import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.j
 
 const promiseArray = [];
 const backgroundHex = '#250516'
-const scheme = eternalRise;
+const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({

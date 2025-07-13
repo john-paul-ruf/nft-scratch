@@ -59,6 +59,11 @@ export const metaMappedFramesRing = async ({
         times: new Range(1, 5),
     });
 
+    const ringMultiStep = await generateCustomRandomMultistep({
+        numberOfSegments: 15,
+        times: new Range(1, 5),
+    });
+
 
     const point = {x: center.x, y: center.y - ringYAdjustment};
 
@@ -82,7 +87,7 @@ export const metaMappedFramesRing = async ({
                     folderName: ringMappedFramePath,
                     layerOpacity: [ringOpacity],
                     buffer: [ringBuffer],
-                    loopTimesMultiStep: multiStep,
+                    loopTimesMultiStep: ringMultiStep,
                 }),
                 possibleSecondaryEffects: [
                     ...createDegaussEffects([
@@ -163,7 +168,7 @@ export const metaMappedFramesRing = async ({
                     folderName: ringMappedFramePath,
                     layerOpacity: [0.1],
                     buffer: [ringBuffer],
-                    loopTimesMultiStep: multiStep,
+                    loopTimesMultiStep: ringMultiStep,
                 }),
                 possibleSecondaryEffects: [],
             }),

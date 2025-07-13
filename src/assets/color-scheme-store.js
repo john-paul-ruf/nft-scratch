@@ -292,3 +292,21 @@ export const daatKnowledge = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**:daat-knowledge\n"
 });
+
+export const neonCyberdream = new ColorScheme({
+    colorBucket: [
+        '#00FFFF', // Electric Cyan — evokes futuristic interfaces and neon signs
+        '#FF00FF', // Vivid Magenta — iconic synthwave tone, adds energetic contrast
+        '#00FF66', // Neon Green — brings a biopunk feel, like circuit glow
+        '#FF0066', // Hot Pink — pop and rebellion, cyberpunk nightlife vibes
+        '#8A2BE2', // Electric Purple — mystic, digital ether quality
+        '#FFFF33', // Acid Yellow — danger highlights, hacking alerts
+        '#0FF0FC', // Light Cyan Glow — holographic UI accent
+        '#FF3CAC', // Sunset Pink Gradient — synthetic and emotional
+        '#FF9A00', // Deep Orange — heat and contrast, adds urgency
+        '#212121', // Deep Charcoal — grounding tone, allows neons to pop
+        '#39FF14', // Pure Neon Lime — a signal tone, eerie and alive
+    ],
+    colorSchemeInfo: "**Color Strategy**:neon-cyberdream\n" +
+        "A glowing palette inspired by vaporwave aesthetics, rainy dystopias, and synthetic dreams. Designed for high contrast and emotional resonance in futuristic interfaces, nightlife backdrops, and digital art."
+});
