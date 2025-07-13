@@ -92,7 +92,7 @@ export const metaMappedFramesRing = async ({
                 possibleSecondaryEffects: [
                     ...createDegaussEffects([
                         {
-                            arraySize: 150,
+                            arraySize: 75,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 275, upper: 320},
                             keyFrames: {lower: 0, upper: 1800 - 320},
@@ -102,7 +102,7 @@ export const metaMappedFramesRing = async ({
                             glitchTimes: {lower: 3, upper: 8},
                         },
                         {
-                            arraySize: 125,
+                            arraySize: 75,
                             randomChance: {lower: 10, upper: 25},
                             glitchFrameCount: {lower: 25, upper: 75},
                             keyFrames: {lower: 0, upper: 1800 - 75},
@@ -112,7 +112,7 @@ export const metaMappedFramesRing = async ({
                             glitchTimes: {lower: 3, upper: 8},
                         },
                         {
-                            arraySize: 125,
+                            arraySize: 75,
                             randomChance: {lower: 5, upper: 25},
                             glitchFrameCount: {lower: 180, upper: 240},
                             keyFrames: {lower: 0, upper: 1800 - 240},

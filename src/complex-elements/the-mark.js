@@ -22,6 +22,8 @@ export const createTheMark = async ({
                                     }) => {
 
 
+    const glitchFrameSegment = glitchFrameCount / 4;
+
     //amp
     await project.addPrimaryEffect({
         layerConfig: new LayerConfig({
@@ -41,9 +43,9 @@ export const createTheMark = async ({
                     percentChance: 100,
                     currentEffectConfig: new FadeKeyFrameConfig({
                         keyFrames: [keyFrames],
-                        glitchFrameCount: [glitchFrameCount / 2],
+                        glitchFrameCount: [glitchFrameSegment],
                         lowerRange: new Range(fadeFrom, fadeFrom),
-                        upperRange:new Range(opacity, opacity),
+                        upperRange: new Range(opacity, opacity),
                         times: new Range(1, 1),
                     }),
                 }),
@@ -51,10 +53,10 @@ export const createTheMark = async ({
                     effect: FadeKeyFrameEffect,
                     percentChance: 100,
                     currentEffectConfig: new FadeKeyFrameConfig({
-                        keyFrames: [keyFrames + (glitchFrameCount / 2)],
-                        glitchFrameCount: [glitchFrameCount / 2],
+                        keyFrames: [keyFrames + (glitchFrameSegment * 3)],
+                        glitchFrameCount: [glitchFrameSegment],
                         lowerRange: new Range(opacity, opacity),
-                        upperRange:new Range(fadeFrom, fadeFrom),
+                        upperRange: new Range(fadeFrom, fadeFrom),
                         times: new Range(1, 1),
                     }),
                 }),
