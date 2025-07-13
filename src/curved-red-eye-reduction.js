@@ -228,7 +228,7 @@ const createComposition = async (colorScheme) => {
         const arcSteps = new Range(15, 50);
         const lineLength = new Range(75, 150);
         const possibleJumpRangeInPixels = new Range(5, 35);
-        const sparsityFactor = [18, 30, 45, 60, 90, 120];
+        const sparsityFactor = [45, 60, 90, 120];
 
         await layeredCurvedRedEye({
             myTestProject,
