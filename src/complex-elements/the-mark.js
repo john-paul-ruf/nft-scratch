@@ -60,7 +60,7 @@ export const createTheMark = async ({
                 }),
                 ...createDegaussEffects([
                     {
-                        arraySize: 3,
+                        arraySize: 5,
                         randomChance: {lower: 100, upper: 100},
                         glitchFrameCount: {lower: 5, upper: 15},
                         keyFrames: {lower: keyFrames, upper: keyFrames + glitchFrameCount},
