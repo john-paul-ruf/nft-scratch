@@ -32,7 +32,7 @@ export const createTheMark = async ({
             currentEffectConfig: new StaticImageKeyFrameConfig({
                 fileName: 'src/assets/imageOverlay/image-store/original-artwork/the-mark.png',
                 center: center,
-                layerOpacity: [1],
+                layerOpacity: [opacity],
                 buffer: [buffer],
                 keyFrames: [keyFrames],
                 glitchFrameCount: [glitchFrameCount],
