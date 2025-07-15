@@ -53,8 +53,8 @@ const createComposition = async (colorScheme) => {
             backgrounds: [backgroundHex],
             numberOfFrame: 1800,
             colorScheme: colorScheme,
-            longestSideInPixels: 1920,
-            shortestSideInPixels: 1080,
+            longestSideInPixels: 2560,
+            shortestSideInPixels: 1440,
             isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
@@ -220,7 +220,7 @@ const createComposition = async (colorScheme) => {
         const thickness = 1;
         const numberOfRedEyes = 4;
         const numberOfLayers = 4;
-        const outerRadius = 800;
+        const outerRadius = 1200;
         const innerRadius = 50;
         const radiusGitter = new Range(0, 100);
         const numberOfSpokes = new Range(40, 80);
@@ -261,9 +261,9 @@ const createComposition = async (colorScheme) => {
                 center: center,
                 ringRadius: 200,
                 numberOfPoints: 8,
-                centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
+                centerMappedFramePath: './src/assets/mappedFrames/all-seeing/',
                 centerOpacity: 0.8,
-                centerBuffer: 1100,
+                centerBuffer: 700,
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
                 ringOpacity: 0.85,
