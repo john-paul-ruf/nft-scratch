@@ -9,6 +9,9 @@ import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/Fa
 import {FadeKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {createDegaussEffects} from "../util/glitch.js";
+import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
+import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
+import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 
 export const createTheMark = async ({
                                         project = null,
@@ -30,7 +33,7 @@ export const createTheMark = async ({
             effect: StaticImageKeyFrameEffect,
             percentChance: 100,
             currentEffectConfig: new StaticImageKeyFrameConfig({
-                fileName: 'src/assets/imageOverlay/image-store/original-artwork/the-mark.png',
+                fileName: 'src/assets/imageOverlay/image-store/generated/the-mark.png',
                 center: center,
                 layerOpacity: [opacity],
                 buffer: [buffer],
@@ -60,9 +63,19 @@ export const createTheMark = async ({
                         times: new Range(1, 1),
                     }),
                 }),
+                new LayerConfig({
+                    effect: GlowKeyFrameEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new GlowKeyFrameConfig({
+                        keyFrames: [keyFrames],
+                        glitchFrameCount: [glitchFrameCount],
+                        lowerRange: new Range(0, 360),
+                        times: new Range(3, 5),
+                    }),
+                }),
                 ...createDegaussEffects([
                     {
-                        arraySize: 5,
+                        arraySize: getRandomIntInclusive(5,10),
                         randomChance: {lower: 100, upper: 100},
                         glitchFrameCount: {lower: 5, upper: 15},
                         keyFrames: {lower: keyFrames, upper: keyFrames + glitchFrameCount},
