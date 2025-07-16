@@ -78,7 +78,8 @@ export const layeredCurvedRedEye = async ({
                                               arcSteps,
                                               numberOfSpokes,
                                               possibleJumpRangeInPixels,
-                                              numberOfLayers
+                                              numberOfLayers,
+                                              loopTimesFunction
                                           }) => {
     for (let i = 0; i < numberOfLayers; i++) {
         await createCurvedRedEyeReduction({
@@ -92,9 +93,7 @@ export const layeredCurvedRedEye = async ({
             innerRadius: innerRadius,
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
-            loopTimesFunction: (index) => {
-                return index + 1
-            },
+            loopTimesFunction: loopTimesFunction,
             arcSteps,
             numberOfSpokes,
             possibleJumpRangeInPixels,
