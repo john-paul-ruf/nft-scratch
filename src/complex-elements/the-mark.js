@@ -69,8 +69,8 @@ export const createTheMark = async ({
                     currentEffectConfig: new GlowKeyFrameConfig({
                         keyFrames: [keyFrames],
                         glitchFrameCount: [glitchFrameCount],
-                        lowerRange: new Range(0, 360),
-                        times: new Range(3, 5),
+                        lowerRange: new Range(0, 180),
+                        times: new Range(1, 3),
                     }),
                 }),
                 ...createDegaussEffects([
