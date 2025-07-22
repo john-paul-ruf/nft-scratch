@@ -267,7 +267,7 @@ const createComposition = async (colorScheme) => {
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/flux-folder/',
                 ringOpacity: 0.85,
-                ringBuffer: 1200,
+                ringBuffer: 700,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
             },
