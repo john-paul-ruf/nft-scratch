@@ -110,7 +110,7 @@ export const earthenVeil = new ColorScheme({
 export const eternalRise = new ColorScheme({
     colorBucket: [
         '#B2B2B2',
-        '#4A4A4A',
+       /* '#4A4A4A',*/
         '#FF6A00',
         '#FF4500',
         '#FFD700',

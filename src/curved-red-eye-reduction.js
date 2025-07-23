@@ -41,8 +41,8 @@ import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.j
 import {createTheMark} from "./complex-elements/the-mark.js";
 
 const promiseArray = [];
-const backgroundHex = '#212121'
-const scheme = binahUnderstanding;
+const backgroundHex = '##4A4A4A'
+const scheme = eternalRise;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -55,7 +55,7 @@ const createComposition = async (colorScheme) => {
             colorScheme: colorScheme,
             longestSideInPixels: 2560,
             shortestSideInPixels: 1440,
-            isHorizontal: true,
+            isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
             frameStart: 0,
@@ -78,10 +78,10 @@ const createComposition = async (colorScheme) => {
                     gapFactor: {lower: 0.15, upper: 0.15},
                     radiusFactor: {lower: 0.1, upper: 0.1},
                     scaleFactor: 1.1,
-                    alphaRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
+                    alphaRange: {bottom: {lower: 0.2, upper: 0.3}, top: {lower: 0.4, upper: 0.5}},
                     alphaTimes: {lower: 8, upper: 16},
                     rotationTimes: {lower: 2, upper: 8},
-                    numberOfScopesInALine: 80,
+                    numberOfScopesInALine: 70,
                 }),
                 possibleSecondaryEffects: [
                     ...createGlowEffects([
@@ -330,11 +330,11 @@ const createComposition = async (colorScheme) => {
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                    brightnessTimes: {lower: 2, upper: 2},
-                    saturationRange: {bottom: {lower: 1.3, upper: 1.3}, top: {lower: 2, upper: 2}},
-                    saturationTimes: {lower: 4, upper: 4},
+                    brightnessTimes: {lower: 4, upper: 4},
+                    saturationRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
+                    saturationTimes: {lower: 2, upper: 2},
                     contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                    contrastTimes: {lower: 2, upper: 2},
+                    contrastTimes: {lower: 4, upper: 4},
                 }),
             }),
         });
@@ -356,9 +356,9 @@ const createComposition = async (colorScheme) => {
             project: myTestProject,
             center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
             fadeFrom: 0.0,
-            opacity: 0.7,
+            opacity: 0.8,
             keyFrames: 30,
-            glitchFrameCount: 240,
+            glitchFrameCount: 320,
             buffer: buffer,
         })
 
