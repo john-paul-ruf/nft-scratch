@@ -41,8 +41,8 @@ import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.j
 import {createTheMark} from "./complex-elements/the-mark.js";
 
 const promiseArray = [];
-const backgroundHex = '##4A4A4A'
-const scheme = eternalRise;
+const backgroundHex = '#212121'
+const scheme = binahUnderstanding;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -81,7 +81,7 @@ const createComposition = async (colorScheme) => {
                     alphaRange: {bottom: {lower: 0.2, upper: 0.3}, top: {lower: 0.4, upper: 0.5}},
                     alphaTimes: {lower: 8, upper: 16},
                     rotationTimes: {lower: 2, upper: 8},
-                    numberOfScopesInALine: 30,
+                    numberOfScopesInALine: 60,
                 }),
                 possibleSecondaryEffects: [
                     ...createGlowEffects([
@@ -220,8 +220,8 @@ const createComposition = async (colorScheme) => {
         const thickness = 1;
         const numberOfRedEyes = 4;
         const numberOfLayers = 6;
-        const outerRadius = 550;
-        const innerRadius = 50;
+        const outerRadius = 700;
+        const innerRadius = 25;
         const radiusGitter = new Range(0, 100);
         const numberOfSpokes = new Range(40, 80);
         const arcSteps = new Range(10, 30);
@@ -263,11 +263,11 @@ const createComposition = async (colorScheme) => {
                 numberOfPoints: 8,
                 centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
                 centerOpacity: 0.8,
-                centerBuffer: 700,
+                centerBuffer: 600,
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/flux-folder/',
                 ringOpacity: 0.85,
-                ringBuffer: 300,
+                ringBuffer: 200,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
             },
@@ -356,9 +356,10 @@ const createComposition = async (colorScheme) => {
             project: myTestProject,
             center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
             fadeFrom: 0.0,
-            opacity: 0.8,
+            opacity: 0.9,
             keyFrames: 30,
-            glitchFrameCount: 320,
+            glitchFrameCount: 360,
+            fadeInOutCount:30,
             buffer: buffer,
         })
 

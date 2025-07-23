@@ -55,12 +55,12 @@ export const metaMappedFramesRing = async ({
     center.y -= centerYAdjustment;
 
     const multiStep = await generateCustomRandomMultistep({
-        numberOfSegments: 15,
+        numberOfSegments: 4,
         times: new Range(1, 3),
     });
 
     const ringMultiStep = await generateCustomRandomMultistep({
-        numberOfSegments: 15,
+        numberOfSegments: 8,
         times: new Range(2, 4),
     });
 
