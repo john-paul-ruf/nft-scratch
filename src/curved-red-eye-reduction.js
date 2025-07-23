@@ -53,9 +53,9 @@ const createComposition = async (colorScheme) => {
             backgrounds: [backgroundHex],
             numberOfFrame: 1800,
             colorScheme: colorScheme,
-            longestSideInPixels: 2560,
-            shortestSideInPixels: 1440,
-            isHorizontal: true,
+            longestSideInPixels: 1920,
+            shortestSideInPixels: 1080,
+            isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
             frameStart: 0,
@@ -81,7 +81,7 @@ const createComposition = async (colorScheme) => {
                     alphaRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
                     alphaTimes: {lower: 8, upper: 16},
                     rotationTimes: {lower: 2, upper: 8},
-                    numberOfScopesInALine: 80,
+                    numberOfScopesInALine: 60,
                 }),
                 possibleSecondaryEffects: [
                     ...createGlowEffects([
@@ -216,12 +216,12 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const stroke = 2;
+        const stroke = 1;
         const thickness = 1;
         const numberOfRedEyes = 4;
         const numberOfLayers = 6;
-        const outerRadius = 900;
-        const innerRadius = 50;
+        const outerRadius = 700;
+        const innerRadius = 25;
         const radiusGitter = new Range(0, 200);
         const numberOfSpokes = new Range(40, 80);
         const arcSteps = new Range(10, 30);
@@ -267,7 +267,7 @@ const createComposition = async (colorScheme) => {
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/flux-folder/',
                 ringOpacity: 0.85,
-                ringBuffer: 150,
+                ringBuffer: 200,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
             },
