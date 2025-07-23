@@ -56,12 +56,12 @@ export const metaMappedFramesRing = async ({
 
     const multiStep = await generateCustomRandomMultistep({
         numberOfSegments: 15,
-        times: new Range(3, 8),
+        times: new Range(1, 3),
     });
 
     const ringMultiStep = await generateCustomRandomMultistep({
         numberOfSegments: 15,
-        times: new Range(1, 5),
+        times: new Range(2, 4),
     });
 
 
