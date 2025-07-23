@@ -55,7 +55,7 @@ const createComposition = async (colorScheme) => {
             colorScheme: colorScheme,
             longestSideInPixels: 2560,
             shortestSideInPixels: 1440,
-            isHorizontal: false,
+            isHorizontal: true,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
             frameStart: 0,
