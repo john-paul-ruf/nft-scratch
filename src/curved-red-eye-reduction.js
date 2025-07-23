@@ -358,7 +358,7 @@ const createComposition = async (colorScheme) => {
             fadeFrom: 0.0,
             opacity: 0.7,
             keyFrames: 30,
-            glitchFrameCount: 240,
+            glitchFrameCount: 360,
             buffer: buffer,
         })
 
