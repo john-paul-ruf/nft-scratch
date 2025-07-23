@@ -356,9 +356,10 @@ const createComposition = async (colorScheme) => {
             project: myTestProject,
             center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
             fadeFrom: 0.0,
-            opacity: 0.7,
+            opacity: 0.9,
             keyFrames: 30,
             glitchFrameCount: 360,
+            fadeInOutCount:30,
             buffer: buffer,
         })
 
