@@ -42,7 +42,7 @@ import {createTheMark} from "./complex-elements/the-mark.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = neonCyberdream;
+const scheme = binahUnderstanding;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -186,7 +186,7 @@ const createComposition = async (colorScheme) => {
                         randomChance: {lower: 10, upper: 25},
                         glitchFrameCount: {lower: 25, upper: 160},
                         keyFrames: {lower: 0, upper: 1800 - 160},
-                        lowerRange: {lower: 4, upper: 8},
+                        lowerRange: {lower: 8, upper: 16},
                         times: {lower: 1, upper: 3},
                     },
                     {
@@ -202,7 +202,7 @@ const createComposition = async (colorScheme) => {
                         randomChance: {lower: 10, upper: 25},
                         glitchFrameCount: {lower: 60, upper: 120},
                         keyFrames: {lower: 0, upper: 1800 - 120},
-                        lowerRange: {lower: 3, upper: 6},
+                        lowerRange: {lower: 12, upper: 24},
                         times: {lower: 1, upper: 3},
                     }
                 ])]
@@ -219,12 +219,12 @@ const createComposition = async (colorScheme) => {
         const stroke = 2;
         const thickness = 1;
         const numberOfRedEyes = 4;
-        const numberOfLayers = 4;
-        const outerRadius = 1200;
+        const numberOfLayers = 6;
+        const outerRadius = 900;
         const innerRadius = 50;
-        const radiusGitter = new Range(0, 100);
+        const radiusGitter = new Range(0, 200);
         const numberOfSpokes = new Range(40, 80);
-        const arcSteps = new Range(15, 50);
+        const arcSteps = new Range(10, 30);
         const lineLength = new Range(75, 150);
         const possibleJumpRangeInPixels = new Range(5, 35);
         const sparsityFactor = [45, 60, 90, 120];
@@ -259,15 +259,15 @@ const createComposition = async (colorScheme) => {
         await metaMappedFramesRing({
                 project: myTestProject,
                 center: center,
-                ringRadius: 200,
+                ringRadius: 300,
                 numberOfPoints: 8,
-                centerMappedFramePath: './src/assets/mappedFrames/all-seeing/',
+                centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
                 centerOpacity: 0.8,
-                centerBuffer: 700,
+                centerBuffer: 600,
                 centerYAdjustment: 0,
-                ringMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
+                ringMappedFramePath: './src/assets/mappedFrames/flux-folder/',
                 ringOpacity: 0.85,
-                ringBuffer: 1200,
+                ringBuffer: 150,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
             },
@@ -285,7 +285,7 @@ const createComposition = async (colorScheme) => {
                 project: myTestProject,
                 colorArray: colorScheme.colorBucket,
                 lines: {lower: 4, upper: 4},
-                loopTimes: {lower: 1, upper: 1},
+                loopTimes: {lower: 1, upper: 2},
                 brightnessRange: {
                     bottom: {lower: 10, upper: 30},
                     top: {lower: 30, upper: 40}
@@ -331,7 +331,7 @@ const createComposition = async (colorScheme) => {
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     brightnessTimes: {lower: 2, upper: 2},
-                    saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+                    saturationRange: {bottom: {lower: 1.3, upper: 1.3}, top: {lower: 2, upper: 2}},
                     saturationTimes: {lower: 4, upper: 4},
                     contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     contrastTimes: {lower: 2, upper: 2},
