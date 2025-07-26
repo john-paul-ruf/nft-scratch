@@ -70,7 +70,7 @@ export const createMultiFuzzFlare = async ({
                     center: center,
                     elementGastonMultiStep: generateSmoothRandomMultistep({
                         numberOfSegments: 4,
-                        max: new Range(1, 6),
+                        max: new Range(2, 6),
                         times: new Range(1, 2),
                     }),
                     numberOfFlareRings: numberOfRings,
