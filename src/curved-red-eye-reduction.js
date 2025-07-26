@@ -39,10 +39,11 @@ import {metaMappedFramesRing} from "./complex-elements/metaMappedFramesRing.js";
 import {createInvertedGlitchedTriangle} from "./complex-elements/invertedGlitchedTriangle.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
+import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = binahUnderstanding;
+const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -78,7 +79,7 @@ const createComposition = async (colorScheme) => {
                     gapFactor: {lower: 0.15, upper: 0.15},
                     radiusFactor: {lower: 0.1, upper: 0.1},
                     scaleFactor: 1.1,
-                    alphaRange: {bottom: {lower: 0.2, upper: 0.3}, top: {lower: 0.4, upper: 0.5}},
+                    alphaRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
                     alphaTimes: {lower: 8, upper: 16},
                     rotationTimes: {lower: 2, upper: 8},
                     numberOfScopesInALine: 60,
@@ -138,6 +139,9 @@ const createComposition = async (colorScheme) => {
             featherTimes: {lower: 4, upper: 4},
             accentBottomRangeReduction: 30,
             accentTopRangeReduction: 30,
+            accentFindValueAlgorithm: getAllFindValueAlgorithms(),
+            blurFindValueAlgorithm: getAllFindValueAlgorithms(),
+            opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
         });
 
 
@@ -147,6 +151,38 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /*TRIANGLE: 'triangle',
+
+            // Inverted triangular wave: linear down-up motion
+            INVERTED_TRIANGLE: 'invertedTriangle',
+
+            // Sinusoidal wave: smooth up-down
+            SINE: 'sine',
+
+            // Inverted sine wave: smooth down-up
+            INVERTED_SINE: 'invertedSine',
+
+            // Multi-sine wave blend: organic, non-pingpong loop
+            MULTIWAVE: 'multiwave',
+
+            // Flipped version of multiwave
+            INVERTED_MULTIWAVE: 'invertedMultiwave',
+
+            // Constant ramp from min to max, wraps around
+            FORWARD_LOOP: 'forward',
+
+            // Raised cosine (ease in + ease out)
+            COSINE_BELL: 'cosineBell',
+
+            // Asymmetric ease-up then ease-down shape
+            SMOOTHSTEP: 'smoothstep',
+
+            // Phase-evolving version of MULTIWAVE
+            MULTIWAVE: 'phasedMultiwave',
+
+            // Custom looping shape via precomputed values
+            KEYFRAME: 'keyframe',
+            */
         await createMultiFuzzFlare({
                 project: myTestProject,
                 colorScheme: colorScheme,
@@ -168,17 +204,19 @@ const createComposition = async (colorScheme) => {
                 ringThickness: new Range(1, 5),
                 rayStroke: new Range(1, 1),
                 rayThickness: new Range(1, 5),
+                accentFindValueAlgorithm: getAllFindValueAlgorithms(),
+                blurFindValueAlgorithm: getAllFindValueAlgorithms(),
+                opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
                 featureStructure: {
                     accentRange: {
-                        bottom: {lower: 10, upper: 20},
-                        top: {lower: 40, upper: 60}
+                        bottom: {lower: 30, upper: 40},
+                        top: {lower: 50, upper: 60}
                     },
                     blurRange: {
                         bottom: {lower: 6, upper: 10},
                         top: {lower: 12, upper: 14}
                     },
                     featherTimes: {lower: 2, upper: 8},
-
                 },
                 secondaryEffects: [...createGlowEffects([
                     {
@@ -259,15 +297,15 @@ const createComposition = async (colorScheme) => {
         await metaMappedFramesRing({
                 project: myTestProject,
                 center: center,
-                ringRadius: 300,
+                ringRadius: 175,
                 numberOfPoints: 8,
                 centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
-                centerOpacity: 0.8,
-                centerBuffer: 600,
+                centerOpacity: 0.6,
+                centerBuffer: 800,
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/flux-folder/',
-                ringOpacity: 0.85,
-                ringBuffer: 200,
+                ringOpacity: 0.4,
+                ringBuffer: 400,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
             },
@@ -331,8 +369,8 @@ const createComposition = async (colorScheme) => {
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     brightnessTimes: {lower: 4, upper: 4},
-                    saturationRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
-                    saturationTimes: {lower: 2, upper: 2},
+                    saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
+                    saturationTimes: {lower: 4, upper: 4},
                     contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     contrastTimes: {lower: 4, upper: 4},
                 }),
@@ -359,7 +397,7 @@ const createComposition = async (colorScheme) => {
             opacity: 0.9,
             keyFrames: 30,
             glitchFrameCount: 360,
-            fadeInOutCount:30,
+            fadeInOutCount: 30,
             buffer: buffer,
         })
 

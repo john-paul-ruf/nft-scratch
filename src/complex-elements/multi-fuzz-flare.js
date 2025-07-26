@@ -13,6 +13,7 @@ import {PercentageShortestSide} from "../../../my-nft-gen/src/core/layer/configT
 import {PercentageLongestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {generateSmoothRandomMultistep, getMultiStep} from "../util/multistep.js";
 import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
+import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../../my-nft-gen/src/core/math/findValue.js";
 
 export const createMultiFuzzFlare = async ({
                                                project = null,
@@ -35,6 +36,9 @@ export const createMultiFuzzFlare = async ({
                                                ringThickness = new Range(4, 8),
                                                rayStroke = new Range(1, 1),
                                                rayThickness = new Range(4, 8),
+                                               accentFindValueAlgorithm = getAllFindValueAlgorithms(),
+                                               blurFindValueAlgorithm = getAllFindValueAlgorithms(),
+                                               opacityFindValueAlgorithm = getAllFindValueAlgorithms(),
                                                featureStructure = {
                                                    accentRange: {
                                                        bottom: {lower: 2, upper: 6},
@@ -79,6 +83,9 @@ export const createMultiFuzzFlare = async ({
                     flareRaysStroke: rayStroke,
                     flareRayThickness: rayThickness,
                     flareOffset: flareOffset,
+                    accentFindValueAlgorithm: accentFindValueAlgorithm,
+                    blurFindValueAlgorithm: blurFindValueAlgorithm,
+                    opacityFindValueAlgorithm: opacityFindValueAlgorithm,
                     ...featureStructure,
                 }),
                 possibleSecondaryEffects: [...secondaryEffects],
