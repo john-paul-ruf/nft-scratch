@@ -42,7 +42,7 @@ import {createTheMark} from "./complex-elements/the-mark.js";
 import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
-const backgroundHex = '#4A4A4A'
+const backgroundHex = '#212121'
 const scheme = eternalRise;
 
 const createComposition = async (colorScheme) => {
@@ -314,7 +314,7 @@ const createComposition = async (colorScheme) => {
                 opacityTimes: {lower: 1, upper: 8},
             });
 
-        await myTestProject.addFinalEffect({
+       /* await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
                     shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
@@ -329,7 +329,7 @@ const createComposition = async (colorScheme) => {
                     numberOfEdgeSections: {lower: 40, upper: 40},
                 })
             }),
-        });
+        });*/
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
