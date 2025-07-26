@@ -39,10 +39,11 @@ import {metaMappedFramesRing} from "./complex-elements/metaMappedFramesRing.js";
 import {createInvertedGlitchedTriangle} from "./complex-elements/invertedGlitchedTriangle.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
+import {FindValueAlgorithm} from "../../my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = binahUnderstanding;
+const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -58,7 +59,7 @@ const createComposition = async (colorScheme) => {
             isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
-            frameStart: 0,
+            frameStart: 449,
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
@@ -138,6 +139,9 @@ const createComposition = async (colorScheme) => {
             featherTimes: {lower: 4, upper: 4},
             accentBottomRangeReduction: 30,
             accentTopRangeReduction: 30,
+            accentFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
+            blurFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
+            opacityFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
         });
 
 
@@ -147,6 +151,38 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /*TRIANGLE: 'triangle',
+
+            // Inverted triangular wave: linear down-up motion
+            INVERTED_TRIANGLE: 'invertedTriangle',
+
+            // Sinusoidal wave: smooth up-down
+            SINE: 'sine',
+
+            // Inverted sine wave: smooth down-up
+            INVERTED_SINE: 'invertedSine',
+
+            // Multi-sine wave blend: organic, non-pingpong loop
+            MULTIWAVE: 'multiwave',
+
+            // Flipped version of multiwave
+            INVERTED_MULTIWAVE: 'invertedMultiwave',
+
+            // Constant ramp from min to max, wraps around
+            FORWARD_LOOP: 'forward',
+
+            // Raised cosine (ease in + ease out)
+            COSINE_BELL: 'cosineBell',
+
+            // Asymmetric ease-up then ease-down shape
+            SMOOTHSTEP: 'smoothstep',
+
+            // Phase-evolving version of MULTIWAVE
+            MULTIWAVE: 'phasedMultiwave',
+
+            // Custom looping shape via precomputed values
+            KEYFRAME: 'keyframe',
+            */
         await createMultiFuzzFlare({
                 project: myTestProject,
                 colorScheme: colorScheme,
@@ -168,6 +204,9 @@ const createComposition = async (colorScheme) => {
                 ringThickness: new Range(1, 5),
                 rayStroke: new Range(1, 1),
                 rayThickness: new Range(1, 5),
+                accentFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
+                blurFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
+                opacityFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
                 featureStructure: {
                     accentRange: {
                         bottom: {lower: 10, upper: 20},
@@ -259,15 +298,15 @@ const createComposition = async (colorScheme) => {
         await metaMappedFramesRing({
                 project: myTestProject,
                 center: center,
-                ringRadius: 300,
+                ringRadius: 175,
                 numberOfPoints: 8,
                 centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
-                centerOpacity: 0.8,
-                centerBuffer: 600,
+                centerOpacity: 0.6,
+                centerBuffer: 800,
                 centerYAdjustment: 0,
                 ringMappedFramePath: './src/assets/mappedFrames/flux-folder/',
-                ringOpacity: 0.85,
-                ringBuffer: 200,
+                ringOpacity: 0.4,
+                ringBuffer: 400,
                 ringYAdjustment: 0,
                 rotationAmount: 3,
             },
@@ -359,7 +398,7 @@ const createComposition = async (colorScheme) => {
             opacity: 0.9,
             keyFrames: 30,
             glitchFrameCount: 360,
-            fadeInOutCount:30,
+            fadeInOutCount: 30,
             buffer: buffer,
         })
 
