@@ -59,7 +59,7 @@ const createComposition = async (colorScheme) => {
             isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
-            frameStart: 449,
+            frameStart: 0,
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
