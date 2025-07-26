@@ -49,7 +49,7 @@ export const createCurvedRedEyeReduction = async ({
                     sparsityFactor: sparsityFactor,
                     stroke: stroke,
                     thickness: thickness,
-                    accentRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 5}},
+                    accentRange: {bottom: {lower: 5, upper: 7}, top: {lower: 9, upper: 11}},
                     blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
                     featherTimes: {lower: 3, upper: 8},
                     center: center,

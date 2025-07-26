@@ -59,7 +59,7 @@ const createComposition = async (colorScheme) => {
             isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
-            frameStart: 449,
+            frameStart: 0,
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
@@ -209,15 +209,14 @@ const createComposition = async (colorScheme) => {
                 opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
                 featureStructure: {
                     accentRange: {
-                        bottom: {lower: 10, upper: 20},
-                        top: {lower: 40, upper: 60}
+                        bottom: {lower: 30, upper: 40},
+                        top: {lower: 50, upper: 60}
                     },
                     blurRange: {
                         bottom: {lower: 6, upper: 10},
                         top: {lower: 12, upper: 14}
                     },
                     featherTimes: {lower: 2, upper: 8},
-
                 },
                 secondaryEffects: [...createGlowEffects([
                     {
@@ -370,7 +369,7 @@ const createComposition = async (colorScheme) => {
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     brightnessTimes: {lower: 2, upper: 2},
-                    saturationRange: {bottom: {lower: 1.3, upper: 1.3}, top: {lower: 2, upper: 2}},
+                    saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
                     saturationTimes: {lower: 4, upper: 4},
                     contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     contrastTimes: {lower: 2, upper: 2},
