@@ -150,39 +150,6 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        /*TRIANGLE: 'triangle',
-
-            // Inverted triangular wave: linear down-up motion
-            INVERTED_TRIANGLE: 'invertedTriangle',
-
-            // Sinusoidal wave: smooth up-down
-            SINE: 'sine',
-
-            // Inverted sine wave: smooth down-up
-            INVERTED_SINE: 'invertedSine',
-
-            // Multi-sine wave blend: organic, non-pingpong loop
-            MULTIWAVE: 'multiwave',
-
-            // Flipped version of multiwave
-            INVERTED_MULTIWAVE: 'invertedMultiwave',
-
-            // Constant ramp from min to max, wraps around
-            FORWARD_LOOP: 'forward',
-
-            // Raised cosine (ease in + ease out)
-            COSINE_BELL: 'cosineBell',
-
-            // Asymmetric ease-up then ease-down shape
-            SMOOTHSTEP: 'smoothstep',
-
-            // Phase-evolving version of MULTIWAVE
-            MULTIWAVE: 'phasedMultiwave',
-
-            // Custom looping shape via precomputed values
-            KEYFRAME: 'keyframe',
-            */
         await createMultiFuzzFlare({
                 project: myTestProject,
                 colorScheme: colorScheme,
