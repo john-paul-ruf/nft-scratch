@@ -42,8 +42,8 @@ import {createTheMark} from "./complex-elements/the-mark.js";
 import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
-const backgroundHex = '#212121'
-const scheme = neonCyberdream;
+const backgroundHex = '#4A4A4A'
+const scheme = eternalRise;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
