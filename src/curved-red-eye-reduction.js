@@ -39,7 +39,7 @@ import {metaMappedFramesRing} from "./complex-elements/metaMappedFramesRing.js";
 import {createInvertedGlitchedTriangle} from "./complex-elements/invertedGlitchedTriangle.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
-import {FindValueAlgorithm} from "../../my-nft-gen/src/core/math/findValue.js";
+import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
@@ -59,7 +59,7 @@ const createComposition = async (colorScheme) => {
             isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
-            frameStart: 0,
+            frameStart: 449,
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
@@ -139,9 +139,9 @@ const createComposition = async (colorScheme) => {
             featherTimes: {lower: 4, upper: 4},
             accentBottomRangeReduction: 30,
             accentTopRangeReduction: 30,
-            accentFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
-            blurFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
-            opacityFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
+            accentFindValueAlgorithm: getAllFindValueAlgorithms(),
+            blurFindValueAlgorithm: getAllFindValueAlgorithms(),
+            opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
         });
 
 
@@ -204,9 +204,9 @@ const createComposition = async (colorScheme) => {
                 ringThickness: new Range(1, 5),
                 rayStroke: new Range(1, 1),
                 rayThickness: new Range(1, 5),
-                accentFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
-                blurFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
-                opacityFindValueAlgorithm: [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
+                accentFindValueAlgorithm: getAllFindValueAlgorithms(),
+                blurFindValueAlgorithm: getAllFindValueAlgorithms(),
+                opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
                 featureStructure: {
                     accentRange: {
                         bottom: {lower: 10, upper: 20},

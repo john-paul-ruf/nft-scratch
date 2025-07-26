@@ -4,7 +4,7 @@ import {ViewportConfig} from "../../../my-nft-gen/src/effects/primaryEffects/vie
 import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEffects} from "../util/glitch.js";
 import {randomNumber} from "my-nft-gen/src/core/math/random.js";
-import {FindValueAlgorithm} from "../../../my-nft-gen/src/core/math/findValue.js";
+import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../../my-nft-gen/src/core/math/findValue.js";
 
 
 export const createGlitchedTriangle = async ({
@@ -69,8 +69,8 @@ export const createGlitchedTriangle = async ({
                     },
                     blurRange: blurRang,
                     featherTimes: featherTimes,
-                    accentFindValueAlgorithm:  [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
-                    blurFindValueAlgorithm:  [FindValueAlgorithm.TRIANGLE, FindValueAlgorithm.SMOOTHSTEP, FindValueAlgorithm.COSINE_BELL],
+                    accentFindValueAlgorithm:  getAllFindValueAlgorithms(),
+                    blurFindValueAlgorithm:  getAllFindValueAlgorithms(),
                 }),
                 possibleSecondaryEffects: [
                     /*  ...createFadeEffects([
