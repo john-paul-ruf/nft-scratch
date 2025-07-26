@@ -318,6 +318,66 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        const buffer = 800;
+
+        await createTheMark({
+            project: myTestProject,
+            center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
+            fadeFrom: 0.0,
+            opacity: 0.9,
+            keyFrames: 30,
+            glitchFrameCount: 360,
+            fadeInOutCount: 30,
+            buffer: buffer,
+        })
+
+        promiseArray.push(myTestProject.generateRandomLoop());
+
+        await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
+                    shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                    linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                    opacityTimes: {lower: 15, upper: 15},
+                    lineRed: {lower: 16, upper: 16},
+                    lineGreen: {lower: 72, upper: 72},
+                    lineBlue: {lower: 0, upper: 0},
+                    lineHeight: {lower: 1, upper:1},
+                    edgePercentage: {lower: 0.10, upper: 0.10},
+                    maxLineHeight: {lower: 8, upper: 8},
+                    numberOfEdgeSections: {lower: 40, upper: 40},
+                }),
+                possibleSecondaryEffects: createGlowEffects(
+                    [
+                        {
+                            arraySize: 400,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 160},
+                            keyFrames: {lower: 0, upper: 1800 - 160},
+                            lowerRange: {lower: 4, upper: 8},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 400,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 75},
+                            keyFrames: {lower: 0, upper: 1800 - 75},
+                            lowerRange: {lower: 2, upper: 6},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 400,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 60, upper: 120},
+                            keyFrames: {lower: 0, upper: 1800 - 120},
+                            lowerRange: {lower: 1, upper: 4},
+                            times: {lower: 1, upper: 3},
+                        }
+                    ]
+                )
+            }),
+        });
+
         await createColorArrayScanlines(
             {
                 project: myTestProject,
@@ -347,22 +407,6 @@ const createComposition = async (colorScheme) => {
                 opacityTimes: {lower: 1, upper: 8},
             });
 
-        await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
-                    shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
-                    linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
-                    opacityTimes: {lower: 15, upper: 15},
-                    lineRed: {lower: 64, upper: 64},
-                    lineGreen: {lower: 32, upper: 32},
-                    lineBlue: {lower: 32, upper: 32},
-                    lineHeight: {lower: 3, upper: 3},
-                    edgePercentage: {lower: 0.10, upper: 0.10},
-                    maxLineHeight: {lower: 8, upper: 8},
-                    numberOfEdgeSections: {lower: 40, upper: 40},
-                })
-            }),
-        });
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
@@ -388,20 +432,6 @@ const createComposition = async (colorScheme) => {
         });
 
 
-        const buffer = 800;
-
-        await createTheMark({
-            project: myTestProject,
-            center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
-            fadeFrom: 0.0,
-            opacity: 0.9,
-            keyFrames: 30,
-            glitchFrameCount: 360,
-            fadeInOutCount: 30,
-            buffer: buffer,
-        })
-
-        promiseArray.push(myTestProject.generateRandomLoop());
     }
 ;
 
