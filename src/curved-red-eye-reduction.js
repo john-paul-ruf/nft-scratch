@@ -40,6 +40,12 @@ import {createInvertedGlitchedTriangle} from "./complex-elements/invertedGlitche
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../my-nft-gen/src/core/math/findValue.js";
+import {
+    BloomFilmGrainEffect
+} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainEffect.js";
+import {
+    BloomFilmGrainConfig
+} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
@@ -333,7 +339,7 @@ const createComposition = async (colorScheme) => {
 
         promiseArray.push(myTestProject.generateRandomLoop());
 
-        await myTestProject.addFinalEffect({
+        /*await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
                     shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
@@ -342,7 +348,7 @@ const createComposition = async (colorScheme) => {
                     lineRed: {lower: 16, upper: 16},
                     lineGreen: {lower: 72, upper: 72},
                     lineBlue: {lower: 0, upper: 0},
-                    lineHeight: {lower: 1, upper:1},
+                    lineHeight: {lower: 1, upper: 1},
                     edgePercentage: {lower: 0.10, upper: 0.10},
                     maxLineHeight: {lower: 8, upper: 8},
                     numberOfEdgeSections: {lower: 40, upper: 40},
@@ -376,7 +382,7 @@ const createComposition = async (colorScheme) => {
                     ]
                 )
             }),
-        });
+        });*/
 
         await createColorArrayScanlines(
             {
@@ -427,6 +433,21 @@ const createComposition = async (colorScheme) => {
                     strength: {lower: 0.09, upper: 0.09},
                     edgeThreshold: {lower: 0.025, upper: 0.025},
                     corner: {lower: 0.025, upper: 0.025},
+                }),
+            }),
+        });
+
+        await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
+                    brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                    brightnessTimes: {lower: 2, upper: 8},
+                    blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 15, upper: 15}},
+                    blurTimes: {lower: 2, upper: 8},
+                    grainRange: {bottom: {lower: 0.2, upper: 0.4}, top: {lower: 0.5, upper: 0.8}},
+                    grainTimes: {lower: 2, upper: 8},
+                    grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
+                    grainIntensityTimes: {lower: 2, upper: 8},
                 }),
             }),
         });
