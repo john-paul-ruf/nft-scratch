@@ -29,8 +29,8 @@ import {ViewportConfig} from "../my-nft-gen/src/effects/primaryEffects/viewport/
 import {ColorPicker} from "../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {CRTShadowEffect} from "../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {ModulateEffect} from "../my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
-import {ModulateConfig} from "../my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
+import {ModulateEffect} from "../my-nft-gen/src/effects/finalImageEffects/modulate/BloomFilmGrainEffect.js";
+import {ModulateConfig} from "../my-nft-gen/src/effects/finalImageEffects/modulate/BloomFilmGrainConfig.js";
 import {CRTScanLinesEffect} from "../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
 import {CRTScanLinesConfig} from "../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {StaticPathEffect} from "../my-nft-gen/src/effects/primaryEffects/static-path/StaticPathEffect.js";
