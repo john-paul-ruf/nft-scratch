@@ -40,10 +40,16 @@ import {createInvertedGlitchedTriangle} from "./complex-elements/invertedGlitche
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../my-nft-gen/src/core/math/findValue.js";
+import {
+    BloomFilmGrainEffect
+} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainEffect.js";
+import {
+    BloomFilmGrainConfig
+} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = eternalRise;
+const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -150,6 +156,39 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /*TRIANGLE: 'triangle',
+
+            // Inverted triangular wave: linear down-up motion
+            INVERTED_TRIANGLE: 'invertedTriangle',
+
+            // Sinusoidal wave: smooth up-down
+            SINE: 'sine',
+
+            // Inverted sine wave: smooth down-up
+            INVERTED_SINE: 'invertedSine',
+
+            // Multi-sine wave blend: organic, non-pingpong loop
+            MULTIWAVE: 'multiwave',
+
+            // Flipped version of multiwave
+            INVERTED_MULTIWAVE: 'invertedMultiwave',
+
+            // Constant ramp from min to max, wraps around
+            FORWARD_LOOP: 'forward',
+
+            // Raised cosine (ease in + ease out)
+            COSINE_BELL: 'cosineBell',
+
+            // Asymmetric ease-up then ease-down shape
+            SMOOTHSTEP: 'smoothstep',
+
+            // Phase-evolving version of MULTIWAVE
+            MULTIWAVE: 'phasedMultiwave',
+
+            // Custom looping shape via precomputed values
+            KEYFRAME: 'keyframe',
+            */
         await createMultiFuzzFlare({
                 project: myTestProject,
                 colorScheme: colorScheme,
@@ -227,7 +266,7 @@ const createComposition = async (colorScheme) => {
         const numberOfLayers = 6;
         const outerRadius = 700;
         const innerRadius = 25;
-        const radiusGitter = new Range(0, 100);
+        const radiusGitter = new Range(0, 200);
         const numberOfSpokes = new Range(40, 80);
         const arcSteps = new Range(10, 30);
         const lineLength = new Range(75, 150);
@@ -285,6 +324,66 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        const buffer = 800;
+
+        await createTheMark({
+            project: myTestProject,
+            center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
+            fadeFrom: 0.0,
+            opacity: 0.9,
+            keyFrames: 30,
+            glitchFrameCount: 360,
+            fadeInOutCount: 30,
+            buffer: buffer,
+        })
+
+        promiseArray.push(myTestProject.generateRandomLoop());
+
+        /*await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
+                    shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                    linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                    opacityTimes: {lower: 15, upper: 15},
+                    lineRed: {lower: 16, upper: 16},
+                    lineGreen: {lower: 72, upper: 72},
+                    lineBlue: {lower: 0, upper: 0},
+                    lineHeight: {lower: 1, upper: 1},
+                    edgePercentage: {lower: 0.10, upper: 0.10},
+                    maxLineHeight: {lower: 8, upper: 8},
+                    numberOfEdgeSections: {lower: 40, upper: 40},
+                }),
+                possibleSecondaryEffects: createGlowEffects(
+                    [
+                        {
+                            arraySize: 400,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 160},
+                            keyFrames: {lower: 0, upper: 1800 - 160},
+                            lowerRange: {lower: 4, upper: 8},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 400,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 25, upper: 75},
+                            keyFrames: {lower: 0, upper: 1800 - 75},
+                            lowerRange: {lower: 2, upper: 6},
+                            times: {lower: 1, upper: 3},
+                        },
+                        {
+                            arraySize: 400,
+                            randomChance: {lower: 10, upper: 25},
+                            glitchFrameCount: {lower: 60, upper: 120},
+                            keyFrames: {lower: 0, upper: 1800 - 120},
+                            lowerRange: {lower: 1, upper: 4},
+                            times: {lower: 1, upper: 3},
+                        }
+                    ]
+                )
+            }),
+        });*/
+
         await createColorArrayScanlines(
             {
                 project: myTestProject,
@@ -314,32 +413,16 @@ const createComposition = async (colorScheme) => {
                 opacityTimes: {lower: 1, upper: 8},
             });
 
-       /* await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
-                    shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
-                    linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
-                    opacityTimes: {lower: 15, upper: 15},
-                    lineRed: {lower: 64, upper: 64},
-                    lineGreen: {lower: 32, upper: 32},
-                    lineBlue: {lower: 32, upper: 32},
-                    lineHeight: {lower: 3, upper: 3},
-                    edgePercentage: {lower: 0.10, upper: 0.10},
-                    maxLineHeight: {lower: 8, upper: 8},
-                    numberOfEdgeSections: {lower: 40, upper: 40},
-                })
-            }),
-        });*/
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                    brightnessTimes: {lower: 4, upper: 4},
+                    brightnessTimes: {lower: 2, upper: 2},
                     saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
                     saturationTimes: {lower: 4, upper: 4},
                     contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                    contrastTimes: {lower: 4, upper: 4},
+                    contrastTimes: {lower: 2, upper: 2},
                 }),
             }),
         });
@@ -354,21 +437,22 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
+        await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
+                    brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                    brightnessTimes: {lower: 2, upper: 8},
+                    blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 15, upper: 15}},
+                    blurTimes: {lower: 2, upper: 8},
+                    grainRange: {bottom: {lower: 0.2, upper: 0.4}, top: {lower: 0.5, upper: 0.8}},
+                    grainTimes: {lower: 2, upper: 8},
+                    grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
+                    grainIntensityTimes: {lower: 2, upper: 8},
+                }),
+            }),
+        });
 
-        const buffer = 800;
 
-        await createTheMark({
-            project: myTestProject,
-            center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
-            fadeFrom: 0.0,
-            opacity: 0.9,
-            keyFrames: 30,
-            glitchFrameCount: 360,
-            fadeInOutCount: 30,
-            buffer: buffer,
-        })
-
-        promiseArray.push(myTestProject.generateRandomLoop());
     }
 ;
 

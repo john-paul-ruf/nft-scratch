@@ -45,7 +45,7 @@ export const createTheMark = async ({
                         keyFrames: [keyFrames],
                         glitchFrameCount: [fadeInOutCount],
                         lowerRange: new Range(fadeFrom, fadeFrom),
-                        upperRange: new Range(opacity, opacity),
+                        upperRange: new Range(1, 1),
                         times: new Range(1, 1),
                     }),
                 }),
@@ -53,9 +53,9 @@ export const createTheMark = async ({
                     effect: FadeKeyFrameEffect,
                     percentChance: 100,
                     currentEffectConfig: new FadeKeyFrameConfig({
-                        keyFrames: [glitchFrameCount - fadeInOutCount],
+                        keyFrames: [keyFrames + glitchFrameCount - fadeInOutCount],
                         glitchFrameCount: [fadeInOutCount],
-                        lowerRange: new Range(opacity, opacity),
+                        lowerRange: new Range(1, 1),
                         upperRange: new Range(fadeFrom, fadeFrom),
                         times: new Range(1, 1),
                     }),
@@ -66,7 +66,7 @@ export const createTheMark = async ({
                     currentEffectConfig: new GlowKeyFrameConfig({
                         keyFrames: [keyFrames],
                         glitchFrameCount: [glitchFrameCount],
-                        lowerRange: new Range(0, 32),
+                        lowerRange: new Range(0, 64),
                         times: new Range(1, 3),
                     }),
                 }),
@@ -79,7 +79,7 @@ export const createTheMark = async ({
                         sectionHeight: [1, 2, 5],
                         offset: {lower: 1, upper: 4},
                         direction: [-1, 1],
-                        glitchTimes: {lower: 1, upper: 1},
+                        glitchTimes: {lower: 1, upper: 2},
                     },
                 ])
             ],
