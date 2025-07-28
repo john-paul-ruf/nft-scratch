@@ -49,7 +49,7 @@ import {
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = neonCyberdream;
+const scheme = binahUnderstanding;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
