@@ -78,6 +78,7 @@ export const createColorArrayScanlines = async ({
                         colorTintTimes: {lower: 1, upper: 1},
                         opacityRange: opacityRange,
                         opacityTimes: opacityTimes,
+                        direction: 'up',
                     }
                 ),
             }),

@@ -83,6 +83,7 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: HexEffect,
@@ -168,12 +169,12 @@ const createComposition = async (colorScheme) => {
                 opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
                 featureStructure: {
                     accentRange: {
-                        bottom: {lower: 30, upper: 40},
-                        top: {lower: 50, upper: 60}
+                        bottom: {lower:15 , upper: 20},
+                        top: {lower: 5, upper: 10}
                     },
                     blurRange: {
-                        bottom: {lower: 6, upper: 10},
-                        top: {lower: 12, upper: 14}
+                        bottom: {lower: 10, upper: 10},
+                        top: {lower: 5, upper: 5}
                     },
                     featherTimes: {lower: 2, upper: 8},
                 },
@@ -211,11 +212,11 @@ const createComposition = async (colorScheme) => {
         const outerRadius = 700;
         const innerRadius = 25;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(40, 80);
+        const numberOfSpokes = new Range(60, 100);
         const arcSteps = new Range(10, 30);
         const lineLength = new Range(75, 150);
         const possibleJumpRangeInPixels = new Range(5, 35);
-        const sparsityFactor = [45, 60, 90, 120];
+        const sparsityFactor = [60, 90, 120];
 
         await layeredCurvedRedEye({
             myTestProject,
@@ -280,53 +281,6 @@ const createComposition = async (colorScheme) => {
             fadeInOutCount: 30,
             buffer: buffer,
         })
-
-        promiseArray.push(myTestProject.generateRandomLoop());
-
-        /*await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
-                    shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
-                    linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
-                    opacityTimes: {lower: 15, upper: 15},
-                    lineRed: {lower: 16, upper: 16},
-                    lineGreen: {lower: 72, upper: 72},
-                    lineBlue: {lower: 0, upper: 0},
-                    lineHeight: {lower: 1, upper: 1},
-                    edgePercentage: {lower: 0.10, upper: 0.10},
-                    maxLineHeight: {lower: 8, upper: 8},
-                    numberOfEdgeSections: {lower: 40, upper: 40},
-                }),
-                possibleSecondaryEffects: createGlowEffects(
-                    [
-                        {
-                            arraySize: 400,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 25, upper: 160},
-                            keyFrames: {lower: 0, upper: 1800 - 160},
-                            lowerRange: {lower: 4, upper: 8},
-                            times: {lower: 1, upper: 3},
-                        },
-                        {
-                            arraySize: 400,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 25, upper: 75},
-                            keyFrames: {lower: 0, upper: 1800 - 75},
-                            lowerRange: {lower: 2, upper: 6},
-                            times: {lower: 1, upper: 3},
-                        },
-                        {
-                            arraySize: 400,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 60, upper: 120},
-                            keyFrames: {lower: 0, upper: 1800 - 120},
-                            lowerRange: {lower: 1, upper: 4},
-                            times: {lower: 1, upper: 3},
-                        }
-                    ]
-                )
-            }),
-        });*/
 
         await createColorArrayScanlines(
             {
@@ -396,6 +350,8 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
+
+        promiseArray.push(myTestProject.generateRandomLoop());
 
     }
 ;
