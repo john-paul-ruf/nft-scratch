@@ -46,6 +46,10 @@ import {
 import {
     BloomFilmGrainConfig
 } from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainConfig.js";
+import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {EdgeGlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
@@ -155,40 +159,6 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        /*TRIANGLE: 'triangle',
-
-            // Inverted triangular wave: linear down-up motion
-            INVERTED_TRIANGLE: 'invertedTriangle',
-
-            // Sinusoidal wave: smooth up-down
-            SINE: 'sine',
-
-            // Inverted sine wave: smooth down-up
-            INVERTED_SINE: 'invertedSine',
-
-            // Multi-sine wave blend: organic, non-pingpong loop
-            MULTIWAVE: 'multiwave',
-
-            // Flipped version of multiwave
-            INVERTED_MULTIWAVE: 'invertedMultiwave',
-
-            // Constant ramp from min to max, wraps around
-            FORWARD_LOOP: 'forward',
-
-            // Raised cosine (ease in + ease out)
-            COSINE_BELL: 'cosineBell',
-
-            // Asymmetric ease-up then ease-down shape
-            SMOOTHSTEP: 'smoothstep',
-
-            // Phase-evolving version of MULTIWAVE
-            MULTIWAVE: 'phasedMultiwave',
-
-            // Custom looping shape via precomputed values
-            KEYFRAME: 'keyframe',
-            */
         await createMultiFuzzFlare({
                 project: myTestProject,
                 colorScheme: colorScheme,
@@ -224,32 +194,23 @@ const createComposition = async (colorScheme) => {
                     },
                     featherTimes: {lower: 2, upper: 8},
                 },
-                secondaryEffects: [...createGlowEffects([
-                    {
-                        arraySize: 50,
-                        randomChance: {lower: 10, upper: 25},
-                        glitchFrameCount: {lower: 25, upper: 160},
-                        keyFrames: {lower: 0, upper: 1800 - 160},
-                        lowerRange: {lower: 8, upper: 16},
-                        times: {lower: 1, upper: 3},
-                    },
-                    {
-                        arraySize: 50,
-                        randomChance: {lower: 10, upper: 25},
-                        glitchFrameCount: {lower: 25, upper: 75},
-                        keyFrames: {lower: 0, upper: 1800 - 75},
-                        lowerRange: {lower: 4, upper: 8},
-                        times: {lower: 1, upper: 3},
-                    },
-                    {
-                        arraySize: 50,
-                        randomChance: {lower: 10, upper: 25},
-                        glitchFrameCount: {lower: 60, upper: 120},
-                        keyFrames: {lower: 0, upper: 1800 - 120},
-                        lowerRange: {lower: 12, upper: 24},
-                        times: {lower: 1, upper: 3},
-                    }
-                ])]
+                secondaryEffects: [
+                    new LayerConfig({
+                        effect: EdgeGlowEffect,
+                        percentChance: 100,
+                        currentEffectConfig: new EdgeGlowConfig({
+                            glowBottom: [75, 0, 130],     // #4B0082
+                            glowTop:    [216, 191, 216],  // #D8BFD8
+                            glowTimes: {lower: 2, upper: 6},
+                            brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                            brightnessTimes: {lower: 2, upper: 8},
+                            blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 15, upper: 15}},
+                            blurTimes: {lower: 2, upper: 8},
+                            brightnessFindValueAlgorithm: getAllFindValueAlgorithms(),
+                            blurFindValueAlgorithm: getAllFindValueAlgorithms(),
+                        }),
+                    })
+                ]
             },
         )
 
