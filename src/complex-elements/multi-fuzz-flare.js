@@ -69,9 +69,9 @@ export const createMultiFuzzFlare = async ({
                     underLayerOpacityTimes: underLayerOpacityTimes,
                     center: center,
                     elementGastonMultiStep: generateSmoothRandomMultistep({
-                        numberOfSegments: 4,
+                        numberOfSegments: 8,
                         max: new Range(1, 4),
-                        times: new Range(2, 3),
+                        times: new Range(2, 4),
                     }),
                     numberOfFlareRings: numberOfRings,
                     flareRingsSizeRange: flareRingsSizeRange,

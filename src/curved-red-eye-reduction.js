@@ -50,6 +50,10 @@ import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/crt
 import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
 import {EdgeGlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
 import {EdgeGlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {LayeredHexEffect} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexEffect.js";
+import {LayeredHexConfig} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
+import {HexEffect} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexEffect.js";
+import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#212121'
@@ -81,53 +85,32 @@ const createComposition = async (colorScheme) => {
 
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
-                effect: ScopesEffect,
+                effect: HexEffect,
                 percentChance: 100,
-                currentEffectConfig: new ScopesConfig({
-                    layerOpacity: 1,
-                    sparsityFactor: [1],
-                    gapFactor: {lower: 0.15, upper: 0.15},
-                    radiusFactor: {lower: 0.1, upper: 0.1},
-                    scaleFactor: 1.1,
-                    alphaRange: {bottom: {lower: 0.3, upper: 0.4}, top: {lower: 0.5, upper: 0.6}},
-                    alphaTimes: {lower: 8, upper: 16},
-                    rotationTimes: {lower: 2, upper: 8},
-                    numberOfScopesInALine: 60,
+                currentEffectConfig: new HexConfig({
+                    layerOpacity: 0.6,
+                    underLayerOpacity: 0.5,
+                    sparsityFactor: [18],
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    gapFactor: {lower: 6, upper: 6},
+                    radiusFactor: {lower: 8, upper: 8},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    featherTimes: {lower: 4, upper: 4},
+                    stroke: 2,
+                    thickness: 4,
+                    scaleFactor: 0.5,
+                    numberOfHex: 12,
+                    strategy: ['static', 'angle', 'rotate'],
+                    overlayStrategy: ['flat'],
                 }),
-                possibleSecondaryEffects: [
-                    ...createGlowEffects([
-                        {
-                            arraySize: 200,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 25, upper: 160},
-                            keyFrames: {lower: 0, upper: 1800 - 160},
-                            lowerRange: {lower: 4, upper: 8},
-                            times: {lower: 1, upper: 3},
-                        },
-                        {
-                            arraySize: 200,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 25, upper: 75},
-                            keyFrames: {lower: 0, upper: 1800 - 75},
-                            lowerRange: {lower: 2, upper: 6},
-                            times: {lower: 1, upper: 3},
-                        },
-                        {
-                            arraySize: 200,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 60, upper: 120},
-                            keyFrames: {lower: 0, upper: 1800 - 120},
-                            lowerRange: {lower: 1, upper: 4},
-                            times: {lower: 1, upper: 3},
-                        }
-                    ])
-
-                ],
+                possibleSecondaryEffects: [],
             }),
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -200,7 +183,7 @@ const createComposition = async (colorScheme) => {
                         percentChance: 100,
                         currentEffectConfig: new EdgeGlowConfig({
                             glowBottom: [75, 0, 130],     // #4B0082
-                            glowTop:    [216, 191, 216],  // #D8BFD8
+                            glowTop: [216, 191, 216],  // #D8BFD8
                             glowTimes: {lower: 2, upper: 6},
                             brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
                             brightnessTimes: {lower: 2, upper: 8},
@@ -246,7 +229,7 @@ const createComposition = async (colorScheme) => {
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
             loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 3);
+                return getRandomIntInclusive(1, 5);
             },
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
@@ -350,7 +333,7 @@ const createComposition = async (colorScheme) => {
                 project: myTestProject,
                 colorArray: colorScheme.colorBucket,
                 lines: {lower: 4, upper: 4},
-                loopTimes: {lower: 1, upper: 2},
+                loopTimes: {lower: 1, upper: 4},
                 brightnessRange: {
                     bottom: {lower: 10, upper: 30},
                     top: {lower: 30, upper: 40}
@@ -401,14 +384,14 @@ const createComposition = async (colorScheme) => {
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
-                    brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
-                    brightnessTimes: {lower: 2, upper: 8},
-                    blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 15, upper: 15}},
-                    blurTimes: {lower: 2, upper: 8},
+                    brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
+                    brightnessTimes: {lower: 4, upper: 4},
+                    blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 15, upper: 15}},
+                    blurTimes: {lower: 4, upper: 4},
                     grainRange: {bottom: {lower: 0.2, upper: 0.4}, top: {lower: 0.5, upper: 0.8}},
-                    grainTimes: {lower: 2, upper: 8},
+                    grainTimes: {lower: 4, upper: 4},
                     grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
-                    grainIntensityTimes: {lower: 2, upper: 8},
+                    grainIntensityTimes: {lower: 4, upper: 4},
                 }),
             }),
         });

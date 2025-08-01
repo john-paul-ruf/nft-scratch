@@ -10,6 +10,9 @@ import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ArcPath} from "my-nft-gen/src/core/position/ArcPath.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
+import {EdgeGlowEffect} from "../../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "../../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {getAllFindValueAlgorithms} from "../../../my-nft-gen/src/core/math/findValue.js";
 
 const generateCustomRandomMultistep = async ({
                                                  numberOfSegments = 4,
@@ -55,12 +58,12 @@ export const metaMappedFramesRing = async ({
     center.y -= centerYAdjustment;
 
     const multiStep = await generateCustomRandomMultistep({
-        numberOfSegments: 4,
+        numberOfSegments: 8,
         times: new Range(1, 3),
     });
 
     const ringMultiStep = await generateCustomRandomMultistep({
-        numberOfSegments: 8,
+        numberOfSegments: 15,
         times: new Range(2, 4),
     });
 
@@ -90,6 +93,21 @@ export const metaMappedFramesRing = async ({
                     loopTimesMultiStep: ringMultiStep,
                 }),
                 possibleSecondaryEffects: [
+                    new LayerConfig({
+                        effect: EdgeGlowEffect,
+                        percentChance: 100,
+                        currentEffectConfig: new EdgeGlowConfig({
+                            glowBottom: [75, 0, 130],     // #4B0082
+                            glowTop:    [216, 191, 216],  // #D8BFD8
+                            glowTimes: {lower: 2, upper: 6},
+                            brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                            brightnessTimes: {lower: 2, upper: 8},
+                            blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 15, upper: 15}},
+                            blurTimes: {lower: 2, upper: 8},
+                            brightnessFindValueAlgorithm: getAllFindValueAlgorithms(),
+                            blurFindValueAlgorithm: getAllFindValueAlgorithms(),
+                        }),
+                    }),
                     ...createDegaussEffects([
                         {
                             arraySize: 75,
@@ -126,27 +144,6 @@ export const metaMappedFramesRing = async ({
             }),
         });
 
-        await project.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: MappedFramesEffect,
-                percentChance: 100,
-                currentEffectConfig: new MappedFramesConfig({
-                    center: new ArcPath({
-                            center: point,
-                            radius: ringRadius,
-                            startAngle: angle * i,
-                            endAngle: angle * (i + rotationAmount),
-                            direction: 1
-                        }
-                    ),
-                    folderName: ringMappedFramePath,
-                    layerOpacity: [0.1],
-                    buffer: [ringBuffer],
-                    loopTimesMultiStep: ringMultiStep,
-                }),
-                possibleSecondaryEffects: [],
-            }),
-        });
 
         await project.addPrimaryEffect({
             layerConfig: new LayerConfig({
@@ -160,7 +157,22 @@ export const metaMappedFramesRing = async ({
                     loopTimesMultiStep: multiStep,
                 }),
                 possibleSecondaryEffects: [
-                    /* ...createDegaussEffects([
+                    new LayerConfig({
+                        effect: EdgeGlowEffect,
+                        percentChance: 100,
+                        currentEffectConfig: new EdgeGlowConfig({
+                            glowBottom: [75, 0, 130],     // #4B0082
+                            glowTop:    [216, 191, 216],  // #D8BFD8
+                            glowTimes: {lower: 2, upper: 6},
+                            brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                            brightnessTimes: {lower: 2, upper: 8},
+                            blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 15, upper: 15}},
+                            blurTimes: {lower: 2, upper: 8},
+                            brightnessFindValueAlgorithm: getAllFindValueAlgorithms(),
+                            blurFindValueAlgorithm: getAllFindValueAlgorithms(),
+                        }),
+                    }),
+                    createDegaussEffects([
                          {
                              arraySize: 50,
                              randomChance: {lower: 10, upper: 25},
@@ -192,48 +204,7 @@ export const metaMappedFramesRing = async ({
                              glitchTimes: {lower: 3, upper: 8},
                          },
                      ]),
-                     ...createGlowEffects([
-                         {
-                             arraySize: 75,
-                             randomChance: {lower: 10, upper: 25},
-                             glitchFrameCount: {lower: 25, upper: 160},
-                             keyFrames: {lower: 0, upper: 1800 - 160},
-                             lowerRange: {lower: 4, upper: 8},
-                             times: {lower: 1, upper: 3},
-                         },
-                         {
-                             arraySize: 50,
-                             randomChance: {lower: 10, upper: 25},
-                             glitchFrameCount: {lower: 25, upper: 75},
-                             keyFrames: {lower: 0, upper: 1800 - 75},
-                             lowerRange: {lower: 2, upper: 6},
-                             times: {lower: 1, upper: 3},
-                         },
-                         {
-                             arraySize: 50,
-                             randomChance: {lower: 10, upper: 25},
-                             glitchFrameCount: {lower: 60, upper: 120},
-                             keyFrames: {lower: 0, upper: 1800 - 120},
-                             lowerRange: {lower: 1, upper: 4},
-                             times: {lower: 1, upper: 3},
-                         }
-                     ])*/
                 ],
-            }),
-        });
-
-        await project.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: MappedFramesEffect,
-                percentChance: 100,
-                currentEffectConfig: new MappedFramesConfig({
-                    center: new Position({x: center.x, y: center.y}),
-                    folderName: centerMappedFramePath,
-                    layerOpacity: [0.1],
-                    buffer: [centerBuffer],
-                    loopTimesMultiStep: multiStep,
-                }),
-                possibleSecondaryEffects: [],
             }),
         });
 
