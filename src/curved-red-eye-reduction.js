@@ -153,7 +153,7 @@ const createComposition = async (colorScheme) => {
                     top: {lower: 0.5, upper: 0.6}
                 },
                 underLayerOpacityTimes: {lower: 2, upper: 8},
-                numberOfFlares: 8,
+                numberOfFlares: 6,
                 numberOfRings: new Range(2, 2),
                 numberOfFlareRays: new Range(8, 8),
                 flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(1)),
