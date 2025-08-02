@@ -157,21 +157,6 @@ export const metaMappedFramesRing = async ({
                     loopTimesMultiStep: multiStep,
                 }),
                 possibleSecondaryEffects: [
-                    new LayerConfig({
-                        effect: EdgeGlowEffect,
-                        percentChance: 100,
-                        currentEffectConfig: new EdgeGlowConfig({
-                            glowBottom: [75, 0, 130],     // #4B0082
-                            glowTop:    [216, 191, 216],  // #D8BFD8
-                            glowTimes: {lower: 2, upper: 6},
-                            brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
-                            brightnessTimes: {lower: 2, upper: 8},
-                            blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 15, upper: 15}},
-                            blurTimes: {lower: 2, upper: 8},
-                            brightnessFindValueAlgorithm: getAllFindValueAlgorithms(),
-                            blurFindValueAlgorithm: getAllFindValueAlgorithms(),
-                        }),
-                    }),
                     createDegaussEffects([
                          {
                              arraySize: 50,
