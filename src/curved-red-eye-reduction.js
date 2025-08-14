@@ -57,14 +57,14 @@ import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConf
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = binahUnderstanding;
+const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
             artist: 'John Ruf',
             projectName: 'curved-red-eye-reduction',
             projectDirectory: 'src/scratch',
-            neutrals: ['#FFFFFF'],
+            neutrals: ['#F5F5F5', '#E0E0E0', '#FAF9F6', '#EDEAE0'],
             backgrounds: [backgroundHex],
             numberOfFrame: 1800,
             colorScheme: colorScheme,
@@ -126,7 +126,7 @@ const createComposition = async (colorScheme) => {
             amplitude: {lower: 100, upper: 100},
             times: {lower: 3, upper: 3},
             center: new Point2D(center.x, center.y - radiusAdjustment),
-            thickness: 24,
+            thickness: 12,
             underlayOpacityRange: {lower: 0.4, upper: 0.5},
             accentRange: {bottom: {lower: 75, upper: 85}, top: {lower: 120, upper: 140}},
             blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 24, upper: 24}},
@@ -143,57 +143,11 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        await createMultiFuzzFlare({
-                project: myTestProject,
-                colorScheme: colorScheme,
-                center: center,
-                invertLayers: true,
-                layerOpacity: 0.5,
-                underLayerOpacityRange: {
-                    bottom: {lower: 0.3, upper: 0.4},
-                    top: {lower: 0.5, upper: 0.6}
-                },
-                underLayerOpacityTimes: {lower: 2, upper: 8},
-                numberOfFlares: 6,
-                numberOfRings: new Range(2, 2),
-                numberOfFlareRays: new Range(8, 8),
-                flareRingsSizeRange: new PercentageRange(new PercentageShortestSide(0.05), new PercentageLongestSide(1)),
-                flareRaysSizeRange: new PercentageRange(new PercentageLongestSide(0.8), new PercentageLongestSide(1)),
-                flareOffset: new PercentageRange(new PercentageShortestSide(0.01), new PercentageShortestSide(0.06)),
-                ringStroke: new Range(1, 1),
-                ringThickness: new Range(1, 5),
-                rayStroke: new Range(1, 1),
-                rayThickness: new Range(1, 5),
-                accentFindValueAlgorithm: getAllFindValueAlgorithms(),
-                blurFindValueAlgorithm: getAllFindValueAlgorithms(),
-                opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
-                featureStructure: {
-                    accentRange: {
-                        bottom: {lower:15 , upper: 20},
-                        top: {lower: 5, upper: 10}
-                    },
-                    blurRange: {
-                        bottom: {lower: 10, upper: 10},
-                        top: {lower: 5, upper: 5}
-                    },
-                    featherTimes: {lower: 2, upper: 8},
-                },
-                secondaryEffects: [
-
-                ]
-            },
-        )
-
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         const stroke = 1;
-        const thickness = 1;
-        const numberOfRedEyes = 4;
+        const thickness = 2;
+        const numberOfRedEyes = 6;
         const numberOfLayers = 6;
         const outerRadius = 700;
         const innerRadius = 25;
@@ -216,37 +170,13 @@ const createComposition = async (colorScheme) => {
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
             loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 5);
+                return getRandomIntInclusive(1, 20);
             },
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
             possibleJumpRangeInPixels: possibleJumpRangeInPixels,
             numberOfLayers,
         });
-
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        await metaMappedFramesRing({
-                project: myTestProject,
-                center: center,
-                ringRadius: 175,
-                numberOfPoints: 8,
-                centerMappedFramePath: './src/assets/mappedFrames/og-eye-flux/',
-                centerOpacity: 0.6,
-                centerBuffer: 800,
-                centerYAdjustment: 0,
-                ringMappedFramePath: './src/assets/mappedFrames/flux-folder/',
-                ringOpacity: 0.4,
-                ringBuffer: 400,
-                ringYAdjustment: 0,
-                rotationAmount: 3,
-            },
-        )
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -261,9 +191,9 @@ const createComposition = async (colorScheme) => {
             project: myTestProject,
             center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
             fadeFrom: 0.0,
-            opacity: 0.9,
+            opacity: 0.7,
             keyFrames: 30,
-            glitchFrameCount: 360,
+            glitchFrameCount: 120,
             fadeInOutCount: 30,
             buffer: buffer,
         })
@@ -273,7 +203,7 @@ const createComposition = async (colorScheme) => {
                 project: myTestProject,
                 colorArray: colorScheme.colorBucket,
                 lines: {lower: 4, upper: 4},
-                loopTimes: {lower: 1, upper: 4},
+                loopTimes: {lower: 1, upper: 8},
                 brightnessRange: {
                     bottom: {lower: 10, upper: 30},
                     top: {lower: 30, upper: 40}
@@ -298,7 +228,8 @@ const createComposition = async (colorScheme) => {
             });
 
 
-        await myTestProject.addFinalEffect({
+     /*
+     await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
@@ -310,6 +241,7 @@ const createComposition = async (colorScheme) => {
                 }),
             }),
         });
+        */
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
@@ -321,6 +253,7 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
+     /*
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
@@ -334,7 +267,8 @@ const createComposition = async (colorScheme) => {
                     grainIntensityTimes: {lower: 4, upper: 4},
                 }),
             }),
-        });
+        })
+        ;*/
 
 
         promiseArray.push(myTestProject.generateRandomLoop());
