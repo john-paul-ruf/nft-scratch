@@ -84,6 +84,7 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+        /*
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: HexEffect,
@@ -108,6 +109,47 @@ const createComposition = async (colorScheme) => {
                 }),
                 possibleSecondaryEffects: [],
             }),
+        });
+        */
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        const stroke = 1;
+        const thickness = 1;
+        const numberOfRedEyes = 4;
+        const numberOfLayers = 6;
+        const outerRadius = 700;
+        const innerRadius = 25;
+        const radiusGitter = new Range(0, 200);
+        const numberOfSpokes = new Range(60, 100);
+        const arcSteps = new Range(8, 16);
+        const lineLength = new Range(200, 300);
+        const possibleJumpRangeInPixels = new Range(25, 75);
+        const sparsityFactor = [8];
+
+        await layeredCurvedRedEye({
+            myTestProject,
+            stroke,
+            thickness,
+            numberOfRedEyes,
+            lineLength,
+            sparsityFactor: sparsityFactor,
+            center,
+            innerRadius: innerRadius,
+            outerRadius: outerRadius,
+            radiusGitter: radiusGitter,
+            loopTimesFunction: (index) => {
+                return getRandomIntInclusive(1, 5);
+            },
+            arcSteps: arcSteps,
+            numberOfSpokes: numberOfSpokes,
+            possibleJumpRangeInPixels: possibleJumpRangeInPixels,
+            numberOfLayers,
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,47 +179,6 @@ const createComposition = async (colorScheme) => {
             blurFindValueAlgorithm: getAllFindValueAlgorithms(),
             opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
         });
-
-
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        const stroke = 1;
-        const thickness = 2;
-        const numberOfRedEyes = 6;
-        const numberOfLayers = 6;
-        const outerRadius = 700;
-        const innerRadius = 25;
-        const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(60, 100);
-        const arcSteps = new Range(10, 30);
-        const lineLength = new Range(75, 150);
-        const possibleJumpRangeInPixels = new Range(5, 35);
-        const sparsityFactor = [60, 90, 120];
-
-        await layeredCurvedRedEye({
-            myTestProject,
-            stroke,
-            thickness,
-            numberOfRedEyes,
-            lineLength,
-            sparsityFactor: sparsityFactor,
-            center,
-            innerRadius: innerRadius,
-            outerRadius: outerRadius,
-            radiusGitter: radiusGitter,
-            loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 20);
-            },
-            arcSteps: arcSteps,
-            numberOfSpokes: numberOfSpokes,
-            possibleJumpRangeInPixels: possibleJumpRangeInPixels,
-            numberOfLayers,
-        });
-
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -228,20 +229,20 @@ const createComposition = async (colorScheme) => {
             });
 
 
-     /*
-     await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                    brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                    brightnessTimes: {lower: 2, upper: 2},
-                    saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
-                    saturationTimes: {lower: 4, upper: 4},
-                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                    contrastTimes: {lower: 2, upper: 2},
-                }),
-            }),
-        });
-        */
+        /*
+        await myTestProject.addFinalEffect({
+               layerConfig: new LayerConfig({
+                   effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
+                       brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                       brightnessTimes: {lower: 2, upper: 2},
+                       saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
+                       saturationTimes: {lower: 4, upper: 4},
+                       contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                       contrastTimes: {lower: 2, upper: 2},
+                   }),
+               }),
+           });
+           */
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
@@ -253,22 +254,22 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
-     /*
-        await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
-                    brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
-                    brightnessTimes: {lower: 4, upper: 4},
-                    blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 15, upper: 15}},
-                    blurTimes: {lower: 4, upper: 4},
-                    grainRange: {bottom: {lower: 0.2, upper: 0.4}, top: {lower: 0.5, upper: 0.8}},
-                    grainTimes: {lower: 4, upper: 4},
-                    grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
-                    grainIntensityTimes: {lower: 4, upper: 4},
-                }),
-            }),
-        })
-        ;*/
+        /*
+           await myTestProject.addFinalEffect({
+               layerConfig: new LayerConfig({
+                   effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
+                       brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
+                       brightnessTimes: {lower: 4, upper: 4},
+                       blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 15, upper: 15}},
+                       blurTimes: {lower: 4, upper: 4},
+                       grainRange: {bottom: {lower: 0.2, upper: 0.4}, top: {lower: 0.5, upper: 0.8}},
+                       grainTimes: {lower: 4, upper: 4},
+                       grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
+                       grainIntensityTimes: {lower: 4, upper: 4},
+                   }),
+               }),
+           })
+           ;*/
 
 
         promiseArray.push(myTestProject.generateRandomLoop());
