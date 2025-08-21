@@ -57,7 +57,7 @@ import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConf
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = neonCyberdream;
+const scheme = neonHarmony;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -130,7 +130,7 @@ const createComposition = async (colorScheme) => {
         const arcSteps = new Range(8, 16);
         const lineLength = new Range(200, 300);
         const possibleJumpRangeInPixels = new Range(25, 75);
-        const sparsityFactor = [8];
+        const sparsityFactor = [6,8,10,12];
 
         await layeredCurvedRedEye({
             myTestProject,
