@@ -7,6 +7,7 @@ import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtSc
 export const createColorArrayScanlines = async ({
                                                     project,
                                                     colorArray,
+                                                    direction,
                                                     lines = {lower: 30, upper: 30},
                                                     loopTimes = {lower: 1, upper: 1},
                                                     brightnessRange = {
@@ -78,7 +79,7 @@ export const createColorArrayScanlines = async ({
                         colorTintTimes: {lower: 1, upper: 1},
                         opacityRange: opacityRange,
                         opacityTimes: opacityTimes,
-                        direction: 'up',
+                        direction: direction,
                     }
                 ),
             }),

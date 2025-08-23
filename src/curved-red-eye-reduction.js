@@ -2,7 +2,7 @@ import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
-    binahUnderstanding,
+    binahUnderstanding, brightAndFeisty,
     chesedKindness,
     eternalRise, gevurahSeverity,
     hodSplendor,
@@ -57,7 +57,7 @@ import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConf
 
 const promiseArray = [];
 const backgroundHex = '#212121'
-const scheme = neonHarmony;
+const scheme = brightAndFeisty;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -123,12 +123,12 @@ const createComposition = async (colorScheme) => {
         const thickness = 1;
         const numberOfRedEyes = 4;
         const numberOfLayers = 6;
-        const outerRadius = 700;
+        const outerRadius = 600;
         const innerRadius = 25;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(60, 100);
+        const numberOfSpokes = new Range(60, 80);
         const arcSteps = new Range(8, 16);
-        const lineLength = new Range(200, 300);
+        const lineLength = new Range(150, 200);
         const possibleJumpRangeInPixels = new Range(25, 75);
         const sparsityFactor = [6,8,10,12];
 
@@ -152,33 +152,6 @@ const createComposition = async (colorScheme) => {
             numberOfLayers,
         });
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        const radius = 300;
-        const radiusAdjustment = radius / 4;
-
-        await createGlitchedTriangle({
-            project: myTestProject,
-            colorScheme: colorScheme,
-            radius: [radius],
-            amplitude: {lower: 100, upper: 100},
-            times: {lower: 3, upper: 3},
-            center: new Point2D(center.x, center.y - radiusAdjustment),
-            thickness: 12,
-            underlayOpacityRange: {lower: 0.4, upper: 0.5},
-            accentRange: {bottom: {lower: 75, upper: 85}, top: {lower: 120, upper: 140}},
-            blurRange: {bottom: {lower: 12, upper: 12}, top: {lower: 24, upper: 24}},
-            featherTimes: {lower: 4, upper: 4},
-            accentBottomRangeReduction: 30,
-            accentTopRangeReduction: 30,
-            accentFindValueAlgorithm: getAllFindValueAlgorithms(),
-            blurFindValueAlgorithm: getAllFindValueAlgorithms(),
-            opacityFindValueAlgorithm: getAllFindValueAlgorithms(),
-        });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,6 +176,7 @@ const createComposition = async (colorScheme) => {
             {
                 project: myTestProject,
                 colorArray: colorScheme.colorBucket,
+                direction: 'up',
                 lines: {lower: 4, upper: 4},
                 loopTimes: {lower: 1, upper: 8},
                 brightnessRange: {
@@ -211,16 +185,15 @@ const createComposition = async (colorScheme) => {
                 },
                 brightnessTimes: {lower: 1, upper: 8},
                 thicknessRange: {
-                    bottom: {lower: 12, upper: 24},
-                    top: {lower: 10, upper: 12}
+                    bottom: {lower: 4, upper: 6},
+                    top: {lower: 8, upper: 12}
                 },
                 thicknessTimes: {lower: 1, upper: 8},
                 lineBlurRange: {
-                    bottom: {lower: 20, upper: 30},
-                    top: {lower: 40, upper: 60}
+                    bottom: {lower: 4, upper: 6},
+                    top: {lower: 8, upper: 12}
                 },
                 lineBlurTimes: {lower: 1, upper: 8},
-
                 opacityRange: {
                     bottom: {lower: 0.4, upper: 0.5},
                     top: {lower: 0.6, upper: 0.7}
@@ -228,6 +201,35 @@ const createComposition = async (colorScheme) => {
                 opacityTimes: {lower: 1, upper: 8},
             });
 
+
+    await createColorArrayScanlines(
+        {
+            project: myTestProject,
+            colorArray: colorScheme.colorBucket,
+            direction: 'down',
+            lines: {lower: 4, upper: 4},
+            loopTimes: {lower: 1, upper: 8},
+            brightnessRange: {
+                bottom: {lower: 10, upper: 30},
+                top: {lower: 30, upper: 40}
+            },
+            brightnessTimes: {lower: 1, upper: 8},
+            thicknessRange: {
+                bottom: {lower: 4, upper: 6},
+                top: {lower: 8, upper: 12}
+            },
+            thicknessTimes: {lower: 1, upper: 8},
+            lineBlurRange: {
+                bottom: {lower: 4, upper: 6},
+                top: {lower: 8, upper: 12}
+            },
+            lineBlurTimes: {lower: 1, upper: 8},
+            opacityRange: {
+                bottom: {lower: 0.4, upper: 0.5},
+                top: {lower: 0.6, upper: 0.7}
+            },
+            opacityTimes: {lower: 1, upper: 8},
+        });
 
         /*
         await myTestProject.addFinalEffect({
