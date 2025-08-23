@@ -56,8 +56,8 @@ import {HexEffect} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexEffe
 import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
 
 const promiseArray = [];
-const backgroundHex = '#212121'
-const scheme = brightAndFeisty;
+const backgroundHex = '#080808'
+const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -126,11 +126,11 @@ const createComposition = async (colorScheme) => {
         const outerRadius = 600;
         const innerRadius = 25;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(60, 80);
-        const arcSteps = new Range(8, 16);
+        const numberOfSpokes = new Range(80, 160);
+        const arcSteps = new Range(16, 24);
         const lineLength = new Range(150, 200);
-        const possibleJumpRangeInPixels = new Range(25, 75);
-        const sparsityFactor = [6,8,10,12];
+        const possibleJumpRangeInPixels = new Range(10, 60);
+        const sparsityFactor = [6, 8, 10, 12];
 
         await layeredCurvedRedEye({
             myTestProject,
@@ -144,7 +144,7 @@ const createComposition = async (colorScheme) => {
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
             loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 5);
+                return getRandomIntInclusive(1, 12);
             },
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
@@ -177,59 +177,59 @@ const createComposition = async (colorScheme) => {
                 project: myTestProject,
                 colorArray: colorScheme.colorBucket,
                 direction: 'up',
-                lines: {lower: 4, upper: 4},
-                loopTimes: {lower: 1, upper: 8},
+                lines: {lower: 6, upper: 6},
+                loopTimes: {lower: 1, upper: 20},
                 brightnessRange: {
-                    bottom: {lower: 10, upper: 30},
-                    top: {lower: 30, upper: 40}
+                    bottom: {lower: 30, upper: 60},
+                    top: {lower: 70, upper: 100}
                 },
-                brightnessTimes: {lower: 1, upper: 8},
+                brightnessTimes: {lower: 20, upper: 40},
                 thicknessRange: {
                     bottom: {lower: 4, upper: 6},
                     top: {lower: 8, upper: 12}
                 },
-                thicknessTimes: {lower: 1, upper: 8},
+                thicknessTimes: {lower: 20, upper: 40},
                 lineBlurRange: {
-                    bottom: {lower: 4, upper: 6},
-                    top: {lower: 8, upper: 12}
+                    bottom: {lower: 8, upper: 10},
+                    top: {lower: 12, upper: 16}
                 },
-                lineBlurTimes: {lower: 1, upper: 8},
+                lineBlurTimes: {lower: 20, upper: 40},
                 opacityRange: {
                     bottom: {lower: 0.4, upper: 0.5},
                     top: {lower: 0.6, upper: 0.7}
                 },
-                opacityTimes: {lower: 1, upper: 8},
+                opacityTimes: {lower: 20, upper: 40},
             });
 
 
-    await createColorArrayScanlines(
-        {
-            project: myTestProject,
-            colorArray: colorScheme.colorBucket,
-            direction: 'down',
-            lines: {lower: 4, upper: 4},
-            loopTimes: {lower: 1, upper: 8},
-            brightnessRange: {
-                bottom: {lower: 10, upper: 30},
-                top: {lower: 30, upper: 40}
-            },
-            brightnessTimes: {lower: 1, upper: 8},
-            thicknessRange: {
-                bottom: {lower: 4, upper: 6},
-                top: {lower: 8, upper: 12}
-            },
-            thicknessTimes: {lower: 1, upper: 8},
-            lineBlurRange: {
-                bottom: {lower: 4, upper: 6},
-                top: {lower: 8, upper: 12}
-            },
-            lineBlurTimes: {lower: 1, upper: 8},
-            opacityRange: {
-                bottom: {lower: 0.4, upper: 0.5},
-                top: {lower: 0.6, upper: 0.7}
-            },
-            opacityTimes: {lower: 1, upper: 8},
-        });
+        await createColorArrayScanlines(
+            {
+                project: myTestProject,
+                colorArray: colorScheme.colorBucket,
+                direction: 'down',
+                lines: {lower: 6, upper: 6},
+                loopTimes: {lower: 1, upper: 20},
+                brightnessRange: {
+                    bottom: {lower: 30, upper: 60},
+                    top: {lower: 70, upper: 100}
+                },
+                brightnessTimes: {lower: 20, upper: 40},
+                thicknessRange: {
+                    bottom: {lower: 4, upper: 6},
+                    top: {lower: 8, upper: 12}
+                },
+                thicknessTimes: {lower: 20, upper: 40},
+                lineBlurRange: {
+                    bottom: {lower: 8, upper: 10},
+                    top: {lower: 12, upper: 16}
+                },
+                lineBlurTimes: {lower: 20, upper: 40},
+                opacityRange: {
+                    bottom: {lower: 0.4, upper: 0.5},
+                    top: {lower: 0.6, upper: 0.7}
+                },
+                opacityTimes: {lower: 20, upper: 40},
+            });
 
         /*
         await myTestProject.addFinalEffect({
