@@ -121,10 +121,10 @@ const createComposition = async (colorScheme) => {
 
         const stroke = 1;
         const thickness = 1;
-        const numberOfRedEyes = 4;
-        const numberOfLayers = 6;
+        const numberOfRedEyes = 6;
+        const numberOfLayers = 3;
         const outerRadius = 600;
-        const innerRadius = 25;
+        const innerRadius = 10;
         const radiusGitter = new Range(0, 200);
         const numberOfSpokes = new Range(80, 160);
         const arcSteps = new Range(16, 24);
@@ -165,7 +165,7 @@ const createComposition = async (colorScheme) => {
             project: myTestProject,
             center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
             fadeFrom: 0.0,
-            opacity: 0.7,
+            opacity: 0.5,
             keyFrames: 30,
             glitchFrameCount: 120,
             fadeInOutCount: 30,
@@ -231,20 +231,20 @@ const createComposition = async (colorScheme) => {
                 opacityTimes: {lower: 20, upper: 40},
             });
 
-        /*
+
         await myTestProject.addFinalEffect({
-               layerConfig: new LayerConfig({
-                   effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                       brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                       brightnessTimes: {lower: 2, upper: 2},
-                       saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
-                       saturationTimes: {lower: 4, upper: 4},
-                       contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
-                       contrastTimes: {lower: 2, upper: 2},
-                   }),
-               }),
-           });
-           */
+            layerConfig: new LayerConfig({
+                effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
+                    brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                    brightnessTimes: {lower: 6, upper: 6},
+                    saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
+                    saturationTimes: {lower: 12, upper: 12},
+                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                    contrastTimes: {lower: 6, upper: 6},
+                }),
+            }),
+        });
+
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
@@ -256,22 +256,21 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
-        /*
-           await myTestProject.addFinalEffect({
-               layerConfig: new LayerConfig({
-                   effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
-                       brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
-                       brightnessTimes: {lower: 4, upper: 4},
-                       blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 15, upper: 15}},
-                       blurTimes: {lower: 4, upper: 4},
-                       grainRange: {bottom: {lower: 0.2, upper: 0.4}, top: {lower: 0.5, upper: 0.8}},
-                       grainTimes: {lower: 4, upper: 4},
-                       grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
-                       grainIntensityTimes: {lower: 4, upper: 4},
-                   }),
-               }),
-           })
-           ;*/
+
+        await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
+                    brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
+                    brightnessTimes: {lower: 12, upper: 12},
+                    blurRange: {bottom: {lower: 8, upper: 8}, top: {lower: 15, upper: 15}},
+                    blurTimes: {lower: 6, upper: 6},
+                    grainRange: {bottom: {lower: 0.2, upper: 0.4}, top: {lower: 0.5, upper: 0.8}},
+                    grainTimes: {lower: 12, upper: 12},
+                    grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
+                    grainIntensityTimes: {lower: 12, upper: 12},
+                }),
+            }),
+        });
 
 
         promiseArray.push(myTestProject.generateRandomLoop());
