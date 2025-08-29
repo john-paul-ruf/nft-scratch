@@ -57,7 +57,7 @@ import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConf
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = neonCyberdream;
+const scheme = chesedKindness;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -123,12 +123,12 @@ const createComposition = async (colorScheme) => {
         const thickness = 1;
         const numberOfRedEyes = 6;
         const numberOfLayers = 3;
-        const outerRadius = 600;
+        const outerRadius = 500;
         const innerRadius = 10;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(80, 160);
+        const numberOfSpokes = new Range(40, 80);
         const arcSteps = new Range(16, 24);
-        const lineLength = new Range(150, 200);
+        const lineLength = new Range(50, 250);
         const possibleJumpRangeInPixels = new Range(10, 60);
         const sparsityFactor = [6, 8, 10, 12];
 
@@ -172,13 +172,13 @@ const createComposition = async (colorScheme) => {
             buffer: buffer,
         })
 
-        await createColorArrayScanlines(
+        /*await createColorArrayScanlines(
             {
                 project: myTestProject,
                 colorArray: colorScheme.colorBucket,
                 direction: 'up',
                 lines: {lower: 6, upper: 6},
-                loopTimes: {lower: 1, upper: 20},
+                loopTimes: {lower: 1, upper: 10},
                 brightnessRange: {
                     bottom: {lower: 30, upper: 60},
                     top: {lower: 70, upper: 100}
@@ -200,15 +200,15 @@ const createComposition = async (colorScheme) => {
                 },
                 opacityTimes: {lower: 20, upper: 40},
             });
+*/
 
-
-        await createColorArrayScanlines(
+       /* await createColorArrayScanlines(
             {
                 project: myTestProject,
                 colorArray: colorScheme.colorBucket,
                 direction: 'down',
                 lines: {lower: 6, upper: 6},
-                loopTimes: {lower: 1, upper: 20},
+                loopTimes: {lower: 1, upper: 10},
                 brightnessRange: {
                     bottom: {lower: 30, upper: 60},
                     top: {lower: 70, upper: 100}
@@ -230,7 +230,7 @@ const createComposition = async (colorScheme) => {
                 },
                 opacityTimes: {lower: 20, upper: 40},
             });
-
+*/
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
@@ -246,7 +246,7 @@ const createComposition = async (colorScheme) => {
         });
 
 
-        await myTestProject.addFinalEffect({
+        /*await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: CRTBarrelEffect, percentChance: 100, currentEffectConfig: new CRTBarrelConfig({
                     strength: {lower: 0.09, upper: 0.09},
@@ -254,7 +254,7 @@ const createComposition = async (colorScheme) => {
                     corner: {lower: 0.025, upper: 0.025},
                 }),
             }),
-        });
+        });*/
 
 
         await myTestProject.addFinalEffect({
