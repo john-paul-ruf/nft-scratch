@@ -98,10 +98,17 @@ const createComposition = async (colorScheme) => {
         const innerRadius = 10;
         const radiusGitter = new Range(0, 200);
         const numberOfSpokes = new Range(40, 50);
-        const arcSteps = new Range(24, 36);
+        const arcSteps = new Range(30, 45);
         const lineLength = new Range(50, 250);
-        const possibleJumpRangeInPixels = new Range(10, 50);
+        const possibleJumpRangeInPixels = new Range(10, 60);
         const sparsityFactor = [6, 8, 10, 12];
+
+        const loopTimesFunction = (index) => {
+            return getRandomIntInclusive(6, 30);
+        };
+
+        const loopTimesRange = new Range(6, 30);
+        const useLoopFunction = false;
 
         await layeredCurvedRedEye({
             myTestProject,
@@ -114,9 +121,9 @@ const createComposition = async (colorScheme) => {
             innerRadius: innerRadius,
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
-            loopTimesFunction: (index) => {
-                return getRandomIntInclusive(6, 30);
-            },
+            loopTimesFunction: loopTimesFunction,
+            loopTimesRange: loopTimesRange,
+            useLoopFunction: useLoopFunction,
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
             possibleJumpRangeInPixels: possibleJumpRangeInPixels,
@@ -142,9 +149,9 @@ const createComposition = async (colorScheme) => {
             innerRadius: innerRadius,
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
-            loopTimesFunction: (index) => {
-                return getRandomIntInclusive(6, 30);
-            },
+            loopTimesFunction: loopTimesFunction,
+            loopTimesRange: loopTimesRange,
+            useLoopFunction: useLoopFunction,
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
             possibleJumpRangeInPixels: possibleJumpRangeInPixels,
