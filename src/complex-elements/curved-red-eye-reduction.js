@@ -81,7 +81,8 @@ export const layeredCurvedRedEye = async ({
                                               numberOfSpokes,
                                               possibleJumpRangeInPixels,
                                               numberOfLayers,
-                                              loopTimesFunction
+                                              loopTimesFunction,
+                                              colorScheme = new ColorScheme({})
                                           }) => {
     for (let i = 0; i < numberOfLayers; i++) {
         await createCurvedRedEyeReduction({
@@ -99,7 +100,8 @@ export const layeredCurvedRedEye = async ({
             arcSteps,
             numberOfSpokes,
             possibleJumpRangeInPixels,
-            secondaryEffects: []
+            secondaryEffects: [],
+            colorScheme
         });
     }
 }
