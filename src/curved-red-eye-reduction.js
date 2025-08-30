@@ -122,7 +122,7 @@ const createComposition = async (colorScheme) => {
         const stroke = 1;
         const thickness = 1;
         const numberOfRedEyes = 6;
-        const numberOfLayers = 3;
+        const numberOfLayers = 1;
         const outerRadius = 500;
         const innerRadius = 10;
         const radiusGitter = new Range(0, 200);
