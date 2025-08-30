@@ -115,7 +115,7 @@ const createComposition = async (colorScheme) => {
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
             loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 12);
+                return getRandomIntInclusive(6, 30);
             },
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
@@ -143,7 +143,7 @@ const createComposition = async (colorScheme) => {
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
             loopTimesFunction: (index) => {
-                return getRandomIntInclusive(1, 12);
+                return getRandomIntInclusive(6, 30);
             },
             arcSteps: arcSteps,
             numberOfSpokes: numberOfSpokes,
