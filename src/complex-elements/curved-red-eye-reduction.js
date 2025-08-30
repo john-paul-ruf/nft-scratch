@@ -20,6 +20,8 @@ export const createCurvedRedEyeReduction = async ({
                                                       loopTimesFunction = (index) => {
                                                           return index + 1
                                                       },
+                                                      loopTimesRange = {lower: 1, upper: 1},
+                                                      useLoopFunction = true,
                                                       arcSteps,
                                                       numberOfSpokes,
                                                       possibleJumpRangeInPixels,
@@ -44,7 +46,10 @@ export const createCurvedRedEyeReduction = async ({
                     outerRadius: gitter + outerRadius,
                     possibleJumpRangeInPixels: possibleJumpRangeInPixels,
                     lineLength: lineLength,
-                    numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
+                    numberOfLoops: useLoopFunction ? {
+                        lower: loopTimesFunction(i),
+                        upper: loopTimesFunction(i)
+                    } : loopTimesRange,
                     invertLayers: true,
                     layerOpacity: 0.6,
                     underLayerOpacity: 0.4,
@@ -82,6 +87,8 @@ export const layeredCurvedRedEye = async ({
                                               possibleJumpRangeInPixels,
                                               numberOfLayers,
                                               loopTimesFunction,
+                                              loopTimesRange,
+                                              useLoopFunction,
                                               colorScheme = new ColorScheme({})
                                           }) => {
     for (let i = 0; i < numberOfLayers; i++) {
@@ -97,6 +104,8 @@ export const layeredCurvedRedEye = async ({
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
             loopTimesFunction: loopTimesFunction,
+            loopTimesRange: loopTimesRange,
+            useLoopFunction: useLoopFunction,
             arcSteps,
             numberOfSpokes,
             possibleJumpRangeInPixels,
