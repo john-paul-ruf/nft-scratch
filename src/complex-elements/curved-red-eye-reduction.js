@@ -23,7 +23,9 @@ export const createCurvedRedEyeReduction = async ({
                                                       arcSteps,
                                                       numberOfSpokes,
                                                       possibleJumpRangeInPixels,
-                                                      secondaryEffects = []
+                                                      secondaryEffects = [],
+                                                      colorScheme = new ColorScheme({})
+
                                                   }) => {
 
 
@@ -54,7 +56,7 @@ export const createCurvedRedEyeReduction = async ({
                     featherTimes: {lower: 10, upper: 20},
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()),
                     arcSteps: arcSteps,
                     numberOfSpokes: numberOfSpokes,
                 }),

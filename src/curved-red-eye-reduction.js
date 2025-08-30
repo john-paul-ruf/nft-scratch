@@ -122,7 +122,7 @@ const createComposition = async (colorScheme) => {
         const stroke = 1;
         const thickness = 1;
         const numberOfRedEyes = 6;
-        const numberOfLayers = 1;
+        const numberOfLayers = 3;
         const outerRadius = 500;
         const innerRadius = 10;
         const radiusGitter = new Range(0, 200);
@@ -150,6 +150,35 @@ const createComposition = async (colorScheme) => {
             numberOfSpokes: numberOfSpokes,
             possibleJumpRangeInPixels: possibleJumpRangeInPixels,
             numberOfLayers,
+            colorScheme: chesedKindness,
+        });
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        await layeredCurvedRedEye({
+            myTestProject,
+            stroke,
+            thickness,
+            numberOfRedEyes,
+            lineLength,
+            sparsityFactor: sparsityFactor,
+            center,
+            innerRadius: innerRadius,
+            outerRadius: outerRadius,
+            radiusGitter: radiusGitter,
+            loopTimesFunction: (index) => {
+                return getRandomIntInclusive(1, 12);
+            },
+            arcSteps: arcSteps,
+            numberOfSpokes: numberOfSpokes,
+            possibleJumpRangeInPixels: possibleJumpRangeInPixels,
+            numberOfLayers,
+            colorScheme: neonCyberdream,
         });
 
 
@@ -202,35 +231,35 @@ const createComposition = async (colorScheme) => {
             });
 */
 
-       /* await createColorArrayScanlines(
-            {
-                project: myTestProject,
-                colorArray: colorScheme.colorBucket,
-                direction: 'down',
-                lines: {lower: 6, upper: 6},
-                loopTimes: {lower: 1, upper: 10},
-                brightnessRange: {
-                    bottom: {lower: 30, upper: 60},
-                    top: {lower: 70, upper: 100}
-                },
-                brightnessTimes: {lower: 20, upper: 40},
-                thicknessRange: {
-                    bottom: {lower: 4, upper: 6},
-                    top: {lower: 8, upper: 12}
-                },
-                thicknessTimes: {lower: 20, upper: 40},
-                lineBlurRange: {
-                    bottom: {lower: 8, upper: 10},
-                    top: {lower: 12, upper: 16}
-                },
-                lineBlurTimes: {lower: 20, upper: 40},
-                opacityRange: {
-                    bottom: {lower: 0.4, upper: 0.5},
-                    top: {lower: 0.6, upper: 0.7}
-                },
-                opacityTimes: {lower: 20, upper: 40},
-            });
-*/
+        /* await createColorArrayScanlines(
+             {
+                 project: myTestProject,
+                 colorArray: colorScheme.colorBucket,
+                 direction: 'down',
+                 lines: {lower: 6, upper: 6},
+                 loopTimes: {lower: 1, upper: 10},
+                 brightnessRange: {
+                     bottom: {lower: 30, upper: 60},
+                     top: {lower: 70, upper: 100}
+                 },
+                 brightnessTimes: {lower: 20, upper: 40},
+                 thicknessRange: {
+                     bottom: {lower: 4, upper: 6},
+                     top: {lower: 8, upper: 12}
+                 },
+                 thicknessTimes: {lower: 20, upper: 40},
+                 lineBlurRange: {
+                     bottom: {lower: 8, upper: 10},
+                     top: {lower: 12, upper: 16}
+                 },
+                 lineBlurTimes: {lower: 20, upper: 40},
+                 opacityRange: {
+                     bottom: {lower: 0.4, upper: 0.5},
+                     top: {lower: 0.6, upper: 0.7}
+                 },
+                 opacityTimes: {lower: 20, upper: 40},
+             });
+ */
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
