@@ -54,10 +54,16 @@ import {LayeredHexEffect} from "../../my-nft-gen/src/effects/primaryEffects/laye
 import {LayeredHexConfig} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
 import {HexEffect} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexEffect.js";
 import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
+import {
+    ClaudeCRTBarrelRollEffect
+} from "../../my-nft-gen/src/effects/finalImageEffects/claudeCRTBarrelRoll/ClaudeCRTBarrelRollEffect.js";
+import {
+    ClaudeCRTBarrelRollConfig
+} from "../../my-nft-gen/src/effects/finalImageEffects/claudeCRTBarrelRoll/ClaudeCRTBarrelRollConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = chesedKindness;
+const scheme = eternalRise;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -77,41 +83,6 @@ const createComposition = async (colorScheme) => {
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        /*
-        await myTestProject.addPrimaryEffect({
-            layerConfig: new LayerConfig({
-                effect: HexEffect,
-                percentChance: 100,
-                currentEffectConfig: new HexConfig({
-                    layerOpacity: 0.6,
-                    underLayerOpacity: 0.5,
-                    sparsityFactor: [18],
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
-                    gapFactor: {lower: 6, upper: 6},
-                    radiusFactor: {lower: 8, upper: 8},
-                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
-                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
-                    featherTimes: {lower: 4, upper: 4},
-                    stroke: 2,
-                    thickness: 4,
-                    scaleFactor: 0.5,
-                    numberOfHex: 12,
-                    strategy: ['static', 'angle', 'rotate'],
-                    overlayStrategy: ['flat'],
-                }),
-                possibleSecondaryEffects: [],
-            }),
-        });
-        */
-
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,10 +97,10 @@ const createComposition = async (colorScheme) => {
         const outerRadius = 500;
         const innerRadius = 10;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(40, 80);
-        const arcSteps = new Range(16, 24);
+        const numberOfSpokes = new Range(40, 50);
+        const arcSteps = new Range(24, 36);
         const lineLength = new Range(50, 250);
-        const possibleJumpRangeInPixels = new Range(10, 60);
+        const possibleJumpRangeInPixels = new Range(10, 50);
         const sparsityFactor = [6, 8, 10, 12];
 
         await layeredCurvedRedEye({
@@ -150,7 +121,7 @@ const createComposition = async (colorScheme) => {
             numberOfSpokes: numberOfSpokes,
             possibleJumpRangeInPixels: possibleJumpRangeInPixels,
             numberOfLayers,
-            colorScheme: chesedKindness,
+            colorScheme: eternalRise,
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -201,66 +172,6 @@ const createComposition = async (colorScheme) => {
             buffer: buffer,
         })
 
-        /*await createColorArrayScanlines(
-            {
-                project: myTestProject,
-                colorArray: colorScheme.colorBucket,
-                direction: 'up',
-                lines: {lower: 6, upper: 6},
-                loopTimes: {lower: 1, upper: 10},
-                brightnessRange: {
-                    bottom: {lower: 30, upper: 60},
-                    top: {lower: 70, upper: 100}
-                },
-                brightnessTimes: {lower: 20, upper: 40},
-                thicknessRange: {
-                    bottom: {lower: 4, upper: 6},
-                    top: {lower: 8, upper: 12}
-                },
-                thicknessTimes: {lower: 20, upper: 40},
-                lineBlurRange: {
-                    bottom: {lower: 8, upper: 10},
-                    top: {lower: 12, upper: 16}
-                },
-                lineBlurTimes: {lower: 20, upper: 40},
-                opacityRange: {
-                    bottom: {lower: 0.4, upper: 0.5},
-                    top: {lower: 0.6, upper: 0.7}
-                },
-                opacityTimes: {lower: 20, upper: 40},
-            });
-*/
-
-        /* await createColorArrayScanlines(
-             {
-                 project: myTestProject,
-                 colorArray: colorScheme.colorBucket,
-                 direction: 'down',
-                 lines: {lower: 6, upper: 6},
-                 loopTimes: {lower: 1, upper: 10},
-                 brightnessRange: {
-                     bottom: {lower: 30, upper: 60},
-                     top: {lower: 70, upper: 100}
-                 },
-                 brightnessTimes: {lower: 20, upper: 40},
-                 thicknessRange: {
-                     bottom: {lower: 4, upper: 6},
-                     top: {lower: 8, upper: 12}
-                 },
-                 thicknessTimes: {lower: 20, upper: 40},
-                 lineBlurRange: {
-                     bottom: {lower: 8, upper: 10},
-                     top: {lower: 12, upper: 16}
-                 },
-                 lineBlurTimes: {lower: 20, upper: 40},
-                 opacityRange: {
-                     bottom: {lower: 0.4, upper: 0.5},
-                     top: {lower: 0.6, upper: 0.7}
-                 },
-                 opacityTimes: {lower: 20, upper: 40},
-             });
- */
-
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
@@ -273,17 +184,6 @@ const createComposition = async (colorScheme) => {
                 }),
             }),
         });
-
-
-        /*await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: CRTBarrelEffect, percentChance: 100, currentEffectConfig: new CRTBarrelConfig({
-                    strength: {lower: 0.09, upper: 0.09},
-                    edgeThreshold: {lower: 0.025, upper: 0.025},
-                    corner: {lower: 0.025, upper: 0.025},
-                }),
-            }),
-        });*/
 
 
         await myTestProject.addFinalEffect({
@@ -301,6 +201,14 @@ const createComposition = async (colorScheme) => {
             }),
         });
 
+       /* await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: ClaudeCRTBarrelRollEffect, percentChance: 100, currentEffectConfig: new ClaudeCRTBarrelRollConfig({
+
+                }),
+            }),
+        });
+*/
 
         promiseArray.push(myTestProject.generateRandomLoop());
 
