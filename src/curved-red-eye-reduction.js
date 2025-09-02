@@ -97,14 +97,14 @@ const createComposition = async (colorScheme) => {
         const outerRadius = 500;
         const innerRadius = 10;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(40, 50);
+        const numberOfSpokes = new Range(60, 70);
         const arcSteps = new Range(30, 45);
         const lineLength = new Range(50, 250);
         const possibleJumpRangeInPixels = new Range(10, 60);
         const sparsityFactor = [6, 8, 10, 12];
 
         const loopTimesFunction = (index) => {
-            return getRandomIntInclusive(6, 30);
+            return getRandomIntInclusive(3, 15);
         };
 
         const loopTimesRange = new Range(6, 30);
@@ -184,7 +184,7 @@ const createComposition = async (colorScheme) => {
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     brightnessTimes: {lower: 6, upper: 6},
-                    saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 3, upper: 3}},
+                    saturationRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 4, upper: 4}},
                     saturationTimes: {lower: 12, upper: 12},
                     contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     contrastTimes: {lower: 6, upper: 6},
@@ -193,7 +193,7 @@ const createComposition = async (colorScheme) => {
         });
 
 
-        await myTestProject.addFinalEffect({
+        /*await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
                     brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
@@ -206,7 +206,7 @@ const createComposition = async (colorScheme) => {
                     grainIntensityTimes: {lower: 12, upper: 12},
                 }),
             }),
-        });
+        });*/
 
        /* await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
