@@ -1,7 +1,7 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
-import {neonCyberdream} from "./assets/color-scheme-store.js";
+import {eternalRise, neonCyberdream} from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
@@ -13,7 +13,7 @@ import {createRings} from "./complex-elements/cosmic-jewel.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = neonCyberdream;
+const scheme = eternalRise;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -47,17 +47,17 @@ const createComposition = async (colorScheme) => {
         const outerRadius = 650;
         const innerRadius = 450;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(30, 40);
+        const numberOfSpokes = new Range(50, 50);
         const arcSteps = new Range(30, 45);
         const lineLength = new Range(50, 250);
-        const possibleJumpRangeInPixels = new Range(10, 60);
+        const possibleJumpRangeInPixels = new Range(5, 15);
         const sparsityFactor = [6, 8, 10, 12];
 
         const loopTimesFunction = (index) => {
             return getRandomIntInclusive(3, 15);
         };
 
-        const loopTimesRange = new Range(6, 30);
+        const loopTimesRange = new Range(3, 15);
         const useLoopFunction = false;
 
         await layeredCurvedRedEye({
@@ -90,7 +90,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 30,
+            ringSpoke: 24,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
@@ -103,13 +103,13 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 2,
-            secondRingSpeed: 6,
-            thirdRingSPeed: 8,
-            fourthRingSpeed: 6,
-            fifthRingSpeed: 1,
+            firstRingSpeed: 4,
+            secondRingSpeed: 12,
+            thirdRingSPeed: 16,
+            fourthRingSpeed: 12,
+            fifthRingSpeed: 6,
 
-            numberOfRings: 4,
+            numberOfRings: 6,
 
             stroke: 1,
             thickness: 1,
