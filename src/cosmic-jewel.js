@@ -1,7 +1,7 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
-import {neonCyberdream} from "./assets/color-scheme-store.js";
+import {eternalRise, neonCyberdream} from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
@@ -13,7 +13,7 @@ import {createRings} from "./complex-elements/cosmic-jewel.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = neonCyberdream;
+const scheme = eternalRise;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -90,7 +90,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 30,
+            ringSpoke: 24,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
@@ -103,13 +103,13 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 2,
-            secondRingSpeed: 6,
-            thirdRingSPeed: 8,
-            fourthRingSpeed: 6,
-            fifthRingSpeed: 1,
+            firstRingSpeed: 4,
+            secondRingSpeed: 12,
+            thirdRingSPeed: 16,
+            fourthRingSpeed: 12,
+            fifthRingSpeed: 6,
 
-            numberOfRings: 4,
+            numberOfRings: 6,
 
             stroke: 1,
             thickness: 1,
