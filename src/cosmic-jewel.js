@@ -1,7 +1,7 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
-import {eternalRise, neonCyberdream} from "./assets/color-scheme-store.js";
+import {binahUnderstanding, eternalRise, neonCyberdream} from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
@@ -13,7 +13,7 @@ import {createRings} from "./complex-elements/cosmic-jewel.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = eternalRise;
+const scheme = binahUnderstanding;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -57,7 +57,7 @@ const createComposition = async (colorScheme) => {
             return getRandomIntInclusive(3, 15);
         };
 
-        const loopTimesRange = new Range(3, 15);
+        const loopTimesRange = new Range(2, 8);
         const useLoopFunction = false;
 
         await layeredCurvedRedEye({
