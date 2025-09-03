@@ -47,17 +47,17 @@ const createComposition = async (colorScheme) => {
         const outerRadius = 650;
         const innerRadius = 450;
         const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(30, 40);
+        const numberOfSpokes = new Range(50, 50);
         const arcSteps = new Range(30, 45);
         const lineLength = new Range(50, 250);
-        const possibleJumpRangeInPixels = new Range(10, 60);
+        const possibleJumpRangeInPixels = new Range(5, 15);
         const sparsityFactor = [6, 8, 10, 12];
 
         const loopTimesFunction = (index) => {
             return getRandomIntInclusive(3, 15);
         };
 
-        const loopTimesRange = new Range(6, 30);
+        const loopTimesRange = new Range(3, 15);
         const useLoopFunction = false;
 
         await layeredCurvedRedEye({
