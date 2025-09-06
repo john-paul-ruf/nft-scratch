@@ -16,12 +16,13 @@ import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {createRings} from "./complex-elements/cosmic-jewel.js";
-import {AnimatedCrossProcessEffect} from "my-nft-gen/src/effects/finalImageEffects/animatedCrossProcess/AnimatedCrossProcessEffect.js";
-import {AnimatedCrossProcessConfig} from "my-nft-gen/src/effects/finalImageEffects/animatedCrossProcess/AnimatedCrossProcessConfig.js";
+import {EdgeGlowEffect} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = neonHarmony;
+const scheme = neonCyberdream;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -98,7 +99,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 20,
+            ringSpoke: 24,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
@@ -111,21 +112,21 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 4,
-            secondRingSpeed: 12,
-            thirdRingSPeed: 16,
-            fourthRingSpeed: 12,
-            fifthRingSpeed: 6,
+            firstRingSpeed: 8,
+            secondRingSpeed: 24,
+            thirdRingSPeed: 32,
+            fourthRingSpeed: 24,
+            fifthRingSpeed: 8,
 
-            numberOfRings: 2,
+            numberOfRings: 4,
 
             stroke: 1,
             thickness: 1,
 
-            opacity: 0.7,
-            underLayerOpacity: 0.6,
-            fourthRingOpacity: 0.45,
-            fifthRingOpacity: 0.5,
+            opacity: 0.4,
+            underLayerOpacity: 0.3,
+            fourthRingOpacity: 0.4,
+            fifthRingOpacity: 0.4,
         })
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,7 +135,7 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const buffer = 800;
+        const buffer = 700;
 
         await createTheMark({
             project: myTestProject,
@@ -150,24 +151,12 @@ const createComposition = async (colorScheme) => {
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                    brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                    brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
                     brightnessTimes: {lower: 6, upper: 6},
-                    saturationRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 4, upper: 4}},
+                    saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
                     saturationTimes: {lower: 12, upper: 12},
-                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
+                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
                     contrastTimes: {lower: 6, upper: 6},
-                }),
-            }),
-        });
-
-        await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: AnimatedCrossProcessEffect,
-                percentChance: 100,
-                currentEffectConfig: new AnimatedCrossProcessConfig({
-                    hueShiftRange: {lower: -30, upper: 30},
-                    contrast: {lower: 0, upper: 0.4},
-                    cycleSpeed: {lower: 1, upper: 3},
                 }),
             }),
         });
