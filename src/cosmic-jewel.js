@@ -22,7 +22,7 @@ import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = neonCyberdream;
+const scheme = neonHarmony;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
