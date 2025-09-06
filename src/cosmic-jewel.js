@@ -118,7 +118,7 @@ const createComposition = async (colorScheme) => {
             fourthRingSpeed: 24,
             fifthRingSpeed: 8,
 
-            numberOfRings: 4,
+            numberOfRings: 8,
 
             stroke: 1,
             thickness: 1,
