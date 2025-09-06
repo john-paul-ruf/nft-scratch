@@ -1,7 +1,13 @@
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
-import {binahUnderstanding, eternalRise, neonCyberdream} from "./assets/color-scheme-store.js";
+import {
+    binahUnderstanding, chesedKindness,
+    chokhmahWisdom,
+    eternalRise,
+    gevurahSeverity,
+    neonCyberdream, neonHarmony
+} from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
@@ -10,10 +16,12 @@ import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {createRings} from "./complex-elements/cosmic-jewel.js";
+import {AnimatedCrossProcessEffect} from "my-nft-gen/src/effects/finalImageEffects/animatedCrossProcess/AnimatedCrossProcessEffect.js";
+import {AnimatedCrossProcessConfig} from "my-nft-gen/src/effects/finalImageEffects/animatedCrossProcess/AnimatedCrossProcessConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = binahUnderstanding;
+const scheme = neonHarmony;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -90,7 +98,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 36,
+            ringSpoke: 20,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
@@ -109,7 +117,7 @@ const createComposition = async (colorScheme) => {
             fourthRingSpeed: 12,
             fifthRingSpeed: 6,
 
-            numberOfRings: 6,
+            numberOfRings: 2,
 
             stroke: 1,
             thickness: 1,
@@ -148,6 +156,18 @@ const createComposition = async (colorScheme) => {
                     saturationTimes: {lower: 12, upper: 12},
                     contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.1, upper: 1.1}},
                     contrastTimes: {lower: 6, upper: 6},
+                }),
+            }),
+        });
+
+        await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: AnimatedCrossProcessEffect,
+                percentChance: 100,
+                currentEffectConfig: new AnimatedCrossProcessConfig({
+                    hueShiftRange: {lower: -30, upper: 30},
+                    contrast: {lower: 0, upper: 0.4},
+                    cycleSpeed: {lower: 1, upper: 3},
                 }),
             }),
         });
