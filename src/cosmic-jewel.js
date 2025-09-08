@@ -21,8 +21,8 @@ import {EdgeGlowConfig} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/E
 import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
-const backgroundHex = '#1d2d3d'
-const scheme = daatKnowledge;
+const backgroundHex = '#2d2d2d'
+const scheme = neonHarmony;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -123,10 +123,12 @@ const createComposition = async (colorScheme) => {
             stroke: 1,
             thickness: 1,
 
-            opacity: 0.4,
+            opacity: 0.2,
             underLayerOpacity: 0.3,
-            fourthRingOpacity: 0.4,
-            fifthRingOpacity: 0.4,
+            secondRingOpacity: 0.35,
+            thirdRingOpacity: 0.4,
+            fourthRingOpacity: 0.45,
+            fifthRingOpacity: 0.5,
         })
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,11 +153,11 @@ const createComposition = async (colorScheme) => {
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                    brightnessRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+                    brightnessRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower:1.25, upper: 1.25}},
                     brightnessTimes: {lower: 6, upper: 6},
                     saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
                     saturationTimes: {lower: 12, upper: 12},
-                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 2, upper: 2}},
+                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 1.5}},
                     contrastTimes: {lower: 6, upper: 6},
                 }),
             }),

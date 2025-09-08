@@ -10,7 +10,7 @@ import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js"
 import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
 export const createRings = async ({
-                                     myTestProject,
+                                      myTestProject,
 
                                       ringSpoke = 30,
 
@@ -39,6 +39,8 @@ export const createRings = async ({
 
                                       opacity = 0.7,
                                       underLayerOpacity = 0.6,
+                                      secondRingOpacity = 0.6,
+                                      thirdRingOpacity = 0.6,
                                       fourthRingOpacity = 0.45,
                                       fifthRingOpacity = 0.5,
                                   }) => {
@@ -89,7 +91,7 @@ export const createRings = async ({
                 currentEffectConfig: new EncircledSpiralConfig({
                     invertLayers: true,
                     layerOpacity: opacity,
-                    underLayerOpacity: underLayerOpacity,
+                    underLayerOpacity: secondRingOpacity,
                     startAngle: {lower: 0, upper: 360},
                     numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                     stroke: stroke,
@@ -122,7 +124,7 @@ export const createRings = async ({
                 currentEffectConfig: new EncircledSpiralConfig({
                     invertLayers: true,
                     layerOpacity: opacity,
-                    underLayerOpacity: underLayerOpacity,
+                    underLayerOpacity: thirdRingOpacity,
                     startAngle: {lower: 0, upper: 360},
                     numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                     stroke: stroke,
@@ -154,7 +156,7 @@ export const createRings = async ({
             currentEffectConfig: new EncircledSpiralConfig({
                 invertLayers: true,
                 layerOpacity: fourthRingOpacity,
-                underLayerOpacity: underLayerOpacity,
+                underLayerOpacity: fourthRingOpacity,
                 startAngle: {lower: 0, upper: 360},
                 numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                 stroke: stroke,
@@ -185,7 +187,7 @@ export const createRings = async ({
             currentEffectConfig: new EncircledSpiralConfig({
                 invertLayers: true,
                 layerOpacity: fifthRingOpacity,
-                underLayerOpacity: underLayerOpacity,
+                underLayerOpacity: fifthRingOpacity,
                 startAngle: {lower: 0, upper: 360},
                 numberOfRings: {lower: numberOfRings + 2, upper: numberOfRings + 2},
                 stroke: stroke,
