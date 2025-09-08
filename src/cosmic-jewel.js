@@ -3,7 +3,7 @@ import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
     binahUnderstanding, chesedKindness,
-    chokhmahWisdom,
+    chokhmahWisdom, daatKnowledge,
     eternalRise,
     gevurahSeverity,
     neonCyberdream, neonHarmony
@@ -21,8 +21,8 @@ import {EdgeGlowConfig} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/E
 import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
-const backgroundHex = '#080808'
-const scheme = neonHarmony;
+const backgroundHex = '#1d2d3d'
+const scheme = daatKnowledge;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
