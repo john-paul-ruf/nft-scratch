@@ -153,11 +153,11 @@ const createComposition = async (colorScheme) => {
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                    brightnessRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower:1.25, upper: 1.25}},
+                    brightnessRange: {bottom: {lower: 0.75, upper: 0.75}, top: {lower:1, upper: 1}},
                     brightnessTimes: {lower: 6, upper: 6},
                     saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
                     saturationTimes: {lower: 12, upper: 12},
-                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 1.5, upper: 1.5}},
+                    contrastRange: {bottom: {lower:  0.75, upper: 0.75}, top: {lower: 1, upper: 1}},
                     contrastTimes: {lower: 6, upper: 6},
                 }),
             }),
