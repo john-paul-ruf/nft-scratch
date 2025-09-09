@@ -6,7 +6,7 @@ import {
     chokhmahWisdom, daatKnowledge,
     eternalRise,
     gevurahSeverity,
-    neonCyberdream, neonHarmony
+    neonCyberdream, neonHarmony, neonLights
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
@@ -22,7 +22,7 @@ import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#2d2d2d'
-const scheme = neonHarmony;
+const scheme = neonLights;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
