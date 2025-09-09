@@ -21,7 +21,7 @@ import {EdgeGlowConfig} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/E
 import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
-const backgroundHex = '#2d2d2d'
+const backgroundHex = '#3d3d3d'
 const scheme = daatKnowledge;
 
 const createComposition = async (colorScheme) => {
@@ -112,11 +112,11 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 8,
-            secondRingSpeed: 24,
-            thirdRingSPeed: 32,
-            fourthRingSpeed: 24,
-            fifthRingSpeed: 8,
+            firstRingSpeed: 32,
+            secondRingSpeed: 8,
+            thirdRingSPeed: 16,
+            fourthRingSpeed: 8,
+            fifthRingSpeed: 32,
 
             numberOfRings: 8,
 
