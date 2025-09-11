@@ -3,7 +3,7 @@ import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
     binahUnderstanding, chesedKindness,
-    chokhmahWisdom, daatKnowledge,
+    chokhmahWisdom, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity,
     neonCyberdream, neonHarmony, neonLights
@@ -22,7 +22,7 @@ import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#3d3d3d'
-const scheme = daatKnowledge;
+const scheme = earthenVeil;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -112,11 +112,11 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 32,
-            secondRingSpeed: 8,
-            thirdRingSPeed: 16,
-            fourthRingSpeed: 8,
-            fifthRingSpeed: 32,
+            firstRingSpeed: 48,
+            secondRingSpeed:24,
+            thirdRingSPeed: 2,
+            fourthRingSpeed: 6,
+            fifthRingSpeed: 2,
 
             numberOfRings: 8,
 
