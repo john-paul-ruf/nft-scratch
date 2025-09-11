@@ -99,7 +99,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 24,
+            ringSpoke: 36,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
