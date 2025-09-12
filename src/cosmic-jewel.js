@@ -6,7 +6,7 @@ import {
     chokhmahWisdom, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity,
-    neonCyberdream, neonHarmony, neonLights
+    neonCyberdream, neonHarmony, neonLights, shadowRealm
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
@@ -21,8 +21,8 @@ import {EdgeGlowConfig} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/E
 import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
-const backgroundHex = '#3d3d3d'
-const scheme = earthenVeil;
+const backgroundHex = '#0D0D0D'
+const scheme = shadowRealm;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -49,8 +49,8 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const stroke = 1;
-        const thickness = 1;
+        const stroke = 6;
+        const thickness = 2;
         const numberOfRedEyes = 3;
         const numberOfLayers = 3;
         const outerRadius = 650;
@@ -58,12 +58,12 @@ const createComposition = async (colorScheme) => {
         const radiusGitter = new Range(0, 200);
         const numberOfSpokes = new Range(50, 50);
         const arcSteps = new Range(30, 45);
-        const lineLength = new Range(50, 250);
+        const lineLength = new Range(25, 75);
         const possibleJumpRangeInPixels = new Range(5, 15);
         const sparsityFactor = [6, 8, 10, 12];
 
         const loopTimesFunction = (index) => {
-            return getRandomIntInclusive(3, 15);
+            return getRandomIntInclusive(3, 12);
         };
 
         const loopTimesRange = new Range(2, 8);
@@ -112,11 +112,11 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 48,
-            secondRingSpeed:24,
-            thirdRingSPeed: 2,
-            fourthRingSpeed: 6,
-            fifthRingSpeed: 2,
+            firstRingSpeed: 64,
+            secondRingSpeed: 32,
+            thirdRingSPeed: 12,
+            fourthRingSpeed: 2,
+            fifthRingSpeed: 6,
 
             numberOfRings: 8,
 
@@ -137,27 +137,27 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const buffer = 700;
+        const buffer = 800;
 
         await createTheMark({
             project: myTestProject,
             center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
             fadeFrom: 0.0,
             opacity: 0.5,
-            keyFrames: 30,
-            glitchFrameCount: 120,
-            fadeInOutCount: 30,
+            keyFrames: 120,
+            glitchFrameCount: 360,
+            fadeInOutCount: 60,
             buffer: buffer,
         })
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
-                    brightnessRange: {bottom: {lower: 0.75, upper: 0.75}, top: {lower:1, upper: 1}},
+                    brightnessRange: {bottom: {lower: 1.1, upper: 1.1}, top: {lower: 1.2, upper: 1.2}},
                     brightnessTimes: {lower: 6, upper: 6},
-                    saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 4, upper: 4}},
                     saturationTimes: {lower: 12, upper: 12},
-                    contrastRange: {bottom: {lower:  0.75, upper: 0.75}, top: {lower: 1, upper: 1}},
+                    contrastRange: {bottom: {lower: 1.25, upper: 1.25}, top: {lower: 1.5, upper: 1.5}},
                     contrastTimes: {lower: 6, upper: 6},
                 }),
             }),
