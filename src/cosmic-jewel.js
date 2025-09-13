@@ -2,8 +2,8 @@ import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
-    binahUnderstanding, chesedKindness,
-    chokhmahWisdom, daatKnowledge, earthenVeil,
+    binahUnderstanding, celestialVault, chesedKindness,
+    chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity,
     neonCyberdream, neonHarmony, neonLights, shadowRealm
@@ -22,7 +22,7 @@ import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#0D0D0D'
-const scheme = shadowRealm;
+const scheme = citrusVitality;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -63,10 +63,10 @@ const createComposition = async (colorScheme) => {
         const sparsityFactor = [6, 8, 10, 12];
 
         const loopTimesFunction = (index) => {
-            return getRandomIntInclusive(3, 12);
+            return getRandomIntInclusive(2, 5);
         };
 
-        const loopTimesRange = new Range(2, 8);
+        const loopTimesRange = new Range(2, 5);
         const useLoopFunction = false;
 
         await layeredCurvedRedEye({
@@ -112,8 +112,8 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 64,
-            secondRingSpeed: 32,
+            firstRingSpeed: 32,
+            secondRingSpeed: 16,
             thirdRingSPeed: 12,
             fourthRingSpeed: 2,
             fifthRingSpeed: 6,

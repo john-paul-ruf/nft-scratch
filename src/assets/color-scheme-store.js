@@ -460,3 +460,18 @@ export const egyptianMysteries = new ColorScheme({
     colorSchemeInfo: "**Color Strategy**: egyptian-mysteries\n" +
         "Colors inspired by ancient Egyptian sacred art and precious stones. Gold, lapis, and jewel tones evoke temple mysteries and divine knowledge."
 });
+
+export const citrusVitality = new ColorScheme({
+    colorBucket: [
+        '#32CD32', // Lime Green
+        '#FF8C00', // Dark Orange
+        '#FFFF00', // Yellow
+        '#228B22', // Forest Green
+        '#FFA500', // Orange
+        '#ADFF2F', // Green Yellow
+        '#FFD700', // Gold
+        '#9ACD32', // Yellow Green
+    ],
+    colorSchemeInfo: "**Color Strategy**: citrus-vitality\n" +
+        "Fresh and energizing palette inspired by citrus fruits. Vibrant greens, oranges, and yellows evoke natural vitality and organic energy."
+});
