@@ -49,14 +49,14 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const stroke = 6;
+        const stroke = 0;
         const thickness = 2;
         const numberOfRedEyes = 3;
-        const numberOfLayers = 3;
-        const outerRadius = 650;
-        const innerRadius = 450;
-        const radiusGitter = new Range(0, 200);
-        const numberOfSpokes = new Range(50, 50);
+        const numberOfLayers = 8;
+        const outerRadius = 700;
+        const innerRadius = 500;
+        const radiusGitter = new Range(0, 100);
+        const numberOfSpokes = new Range(20, 20);
         const arcSteps = new Range(30, 45);
         const lineLength = new Range(25, 75);
         const possibleJumpRangeInPixels = new Range(5, 15);
@@ -99,7 +99,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 36,
+            ringSpoke: 45,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
@@ -112,11 +112,11 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 32,
+            firstRingSpeed: 24,
             secondRingSpeed: 16,
             thirdRingSPeed: 12,
             fourthRingSpeed: 2,
-            fifthRingSpeed: 6,
+            fifthRingSpeed: 4,
 
             numberOfRings: 8,
 
