@@ -18,6 +18,8 @@ import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.j
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {createRings} from "./complex-elements/cosmic-jewel.js";
 import {setupCategoryEventHandlers, setupProjectEventHandlers} from "./util/project-event-handlers.js";
+import {WorkerEventLogger} from "my-nft-gen/src/core/events/WorkerEventLogger.js";
+import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCategories.js";
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
@@ -42,23 +44,28 @@ const createComposition = async (colorScheme) => {
 
         // Set up basic project lifecycle events (generation started/completed)
         setupProjectEventHandlers(myTestProject, {
-            verbose: true,         // Don't show verbose project details
+            verbose: true,         // Show verbose project details
             showProgress: true,     // Show generation started/completed
-            showEffects: true      // Don't show effect additions
+            showEffects: true      // Show effect additions
         });
 
-        // Set up worker thread event categories
-        setupCategoryEventHandlers(myTestProject, {
-            // Event categories to subscribe to
-            frames: true,           // Frame progress events (started, completed, failed)
-            performance: true,     // Performance metrics (timing, memory usage)
-            effects: true,         // Effect processing events
-            fileIo: true,          // File I/O operations (read, write, delete)
-            resource: true,        // Resource allocation (buffers, canvas)
-            lifecycle: true,        // Worker lifecycle (started, completed)
-            progress: true,         // Progress updates and status
-            errors: true,           // Error and warning events (always recommended)
-            verbose: true,          // Show additional details in event message
+        // NEW: Use UnifiedEventBus approach with WorkerEventLogger
+        const eventBus = myTestProject.getEventBus();
+        const { logger } = WorkerEventLogger.subscribeToCategories(eventBus, [
+            WorkerEventCategories.FRAME,
+            WorkerEventCategories.EFFECT,
+            WorkerEventCategories.FILE_IO,
+            WorkerEventCategories.PERFORMANCE,
+            WorkerEventCategories.LIFECYCLE,
+            WorkerEventCategories.ERROR
+        ], {
+            showFrames: true,
+            showEffects: true,
+            showFileIO: true,
+            showPerformance: true,
+            showLifecycle: true,
+            showErrors: true,
+            verbose: true
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
