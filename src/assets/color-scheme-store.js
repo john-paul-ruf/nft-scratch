@@ -475,3 +475,18 @@ export const citrusVitality = new ColorScheme({
     colorSchemeInfo: "**Color Strategy**: citrus-vitality\n" +
         "Fresh and energizing palette inspired by citrus fruits. Vibrant greens, oranges, and yellows evoke natural vitality and organic energy."
 });
+
+export const redGreenYellowPop = new ColorScheme({
+    colorBucket: [
+        '#FF0000', // Pure Red
+        '#00FF00', // Pure Green
+        '#FFFF00', // Pure Yellow
+        '#FF3333', // Bright Red
+        '#33FF33', // Bright Green
+        '#FFFF33', // Bright Yellow
+        '#FF6666', // Light Red
+        '#66FF66', // Light Green
+    ],
+    colorSchemeInfo: "**Color Strategy**: red-green-yellow-pop\n" +
+        "Bold primary colors creating maximum visual impact. Pure reds, greens, and yellows in various intensities for vibrant, attention-grabbing compositions."
+});

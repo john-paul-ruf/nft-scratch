@@ -1,5 +1,6 @@
 import {neonLights} from "../assets/color-scheme-store.js";
-import {Project} from "my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
+import {setupMinimalProjectEventHandlers} from "../util/project-event-handlers.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
@@ -35,6 +36,9 @@ const createComposition = async (colorScheme) => {
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
+
+    // Set up minimal event logging (just start/complete and errors)
+    setupMinimalProjectEventHandlers(myTestProject);
 
 
     await myTestProject.addPrimaryEffect({

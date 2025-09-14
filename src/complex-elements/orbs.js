@@ -9,7 +9,8 @@ import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/Perce
 import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {FuzzFlareConfig} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
 import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
-import {Project} from "my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
+import {setupMinimalProjectEventHandlers} from "../util/project-event-handlers.js";
 import {getRandomIntExclusive} from "my-nft-gen/src/core/math/random.js";
 import {getMultiStep} from "../util/multistep.js";
 import {createDegaussEffects} from "../util/glitch.js";

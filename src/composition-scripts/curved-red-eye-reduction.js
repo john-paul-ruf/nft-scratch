@@ -1,4 +1,5 @@
-import {Project} from "my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
+import {setupMinimalProjectEventHandlers} from "../util/project-event-handlers.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
@@ -75,6 +76,9 @@ const createComposition = async (colorScheme) => {
             renderJumpFrames: 1,
             frameStart: 0,
         });
+
+        // Set up event handlers for project lifecycle
+        setupMinimalProjectEventHandlers(myTestProject);
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

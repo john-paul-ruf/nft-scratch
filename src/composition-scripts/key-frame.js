@@ -5,7 +5,8 @@ import {
     eternalRise,
     neonHarmony
 } from "../assets/color-scheme-store.js";
-import {Project} from "my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
+import {setupMinimalProjectEventHandlers} from "../util/project-event-handlers.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {CRTScanLinesEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
 import {CRTScanLinesConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
