@@ -17,9 +17,6 @@ import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {createRings} from "./complex-elements/cosmic-jewel.js";
-import {EdgeGlowEffect} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
-import {EdgeGlowConfig} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
-import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
@@ -63,7 +60,7 @@ const createComposition = async (colorScheme) => {
         const possibleJumpRangeInPixels = new Range(5, 15);
         const sparsityFactor = [6, 8, 10, 12];
 
-        const loopTimesFunction = (index) => {
+        const loopTimesFunction = () => {
             return getRandomIntInclusive(2, 5);
         };
 
@@ -153,7 +150,9 @@ const createComposition = async (colorScheme) => {
 
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
-                effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
+                effect: ModulateEffect,
+                percentChance: 100,
+                currentEffectConfig: new ModulateConfig({
                     brightnessRange: {bottom: {lower: 1.1, upper: 1.1}, top: {lower: 1.2, upper: 1.2}},
                     brightnessTimes: {lower: 6, upper: 6},
                     saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 4, upper: 4}},

@@ -29,8 +29,8 @@ import {ViewportConfig} from "my-nft-effects-core/src/effects/primaryEffects/vie
 import {ColorPicker} from "../my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {CRTShadowEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
 import {CRTShadowConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/BloomFilmGrainEffect.js";
-import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/BloomFilmGrainConfig.js";
+import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
+import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {CRTScanLinesEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
 import {CRTScanLinesConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
