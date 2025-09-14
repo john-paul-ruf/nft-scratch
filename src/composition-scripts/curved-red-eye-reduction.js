@@ -1,5 +1,5 @@
-import {Project} from "../my-nft-gen/src/app/Project.js";
-import {LayerConfig} from "../my-nft-gen/src/core/layer/LayerConfig.js";
+import {Project} from "my-nft-gen/src/app/Project.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
     binahUnderstanding, brightAndFeisty,
@@ -11,59 +11,53 @@ import {
     tiferetBeauty,
     yesodFoundation
 } from "../assets/color-scheme-store.js";
-import {CRTShadowEffect} from "../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {CRTShadowConfig} from "../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {CRTBarrelEffect} from "../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
-import {CRTBarrelConfig} from "../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
-import {ModulateEffect} from "../my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
-import {ModulateConfig} from "../my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
-import {getRandomIntInclusive} from '../my-nft-gen/src/core/math/random.js';
-import {Point2D} from "../my-nft-gen/src/core/layer/configType/Point2D.js";
+import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {CRTBarrelEffect} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
+import {CRTBarrelConfig} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
+import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
+import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
+import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {layeredRedEye,} from "../complex-elements/red-eye-reduction.js";
 import {createStackedScanlines} from "../complex-elements/stacked-crt-scanlines.js";
 import {createGlitchedTriangle} from "../complex-elements/glitchedTriangle.js";
-import {ViewportEffect} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {randomNumber} from "../../../my-nft-gen/src/core/math/random.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {randomNumber} from "my-nft-gen/src/core/math/random.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createDegaussEffects, createGlowEffects} from "../util/glitch.js";
-import {ScopesEffect} from "../../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesEffect.js";
-import {ScopesConfig} from "../../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesConfig.js";
+import {ScopesEffect} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesEffect.js";
+import {ScopesConfig} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesConfig.js";
 import {createMultiFuzzFlare} from "../complex-elements/multi-fuzz-flare.js";
-import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
-import {PercentageRange} from "../../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
-import {PercentageShortestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
-import {PercentageLongestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
+import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
+import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";
+import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
+import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {createColorArrayScanlines} from "../complex-elements/color-array-crt-scanlines.js";
 import {metaMappedFramesRing} from "../complex-elements/metaMappedFramesRing.js";
 import {createInvertedGlitchedTriangle} from "../complex-elements/invertedGlitchedTriangle.js";
 import {layeredCurvedRedEye} from "../complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "../complex-elements/the-mark.js";
-import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../../my-nft-gen/src/core/math/findValue.js";
+import {FindValueAlgorithm, getAllFindValueAlgorithms} from "my-nft-gen/src/core/math/findValue.js";
 import {
     BloomFilmGrainEffect
-} from "../../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainEffect.js";
+} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainEffect.js";
 import {
     BloomFilmGrainConfig
-} from "../../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainConfig.js";
-import {CRTDegaussEffect} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
-import {CRTDegaussConfig} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {EdgeGlowEffect} from "../../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
-import {EdgeGlowConfig} from "../../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
-import {LayeredHexEffect} from "../../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexEffect.js";
-import {LayeredHexConfig} from "../../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
-import {HexEffect} from "../../../my-nft-gen/src/effects/primaryEffects/hex/HexEffect.js";
-import {HexConfig} from "../../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
-import {
-    ClaudeCRTBarrelRollEffect
-} from "../../../my-nft-gen/src/effects/finalImageEffects/claudeCRTBarrelRoll/ClaudeCRTBarrelRollEffect.js";
-import {
-    ClaudeCRTBarrelRollConfig
-} from "../../../my-nft-gen/src/effects/finalImageEffects/claudeCRTBarrelRoll/ClaudeCRTBarrelRollConfig.js";
+} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainConfig.js";
+import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {EdgeGlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {LayeredHexEffect} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexEffect.js";
+import {LayeredHexConfig} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
+import {HexEffect} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexEffect.js";
+import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'
-const scheme = eternalRise;
+const scheme = chesedKindness;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -83,6 +77,41 @@ const createComposition = async (colorScheme) => {
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        /*
+        await myTestProject.addPrimaryEffect({
+            layerConfig: new LayerConfig({
+                effect: HexEffect,
+                percentChance: 100,
+                currentEffectConfig: new HexConfig({
+                    layerOpacity: 0.6,
+                    underLayerOpacity: 0.5,
+                    sparsityFactor: [18],
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#000000'),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    gapFactor: {lower: 6, upper: 6},
+                    radiusFactor: {lower: 8, upper: 8},
+                    accentRange: {bottom: {lower: 1, upper: 1}, top: {lower: 3, upper: 3}},
+                    blurRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
+                    featherTimes: {lower: 4, upper: 4},
+                    stroke: 2,
+                    thickness: 4,
+                    scaleFactor: 0.5,
+                    numberOfHex: 12,
+                    strategy: ['static', 'angle', 'rotate'],
+                    overlayStrategy: ['flat'],
+                }),
+                possibleSecondaryEffects: [],
+            }),
+        });
+        */
+
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +133,7 @@ const createComposition = async (colorScheme) => {
         const sparsityFactor = [6, 8, 10, 12];
 
         const loopTimesFunction = (index) => {
-            return getRandomIntInclusive(3, 15);
+            return getRandomIntInclusive(4, 15);
         };
 
         const loopTimesRange = new Range(6, 30);
@@ -128,7 +157,7 @@ const createComposition = async (colorScheme) => {
             numberOfSpokes: numberOfSpokes,
             possibleJumpRangeInPixels: possibleJumpRangeInPixels,
             numberOfLayers,
-            colorScheme: eternalRise,
+            colorScheme: chesedKindness,
         });
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,6 +208,66 @@ const createComposition = async (colorScheme) => {
             buffer: buffer,
         })
 
+        /*await createColorArrayScanlines(
+            {
+                project: myTestProject,
+                colorArray: colorScheme.colorBucket,
+                direction: 'up',
+                lines: {lower: 6, upper: 6},
+                loopTimes: {lower: 1, upper: 10},
+                brightnessRange: {
+                    bottom: {lower: 30, upper: 60},
+                    top: {lower: 70, upper: 100}
+                },
+                brightnessTimes: {lower: 20, upper: 40},
+                thicknessRange: {
+                    bottom: {lower: 4, upper: 6},
+                    top: {lower: 8, upper: 12}
+                },
+                thicknessTimes: {lower: 20, upper: 40},
+                lineBlurRange: {
+                    bottom: {lower: 8, upper: 10},
+                    top: {lower: 12, upper: 16}
+                },
+                lineBlurTimes: {lower: 20, upper: 40},
+                opacityRange: {
+                    bottom: {lower: 0.4, upper: 0.5},
+                    top: {lower: 0.6, upper: 0.7}
+                },
+                opacityTimes: {lower: 20, upper: 40},
+            });
+*/
+
+        /* await createColorArrayScanlines(
+             {
+                 project: myTestProject,
+                 colorArray: colorScheme.colorBucket,
+                 direction: 'down',
+                 lines: {lower: 6, upper: 6},
+                 loopTimes: {lower: 1, upper: 10},
+                 brightnessRange: {
+                     bottom: {lower: 30, upper: 60},
+                     top: {lower: 70, upper: 100}
+                 },
+                 brightnessTimes: {lower: 20, upper: 40},
+                 thicknessRange: {
+                     bottom: {lower: 4, upper: 6},
+                     top: {lower: 8, upper: 12}
+                 },
+                 thicknessTimes: {lower: 20, upper: 40},
+                 lineBlurRange: {
+                     bottom: {lower: 8, upper: 10},
+                     top: {lower: 12, upper: 16}
+                 },
+                 lineBlurTimes: {lower: 20, upper: 40},
+                 opacityRange: {
+                     bottom: {lower: 0.4, upper: 0.5},
+                     top: {lower: 0.6, upper: 0.7}
+                 },
+                 opacityTimes: {lower: 20, upper: 40},
+             });
+ */
+
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect, percentChance: 100, currentEffectConfig: new ModulateConfig({
@@ -195,6 +284,18 @@ const createComposition = async (colorScheme) => {
 
         /*await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
+                effect: CRTBarrelEffect, percentChance: 100, currentEffectConfig: new CRTBarrelConfig({
+                    strength: {lower: 0.09, upper: 0.09},
+                    edgeThreshold: {lower: 0.025, upper: 0.025},
+                    corner: {lower: 0.025, upper: 0.025},
+                }),
+            }),
+        });*/
+
+
+        /*
+        await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
                 effect: BloomFilmGrainEffect, percentChance: 100, currentEffectConfig: new BloomFilmGrainConfig({
                     brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2.5, upper: 2.5}},
                     brightnessTimes: {lower: 12, upper: 12},
@@ -204,14 +305,6 @@ const createComposition = async (colorScheme) => {
                     grainTimes: {lower: 12, upper: 12},
                     grainIntensityRange: {bottom: {lower: 0.08, upper: 0.08}, top: {lower: 0.1, upper: 0.1}},
                     grainIntensityTimes: {lower: 12, upper: 12},
-                }),
-            }),
-        });*/
-
-       /* await myTestProject.addFinalEffect({
-            layerConfig: new LayerConfig({
-                effect: ClaudeCRTBarrelRollEffect, percentChance: 100, currentEffectConfig: new ClaudeCRTBarrelRollConfig({
-
                 }),
             }),
         });
