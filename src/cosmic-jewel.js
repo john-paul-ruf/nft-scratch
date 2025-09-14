@@ -2,6 +2,7 @@ import {Project} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
+    alchemicalTransmutation,
     binahUnderstanding, celestialVault, chesedKindness,
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
@@ -21,8 +22,8 @@ import {EdgeGlowConfig} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/E
 import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];
-const backgroundHex = '#0D0D0D'
-const scheme = citrusVitality;
+const backgroundHex = '#2D2D2D'
+const scheme = alchemicalTransmutation;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -112,11 +113,11 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: 24,
-            secondRingSpeed: 16,
-            thirdRingSPeed: 12,
-            fourthRingSpeed: 2,
-            fifthRingSpeed: 4,
+            firstRingSpeed: getRandomIntInclusive(2,24),
+            secondRingSpeed: getRandomIntInclusive(2,24),
+            thirdRingSPeed: getRandomIntInclusive(2,24),
+            fourthRingSpeed: getRandomIntInclusive(2,24),
+            fifthRingSpeed: getRandomIntInclusive(2,24),
 
             numberOfRings: 8,
 
