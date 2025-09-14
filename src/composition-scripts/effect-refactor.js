@@ -11,6 +11,9 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
+    // Set up event handlers for project lifecycle
+    setupMinimalProjectEventHandlers(myTestProject);
+
 
     promiseArray.push(myTestProject.generateRandomLoop());
 };

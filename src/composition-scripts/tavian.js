@@ -1,5 +1,6 @@
 import {eyeBurn, neonLights} from "../assets/color-scheme-store.js";
-import {Project} from "my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
+import {setupMinimalProjectEventHandlers} from "../util/project-event-handlers.js";
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {CRTScanLinesEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
@@ -27,6 +28,9 @@ const createComposition = async (colorScheme) => {
         numberOfFrame: 1800,
         colorScheme: colorScheme,
     });
+
+    // Set up event handlers for project lifecycle
+    setupMinimalProjectEventHandlers(myTestProject);
 
     import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
     import {

@@ -1,4 +1,4 @@
-import {Project} from "my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
@@ -17,6 +17,7 @@ import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {createRings} from "./complex-elements/cosmic-jewel.js";
+import {setupCategoryEventHandlers, setupProjectEventHandlers} from "./util/project-event-handlers.js";
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
@@ -37,6 +38,27 @@ const createComposition = async (colorScheme) => {
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
             frameStart: 0,
+        });
+
+        // Set up basic project lifecycle events (generation started/completed)
+        setupProjectEventHandlers(myTestProject, {
+            verbose: true,         // Don't show verbose project details
+            showProgress: true,     // Show generation started/completed
+            showEffects: true      // Don't show effect additions
+        });
+
+        // Set up worker thread event categories
+        setupCategoryEventHandlers(myTestProject, {
+            // Event categories to subscribe to
+            frames: true,           // Frame progress events (started, completed, failed)
+            performance: true,     // Performance metrics (timing, memory usage)
+            effects: true,         // Effect processing events
+            fileIo: true,          // File I/O operations (read, write, delete)
+            resource: true,        // Resource allocation (buffers, canvas)
+            lifecycle: true,        // Worker lifecycle (started, completed)
+            progress: true,         // Progress updates and status
+            errors: true,           // Error and warning events (always recommended)
+            verbose: true,          // Show additional details in event message
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
@@ -110,11 +132,11 @@ const createComposition = async (colorScheme) => {
             fourthRingColor: colorScheme.getColorFromBucket(),
             fifthRingColor: colorScheme.getColorFromBucket(),
 
-            firstRingSpeed: getRandomIntInclusive(2,24),
-            secondRingSpeed: getRandomIntInclusive(2,24),
-            thirdRingSPeed: getRandomIntInclusive(2,24),
-            fourthRingSpeed: getRandomIntInclusive(2,24),
-            fifthRingSpeed: getRandomIntInclusive(2,24),
+            firstRingSpeed: getRandomIntInclusive(2, 24),
+            secondRingSpeed: getRandomIntInclusive(2, 24),
+            thirdRingSPeed: getRandomIntInclusive(2, 24),
+            fourthRingSpeed: getRandomIntInclusive(2, 24),
+            fifthRingSpeed: getRandomIntInclusive(2, 24),
 
             numberOfRings: 12,
 

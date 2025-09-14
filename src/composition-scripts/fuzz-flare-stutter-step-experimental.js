@@ -1,4 +1,5 @@
-import {Project} from "my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
+import {setupMinimalProjectEventHandlers} from "../util/project-event-handlers.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {FuzzFlareEffect} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";

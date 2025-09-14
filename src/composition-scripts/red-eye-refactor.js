@@ -1,4 +1,5 @@
-import {Project} from "../my-nft-gen/src/app/Project.js";
+import {Project, ProjectEvents} from "../my-nft-gen/src/app/Project.js";
+import {setupMinimalProjectEventHandlers} from "./util/project-event-handlers.js";
 import {createOrbElement} from "../complex-elements/orbs.js";
 import {getMultiStep} from "../util/multistep.js";
 import {createDegaussEffects} from "../util/glitch.js";
