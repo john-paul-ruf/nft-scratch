@@ -5,7 +5,6 @@
     "red-eye": "node ./src/red-eye-goes-on.js",
     "fuzz-flare": "node src/composition-scripts/fuzz-flare.js",
     "key-frame": "node src/composition-scripts/key-frame.js",
-    "key-frame-clinic": "clinic doctor -- node src/composition-scripts/key-frame.js",
     "operator-override": "node src/composition-scripts/operator-override.js",
     "red-eye-reduction": "node src/composition-scripts/red-eye-reduction.js",
     "curved-red-eye-reduction": "node src/composition-scripts/curved-red-eye-reduction.js",
