@@ -6,7 +6,7 @@ import {
     binahUnderstanding, celestialVault, chesedKindness,
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
-    gevurahSeverity,
+    gevurahSeverity, hodSplendor,
     neonCyberdream, neonHarmony, neonLights, shadowRealm
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
@@ -20,7 +20,7 @@ import {createRings} from "./complex-elements/cosmic-jewel.js";
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = alchemicalTransmutation;
+const scheme = hodSplendor;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -116,7 +116,7 @@ const createComposition = async (colorScheme) => {
             fourthRingSpeed: getRandomIntInclusive(2,24),
             fifthRingSpeed: getRandomIntInclusive(2,24),
 
-            numberOfRings: 8,
+            numberOfRings: 12,
 
             stroke: 1,
             thickness: 1,
