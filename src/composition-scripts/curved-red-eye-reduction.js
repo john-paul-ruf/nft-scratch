@@ -11,24 +11,24 @@ import {
     tiferetBeauty,
     yesodFoundation
 } from "../assets/color-scheme-store.js";
-import {CRTShadowEffect} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {CRTShadowConfig} from "my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {CRTBarrelEffect} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
-import {CRTBarrelConfig} from "my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
-import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
-import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
+import {CRTShadowEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {CRTShadowConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {CRTBarrelEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
+import {CRTBarrelConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
+import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
+import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {layeredRedEye,} from "../complex-elements/red-eye-reduction.js";
 import {createStackedScanlines} from "../complex-elements/stacked-crt-scanlines.js";
 import {createGlitchedTriangle} from "../complex-elements/glitchedTriangle.js";
-import {ViewportEffect} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {ViewportEffect} from "my-nft-effects-core/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "my-nft-effects-core/src/effects/primaryEffects/viewport/ViewportConfig.js";
 import {randomNumber} from "my-nft-gen/src/core/math/random.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createDegaussEffects, createGlowEffects} from "../util/glitch.js";
-import {ScopesEffect} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesEffect.js";
-import {ScopesConfig} from "../../my-nft-gen/src/effects/primaryEffects/scopes/ScopesConfig.js";
+import {ScopesEffect} from "my-nft-effects-core/src/effects/primaryEffects/scopes/ScopesEffect.js";
+import {ScopesConfig} from "my-nft-effects-core/src/effects/primaryEffects/scopes/ScopesConfig.js";
 import {createMultiFuzzFlare} from "../complex-elements/multi-fuzz-flare.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";
@@ -42,18 +42,18 @@ import {createTheMark} from "../complex-elements/the-mark.js";
 import {FindValueAlgorithm, getAllFindValueAlgorithms} from "my-nft-gen/src/core/math/findValue.js";
 import {
     BloomFilmGrainEffect
-} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainEffect.js";
+} from "my-nft-effects-core/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainEffect.js";
 import {
     BloomFilmGrainConfig
-} from "../../my-nft-gen/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainConfig.js";
-import {CRTDegaussEffect} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
-import {CRTDegaussConfig} from "../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {EdgeGlowEffect} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
-import {EdgeGlowConfig} from "../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
-import {LayeredHexEffect} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexEffect.js";
-import {LayeredHexConfig} from "../../my-nft-gen/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
-import {HexEffect} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexEffect.js";
-import {HexConfig} from "../../my-nft-gen/src/effects/primaryEffects/hex/HexConfig.js";
+} from "my-nft-effects-core/src/effects/finalImageEffects/bloomFilmGrain/BloomFilmGrainConfig.js";
+import {CRTDegaussEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTDegaussConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {EdgeGlowEffect} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {LayeredHexEffect} from "my-nft-effects-core/src/effects/primaryEffects/layeredHex/LayeredHexEffect.js";
+import {LayeredHexConfig} from "my-nft-effects-core/src/effects/primaryEffects/layeredHex/LayeredHexConfig.js";
+import {HexEffect} from "my-nft-effects-core/src/effects/primaryEffects/hex/HexEffect.js";
+import {HexConfig} from "my-nft-effects-core/src/effects/primaryEffects/hex/HexConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#080808'

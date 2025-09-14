@@ -1,13 +1,13 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {
     EncircledSpiralEffect
-} from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
+} from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
 import {
     EncircledSpiralConfig
-} from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-import {findPointByAngleAndCircle} from "../../../my-nft-gen/src/core/math/drawingMath.js";
-import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+} from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
 export const createRings = async ({
                                       myTestProject,

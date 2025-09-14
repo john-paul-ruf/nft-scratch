@@ -1,14 +1,14 @@
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {CRTDegaussConfig} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {CRTDegaussEffect} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTDegaussConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {CRTDegaussEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 
-import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
-import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
-import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
-import {FadeKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
-import {BlurKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameEffect.js";
-import {BlurKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/blur/BlurKeyFrameConfig.js";
+import {GlowKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
+import {GlowKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
+import {FadeKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
+import {FadeKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
+import {BlurKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/blur/BlurKeyFrameEffect.js";
+import {BlurKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/blur/BlurKeyFrameConfig.js";
 
 
 export function createDegaussEffects(config = [

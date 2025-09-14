@@ -9,16 +9,16 @@ import {
     gevurahSeverity,
     neonCyberdream, neonHarmony, neonLights, shadowRealm
 } from "./assets/color-scheme-store.js";
-import {ModulateEffect} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateEffect.js";
-import {ModulateConfig} from "my-nft-gen/src/effects/finalImageEffects/modulate/ModulateConfig.js";
+import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
+import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
 import {createTheMark} from "./complex-elements/the-mark.js";
 import {createRings} from "./complex-elements/cosmic-jewel.js";
-import {EdgeGlowEffect} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
-import {EdgeGlowConfig} from "my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {EdgeGlowEffect} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
 import {FindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 const promiseArray = [];

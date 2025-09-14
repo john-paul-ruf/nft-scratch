@@ -2,17 +2,17 @@ import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEffects} from "../util/glitch.js";
 
-import {MappedFramesEffect} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {MappedFramesConfig} from "my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
+import {MappedFramesEffect} from "my-nft-effects-core/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
+import {MappedFramesConfig} from "my-nft-effects-core/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {generateSmoothRandomMultistep} from "../util/multistep.js";
 import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ArcPath} from "my-nft-gen/src/core/position/ArcPath.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {EdgeGlowEffect} from "../../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
-import {EdgeGlowConfig} from "../../../my-nft-gen/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
-import {getAllFindValueAlgorithms} from "../../../my-nft-gen/src/core/math/findValue.js";
+import {EdgeGlowEffect} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {getAllFindValueAlgorithms} from "my-nft-gen/src/core/math/findValue.js";
 
 const generateCustomRandomMultistep = async ({
                                                  numberOfSegments = 4,

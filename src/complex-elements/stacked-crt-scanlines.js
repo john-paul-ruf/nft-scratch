@@ -1,9 +1,9 @@
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {CRTDegaussEffect} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTDegaussEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
-import {CRTDegaussConfig} from "my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {CRTScanLinesEffect} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
-import {CRTScanLinesConfig} from "my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {CRTDegaussConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {CRTScanLinesEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
+import {CRTScanLinesConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 
 export const createStackedScanlines = async (project,
                                              configs = [

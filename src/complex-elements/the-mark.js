@@ -1,16 +1,16 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {
     StaticImageKeyFrameConfig
-} from "my-nft-gen/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameConfig.js";
+} from "my-nft-effects-core/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameConfig.js";
 import {
     StaticImageKeyFrameEffect
-} from "my-nft-gen/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameEffect.js";
-import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
-import {FadeKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
+} from "my-nft-effects-core/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameEffect.js";
+import {FadeKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
+import {FadeKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {createDegaussEffects} from "../util/glitch.js";
-import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
-import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
+import {GlowKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
+import {GlowKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 
 export const createTheMark = async ({

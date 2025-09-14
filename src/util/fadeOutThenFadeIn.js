@@ -1,13 +1,13 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {FadeKeyFrameEffect} from "../../../my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
-import {getRandomIntInclusive} from "../../../my-nft-gen/src/core/math/random.js";
-import {FadeKeyFrameConfig} from "../../../my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+import {FadeKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
+import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
+import {FadeKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
 import {
     SetOpacityKeyFrameEffect
-} from "../../../my-nft-gen/src/effects/keyFrameEffects/setOpacity/SetOpacityKeyFrameEffect.js";
+} from "my-nft-effects-core/src/effects/keyFrameEffects/setOpacity/SetOpacityKeyFrameEffect.js";
 import {
     SetOpacityKeyFrameConfig
-} from "../../../my-nft-gen/src/effects/keyFrameEffects/setOpacity/SetOpacityKeyFrameConfig.js";
+} from "my-nft-effects-core/src/effects/keyFrameEffects/setOpacity/SetOpacityKeyFrameConfig.js";
 
 export const fadeOutThenFadeIn = ({
                                       keyFrameStart = 30,

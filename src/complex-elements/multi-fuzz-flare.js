@@ -1,19 +1,19 @@
-import {ColorScheme} from "../../../my-nft-gen/src/core/color/ColorScheme.js";
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {RedEyeEffect} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createFadeEffects} from "../util/glitch.js";
-import {FuzzFlareEffect} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
-import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
-import {MultiStepDefinitionConfig} from "../../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
-import {PercentageRange} from "../../../my-nft-gen/src/core/layer/configType/PercentageRange.js";
-import {PercentageShortestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
-import {PercentageLongestSide} from "../../../my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
+import {FuzzFlareEffect} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
+import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
+import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";
+import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
+import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
 import {generateSmoothRandomMultistep, getMultiStep} from "../util/multistep.js";
-import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
-import {FindValueAlgorithm, getAllFindValueAlgorithms} from "../../../my-nft-gen/src/core/math/findValue.js";
+import {FuzzFlareConfig} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
+import {FindValueAlgorithm, getAllFindValueAlgorithms} from "my-nft-gen/src/core/math/findValue.js";
 
 export const createMultiFuzzFlare = async ({
                                                project = null,
