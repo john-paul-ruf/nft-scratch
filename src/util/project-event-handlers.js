@@ -1,5 +1,6 @@
 import { ProjectEvents, WorkerEventCategories } from "my-nft-gen/src/app/Project.js";
 import { SelectiveEventSubscriber } from "my-nft-gen/src/core/events/SelectiveEventSubscriber.js";
+import { WorkerEventLogger } from "my-nft-gen/src/core/events/WorkerEventLogger.js";
 
 // Helper function to format duration in human-readable format
 const formatDuration = (ms) => {
@@ -530,4 +531,90 @@ export function setupCategoryEventHandlers(project, categoryOptions = {
     }
 
     return { subscriber, subscriptions };
+}
+
+/**
+ * Sets up category-specific event handlers using the new WorkerEventLogger
+ * This provides the same functionality as setupCategoryEventHandlers but with cleaner code
+ * @param {Project} project - The Project instance
+ * @param {Object} categoryOptions - Configuration for which categories to show
+ * @returns {Object} Object containing the subscriber and logger instances
+ */
+export function setupCategoryEventHandlersWithLogger(project, categoryOptions = {
+    frames: true,
+    performance: false,
+    effects: false,
+    fileIo: false,
+    resource: false,
+    lifecycle: true,
+    progress: true,
+    errors: true,
+    verbose: false
+}) {
+    const subscriber = createSelectiveSubscriber(project);
+
+    // Create WorkerEventLogger with options mapped from categoryOptions
+    const workerLogger = new WorkerEventLogger({
+        showFrames: categoryOptions.frames !== false,
+        showEffects: categoryOptions.effects === true,
+        showFileIO: categoryOptions.fileIo === true,
+        showPerformance: categoryOptions.performance === true,
+        showLifecycle: categoryOptions.lifecycle !== false,
+        showErrors: categoryOptions.errors !== false,
+        verbose: categoryOptions.verbose === true
+    });
+
+    // Auto-suppress worker logs if all event categories are disabled
+    const allCategoriesDisabled = !categoryOptions.frames &&
+                                 !categoryOptions.performance &&
+                                 !categoryOptions.effects &&
+                                 !categoryOptions.fileIo &&
+                                 !categoryOptions.resource &&
+                                 !categoryOptions.lifecycle &&
+                                 !categoryOptions.progress &&
+                                 !categoryOptions.errors;
+
+    if (allCategoriesDisabled || categoryOptions.suppressWorkerLogs === true) {
+        project.setSuppressWorkerLogs(true);
+    }
+
+    // Subscribe to all enabled categories and attach the logger
+    const subscriptions = [];
+
+    const enabledCategories = [];
+    if (categoryOptions.frames !== false) enabledCategories.push(WorkerEventCategories.FRAME);
+    if (categoryOptions.effects === true) enabledCategories.push(WorkerEventCategories.EFFECT);
+    if (categoryOptions.fileIo === true) enabledCategories.push(WorkerEventCategories.FILE_IO);
+    if (categoryOptions.performance === true) enabledCategories.push(WorkerEventCategories.PERFORMANCE);
+    if (categoryOptions.resource === true) enabledCategories.push(WorkerEventCategories.RESOURCE);
+    if (categoryOptions.lifecycle !== false) enabledCategories.push(WorkerEventCategories.LIFECYCLE);
+    if (categoryOptions.progress === true) enabledCategories.push(WorkerEventCategories.PROGRESS);
+    if (categoryOptions.errors !== false) enabledCategories.push(WorkerEventCategories.ERROR);
+
+    // Create a subscription that pipes events to the WorkerEventLogger
+    enabledCategories.forEach(category => {
+        const subId = subscriber.subscribeToCategory(category, (data) => {
+            // Create a mock event emitter that the logger can handle
+            const mockEmitter = {
+                listeners: [],
+                on(eventName, handler) {
+                    this.listeners.push({ eventName, handler });
+                },
+                emit(eventName, eventData) {
+                    this.listeners.forEach(listener => {
+                        if (listener.eventName === eventName) {
+                            listener.handler(eventData);
+                        }
+                    });
+                }
+            };
+
+            // Attach logger to mock emitter and emit the event
+            workerLogger.attachTo(mockEmitter);
+            mockEmitter.emit(data.eventName, data);
+        });
+        subscriptions.push(subId);
+    });
+
+    return { subscriber, subscriptions, workerLogger };
 }
