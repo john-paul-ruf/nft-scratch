@@ -1,7 +1,7 @@
 import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {CurvedRedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/curved-red-eye/CurvedRedEyeEffect.js";
-import {CurvedRedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/curved-red-eye/CurvedRedEyeConfig.js";
+import {CurvedRedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/curved-red-eye/CurvedRedEyeEffect.js";
+import {CurvedRedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects/curved-red-eye/CurvedRedEyeConfig.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createFadeEffects} from "../util/glitch.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
@@ -20,10 +20,14 @@ export const createCurvedRedEyeReduction = async ({
                                                       loopTimesFunction = (index) => {
                                                           return index + 1
                                                       },
+                                                      loopTimesRange = {lower: 1, upper: 1},
+                                                      useLoopFunction = true,
                                                       arcSteps,
                                                       numberOfSpokes,
                                                       possibleJumpRangeInPixels,
-                                                      secondaryEffects = []
+                                                      secondaryEffects = [],
+                                                      colorScheme = null
+
                                                   }) => {
 
 
@@ -42,19 +46,22 @@ export const createCurvedRedEyeReduction = async ({
                     outerRadius: gitter + outerRadius,
                     possibleJumpRangeInPixels: possibleJumpRangeInPixels,
                     lineLength: lineLength,
-                    numberOfLoops: {lower: loopTimesFunction(i), upper: loopTimesFunction(i)},
+                    numberOfLoops: useLoopFunction ? {
+                        lower: loopTimesFunction(i),
+                        upper: loopTimesFunction(i)
+                    } : loopTimesRange,
                     invertLayers: true,
-                    layerOpacity: 0.6,
+                    layerOpacity: 0.2,
                     underLayerOpacity: 0.4,
                     sparsityFactor: sparsityFactor,
                     stroke: stroke,
                     thickness: thickness,
-                    accentRange: {bottom: {lower: 1, upper: 2}, top: {lower: 3, upper: 5}},
-                    blurRange: {bottom: {lower: 3, upper: 3}, top: {lower: 6, upper: 6}},
-                    featherTimes: {lower: 3, upper: 8},
+                    accentRange: {bottom: {lower: 6, upper: 6}, top: {lower: 6, upper: 6}},
+                    blurRange: {bottom: {lower: 2, upper: 2}, top: {lower: 2, upper: 2}},
+                    featherTimes: {lower: 10, upper: 10},
                     center: center,
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
+                    outerColor: colorScheme ? new ColorPicker(ColorPicker.SelectionType.color, colorScheme.getColorFromBucket()) : new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     arcSteps: arcSteps,
                     numberOfSpokes: numberOfSpokes,
                 }),
@@ -78,7 +85,11 @@ export const layeredCurvedRedEye = async ({
                                               arcSteps,
                                               numberOfSpokes,
                                               possibleJumpRangeInPixels,
-                                              numberOfLayers
+                                              numberOfLayers,
+                                              loopTimesFunction,
+                                              loopTimesRange,
+                                              useLoopFunction,
+                                              colorScheme = null
                                           }) => {
     for (let i = 0; i < numberOfLayers; i++) {
         await createCurvedRedEyeReduction({
@@ -92,13 +103,14 @@ export const layeredCurvedRedEye = async ({
             innerRadius: innerRadius,
             outerRadius: outerRadius,
             radiusGitter: radiusGitter,
-            loopTimesFunction: (index) => {
-                return index + 1
-            },
+            loopTimesFunction: loopTimesFunction,
+            loopTimesRange: loopTimesRange,
+            useLoopFunction: useLoopFunction,
             arcSteps,
             numberOfSpokes,
             possibleJumpRangeInPixels,
-            secondaryEffects: []
+            secondaryEffects: [],
+            colorScheme
         });
     }
 }

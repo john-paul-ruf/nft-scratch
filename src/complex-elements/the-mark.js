@@ -1,16 +1,16 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {
     StaticImageKeyFrameConfig
-} from "my-nft-gen/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameConfig.js";
+} from "my-nft-effects-core/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameConfig.js";
 import {
     StaticImageKeyFrameEffect
-} from "my-nft-gen/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameEffect.js";
-import {FadeKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
-import {FadeKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
+} from "my-nft-effects-core/src/effects/keyFrameEffects/staticImageKeyFrame/StaticImageKeyFrameEffect.js";
+import {FadeKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameEffect.js";
+import {FadeKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/fade/FadeKeyFrameConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {createDegaussEffects} from "../util/glitch.js";
-import {GlowKeyFrameEffect} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
-import {GlowKeyFrameConfig} from "my-nft-gen/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
+import {GlowKeyFrameEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/glow/GlowKeyFrameEffect.js";
+import {GlowKeyFrameConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/glow/GlowKeyFrameConfig.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 
 export const createTheMark = async ({
@@ -21,11 +21,8 @@ export const createTheMark = async ({
                                         fadeFrom = 0.0,
                                         opacity = 0.5,
                                         buffer = 550,
-
+                                        fadeInOutCount = 5,
                                     }) => {
-
-
-    const glitchFrameSegment = glitchFrameCount / 4;
 
     //amp
     await project.addPrimaryEffect({
@@ -46,9 +43,9 @@ export const createTheMark = async ({
                     percentChance: 100,
                     currentEffectConfig: new FadeKeyFrameConfig({
                         keyFrames: [keyFrames],
-                        glitchFrameCount: [glitchFrameSegment],
+                        glitchFrameCount: [fadeInOutCount],
                         lowerRange: new Range(fadeFrom, fadeFrom),
-                        upperRange: new Range(opacity, opacity),
+                        upperRange: new Range(1, 1),
                         times: new Range(1, 1),
                     }),
                 }),
@@ -56,9 +53,9 @@ export const createTheMark = async ({
                     effect: FadeKeyFrameEffect,
                     percentChance: 100,
                     currentEffectConfig: new FadeKeyFrameConfig({
-                        keyFrames: [keyFrames + (glitchFrameSegment * 3)],
-                        glitchFrameCount: [glitchFrameSegment],
-                        lowerRange: new Range(opacity, opacity),
+                        keyFrames: [keyFrames + glitchFrameCount - fadeInOutCount],
+                        glitchFrameCount: [fadeInOutCount],
+                        lowerRange: new Range(1, 1),
                         upperRange: new Range(fadeFrom, fadeFrom),
                         times: new Range(1, 1),
                     }),
@@ -69,20 +66,30 @@ export const createTheMark = async ({
                     currentEffectConfig: new GlowKeyFrameConfig({
                         keyFrames: [keyFrames],
                         glitchFrameCount: [glitchFrameCount],
-                        lowerRange: new Range(0, 360),
-                        times: new Range(3, 5),
+                        lowerRange: new Range(32, 32),
+                        times: new Range(1, 3),
                     }),
                 }),
                 ...createDegaussEffects([
                     {
-                        arraySize: getRandomIntInclusive(5,10),
+                        arraySize: getRandomIntInclusive(5, 10),
                         randomChance: {lower: 100, upper: 100},
                         glitchFrameCount: {lower: 5, upper: 15},
                         keyFrames: {lower: keyFrames, upper: keyFrames + glitchFrameCount},
                         sectionHeight: [1, 2, 5],
                         offset: {lower: 1, upper: 4},
                         direction: [-1, 1],
-                        glitchTimes: {lower: 1, upper: 1},
+                        glitchTimes: {lower: 2, upper: 4},
+                    },
+                    {
+                        arraySize: getRandomIntInclusive(5, 10),
+                        randomChance: {lower: 100, upper: 100},
+                        glitchFrameCount: {lower: 5, upper: 15},
+                        keyFrames: {lower: keyFrames, upper: keyFrames + glitchFrameCount},
+                        sectionHeight: [1, 2, 5],
+                        offset: {lower: 5, upper: 10},
+                        direction: [-1, 1],
+                        glitchTimes: {lower: 3, upper: 4},
                     },
                 ])
             ],

@@ -1,9 +1,10 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {ViewportEffect} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+import {ViewportEffect} from "my-nft-effects-core/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "my-nft-effects-core/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEffects} from "../util/glitch.js";
 import {randomNumber} from "my-nft-gen/src/core/math/random.js";
+import {FindValueAlgorithm, getAllFindValueAlgorithms} from "my-nft-gen/src/core/math/findValue.js";
 
 
 export const createGlitchedTriangle = async ({
@@ -19,7 +20,10 @@ export const createGlitchedTriangle = async ({
                                                  blurRang,
                                                  featherTimes,
                                                  accentBottomRangeReduction,
-                                                 accentTopRangeReduction
+                                                 accentTopRangeReduction,
+                                                 accentFindValueAlgorithm,
+                                                 blurFindValueAlgorithm,
+                                                 opacityFindValueAlgorithm,
                                              }) => {
 
 
@@ -55,36 +59,38 @@ export const createGlitchedTriangle = async ({
                     times: times,
                     accentRange: {
                         bottom: {
-                            lower: accentRange.bottom.lower - (accentBottomRangeReduction * (i+1)),
-                            upper: accentRange.bottom.upper - (accentBottomRangeReduction * (i+1))
+                            lower: accentRange.bottom.lower - (accentBottomRangeReduction * (i + 1)),
+                            upper: accentRange.bottom.upper - (accentBottomRangeReduction * (i + 1))
                         },
                         top: {
-                            lower: accentRange.top.lower - (accentTopRangeReduction * (i+1)),
-                            upper: accentRange.top.upper - (accentTopRangeReduction * (i+1))
+                            lower: accentRange.top.lower - (accentTopRangeReduction * (i + 1)),
+                            upper: accentRange.top.upper - (accentTopRangeReduction * (i + 1))
                         }
                     },
                     blurRange: blurRang,
                     featherTimes: featherTimes,
+                    accentFindValueAlgorithm:  getAllFindValueAlgorithms(),
+                    blurFindValueAlgorithm:  getAllFindValueAlgorithms(),
                 }),
                 possibleSecondaryEffects: [
-                  /*  ...createFadeEffects([
-                        {
-                            arraySize: 75,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 275, upper: 320},
-                            keyFrames: {lower: 0, upper: 1800 - 320},
-                            lowerRange: {lower: 0.4, upper: 0.45},
-                            times: {lower: 1, upper: 3},
-                        },
-                        {
-                            arraySize: 75,
-                            randomChance: {lower: 10, upper: 25},
-                            glitchFrameCount: {lower: 180, upper: 240},
-                            keyFrames: {lower: 0, upper: 1800 - 240},
-                            lowerRange: {lower: 0.35, upper: 0.4},
-                            times: {lower: 1, upper: 3},
-                        },
-                    ]),*/
+                    /*  ...createFadeEffects([
+                          {
+                              arraySize: 75,
+                              randomChance: {lower: 10, upper: 25},
+                              glitchFrameCount: {lower: 275, upper: 320},
+                              keyFrames: {lower: 0, upper: 1800 - 320},
+                              lowerRange: {lower: 0.4, upper: 0.45},
+                              times: {lower: 1, upper: 3},
+                          },
+                          {
+                              arraySize: 75,
+                              randomChance: {lower: 10, upper: 25},
+                              glitchFrameCount: {lower: 180, upper: 240},
+                              keyFrames: {lower: 0, upper: 1800 - 240},
+                              lowerRange: {lower: 0.35, upper: 0.4},
+                              times: {lower: 1, upper: 3},
+                          },
+                      ]),*/
                     ...createDegaussEffects([
                         {
                             arraySize: 150,

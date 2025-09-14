@@ -110,7 +110,7 @@ export const earthenVeil = new ColorScheme({
 export const eternalRise = new ColorScheme({
     colorBucket: [
         '#B2B2B2',
-        '#4A4A4A',
+       /* '#4A4A4A',*/
         '#FF6A00',
         '#FF4500',
         '#FFD700',
@@ -309,4 +309,169 @@ export const neonCyberdream = new ColorScheme({
     ],
     colorSchemeInfo: "**Color Strategy**:neon-cyberdream\n" +
         "A glowing palette inspired by vaporwave aesthetics, rainy dystopias, and synthetic dreams. Designed for high contrast and emotional resonance in futuristic interfaces, nightlife backdrops, and digital art."
+});
+
+export const atlanteanDepths = new ColorScheme({
+    colorBucket: [
+        '#006994', // Deep Ocean Blue
+        '#40E0D0', // Turquoise
+        '#20B2AA', // Light Sea Green
+        '#48D1CC', // Medium Turquoise
+        '#00CED1', // Dark Turquoise
+        '#5F9EA0', // Cadet Blue
+        '#4682B4', // Steel Blue
+        '#B0E0E6', // Powder Blue
+    ],
+    colorSchemeInfo: "**Color Strategy**: atlantean-depths\n" +
+        "Inspired by the lost city of Atlantis and oceanic mysteries. Deep blues and turquoises evoke ancient underwater civilizations and hidden knowledge."
+});
+
+export const phoenixRebirth = new ColorScheme({
+    colorBucket: [
+        '#FF4500', // Orange Red
+        '#FF6347', // Tomato
+        '#DC143C', // Crimson
+        '#B22222', // Fire Brick
+        '#FFD700', // Gold
+        '#FFA500', // Orange
+        '#FF8C00', // Dark Orange
+        '#FFFF00', // Yellow
+    ],
+    colorSchemeInfo: "**Color Strategy**: phoenix-rebirth\n" +
+        "Fiery palette representing transformation, renewal, and the eternal cycle of death and rebirth. Reds, oranges, and golds capture the phoenix's flame."
+});
+
+export const druidGrove = new ColorScheme({
+    colorBucket: [
+        '#228B22', // Forest Green
+        '#2E8B57', // Sea Green
+        '#6B8E23', // Olive Drab
+        '#8FBC8F', // Dark Sea Green
+        '#9ACD32', // Yellow Green
+        '#32CD32', // Lime Green
+        '#90EE90', // Light Green
+        '#98FB98', // Pale Green
+    ],
+    colorSchemeInfo: "**Color Strategy**: druid-grove\n" +
+        "Earth-based palette channeling ancient Celtic wisdom and forest magic. Greens represent growth, healing, and connection to nature."
+});
+
+export const shadowRealm = new ColorScheme({
+    colorBucket: [
+        '#2F2F2F', // Dark Gray
+        '#4B0082', // Indigo
+        '#483D8B', // Dark Slate Blue
+        '#2E2E2E', // Very Dark Gray
+        '#191970', // Midnight Blue
+        '#36454F', // Charcoal
+        '#1C1C1C', // Almost Black
+        '#301934', // Dark Purple
+    ],
+    colorSchemeInfo: "**Color Strategy**: shadow-realm\n" +
+        "Dark palette for exploring the unconscious, shadow work, and hidden aspects of the psyche. Deep purples and grays evoke mystery and introspection."
+});
+
+export const alchemicalTransmutation = new ColorScheme({
+    colorBucket: [
+        '#FFD700', // Gold (Sol)
+        '#C0C0C0', // Silver (Luna)
+        '#800080', // Purple (Spirit)
+        '#FF0000', // Red (Fire)
+        '#0000FF', // Blue (Water)
+        '#FFFF00', // Yellow (Air)
+        '#8B4513', // Brown (Earth)
+        '#FF6347', // Copper Red
+    ],
+    colorSchemeInfo: "**Color Strategy**: alchemical-transmutation\n" +
+        "Based on classical alchemical elements and metals. Each color represents fundamental forces in the Great Work of transformation."
+});
+
+export const celestialVault = new ColorScheme({
+    colorBucket: [
+        '#191970', // Midnight Blue
+        '#4B0082', // Indigo
+        '#9932CC', // Dark Orchid
+        '#8A2BE2', // Blue Violet
+        '#FFD700', // Gold (stars)
+        '#C0C0C0', // Silver (moon)
+        '#E6E6FA', // Lavender
+        '#483D8B', // Dark Slate Blue
+    ],
+    colorSchemeInfo: "**Color Strategy**: celestial-vault\n" +
+        "Night sky palette for astrology, astronomy, and cosmic consciousness. Deep blues with gold and silver accents represent celestial bodies."
+});
+
+export const tibetanMandala = new ColorScheme({
+    colorBucket: [
+        '#DC143C', // Crimson Red
+        '#FF8C00', // Dark Orange
+        '#FFD700', // Gold
+        '#4B0082', // Indigo
+        '#0000FF', // Blue
+        '#32CD32', // Lime Green
+        '#FFFFFF', // White
+        '#8B0000', // Dark Red
+    ],
+    colorSchemeInfo: "**Color Strategy**: tibetan-mandala\n" +
+        "Sacred colors from Tibetan Buddhist traditions. Each hue represents different aspects of enlightenment and spiritual development."
+});
+
+export const runicMystery = new ColorScheme({
+    colorBucket: [
+        '#8B4513', // Saddle Brown
+        '#A0522D', // Sienna
+        '#2F4F4F', // Dark Slate Gray
+        '#708090', // Slate Gray
+        '#5D4037', // Brown
+        '#795548', // Brown
+        '#6D4C41', // Brown
+        '#4E342E', // Dark Brown
+    ],
+    colorSchemeInfo: "**Color Strategy**: runic-mystery\n" +
+        "Earthy palette inspired by ancient Norse runes and Viking mysticism. Browns and grays evoke carved wood and weathered stone."
+});
+
+export const yogicChakras = new ColorScheme({
+    colorBucket: [
+        '#FF0000', // Red (Muladhara)
+        '#FF8C00', // Orange (Svadhisthana)
+        '#FFFF00', // Yellow (Manipura)
+        '#00FF00', // Green (Anahata)
+        '#0000FF', // Blue (Vishuddha)
+        '#4B0082', // Indigo (Ajna)
+        '#9400D3', // Violet (Sahasrara)
+        '#FFFFFF', // White (Crown)
+    ],
+    colorSchemeInfo: "**Color Strategy**: yogic-chakras\n" +
+        "Traditional chakra colors representing the seven energy centers. Each color corresponds to different aspects of consciousness and spiritual development."
+});
+
+export const egyptianMysteries = new ColorScheme({
+    colorBucket: [
+        '#FFD700', // Gold
+        '#0000FF', // Lapis Blue
+        '#228B22', // Malachite Green
+        '#800080', // Amethyst Purple
+        '#DC143C', // Carnelian Red
+        '#40E0D0', // Turquoise
+        '#F5F5DC', // Papyrus Beige
+        '#8B4513', // Desert Brown
+    ],
+    colorSchemeInfo: "**Color Strategy**: egyptian-mysteries\n" +
+        "Colors inspired by ancient Egyptian sacred art and precious stones. Gold, lapis, and jewel tones evoke temple mysteries and divine knowledge."
+});
+
+export const citrusVitality = new ColorScheme({
+    colorBucket: [
+        '#32CD32', // Lime Green
+        '#FF8C00', // Dark Orange
+        '#FFFF00', // Yellow
+        '#228B22', // Forest Green
+        '#FFA500', // Orange
+        '#ADFF2F', // Green Yellow
+        '#FFD700', // Gold
+        '#9ACD32', // Yellow Green
+    ],
+    colorSchemeInfo: "**Color Strategy**: citrus-vitality\n" +
+        "Fresh and energizing palette inspired by citrus fruits. Vibrant greens, oranges, and yellows evoke natural vitality and organic energy."
 });

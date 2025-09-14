@@ -1,46 +1,54 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {
     EncircledSpiralEffect
-} from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
+} from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
 import {
     EncircledSpiralConfig
-} from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-import {findPointByAngleAndCircle} from "../../../my-nft-gen/src/core/math/drawingMath.js";
-import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+} from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
-const createRings = async ({
-                               ringSpoke = 30,
+export const createRings = async ({
+                                      myTestProject,
 
-                               outerRadius = 375,
-                               secondRadiusReduction = 0.75,
-                               secondRadius = outerRadius * secondRadiusReduction,
+                                      ringSpoke = 30,
 
-                               thirdRadiusReduction = 0.5,
-                               thirdRadius = outerRadius * thirdRadiusReduction,
+                                      outerRadius = 375,
+                                      secondRadiusReduction = 0.75,
+
+                                      thirdRadiusReduction = 0.5,
 
 
-                               outerRingColor = '#5DADE2',
-                               innerRingColor = '#85C1E9',
-                               thirdRingColor = '#283747',
-                               fourthRingColor = '#BDC3C7',
-                               fifthRingColor = '#FDFEFE',
+                                      outerRingColor = '#5DADE2',
+                                      innerRingColor = '#85C1E9',
+                                      thirdRingColor = '#283747',
+                                      fourthRingColor = '#BDC3C7',
+                                      fifthRingColor = '#FDFEFE',
 
-                               firstRingSpeed = 2,
-                               secondRingSpeed = 6,
-                               thirdRingSPeed = 8,
-                               fourthRingSpeed = 6,
-                               fifthRingSpeed = 1,
+                                      firstRingSpeed = 2,
+                                      secondRingSpeed = 6,
+                                      thirdRingSPeed = 8,
+                                      fourthRingSpeed = 6,
+                                      fifthRingSpeed = 1,
 
-                               numberOfRings = 4,
+                                      numberOfRings = 4,
 
-                               stroke = 0,
-                               thickness = 3,
+                                      stroke = 0,
+                                      thickness = 3,
 
-                               opacity = 0.4,
-                               fourthRingOpacity = 0.45,
-                               fifthRingOpacity = 0.5,
-                           }) => {
+                                      opacity = 0.7,
+                                      underLayerOpacity = 0.6,
+                                      secondRingOpacity = 0.6,
+                                      thirdRingOpacity = 0.6,
+                                      fourthRingOpacity = 0.45,
+                                      fifthRingOpacity = 0.5,
+                                  }) => {
+
+    const secondRadius = outerRadius * secondRadiusReduction;
+
+    const thirdRadius = outerRadius * thirdRadiusReduction;
+
 
     for (let i = 0; i < 360; i = i + ringSpoke) {
         await myTestProject.addPrimaryEffect({
@@ -50,7 +58,7 @@ const createRings = async ({
                 currentEffectConfig: new EncircledSpiralConfig({
                     invertLayers: true,
                     layerOpacity: opacity,
-                    underLayerOpacity: 0,
+                    underLayerOpacity: underLayerOpacity,
                     startAngle: {lower: 0, upper: 360},
                     numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                     stroke: stroke,
@@ -67,9 +75,9 @@ const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, outerRadius),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+                    center: findPointByAngleAndCircle(new Point2D(myTestProject.width / 2, myTestProject.height / 2), i, outerRadius),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
             }),
         });
@@ -83,7 +91,7 @@ const createRings = async ({
                 currentEffectConfig: new EncircledSpiralConfig({
                     invertLayers: true,
                     layerOpacity: opacity,
-                    underLayerOpacity: 0,
+                    underLayerOpacity: secondRingOpacity,
                     startAngle: {lower: 0, upper: 360},
                     numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                     stroke: stroke,
@@ -100,9 +108,9 @@ const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, secondRadius),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+                    center: findPointByAngleAndCircle(new Point2D(myTestProject.width / 2, myTestProject.height / 2), i, secondRadius),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
             }),
         });
@@ -116,7 +124,7 @@ const createRings = async ({
                 currentEffectConfig: new EncircledSpiralConfig({
                     invertLayers: true,
                     layerOpacity: opacity,
-                    underLayerOpacity: 0,
+                    underLayerOpacity: thirdRingOpacity,
                     startAngle: {lower: 0, upper: 360},
                     numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                     stroke: stroke,
@@ -133,9 +141,9 @@ const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, thirdRadius),
-                    innerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
-                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+                    center: findPointByAngleAndCircle(new Point2D(myTestProject.width / 2, myTestProject.height / 2), i, thirdRadius),
+                    innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                    outerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
                 }),
             }),
         });
@@ -148,7 +156,7 @@ const createRings = async ({
             currentEffectConfig: new EncircledSpiralConfig({
                 invertLayers: true,
                 layerOpacity: fourthRingOpacity,
-                underLayerOpacity: 0,
+                underLayerOpacity: fourthRingOpacity,
                 startAngle: {lower: 0, upper: 360},
                 numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                 stroke: stroke,
@@ -165,9 +173,9 @@ const createRings = async ({
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, fourthRingColor),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+                center: new Point2D(myTestProject.width / 2, myTestProject.height / 2),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                outerColor: new ColorPicker(ColorPicker.SelectionType.color, fourthRingColor),
             }),
         }),
     });
@@ -179,7 +187,7 @@ const createRings = async ({
             currentEffectConfig: new EncircledSpiralConfig({
                 invertLayers: true,
                 layerOpacity: fifthRingOpacity,
-                underLayerOpacity: 0,
+                underLayerOpacity: fifthRingOpacity,
                 startAngle: {lower: 0, upper: 360},
                 numberOfRings: {lower: numberOfRings + 2, upper: numberOfRings + 2},
                 stroke: stroke,
@@ -196,9 +204,9 @@ const createRings = async ({
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+                center: new Point2D(myTestProject.width / 2, myTestProject.height / 2),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                outerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
             }),
         }),
     });
@@ -211,7 +219,7 @@ const createRings = async ({
             currentEffectConfig: new EncircledSpiralConfig({
                 invertLayers: true,
                 layerOpacity: 0.75,
-                underLayerOpacity: 0,
+                underLayerOpacity: underLayerOpacity,
                 startAngle: {lower: 0, upper: 360},
                 numberOfRings: {lower: numberOfRings, upper: numberOfRings},
                 stroke: stroke,
@@ -228,9 +236,9 @@ const createRings = async ({
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
-                center: new Point2D(1080 / 2, 1920 / 2),
-                innerColor: new ColorPicker(ColorPicker.SelectionType.color, '#FFF5E1'),
-                outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
+                center: new Point2D(myTestProject.width / 2, myTestProject.height / 2),
+                innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
+                outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
             }),
         }),
     });

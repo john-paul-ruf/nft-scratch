@@ -1,18 +1,18 @@
 import {eyeBurn, neonLights} from "../assets/color-scheme-store.js";
-import {Project} from "../../../my-nft-gen/src/app/Project.js";
-import {MultiStepDefinitionConfig} from "../../../my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
-import {Range} from "../../../my-nft-gen/src/core/layer/configType/Range.js";
-import {CRTScanLinesEffect} from "../../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
-import {CRTScanLinesConfig} from "../../../my-nft-gen/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
-import {CRTDegaussConfig} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
-import {CRTDegaussEffect} from "../../../my-nft-gen/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
-import {CRTShadowConfig} from "../../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
-import {CRTShadowEffect} from "../../../my-nft-gen/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {CRTBarrelConfig} from "../../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
-import {CRTBarrelEffect} from "../../../my-nft-gen/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
-import {MappedFramesConfig} from "../../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
-import {MappedFramesEffect} from "../../../my-nft-gen/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
-import {getRandomFromArray} from "../../../my-nft-gen/src/core/math/random.js";
+import {Project} from "my-nft-gen/src/app/Project.js";
+import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
+import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
+import {CRTScanLinesEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesEffect.js";
+import {CRTScanLinesConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
+import {CRTDegaussConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussConfig.js";
+import {CRTDegaussEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
+import {CRTShadowConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
+import {CRTShadowEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {CRTBarrelConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
+import {CRTBarrelEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtBarrel/CRTBarrelEffect.js";
+import {MappedFramesConfig} from "my-nft-effects-core/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
+import {MappedFramesEffect} from "my-nft-effects-core/src/effects/primaryEffects/mappedFrames/MappedFramesEffect.js";
+import {getRandomFromArray} from "my-nft-gen/src/core/math/random.js";
 
 
 const promiseArray = [];
@@ -28,16 +28,16 @@ const createComposition = async (colorScheme) => {
         colorScheme: colorScheme,
     });
 
-    import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
+    import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
     import {
         EncircledSpiralEffect
-    } from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
+    } from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralEffect.js";
     import {
         EncircledSpiralConfig
-    } from "../../../my-nft-gen/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-    import {findPointByAngleAndCircle} from "../../../my-nft-gen/src/core/math/drawingMath.js";
-    import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
-    import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+    } from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
+    import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
+    import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+    import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
 
     const ringSpoke = 18;

@@ -1,7 +1,7 @@
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {ViewportEffect} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportEffect.js";
-import {ViewportConfig} from "../../../my-nft-gen/src/effects/primaryEffects/viewport/ViewportConfig.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+import {ViewportEffect} from "my-nft-effects-core/src/effects/primaryEffects/viewport/ViewportEffect.js";
+import {ViewportConfig} from "my-nft-effects-core/src/effects/primaryEffects/viewport/ViewportConfig.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createBlurEffects, createDegaussEffects, createFadeEffects, createGlowEffects} from "../util/glitch.js";
 import {randomNumber} from "my-nft-gen/src/core/math/random.js";
 

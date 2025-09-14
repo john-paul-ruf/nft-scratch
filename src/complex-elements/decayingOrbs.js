@@ -1,20 +1,20 @@
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {FuzzFlareEffect} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
+import {FuzzFlareEffect} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";
 import {PercentageShortestSide} from "my-nft-gen/src/core/layer/configType/PercentageShortestSide.js";
 import {PercentageLongestSide} from "my-nft-gen/src/core/layer/configType/PercentageLongestSide.js";
-import {FuzzFlareConfig} from "my-nft-gen/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
+import {FuzzFlareConfig} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareConfig.js";
 import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
 import {Project} from "my-nft-gen/src/app/Project.js";
 import {getRandomIntExclusive} from "my-nft-gen/src/core/math/random.js";
 import {getMultiStep} from "../util/multistep.js";
 import {createDegaussEffects} from "../util/glitch.js";
-import {RedEyeEffect} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
+import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 
 export const createDecayingOrbElement = async ({
                                                    project = new Project(),

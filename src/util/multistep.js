@@ -1,7 +1,7 @@
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {getRandomIntExclusive} from "my-nft-gen/src/core/math/random.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
-
+import {getRandomFindValueAlgorithm} from "my-nft-gen/src/core/math/findValue.js";
 
 export function generateSmoothRandomMultistep(
     {
@@ -18,9 +18,10 @@ export function generateSmoothRandomMultistep(
         result.push(
             new MultiStepDefinitionConfig({
                 minPercentage: Math.floor(seg * i),
-                maxPercentage: Math.floor(seg * (i +1)),
+                maxPercentage: Math.floor(seg * (i + 1)),
                 max: max,
                 times: times,
+                type: getRandomFindValueAlgorithm(),
             })
         );
     }

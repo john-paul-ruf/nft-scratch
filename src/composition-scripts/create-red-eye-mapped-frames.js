@@ -1,10 +1,10 @@
-import {Project} from "../../../my-nft-gen/src/app/Project.js";
-import {LayerConfig} from "../../../my-nft-gen/src/core/layer/LayerConfig.js";
-import {Point2D} from "../../../my-nft-gen/src/core/layer/configType/Point2D.js";
-import {ColorPicker} from "../../../my-nft-gen/src/core/layer/configType/ColorPicker.js";
-import {NeonColorScheme, NeonColorSchemeFactory} from "../../../my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
-import {RedEyeEffect} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
-import {RedEyeConfig} from "../../../my-nft-gen/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
+import {Project} from "my-nft-gen/src/app/Project.js";
+import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {NeonColorScheme, NeonColorSchemeFactory} from "my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
+import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
+import {RedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
 
 
 const promiseArray = [];
