@@ -7,7 +7,7 @@ import {
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity, hodSplendor,
-    neonCyberdream, neonHarmony, neonLights, shadowRealm
+    neonCyberdream, neonHarmony, neonLights, shadowRealm, tibetanMandala
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
@@ -23,7 +23,7 @@ import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCateg
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = hodSplendor;
+const scheme = tibetanMandala;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
