@@ -28,7 +28,7 @@ const scheme = hodSplendor;
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
             artist: 'John Ruf',
-            projectName: 'hoz',
+            projectName: 'cosmic-jewel',
             projectDirectory: 'src/scratch',
             neutrals: ['#F5F5F5', '#E0E0E0', '#FAF9F6', '#EDEAE0'],
             backgrounds: [backgroundHex],
@@ -36,7 +36,7 @@ const createComposition = async (colorScheme) => {
             colorScheme: colorScheme,
             longestSideInPixels: 1920,
             shortestSideInPixels: 1080,
-            isHorizontal: true,
+            isHorizontal: false,
             maxConcurrentFrameBuilderThreads: 1,
             renderJumpFrames: 1,
             frameStart: 0,
