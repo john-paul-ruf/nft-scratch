@@ -7,7 +7,7 @@ import {
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity, hodSplendor,
-    neonCyberdream, neonHarmony, neonLights, shadowRealm, tibetanMandala
+    neonCyberdream, neonHarmony, neonLights, redGreenYellowPop, shadowRealm, tibetanMandala
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
@@ -23,7 +23,7 @@ import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCateg
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = tibetanMandala;
+const scheme = celestialVault;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -126,7 +126,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 45,
+            ringSpoke: 30,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
@@ -145,7 +145,7 @@ const createComposition = async (colorScheme) => {
             fourthRingSpeed: getRandomIntInclusive(2, 24),
             fifthRingSpeed: getRandomIntInclusive(2, 24),
 
-            numberOfRings: 12,
+            numberOfRings: 6,
 
             stroke: 1,
             thickness: 1,

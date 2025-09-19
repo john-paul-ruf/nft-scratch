@@ -212,7 +212,7 @@ export const createRings = async ({
     });
 
 
-    await myTestProject.addPrimaryEffect({
+    /*await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: EncircledSpiralEffect,
             percentChance: 100,
@@ -241,6 +241,6 @@ export const createRings = async ({
                 outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
             }),
         }),
-    });
+    });*/
 
 };
