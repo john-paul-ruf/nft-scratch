@@ -23,7 +23,7 @@ import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCateg
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = celestialVault;
+const scheme = tibetanMandala;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -44,9 +44,9 @@ const createComposition = async (colorScheme) => {
 
         // Set up basic project lifecycle events (generation started/completed)
         setupProjectEventHandlers(myTestProject, {
-            verbose: true,         // Show verbose project details
+            verbose: false,         // Show verbose project details
             showProgress: true,     // Show generation started/completed
-            showEffects: true      // Show effect additions
+            showEffects: false      // Show effect additions
         });
 
         // NEW: Use UnifiedEventBus approach with WorkerEventLogger
@@ -60,12 +60,12 @@ const createComposition = async (colorScheme) => {
             WorkerEventCategories.ERROR
         ], {
             showFrames: true,
-            showEffects: true,
-            showFileIO: true,
-            showPerformance: true,
-            showLifecycle: true,
-            showErrors: true,
-            verbose: true
+            showEffects: false,
+            showFileIO: false,
+            showPerformance: false,
+            showLifecycle: false,
+            showErrors: false,
+            verbose: false
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
