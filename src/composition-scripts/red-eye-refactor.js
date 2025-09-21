@@ -36,7 +36,7 @@ import {CRTScanLinesEffect} from "my-nft-effects-core/src/effects/finalImageEffe
 import {CRTScanLinesConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtScanLines/CRTScanLinesConfig.js";
 import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {Point2D} from "../my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "../my-nft-gen/src/core/position/Position.js";
 import {findPointByAngleAndCircle} from "../my-nft-gen/src/core/math/drawingMath.js";
 import {createDecayingOrbElement} from "../complex-elements/decayingOrbs.js";
 
@@ -67,7 +67,7 @@ const createComposition = async (colorScheme) => {
                 invertLayers: true,
                 layerOpacity: 0.7,
                 underLayerOpacity: 0.5,
-                center: new Point2D(1080 / 2, 1920 / 2),
+                center: new Position({x: 1080 / 2, y: 1920 / 2}),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                 stroke: 2,

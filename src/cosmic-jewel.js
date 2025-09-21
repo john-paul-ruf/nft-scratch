@@ -12,6 +12,7 @@ import {
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
@@ -168,7 +169,7 @@ const createComposition = async (colorScheme) => {
 
         await createTheMark({
             project: myTestProject,
-            center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
+            center: new Position({x: myTestProject.width - 150, y: myTestProject.height - 150}),
             fadeFrom: 0.0,
             opacity: 0.5,
             keyFrames: 120,

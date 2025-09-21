@@ -14,7 +14,7 @@ import {CRTDegaussConfig} from "my-nft-effects-core/src/effects/keyFrameEffects/
 import {CRTDegaussEffect} from "my-nft-effects-core/src/effects/keyFrameEffects/crtDegaussEvent/CRTDegaussEffect.js";
 import {CRTShadowConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 import {CRTShadowEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 import {FuzzFlareEffect} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
@@ -190,7 +190,7 @@ const createComposition = async (colorScheme) => {
                 effect: FuzzFlareEffect,
                 percentChance: 100,
                 currentEffectConfig: new FuzzFlareConfig({
-                    center: new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2),
+                    center: new Position({x: myTestProject.shortestSideInPixels / 2, y: myTestProject.longestSideInPixels / 2}),
                     invertLayers: true,
 
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -261,7 +261,7 @@ const createComposition = async (colorScheme) => {
                 effect: FuzzFlareEffect,
                 percentChance: 100,
                 currentEffectConfig: new FuzzFlareConfig({
-                    center: new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2),
+                    center: new Position({x: myTestProject.shortestSideInPixels / 2, y: myTestProject.longestSideInPixels / 2}),
                     invertLayers: true,
 
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
@@ -336,7 +336,7 @@ const createComposition = async (colorScheme) => {
                      invertLayers: true,
                      layerOpacity: 0.7,
                      underLayerOpacity: 0.5,
-                     center: new Point2D(1080 / 2, 1920 / 2),
+                     center: new Position({x: 1080 / 2, y: 1920 / 2}),
                      innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                      outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                      stroke: 1,

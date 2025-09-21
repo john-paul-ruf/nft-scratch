@@ -4,7 +4,7 @@ import {UnifiedEventBus} from "my-nft-gen/src/core/events/UnifiedEventBus.js";
 import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCategories.js";
 import {promises as fs} from 'fs';
 
-// npm run resume-folder src/scratch/hoz-4lsby5s/settings/hoz-4lsby5s-settings.json
+// npm run resume-folder src/scratch/hoz-r3kn5mi/settings/hoz-r3kn5mi-settings.json
 
 const settingsPath = process.argv[2];
 if (!settingsPath) {

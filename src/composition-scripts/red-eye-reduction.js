@@ -18,7 +18,7 @@ import {CRTBarrelEffect} from "my-nft-effects-core/src/effects/finalImageEffects
 import {CRTBarrelConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtBarrel/CRTBarrelConfig.js";
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {layeredRedEye,} from "../complex-elements/red-eye-reduction.js";
 import {createStackedScanlines} from "../complex-elements/stacked-crt-scanlines.js";
 import {createGlitchedTriangle} from "../complex-elements/glitchedTriangle.js";
@@ -62,7 +62,7 @@ const createComposition = async (colorScheme) => {
         // Set up event handlers for project lifecycle
         setupMinimalProjectEventHandlers(myTestProject);
 
-        const center = new Point2D(myTestProject.shortestSideInPixels / 2, myTestProject.longestSideInPixels / 2)
+        const center = new Position({x: myTestProject.shortestSideInPixels / 2, y: myTestProject.longestSideInPixels / 2})
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -235,7 +235,7 @@ const createComposition = async (colorScheme) => {
             radius: [550],
             amplitude: {lower: 100, upper: 100},
             times: {lower: 3, upper: 3},
-            center: new Point2D(center.x, center.y - 100),
+            center: new Position({x: center.x, y: center.y - 100}),
             thickness: 24,
             underlayOpacityRange: {lower: 0.3, upper: 0.3},
             accentRange: {bottom: {lower: 120, upper: 120}, top: {lower: 240, upper: 240}},

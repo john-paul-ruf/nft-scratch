@@ -14,7 +14,7 @@ import {MappedFramesEffect} from "my-nft-effects-core/src/effects/primaryEffects
 import {MappedFramesConfig} from "my-nft-effects-core/src/effects/primaryEffects/mappedFrames/MappedFramesConfig.js";
 import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
 import {RedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeConfig.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ViewportConfig} from "my-nft-effects-core/src/effects/primaryEffects/viewport/ViewportConfig.js";
 import {LensFlareConfig} from "my-nft-effects-core/src/effects/primaryEffects/lensFlare/LensFlareConfig.js";
 import {ColorScheme} from "my-nft-gen/src/core/color/ColorScheme.js";
@@ -44,7 +44,7 @@ const createRedEye = async (colorSheme) => {
                    
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
-                    center: new Point2D(1080 / 2, 1920 / 2),
+                    center: new Position({x: 1080 / 2, y: 1920 / 2}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
@@ -74,7 +74,7 @@ const createRedEye = async (colorSheme) => {
                    
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
-                    center: new Point2D(1080 / 2, 1920 / 2),
+                    center: new Position({x: 1080 / 2, y: 1920 / 2}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
@@ -104,7 +104,7 @@ const createRedEye = async (colorSheme) => {
                    
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
-                    center: new Point2D(1080 / 2, 1920 / 2),
+                    center: new Position({x: 1080 / 2, y: 1920 / 2}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,
@@ -134,7 +134,7 @@ const createRedEye = async (colorSheme) => {
                    
                     layerOpacity: 0.8,
                     underLayerOpacity: 0.7,
-                    center: new Point2D(1080 / 2, 1920 / 2),
+                    center: new Position({x: 1080 / 2, y: 1920 / 2}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 1,

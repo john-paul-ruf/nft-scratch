@@ -6,7 +6,7 @@ import {
     EncircledSpiralConfig
 } from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
 import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
 export const createRings = async ({
@@ -75,7 +75,7 @@ export const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Point2D(myTestProject.width / 2, myTestProject.height / 2), i, outerRadius),
+                    center: findPointByAngleAndCircle(new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}), i, outerRadius),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
@@ -108,7 +108,7 @@ export const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Point2D(myTestProject.width / 2, myTestProject.height / 2), i, secondRadius),
+                    center: findPointByAngleAndCircle(new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}), i, secondRadius),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
@@ -141,7 +141,7 @@ export const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Point2D(myTestProject.width / 2, myTestProject.height / 2), i, thirdRadius),
+                    center: findPointByAngleAndCircle(new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}), i, thirdRadius),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
                 }),
@@ -173,7 +173,7 @@ export const createRings = async ({
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
-                center: new Point2D(myTestProject.width / 2, myTestProject.height / 2),
+                center: new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.color, fourthRingColor),
             }),
@@ -204,7 +204,7 @@ export const createRings = async ({
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
-                center: new Point2D(myTestProject.width / 2, myTestProject.height / 2),
+                center: new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
             }),
@@ -236,7 +236,7 @@ export const createRings = async ({
                 accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                 featherTimes: {lower: 0, upper: 0},
-                center: new Point2D(myTestProject.width / 2, myTestProject.height / 2),
+                center: new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}),
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.color, innerRingColor),
             }),

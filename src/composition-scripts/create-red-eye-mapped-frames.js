@@ -1,7 +1,7 @@
 import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
 import {setupMinimalProjectEventHandlers} from "../util/project-event-handlers.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {NeonColorScheme, NeonColorSchemeFactory} from "my-nft-gen/src/core/color/NeonColorSchemeFactory.js";
 import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
@@ -33,7 +33,7 @@ const createComposition = async (colorScheme) => {
                     invertLayers: true,
                     layerOpacity: 0.7,
                     underLayerOpacity: 0.5,
-                    center: new Point2D(1080 / 2, 1920 / 2),
+                    center: new Position({x: 1080 / 2, y: 1920 / 2}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.colorBucket),
                     stroke: 0,
