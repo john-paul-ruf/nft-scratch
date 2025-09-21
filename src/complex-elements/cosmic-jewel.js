@@ -8,6 +8,7 @@ import {
 import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
 import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 
 export const createRings = async ({
                                       myTestProject,
@@ -50,7 +51,9 @@ export const createRings = async ({
     const thirdRadius = outerRadius * thirdRadiusReduction;
 
 
+
     for (let i = 0; i < 360; i = i + ringSpoke) {
+        const point = findPointByAngleAndCircle({x: myTestProject.width / 2, y: myTestProject.height / 2}, i, outerRadius)
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: EncircledSpiralEffect,
@@ -75,7 +78,7 @@ export const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}), i, outerRadius),
+                    center: new Position({x: point.x, y: point.y}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
@@ -83,7 +86,10 @@ export const createRings = async ({
         });
     }
 
+
+
     for (let i = 0; i < 360; i = i + ringSpoke) {
+        const point = findPointByAngleAndCircle({x: myTestProject.width / 2, y: myTestProject.height / 2}, i, secondRadius)
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: EncircledSpiralEffect,
@@ -108,7 +114,7 @@ export const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}), i, secondRadius),
+                    center: new Position({x: point.x, y: point.y}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
@@ -116,7 +122,10 @@ export const createRings = async ({
         });
     }
 
+
+
     for (let i = 0; i < 360; i = i + ringSpoke) {
+        const point = findPointByAngleAndCircle({x: myTestProject.width / 2, y: myTestProject.height / 2}, i, thirdRadius);
         await myTestProject.addPrimaryEffect({
             layerConfig: new LayerConfig({
                 effect: EncircledSpiralEffect,
@@ -141,7 +150,7 @@ export const createRings = async ({
                     accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                     featherTimes: {lower: 0, upper: 0},
-                    center: findPointByAngleAndCircle(new Position({x: myTestProject.width / 2, y: myTestProject.height / 2}), i, thirdRadius),
+                    center: new Position({x: point.x, y: point.y}),
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
                 }),
@@ -180,7 +189,7 @@ export const createRings = async ({
         }),
     });
 
-    await myTestProject.addPrimaryEffect({
+    /*await myTestProject.addPrimaryEffect({
         layerConfig: new LayerConfig({
             effect: EncircledSpiralEffect,
             percentChance: 100,
@@ -209,7 +218,7 @@ export const createRings = async ({
                 outerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
             }),
         }),
-    });
+    });*/
 
 
     /*await myTestProject.addPrimaryEffect({
