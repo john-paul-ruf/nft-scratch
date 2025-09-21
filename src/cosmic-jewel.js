@@ -7,7 +7,7 @@ import {
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity, hodSplendor,
-    neonCyberdream, neonHarmony, neonLights, redGreenYellowPop, shadowRealm, yogicChakras
+    neonCyberdream, neonHarmony, neonLights, redGreenYellowPop, shadowRealm, tibetanMandala, yogicChakras
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
@@ -23,7 +23,7 @@ import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCateg
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = neonCyberdream;
+const scheme = tibetanMandala;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -76,24 +76,24 @@ const createComposition = async (colorScheme) => {
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        const stroke = 0;
-        const thickness = 2;
+        const stroke = 1;
+        const thickness = 1;
         const numberOfRedEyes = 3;
         const numberOfLayers = 8;
         const outerRadius = 700;
         const innerRadius = 500;
         const radiusGitter = new Range(0, 100);
         const numberOfSpokes = new Range(20, 20);
-        const arcSteps = new Range(30, 45);
-        const lineLength = new Range(25, 75);
+        const arcSteps = new Range(15, 30);
+        const lineLength = new Range(50, 150);
         const possibleJumpRangeInPixels = new Range(5, 15);
         const sparsityFactor = [6, 8, 10, 12];
 
         const loopTimesFunction = () => {
-            return getRandomIntInclusive(2, 5);
+            return getRandomIntInclusive(1, 4);
         };
 
-        const loopTimesRange = new Range(2, 5);
+        const loopTimesRange = new Range(1, 4);
         const useLoopFunction = false;
 
         await layeredCurvedRedEye({
@@ -150,12 +150,12 @@ const createComposition = async (colorScheme) => {
             stroke: 1,
             thickness: 1,
 
-            opacity: 0.2,
+            opacity: 0.3,
             underLayerOpacity: 0.3,
-            secondRingOpacity: 0.35,
-            thirdRingOpacity: 0.4,
-            fourthRingOpacity: 0.45,
-            fifthRingOpacity: 0.5,
+            secondRingOpacity: 0.3,
+            thirdRingOpacity: 0.3,
+            fourthRingOpacity: 0.3,
+            fifthRingOpacity: 0.3,
         })
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
