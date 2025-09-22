@@ -126,9 +126,9 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 30,
+            ringSpoke: 45,
 
-            outerRadius: 375,
+            outerRadius: 425,
             secondRadiusReduction: 0.75,
 
             thirdRadiusReduction: 0.5,
@@ -145,7 +145,7 @@ const createComposition = async (colorScheme) => {
             fourthRingSpeed: getRandomIntInclusive(2, 24),
             fifthRingSpeed: getRandomIntInclusive(2, 24),
 
-            numberOfRings: 6,
+            numberOfRings: 12,
 
             stroke: 1,
             thickness: 1,
