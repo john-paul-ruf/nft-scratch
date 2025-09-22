@@ -126,12 +126,12 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 45,
+            ringSpoke: 40,
 
             outerRadius: 425,
-            secondRadiusReduction: 0.75,
+            secondRadiusReduction: 0.60,
 
-            thirdRadiusReduction: 0.5,
+            thirdRadiusReduction: 0.30,
 
             outerRingColor: colorScheme.getColorFromBucket(),
             innerRingColor: colorScheme.getColorFromBucket(),
