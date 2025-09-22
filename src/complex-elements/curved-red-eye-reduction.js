@@ -5,12 +5,13 @@ import {CurvedRedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createFadeEffects} from "../util/glitch.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
+import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 
 export const createCurvedRedEyeReduction = async ({
                                                       project = null,
                                                       stroke,
                                                       thickness,
-                                                      center = {x: 0, y: 0},
+                                                      center = new Point2D(0, 0),
                                                       numberOfRedEyes = 8,
                                                       lineLength = 10,
                                                       sparsityFactor = 10,

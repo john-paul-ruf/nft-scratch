@@ -5,7 +5,7 @@ import {RedEyeConfig} from "my-nft-effects-core/src/effects/primaryEffects/red-e
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 import {createFadeEffects} from "../util/glitch.js";
 import {FuzzFlareEffect} from "my-nft-effects-core/src/effects/primaryEffects/fuzz-flare/FuzzFlareEffect.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {MultiStepDefinitionConfig} from "my-nft-gen/src/core/math/MultiStepDefinitionConfig.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {PercentageRange} from "my-nft-gen/src/core/layer/configType/PercentageRange.js";

@@ -50,7 +50,7 @@ import {
 import {
     EncircledSpiralConfig
 } from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
-import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {AmpEffect} from "my-nft-effects-core/src/effects/primaryEffects/amp/AmpEffect.js";
 import {AmpConfig} from "my-nft-effects-core/src/effects/primaryEffects/amp/AmpConfig.js";
 import {RedEyeEffect} from "my-nft-effects-core/src/effects/primaryEffects/red-eye/RedEyeEffect.js";
@@ -365,22 +365,22 @@ const createComposition = async (colorScheme) => {
         const crossColor = colorScheme.getColorFromBucket();
 
         //outliers
-        await addSpiral(myTestProject, outlierColor, new Point2D(center.x, center.y + (2 * length)));
-        await addSpiral(myTestProject, outlierColor, new Point2D(center.x - (2 * length), center.y));
-        await addSpiral(myTestProject, outlierColor, new Point2D(center.x + (2 * length), center.y));
-        await addSpiral(myTestProject, outlierColor, new Point2D(center.x, center.y - (2 * length)));
+        await addSpiral(myTestProject, outlierColor, new Position({x: center.x, y: center.y + (2 * length)}));
+        await addSpiral(myTestProject, outlierColor, new Position({x: center.x - (2 * length), y: center.y}));
+        await addSpiral(myTestProject, outlierColor, new Position({x: center.x + (2 * length), y: center.y}));
+        await addSpiral(myTestProject, outlierColor, new Position({x: center.x, y: center.y - (2 * length)}));
 
         //square
-        await addSpiral(myTestProject, squareColor, new Point2D(center.x + (length), center.y + (length)));
-        await addSpiral(myTestProject, squareColor, new Point2D(center.x - (length), center.y + (length)));
-        await addSpiral(myTestProject, squareColor, new Point2D(center.x - (length), center.y - (length)));
-        await addSpiral(myTestProject, squareColor, new Point2D(center.x + (length), center.y - (length)));
+        await addSpiral(myTestProject, squareColor, new Position({x: center.x + (length), y: center.y + (length)}));
+        await addSpiral(myTestProject, squareColor, new Position({x: center.x - (length), y: center.y + (length)}));
+        await addSpiral(myTestProject, squareColor, new Position({x: center.x - (length), y: center.y - (length)}));
+        await addSpiral(myTestProject, squareColor, new Position({x: center.x + (length), y: center.y - (length)}));
 
         //cross
-        await addSpiral(myTestProject, crossColor, new Point2D(center.x, center.y + (length)));
-        await addSpiral(myTestProject, crossColor, new Point2D(center.x - length, center.y));
-        await addSpiral(myTestProject, crossColor, new Point2D(center.x + length, center.y));
-        await addSpiral(myTestProject, crossColor, new Point2D(center.x, center.y - (length)));
+        await addSpiral(myTestProject, crossColor, new Position({x: center.x, y: center.y + (length)}));
+        await addSpiral(myTestProject, crossColor, new Position({x: center.x - length, y: center.y}));
+        await addSpiral(myTestProject, crossColor, new Position({x: center.x + length, y: center.y}));
+        await addSpiral(myTestProject, crossColor, new Position({x: center.x, y: center.y - (length)}));
     }
 
     const createTabs = async ({

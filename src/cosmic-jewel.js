@@ -7,11 +7,12 @@ import {
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity, hodSplendor,
-    neonCyberdream, neonHarmony, neonLights, shadowRealm
+    neonCyberdream, neonHarmony, neonLights, redGreenYellowPop, shadowRealm, tibetanMandala
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
 import {getRandomIntInclusive} from 'my-nft-gen/src/core/math/random.js';
+import {Position} from "my-nft-gen/src/core/position/Position.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {Range} from "my-nft-gen/src/core/layer/configType/Range.js";
 import {layeredCurvedRedEye} from "./complex-elements/curved-red-eye-reduction.js";
@@ -23,7 +24,7 @@ import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCateg
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = hodSplendor;
+const scheme = tibetanMandala;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -44,9 +45,9 @@ const createComposition = async (colorScheme) => {
 
         // Set up basic project lifecycle events (generation started/completed)
         setupProjectEventHandlers(myTestProject, {
-            verbose: true,         // Show verbose project details
+            verbose: false,         // Show verbose project details
             showProgress: true,     // Show generation started/completed
-            showEffects: true      // Show effect additions
+            showEffects: false      // Show effect additions
         });
 
         // NEW: Use UnifiedEventBus approach with WorkerEventLogger
@@ -60,12 +61,12 @@ const createComposition = async (colorScheme) => {
             WorkerEventCategories.ERROR
         ], {
             showFrames: true,
-            showEffects: true,
-            showFileIO: true,
-            showPerformance: true,
-            showLifecycle: true,
-            showErrors: true,
-            verbose: true
+            showEffects: false,
+            showFileIO: false,
+            showPerformance: false,
+            showLifecycle: false,
+            showErrors: false,
+            verbose: false
         });
 
         const center = new Point2D(myTestProject.width / 2, myTestProject.height / 2)
@@ -126,7 +127,7 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 45,
+            ringSpoke: 30,
 
             outerRadius: 375,
             secondRadiusReduction: 0.75,
@@ -145,7 +146,7 @@ const createComposition = async (colorScheme) => {
             fourthRingSpeed: getRandomIntInclusive(2, 24),
             fifthRingSpeed: getRandomIntInclusive(2, 24),
 
-            numberOfRings: 12,
+            numberOfRings: 6,
 
             stroke: 1,
             thickness: 1,
@@ -168,7 +169,7 @@ const createComposition = async (colorScheme) => {
 
         await createTheMark({
             project: myTestProject,
-            center: new Point2D(myTestProject.width - 150, myTestProject.height - 150),
+            center: new Position({x: myTestProject.width - 150, y: myTestProject.height - 150}),
             fadeFrom: 0.0,
             opacity: 0.5,
             keyFrames: 120,

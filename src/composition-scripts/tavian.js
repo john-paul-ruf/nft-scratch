@@ -40,7 +40,7 @@ const createComposition = async (colorScheme) => {
         EncircledSpiralConfig
     } from "my-nft-effects-core/src/effects/primaryEffects/encircledSpiral/EncircledSpiralConfig.js";
     import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
-    import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
+    import {Position} from "my-nft-gen/src/core/position/Position.js";
     import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
 
 
@@ -86,7 +86,7 @@ const createComposition = async (colorScheme) => {
                         accentRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         blurRange: {bottom: {lower: 0, upper: 0}, top: {lower: 0, upper: 0}},
                         featherTimes: {lower: 0, upper: 0},
-                        center: findPointByAngleAndCircle(new Point2D(1080 / 2, 1920 / 2), i, baseRadius * (burst * percentageIncrease)),
+                        center: findPointByAngleAndCircle(new Position({x: 1080 / 2, y: 1920 / 2}), i, baseRadius * (burst * percentageIncrease)),
                         innerColor: new ColorPicker(ColorPicker.SelectionType.color, color),
                         outerColor: new ColorPicker(ColorPicker.SelectionType.color, "#00000000"),
                     }),
