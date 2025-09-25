@@ -7,7 +7,7 @@ import {
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
     eternalRise,
     gevurahSeverity, hodSplendor,
-    neonCyberdream, neonHarmony, neonLights, redGreenYellowPop, shadowRealm, tibetanMandala, yogicChakras
+    neonCyberdream, neonHarmony, neonLights, redGreenYellowPop, royalRegalia, shadowRealm, tibetanMandala, yogicChakras
 } from "./assets/color-scheme-store.js";
 import {ModulateEffect} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateEffect.js";
 import {ModulateConfig} from "my-nft-effects-core/src/effects/finalImageEffects/modulate/ModulateConfig.js";
@@ -20,10 +20,12 @@ import {createRings} from "./complex-elements/cosmic-jewel.js";
 import {setupCategoryEventHandlers, setupProjectEventHandlers} from "./util/project-event-handlers.js";
 import {WorkerEventLogger} from "my-nft-gen/src/core/events/WorkerEventLogger.js";
 import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCategories.js";
+import {CRTShadowEffect} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowEffect.js";
+import {CRTShadowConfig} from "my-nft-effects-core/src/effects/finalImageEffects/crtShadow/CRTShadowConfig.js";
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = tibetanMandala;
+const scheme = royalRegalia;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
@@ -51,7 +53,7 @@ const createComposition = async (colorScheme) => {
 
         // NEW: Use UnifiedEventBus approach with WorkerEventLogger
         const eventBus = myTestProject.getEventBus();
-        const { logger } = WorkerEventLogger.subscribeToCategories(eventBus, [
+        const {logger} = WorkerEventLogger.subscribeToCategories(eventBus, [
             WorkerEventCategories.FRAME,
             WorkerEventCategories.EFFECT,
             WorkerEventCategories.FILE_IO,
@@ -126,12 +128,12 @@ const createComposition = async (colorScheme) => {
         await createRings({
             myTestProject,
 
-            ringSpoke: 40,
+            ringSpoke: 36,
 
             outerRadius: 425,
-            secondRadiusReduction: 0.60,
+            secondRadiusReduction: 0.80,
 
-            thirdRadiusReduction: 0.30,
+            thirdRadiusReduction: 0.40,
 
             outerRingColor: colorScheme.getColorFromBucket(),
             innerRingColor: colorScheme.getColorFromBucket(),
@@ -145,12 +147,12 @@ const createComposition = async (colorScheme) => {
             fourthRingSpeed: getRandomIntInclusive(2, 24),
             fifthRingSpeed: getRandomIntInclusive(2, 24),
 
-            numberOfRings: 12,
+            numberOfRings: 2,
 
-            stroke: 1,
-            thickness: 1,
+            stroke: 2,
+            thickness: 2,
 
-            opacity: 0.3,
+            opacity: 0.5,
             underLayerOpacity: 0.3,
             secondRingOpacity: 0.3,
             thirdRingOpacity: 0.3,
@@ -177,16 +179,33 @@ const createComposition = async (colorScheme) => {
             buffer: buffer,
         })
 
+        /*await myTestProject.addFinalEffect({
+            layerConfig: new LayerConfig({
+                effect: CRTShadowEffect, percentChance: 100, currentEffectConfig: new CRTShadowConfig({
+                    shadowOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                    linesOpacityRange: {bottom: {lower: 0.5, upper: 0.5}, top: {lower: 0.7, upper: 0.7}},
+                    opacityTimes: {lower: 15, upper: 15},
+                    lineRed: {lower: 16, upper: 16},
+                    lineGreen: {lower: 72, upper: 72},
+                    lineBlue: {lower: 0, upper: 0},
+                    lineHeight: {lower: 1, upper: 1},
+                    edgePercentage: {lower: 0.10, upper: 0.10},
+                    maxLineHeight: {lower: 8, upper: 8},
+                    numberOfEdgeSections: {lower: 40, upper: 40},
+                })
+            })
+        });*/
+
         await myTestProject.addFinalEffect({
             layerConfig: new LayerConfig({
                 effect: ModulateEffect,
                 percentChance: 100,
                 currentEffectConfig: new ModulateConfig({
-                    brightnessRange: {bottom: {lower: 1.1, upper: 1.1}, top: {lower: 1.2, upper: 1.2}},
+                    brightnessRange: {bottom: {lower: 0.8, upper: 0.8}, top: {lower: 1.2, upper: 1.2}},
                     brightnessTimes: {lower: 6, upper: 6},
-                    saturationRange: {bottom: {lower: 2, upper: 2}, top: {lower: 4, upper: 4}},
+                    saturationRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
                     saturationTimes: {lower: 12, upper: 12},
-                    contrastRange: {bottom: {lower: 1.25, upper: 1.25}, top: {lower: 1.5, upper: 1.5}},
+                    contrastRange: {bottom: {lower: 1, upper: 1}, top: {lower: 4, upper: 4}},
                     contrastTimes: {lower: 6, upper: 6},
                 }),
             }),

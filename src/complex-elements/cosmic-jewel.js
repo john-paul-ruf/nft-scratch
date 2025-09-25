@@ -8,6 +8,9 @@ import {
 import {findPointByAngleAndCircle} from "my-nft-gen/src/core/math/drawingMath.js";
 import {Point2D} from "my-nft-gen/src/core/layer/configType/Point2D.js";
 import {ColorPicker} from "my-nft-gen/src/core/layer/configType/ColorPicker.js";
+import {EdgeGlowEffect} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowEffect.js";
+import {EdgeGlowConfig} from "my-nft-effects-core/src/effects/secondaryEffects/edgeGlow/EdgeGlowConfig.js";
+import {getRandomIntInclusive} from "my-nft-gen/src/core/math/random.js";
 
 export const createRings = async ({
                                       myTestProject,
@@ -79,6 +82,21 @@ export const createRings = async ({
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
+                possibleSecondaryEffects:[
+                    new LayerConfig({
+                        effect: EdgeGlowEffect,
+                        percentChance: 100,
+                        currentEffectConfig: new EdgeGlowConfig({
+                            glowBottom: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],     // magenta
+                            glowTop: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],        // cyan
+                            glowTimes: {lower: 8, upper: 8},
+                            brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                            brightnessTimes: {lower: 2, upper: 8},
+                            blurRange: {bottom: {lower: 2, upper: 2 }, top: {lower: 6, upper: 6}},
+                            blurTimes: {lower: 8, upper: 8},
+                        })
+                    })
+                ]
             }),
         });
     }
@@ -112,6 +130,21 @@ export const createRings = async ({
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, outerRingColor),
                 }),
+                possibleSecondaryEffects:[
+                    new LayerConfig({
+                        effect: EdgeGlowEffect,
+                        percentChance: 100,
+                        currentEffectConfig: new EdgeGlowConfig({
+                            glowBottom: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],     // magenta
+                            glowTop: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],        // cyan
+                            glowTimes: {lower: 8, upper: 8},
+                            brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                            brightnessTimes: {lower: 2, upper: 8},
+                            blurRange: {bottom: {lower: 2, upper: 2 }, top: {lower: 6, upper: 6}},
+                            blurTimes: {lower: 8, upper: 8},
+                        })
+                    })
+                ]
             }),
         });
     }
@@ -145,6 +178,21 @@ export const createRings = async ({
                     innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                     outerColor: new ColorPicker(ColorPicker.SelectionType.color, fifthRingColor),
                 }),
+                possibleSecondaryEffects:[
+                    new LayerConfig({
+                        effect: EdgeGlowEffect,
+                        percentChance: 100,
+                        currentEffectConfig: new EdgeGlowConfig({
+                            glowBottom: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],     // magenta
+                            glowTop: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],        // cyan
+                            glowTimes: {lower: 8, upper: 8},
+                            brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                            brightnessTimes: {lower: 2, upper: 8},
+                            blurRange: {bottom: {lower: 2, upper: 2 }, top: {lower: 6, upper: 6}},
+                            blurTimes: {lower: 8, upper: 8},
+                        })
+                    })
+                ]
             }),
         });
     }
@@ -208,6 +256,21 @@ export const createRings = async ({
                 innerColor: new ColorPicker(ColorPicker.SelectionType.neutralBucket),
                 outerColor: new ColorPicker(ColorPicker.SelectionType.color, thirdRingColor),
             }),
+            possibleSecondaryEffects:[
+                new LayerConfig({
+                    effect: EdgeGlowEffect,
+                    percentChance: 100,
+                    currentEffectConfig: new EdgeGlowConfig({
+                        glowBottom: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],     // magenta
+                        glowTop: [getRandomIntInclusive(0,255), getRandomIntInclusive(0,255), getRandomIntInclusive(0,255)],        // cyan
+                        glowTimes: {lower: 8, upper: 8},
+                        brightnessRange: {bottom: {lower: 1.5, upper: 1.5}, top: {lower: 2, upper: 2}},
+                        brightnessTimes: {lower: 2, upper: 8},
+                        blurRange: {bottom: {lower: 2, upper: 2 }, top: {lower: 6, upper: 6}},
+                        blurTimes: {lower: 8, upper: 8},
+                    })
+                })
+            ]
         }),
     });
 
