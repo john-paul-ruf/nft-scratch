@@ -2,6 +2,7 @@ import {Project, ProjectEvents} from "my-nft-gen/src/app/Project.js";
 import {LayerConfig} from "my-nft-gen/src/core/layer/LayerConfig.js";
 
 import {
+    activatingVishuddha,
     alchemicalTransmutation,
     binahUnderstanding, celestialVault, chesedKindness,
     chokhmahWisdom, citrusVitality, daatKnowledge, earthenVeil,
@@ -24,7 +25,7 @@ import {WorkerEventCategories} from "my-nft-gen/src/core/events/WorkerEventCateg
 
 const promiseArray = [];
 const backgroundHex = '#2D2D2D'
-const scheme = tibetanMandala;
+const scheme = activatingVishuddha;
 
 const createComposition = async (colorScheme) => {
         const myTestProject = new Project({
